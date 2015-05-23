@@ -77,6 +77,7 @@ CLazyScraper::~CLazyScraper() {
 void CLazyScraper::DoScrape() {
 	if (p_scraper->IsIdenticalScrape())	{
 		_is_identical_scrape = true;
+		return;
 	}
   _is_identical_scrape = false;
 	p_scraper->ScrapeLimits();
@@ -176,7 +177,7 @@ bool CLazyScraper::NeedSlider() {
 }
 
 bool CLazyScraper::NeedBetsAndBalances() {
-	return p_scraper_access->IsMyTurn();
+	return true;
 }
 
 bool CLazyScraper::NeedAllPlayerNames() {
