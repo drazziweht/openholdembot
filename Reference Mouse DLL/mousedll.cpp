@@ -41,7 +41,6 @@
 MOUSEDLL_API int MouseClick(const HWND hwnd, const RECT rect, const MouseButton button, const int clicks,
 							const HWND restore_focus, const POINT restore_cursor)
 {
-	INPUT			input[100] = {0};
 
 	POINT pt = RandomizeClickLocation(rect);
 	double fScreenWidth = ::GetSystemMetrics( SM_CXSCREEN )-1;
@@ -53,65 +52,67 @@ MOUSEDLL_API int MouseClick(const HWND hwnd, const RECT rect, const MouseButton 
 	double fy = pt.y*(65535.0f/fScreenHeight);
 
 	// Set up the input structure
-	for (int i = 0; i<clicks*2; i+=2)
-	{
-		ZeroMemory(&input[i],sizeof(INPUT));
-		input[i].type = INPUT_MOUSE;
-		input[i].mi.dx = (LONG) fx;
-		input[i].mi.dy = (LONG) fy;
+	INPUT		press[1];
+
+		ZeroMemory(&press[0],sizeof(INPUT));
+		press[0].type = INPUT_MOUSE;
+		press[0].mi.dx = (LONG) fx;
+		press[0].mi.dy = (LONG) fy;
 
 		switch (button)
 		{
 		case MouseLeft:
-			input[i].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTDOWN;
+			press[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTDOWN;
 			break;
 		case MouseMiddle:
-			input[i].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_MIDDLEDOWN;
+			press[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_MIDDLEDOWN;
 			break;
 		case MouseRight:
-			input[i].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_RIGHTDOWN;
+			press[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_RIGHTDOWN;
 			break;
 		}
-		
-		ZeroMemory(&input[i+1],sizeof(INPUT));
-		input[i+1].type = INPUT_MOUSE;
-		input[i+1].mi.dx = (LONG) fx;
-		input[i+1].mi.dy = (LONG) fy;
+
+	INPUT		release[1];
+
+		ZeroMemory(&release[0],sizeof(INPUT));
+		release[0].type = INPUT_MOUSE;
+		release[0].mi.dx = (LONG) fx;
+		release[0].mi.dy = (LONG) fy;
 
 		switch (button)
 		{
 		case MouseLeft:
-			input[i+1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTUP;
+			release[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTUP;
 			break;
 		case MouseMiddle:
-			input[i+1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_MIDDLEUP;
+			release[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_MIDDLEUP;
 			break;
 		case MouseRight:
-			input[i+1].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_RIGHTUP;
+			release[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_RIGHTUP;
 			break;
 		}
-	}
-
-	// Set focus to target window
-	SetFocus(hwnd);
-	SetForegroundWindow(hwnd);
-	SetActiveWindow(hwnd);
 
 	// Send input
-	Sleep(100);
-	SendInput(clicks*2, input, sizeof(INPUT));
-	Sleep(100);
+	CheckAndReleaseMouseButtons( fx, fy);
+	
+	for (int i = 0; i<clicks; i++)
+	{
+		SendInput(1, press, sizeof(INPUT));
+		Sleep(12);
+		SendInput(1, release, sizeof(INPUT));
+		Sleep(68);
+	}
+		
+	Sleep(150);
 
-	// Restore previous window state and cursor position
+	// Restore focus.
 	if (restore_focus!=NULL)
 	{
-		SetActiveWindow(restore_focus);
 		SetForegroundWindow(restore_focus);
-		SetFocus(restore_focus);
 	}
 
-	// Remove that code-block, if you don't want to restore the mouse-cursor!
-	if (restore_cursor.x!=-1 && restore_cursor.y!=-1)
+	// Restore cursor.
+	if (!(restore_cursor.x==-1234567 && restore_cursor.y==-1234567))
 	{
 		SetCursorPos(restore_cursor.x, restore_cursor.y);
 	}
@@ -121,7 +122,8 @@ MOUSEDLL_API int MouseClick(const HWND hwnd, const RECT rect, const MouseButton 
 
 MOUSEDLL_API int MouseClickDrag(const HWND hwnd, const RECT rect, const HWND restore_focus, const POINT restore_cursor)
 {
-	INPUT			input[3];
+
+
 	POINT			pt;
 	double			fx, fy;
 
@@ -136,6 +138,9 @@ MOUSEDLL_API int MouseClickDrag(const HWND hwnd, const RECT rect, const HWND res
 	fx = pt.x*(65535.0f/fScreenWidth);
 	fy = pt.y*(65535.0f/fScreenHeight);
 
+	CheckAndReleaseMouseButtons( fx, fy);
+
+	INPUT			input[3];
 	ZeroMemory(&input[0],sizeof(INPUT));
 	input[0].type = INPUT_MOUSE;
 	input[0].mi.dx = (LONG) fx;
@@ -158,24 +163,21 @@ MOUSEDLL_API int MouseClickDrag(const HWND hwnd, const RECT rect, const HWND res
 	input[2].type = INPUT_MOUSE;
 	input[2].mi.dwFlags = MOUSEEVENTF_LEFTUP;
 
-	// Set focus to target window
-	SetFocus(hwnd);
-	SetForegroundWindow(hwnd);
-	SetActiveWindow(hwnd);
+
+//	SetForegroundWindow(hwnd);
 
 	// Send input
 	SendInput(3, input, sizeof(INPUT));
+	Sleep(200);
 
-	// Restore previous window state and cursor position
+	// Restore focus.
 	if (restore_focus!=NULL)
 	{
-		SetActiveWindow(restore_focus);
 		SetForegroundWindow(restore_focus);
-		SetFocus(restore_focus);
 	}
 
-	// Remove that code-block, if you don't want to restore the mouse-cursor!
-	if (restore_cursor.x!=-1 && restore_cursor.y!=-1)
+	// Restore cursor.
+	if (!(restore_cursor.x==-1234567 && restore_cursor.y==-1234567))
 	{
 		SetCursorPos(restore_cursor.x, restore_cursor.y);
 	}
@@ -204,12 +206,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 const POINT RandomizeClickLocation(const RECT rect) 
 {
 	POINT p = {0};
-
-	// uniform random distribution, yuck!
-	//p.x = ((double) rand() / (double) RAND_MAX) * (rect.right-rect.left) + rect.left;
-	//p.y = ((double) rand() / (double) RAND_MAX) * (rect.bottom-rect.top) + rect.top;
-
-	// normal random distribution - much better!
+	
+	// normal random distribution - much better than uniform random distribution !
 	GetClickPoint(rect.left + (rect.right-rect.left)/2, 
 				  rect.top + (rect.bottom-rect.top)/2, 
 				  (rect.right-rect.left)/2, 
@@ -252,3 +250,24 @@ const double RandomNormal(const double m, const double s)
 	return( m + y1 * s ); 
 
 } 
+
+void CheckAndReleaseMouseButtons(double screen_x, double screen_y)
+{
+	// Release all mouse buttons if one of them is pressed.
+	// Should solve a rare stuck mouse button bug, similar to stuck key problem.
+
+	if ((GetKeyState(VK_LBUTTON) & 0x80)||
+		(GetKeyState(VK_MBUTTON) & 0x80)||
+		(GetKeyState(VK_RBUTTON) & 0x80))
+	{
+		INPUT			input[1];		
+		ZeroMemory(&input[0],sizeof(INPUT));
+		input[0].type = INPUT_MOUSE;
+		input[0].mi.dx =(LONG) screen_x;
+		input[0].mi.dy =(LONG) screen_y;
+		input[0].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTUP | MOUSEEVENTF_RIGHTUP | MOUSEEVENTF_MIDDLEUP ;
+		
+		SendInput(1, input, sizeof(INPUT));
+		Sleep(20);
+	}
+}

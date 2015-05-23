@@ -39,8 +39,8 @@ class CCasinoInterface {
 	void SelectSwagText();
 	void DeleteSwagText();
 
-	POINT p_null;
-	RECT r_null; 
+	POINT point_null;
+	RECT rect_null; 
 	// ToDo: Sliderbar, Chatbox, etc.
  public:
 	// regions 

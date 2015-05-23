@@ -39,5 +39,6 @@ const POINT RandomizeClickLocation(const RECT rect);
 const void GetClickPoint(const int x, const int y, const int rx, const int ry, POINT *p);
 const double RandomNormalScaled(const double scale, const double m, const double s);
 const double RandomNormal(const double m, const double s);
+void CheckAndReleaseMouseButtons(double screen_x, double screen_y);
 
 #endif //INC_MOUSEDLL_H 

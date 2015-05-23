@@ -77,40 +77,39 @@ CLazyScraper::~CLazyScraper() {
 void CLazyScraper::DoScrape() {
 	if (p_scraper->IsIdenticalScrape())	{
 		_is_identical_scrape = true;
-    return;
 	}
   _is_identical_scrape = false;
 	p_scraper->ScrapeLimits();
-	if (NeedDealerChair()) {
+	if (NeedDealerChair() && !_is_identical_scrape) {
 		p_scraper->ScrapeDealer();
 	}
-	if (NeedUsersCards())	{
+	if (NeedUsersCards() && !_is_identical_scrape)	{
 		assert(p_symbol_engine_userchair->userchair_confirmed());
 		p_scraper->ScrapePlayerCards(p_symbol_engine_userchair->userchair());
 	}
 	p_scraper->ScrapeSeatedActive();
-	if (NeedAllPlayersCards()) {
+	if (NeedAllPlayersCards() && !_is_identical_scrape) {
 		p_scraper->ScrapeAllPlayerCards(); 
 	}
-	if (NeedCommunityCards())	{
+	if (NeedCommunityCards() && !_is_identical_scrape)	{
 		p_scraper->ScrapeCommonCards();
 	}
-	if (NeedFoldButton())	{
+	if (NeedFoldButton() && !_is_identical_scrape)	{
 		// For fast detection of my turn
 		// Currently included in NeedActionbuttons()
     // No extra-scrape of fold-button for improved reaction time
 	}
-	if (NeedActionbuttons()) {
+	if (NeedActionbuttons() && !_is_identical_scrape) {
 		p_scraper->ScrapeActionButtons();
 		p_scraper->ScrapeActionButtonLabels();
 	}
-	if (NeedInterfaceButtons())	{
+	if (NeedInterfaceButtons() && !_is_identical_scrape)	{
 		p_scraper->ScrapeInterfaceButtons();
 	}
 	if (NeedBetpotButtons()) {
 		p_scraper->ScrapeBetpotButtons();
 	}
-	if (NeedSlider())	{
+	if (NeedSlider() && !_is_identical_scrape)	{
 		p_scraper->ScrapeSlider();
 	}
 	// Swagbox AKA i3edit does not need to be scraped
@@ -119,11 +118,11 @@ void CLazyScraper::DoScrape() {
 		p_scraper->ScrapeBetsAndBalances();
 		p_scraper->ScrapePots();
 	}
-	if (NeedAllPlayerNames())	{
+	if (NeedAllPlayerNames() && !_is_identical_scrape)	{
 		p_scraper->ClearAllPlayerNames();
 		ScrapeUnknownPlayerNames();
 	}
-	if (NeedUnknownPlayerNames())	{
+	if (NeedUnknownPlayerNames() && !_is_identical_scrape)	{
 		ScrapeUnknownPlayerNames();
 	}
   if (NeedColourCodes()) {
@@ -177,7 +176,7 @@ bool CLazyScraper::NeedSlider() {
 }
 
 bool CLazyScraper::NeedBetsAndBalances() {
-	return true;
+	return p_scraper_access->IsMyTurn();
 }
 
 bool CLazyScraper::NeedAllPlayerNames() {

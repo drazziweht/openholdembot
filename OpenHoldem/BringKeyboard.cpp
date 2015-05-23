@@ -107,12 +107,9 @@ void CheckBringKeyboard(void) {
 		CMyMutex mutex;
     if (!mutex.IsLocked()) return;
 
-		hwnd_focus = GetFocus();
+		hwnd_focus = GetForegroundWindow();
 		GetCursorPos(&cur_pos);
-
-		SetFocus(p_autoconnector->attached_hwnd());
 		SetForegroundWindow(p_autoconnector->attached_hwnd());
-		SetActiveWindow(p_autoconnector->attached_hwnd());
 		SendInput(input_count, input, sizeof(INPUT));
 
 		Sleep(200);
@@ -130,14 +127,10 @@ void CheckBringKeyboard(void) {
 		input[input_count].ki.dwFlags = KEYEVENTF_KEYUP;
 		input_count++;
 
-		SetFocus(p_autoconnector->attached_hwnd());
 		SetForegroundWindow(p_autoconnector->attached_hwnd());
-		SetActiveWindow(p_autoconnector->attached_hwnd());
 		SendInput(input_count, input, sizeof(INPUT));
 
-		SetActiveWindow(hwnd_focus);
-		SetForegroundWindow(hwnd_focus);
-		SetFocus(hwnd_focus);
+		// SetForegroundWindow(hwnd_focus);
 
 		SetCursorPos(cur_pos.x, cur_pos.y);
 	}

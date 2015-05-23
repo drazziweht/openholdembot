@@ -69,8 +69,11 @@ void CHandresetDetector::CalculateIsHandreset() {
   int number_of_methods_firing = bitcount(total_methods_firing);
   write_log(preferences.debug_handreset_detector(), "[CHandresetDetector] Number of methods firing last 3 heartbeat2: %i\n",
     number_of_methods_firing);
-  if (number_of_methods_firing >= 2) {
+  // 2 methods one of which beeing dealer chair,user cards or hand number.
+  if ( (number_of_methods_firing >= 2) && (total_methods_firing > 64) ) {
     write_log(preferences.debug_handreset_detector(), "[CHandresetDetector] Handreset found\n");
+	write_log(k_always_log_basic_information, "[CHandresetDetector] Methods firing last 3 heartbeat2: %s ; %s ; %s ; %s .\n",
+    IntToBinaryString(total_methods_firing), IntToBinaryString(_methods_firing_the_last_three_heartbeats[0]), IntToBinaryString(_methods_firing_the_last_three_heartbeats[1]), IntToBinaryString(_methods_firing_the_last_three_heartbeats[2]));
     _is_handreset_on_this_heartbeat = true;
     ++_hands_played;
     if (p_symbol_engine_active_dealt_playing->nopponentsdealt() == 1) {
@@ -102,15 +105,15 @@ int CHandresetDetector::BitVectorFiringHandresetMethods() {
   handresetmethods_fired <<= 1;
   handresetmethods_fired |= (IsHandresetByCommunityCards() ? 1 : 0);
   handresetmethods_fired <<= 1;
-  handresetmethods_fired |= (IsHandresetByPotsize() ? 1 : 0);
+  // handresetmethods_fired |= (IsHandresetByPotsize() ? 1 : 0);
   handresetmethods_fired <<= 1;
   handresetmethods_fired |= (IsHandresetByNopponentsplaying() ? 1 : 0);
   handresetmethods_fired <<= 1;
-  handresetmethods_fired |= (IsHandresetByIncreasingBalance() ? 1 : 0);
+  // handresetmethods_fired |= (IsHandresetByIncreasingBalance() ? 1 : 0);
   handresetmethods_fired <<= 1;
-  handresetmethods_fired |= (IsHandresetByChangingBlindLevel() ? 1 : 0);
+ // handresetmethods_fired |= (IsHandresetByChangingBlindLevel() ? 1 : 0);
   handresetmethods_fired <<= 1;
-  handresetmethods_fired |= (IsHandresetByNewSmallBlind() ? 1 : 0 );
+  // handresetmethods_fired |= (IsHandresetByNewSmallBlind() ? 1 : 0 );
   // No shift-left after the last bit
   write_log(preferences.debug_handreset_detector(), "[CHandresetDetector] Methods firing this heartbeat: %s\n",
     IntToBinaryString(handresetmethods_fired, kNumberOfHandresetMethods));

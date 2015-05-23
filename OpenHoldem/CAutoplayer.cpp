@@ -82,7 +82,7 @@ void CAutoplayer::PrepareActionSequence() {
 	// while we wait, leading to funny jumps when we "clean up".
 	// http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=15324
 	GetCursorPos(&cursor_position);
-	window_with_focus = GetFocus();
+	window_with_focus = GetForegroundWindow();
 	// We got the mutex and everything is prepared.
 	// We now assume an action-sequence will be executed.
 	// This makes cleanup simpler, as we now can handle it once,
@@ -103,7 +103,7 @@ void CAutoplayer::FinishActionSequenceIfNecessary() {
       // Restore mouse position and window focus
       // Only for simulations, not for real casinos (stealth).
 		  // Restoring the original state has to be done in reversed order
-		  SetFocus(window_with_focus);
+		  SetForegroundWindow(window_with_focus);
 		  SetCursorPos(cursor_position.x, cursor_position.y);
     }
 		action_sequence_needs_to_be_finished = false;
@@ -230,6 +230,7 @@ bool CAutoplayer::ExecutePrimaryFormulasIfNecessary() {
 	// So we have to take an action and are able to do so.
 	// This function will ALWAYS try to click a button,
 	// so we can handle the preparation once at the very beginning.
+
 	CMyMutex mutex;
 
 	if (!mutex.IsLocked())
@@ -243,19 +244,29 @@ bool CAutoplayer::ExecutePrimaryFormulasIfNecessary() {
 	{
 		if (DoAllin())
 		{
+			// Sleep with mutexlock to prevent too fast actions by other waiting OHs.
+			Sleep(k_after_action_delay);
 			return true;
 		}
 		// Else continue with swag and betpot
 	}
 	if (DoBetPot())
 	{
+		Sleep(k_after_action_delay);
 		return true;
 	}
 	if (DoSwag())
 	{
+		Sleep(k_after_action_delay);
 		return true;
 	}
-	return ExecuteRaiseCallCheckFold();
+	if (ExecuteRaiseCallCheckFold())
+	{
+		Sleep(k_after_action_delay);
+		return true;
+	}
+	
+	return false;
 }
 
 bool CAutoplayer::ExecuteRaiseCallCheckFold() {
@@ -326,7 +337,7 @@ bool CAutoplayer::ExecuteSecondaryFormulasIfNecessary() {
 		// This requires an external script and some time.
 		// No further actions here eihter, but immediate return.
 		p_rebuymanagement->TryToRebuy();
-		// No waz to check for success here
+		// No way to check for success here
 		executed_secondary_function = k_hopper_function_rebuy;
 	}
 	else if (p_autoplayer_functions->GetAutoplayerFunctionValue(k_standard_function_chat)) 	{
@@ -335,11 +346,10 @@ bool CAutoplayer::ExecuteSecondaryFormulasIfNecessary() {
 			}
 	}
 	// Otherwise: handle the simple simple button-click
-	// k_hopper_function_sitin,
-	// k_hopper_function_sitout,
-	// k_hopper_function_leave,
-  // k_hopper_function_rematch,
-	// k_hopper_function_autopost,
+	// k_standard_function_sitin,
+	// k_standard_function_sitout,
+	// k_standard_function_leave,
+	// k_standard_function_autopost,
 	else 
     for (int i=k_hopper_function_sitin; i<=k_hopper_function_autopost; ++i)	{
 		if (p_autoplayer_functions->GetAutoplayerFunctionValue(i))	{
@@ -350,9 +360,12 @@ bool CAutoplayer::ExecuteSecondaryFormulasIfNecessary() {
 		}
 	}
 	if (executed_secondary_function != kUndefined) {
-		FinishActionSequenceIfNecessary();
 		p_autoplayer_trace->Print(ActionConstantNames(executed_secondary_function), false);
+		// Sleep with mutexlock to prevent too fast actions by other waiting OHs.
+		Sleep(k_after_action_delay);
+		return true;
 	}
+	action_sequence_needs_to_be_finished = false;
 	return false;
 }
 
@@ -458,14 +471,14 @@ void CAutoplayer::DoAutoplayer(void) {
 	// to handle popups which occlude the table (unstable input)
 	if (HandleInterfacebuttonsI86())	{
     write_log(preferences.debug_autoplayer(), "[AutoPlayer] Interface buttons (popups) handled\n");
-    action_sequence_needs_to_be_finished = true;
-	goto AutoPlayerCleanupAndFinalization;
+	action_sequence_needs_to_be_finished = true;
+    goto AutoPlayerCleanupAndFinalization;
   }
   // Care about sitin, sitout, leave, etc.
   if (TimeToHandleSecondaryFormulas())	{
 	  p_autoplayer_functions->CalcSecondaryFormulas();	  
     if (ExecuteSecondaryFormulasIfNecessary())	{
-      write_log(preferences.debug_autoplayer(), "[AutoPlayer] Secondarz formulas executed\n");
+      write_log(preferences.debug_autoplayer(), "[AutoPlayer] Secondary formulas executed.\n");
       goto AutoPlayerCleanupAndFinalization;
     } else {
       write_log(preferences.debug_autoplayer(), "[AutoPlayer] No secondary formulas to be handled.\n");

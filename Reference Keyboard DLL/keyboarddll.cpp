@@ -50,7 +50,16 @@ void PlayKeyboardEvent(int vkey, int bscan)
 	keybd_event(VK_SHIFT,   0, (bscan & Shift)   ? 0 : KEYEVENTF_KEYUP, 0);
 	keybd_event(VK_MENU,    0, (bscan & Alt)     ? 0 : KEYEVENTF_KEYUP, 0);
 
+	
+	if ((GetKeyState(vkey) & 0x80))
+	{
+		Sleep(10);
+		keybd_event(vkey,  bscan,  KEYEVENTF_KEYUP, 0);
+		Sleep(10);
+	}
+
 	keybd_event(vkey,  bscan,  0, 0);
+	Sleep(10);
 	keybd_event(vkey,  bscan,  KEYEVENTF_KEYUP, 0);
 
 	if (bscan & Control)
@@ -62,48 +71,11 @@ void PlayKeyboardEvent(int vkey, int bscan)
 }
 
 KEYBOARDDLL_API int SendString(const HWND hwnd, const RECT rect, const CString s, const bool use_comma,
-							   const HWND restore_focus, const POINT restore_cursor)
+	const HWND restore_focus, const POINT restore_cursor)
 {
-	INPUT			input[102];
-
-	POINT pt = RandomizeClickLocation(rect);
-	double fScreenWidth = ::GetSystemMetrics( SM_CXSCREEN )-1;
-	double fScreenHeight = ::GetSystemMetrics( SM_CYSCREEN )-1;
-
-	// Translate click point to screen/mouse coords
-	ClientToScreen(hwnd, &pt);
-	double fx = pt.x*(65535.0f/fScreenWidth);
-	double fy = pt.y*(65535.0f/fScreenHeight);
-
-	// Set up the input structure
-
-	int input_count=0;
-
-	// First click in the rect to select it, if rect is not passed in as {-1, -1, -1, -1}
-	if (rect.left!=-1 || rect.top!=-1 || rect.right!=-1 || rect.bottom!=-1)
-	{
-		ZeroMemory(&input[input_count],sizeof(INPUT));
-		input[input_count].type = INPUT_MOUSE;
-		input[input_count].mi.dx = (LONG) fx;
-		input[input_count].mi.dy = (LONG) fy;
-		input[input_count].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTDOWN;
-		input_count++;
-		
-		ZeroMemory(&input[input_count],sizeof(INPUT));
-		input[input_count].type = INPUT_MOUSE;
-		input[input_count].mi.dx = (LONG) fx;
-		input[input_count].mi.dy = (LONG) fy;
-		input[input_count].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTUP;
-		input_count++;
-	}
 
 	// Set focus to target window
-	SetFocus(hwnd);
-	SetForegroundWindow(hwnd);
-	SetActiveWindow(hwnd);
-
-	// Send input
-	SendInput(input_count, input, sizeof(INPUT));
+//	SetForegroundWindow(hwnd);
 
 	// Send each character of the string via PlayKeyboardEvent
 	char ch_str[100];
@@ -115,24 +87,22 @@ KEYBOARDDLL_API int SendString(const HWND hwnd, const RECT rect, const CString s
 	short KeyScan;
 	for (int i=0; i<strlength; i++)
 	{
-		Sleep(20);
+		Sleep(32);
 		if (use_comma && ch_str[i]=='.')
 			ch_str[i] = ',';
 		KeyScan = VkKeyScan(ch_str[i]);
 		PlayKeyboardEvent(LOBYTE(KeyScan), HIBYTE(KeyScan));
 	}
-	Sleep(20);
+	Sleep(18);
 
-	// Restore previous window state and cursor position
+	// Restore focus.
 	if (restore_focus!=NULL)
 	{
-		SetActiveWindow(restore_focus);
 		SetForegroundWindow(restore_focus);
-		SetFocus(restore_focus);
 	}
 
-	// Remove that code-block, if you don't want to restore the mouse-cursor!
-	if (restore_cursor.x!=-1 && restore_cursor.y!=-1)
+	// Restore cursor.
+	if (!(restore_cursor.x==-1234567 && restore_cursor.y==-1234567))
 	{
 		SetCursorPos(restore_cursor.x, restore_cursor.y);
 	}
@@ -143,68 +113,32 @@ KEYBOARDDLL_API int SendString(const HWND hwnd, const RECT rect, const CString s
 KEYBOARDDLL_API int SendKey(const HWND hwnd, const RECT rect, UINT vkey,
 							const HWND restore_focus, const POINT restore_cursor)
 {
-	INPUT			input[4];
-
-	POINT pt = RandomizeClickLocation(rect);
-	double fScreenWidth = ::GetSystemMetrics( SM_CXSCREEN )-1;
-	double fScreenHeight = ::GetSystemMetrics( SM_CYSCREEN )-1;
-
-	// Translate click point to screen/mouse coords
-	ClientToScreen(hwnd, &pt);
-	double fx = pt.x*(65535.0f/fScreenWidth);
-	double fy = pt.y*(65535.0f/fScreenHeight);
-
-	// Set up the input structure
-	int input_count=0;
-
-	// First click in the rect to select it, if rect is not passed in as {-1, -1, -1, -1}
-	if (rect.left!=-1 || rect.top!=-1 || rect.right!=-1 || rect.bottom!=-1)
-	{
-		ZeroMemory(&input[input_count],sizeof(INPUT));
-		input[input_count].type = INPUT_MOUSE;
-		input[input_count].mi.dx = (LONG) fx;
-		input[input_count].mi.dy = (LONG) fy;
-		input[input_count].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTDOWN;
-		input_count++;
-		
-		ZeroMemory(&input[input_count],sizeof(INPUT));
-		input[input_count].type = INPUT_MOUSE;
-		input[input_count].mi.dx = (LONG) fx;
-		input[input_count].mi.dy = (LONG) fy;
-		input[input_count].mi.dwFlags = MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE | MOUSEEVENTF_LEFTUP;
-		input_count++;
-	}
+	INPUT			input[2];
 
 	// Add vkey to the input struct
-	ZeroMemory(&input[input_count],sizeof(INPUT));
-	input[input_count].type = INPUT_KEYBOARD;
-	input[input_count].ki.wVk = vkey;
-	input_count++;
+	ZeroMemory(&input[0],sizeof(INPUT));
+	input[0].type = INPUT_KEYBOARD;
+	input[0].ki.wVk = vkey;
 
-	ZeroMemory(&input[input_count],sizeof(INPUT));
-	input[input_count].type = INPUT_KEYBOARD;
-	input[input_count].ki.wVk = vkey;
-	input[input_count].ki.dwFlags = KEYEVENTF_KEYUP;
-	input_count++;
+	ZeroMemory(&input[1],sizeof(INPUT));
+	input[1].type = INPUT_KEYBOARD;
+	input[1].ki.wVk = vkey;
+	input[1].ki.dwFlags = KEYEVENTF_KEYUP;
 
 	// Set focus to target window
-	SetFocus(hwnd);
-	SetForegroundWindow(hwnd);
-	SetActiveWindow(hwnd);
+//	SetForegroundWindow(hwnd);
 
 	// Send input
-	SendInput(input_count, input, sizeof(INPUT));
+	SendInput(2, input, sizeof(INPUT));
 
-	// Restore previous window state and cursor position
+	// Restore focus.
 	if (restore_focus!=NULL)
 	{
-		SetActiveWindow(restore_focus);
 		SetForegroundWindow(restore_focus);
-		SetFocus(restore_focus);
 	}
 
-	// Remove that code-block, if you don't want to restore the mouse-cursor!
-	if (restore_cursor.x!=-1 && restore_cursor.y!=-1)
+	// Restore cursor.
+	if (!(restore_cursor.x==-1234567 && restore_cursor.y==-1234567))
 	{
 		SetCursorPos(restore_cursor.x, restore_cursor.y);
 	}
@@ -229,55 +163,4 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 		break;
 	}
     return true;
-}
-
-const POINT RandomizeClickLocation(const RECT rect) 
-{
-	POINT p = {0};
-
-	// uniform random distribution, yuck!
-	//p.x = ((double) rand() / (double) RAND_MAX) * (rect.right-rect.left) + rect.left;
-	//p.y = ((double) rand() / (double) RAND_MAX) * (rect.bottom-rect.top) + rect.top;
-
-	// normal random distribution - much better!
-	GetClickPoint(rect.left + (rect.right-rect.left)/2, 
-				  rect.top + (rect.bottom-rect.top)/2, 
-				  (rect.right-rect.left)/2, 
-				  (rect.bottom-rect.top)/2, 
-				  &p);
-
-	return p;
-}
-
-const void GetClickPoint(const int x, const int y, const int rx, const int ry, POINT *p) 
-{
-	p->x = x + (int) (RandomNormalScaled(2*rx, 0, 1) + 0.5) - (rx);
-	p->y = y + (int) (RandomNormalScaled(2*ry, 0, 1) + 0.5) - (ry);
-}
-
-// random number - 0 -> scale, with normal distribution
-// ignore results outside 3.5 stds from the mean
-const double RandomNormalScaled(const double scale, const double m, const double s) 
-{
-	double res = -99;
-	while (res < -3.5 || res > 3.5) res = RandomNormal(m, s);
-	return (res / 3.5*s + 1) * (scale / 2.0);
-}
-
-const double RandomNormal(const double m, const double s) 
-{
-	/* mean m, standard deviation s */
-	double x1 = 0., x2 = 0., w = 0., y1 = 0., y2 = 0.;
-
-	do {
-		x1 = 2.0 * ((double) rand()/(double) RAND_MAX) - 1.0;
-		x2 = 2.0 * ((double) rand()/(double) RAND_MAX) - 1.0;
-		w = x1 * x1 + x2 * x2;
-	} while ( w >= 1.0 );
-
-	w = sqrt( (-2.0 * log( w ) ) / w );
-	y1 = x1 * w;
-	y2 = x2 * w;
-
-	return( m + y1 * s );
 }

@@ -40,6 +40,8 @@
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIsRush.h"
 #include "CSymbolEngineUserchair.h"
+#include "CSymbolEnginePositions.h"
+#include "CSymbolEngineHistory.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CTableMapLoader.h"
 #include "CTablePositioner.h"
@@ -89,6 +91,11 @@ void CHeartbeatThread::StartThread() {
 
 void CHeartbeatThread::FlexibleHeartbeatSleeping() {
 	double scrape_delay = preferences.scrape_delay();
+	int dealposition = p_symbol_engine_positions->dealposition();
+	int betposition = p_symbol_engine_positions->betposition();
+	int nopponentsplaying = p_symbol_engine_active_dealt_playing->nopponentsplaying();
+	int nplayersseated = p_symbol_engine_active_dealt_playing->nplayersseated();
+	int didcall = p_symbol_engine_history->didcall(p_betround_calculator->betround());
   if (!p_autoconnector->IsConnected()) {
     // Keep scrape_delay as is
     // We want fast auto-connects 
@@ -96,38 +103,51 @@ void CHeartbeatThread::FlexibleHeartbeatSleeping() {
   }	else if (!p_symbol_engine_userchair->userchair_confirmed()) {
     // Not yet seated
     // Probably not much critical work to be done.
-    scrape_delay *= 2; 
+    scrape_delay *= 4 + nplayersseated; 
   } else if (!p_table_state->User()->HasKnownCards()) {
     // Folded
     if (p_symbol_engine_isrush->isrush()) {
       // New hand starts soon
       // Don't change delay
-    }
-    else if (p_symbol_engine_active_dealt_playing->nopponentsplaying() >= 3) {
+    } else if (nopponentsplaying >= 3) {
       // Multiway, not participating.
       // Hand will continue for some time.
-      scrape_delay *= 2;
-    } else {
+      scrape_delay *= 6;
+    } else if ( nopponentsplaying == 2
+				&& p_symbol_engine_active_dealt_playing->nplayersdealt() >= 5
+				&& dealposition > 0 && dealposition != 4 && dealposition != 5 ) {
+		// Headsup, not participating. 5+ players and not UTG+1 or UTG+2 (next hand UTG or UTG+1) 
+		// Have some time until my next hand's turn.
+      scrape_delay *= 6;
+	} else if (nopponentsplaying == 2) {
       // Headsup, not participating.
       // Hand might be over soon.
-      scrape_delay *= 1.5;
+      scrape_delay *= 4;
     }
+	// Else it's probably in between hands.
+	// Keep standard delay.
   } else if (p_scraper_access->NumberOfVisibleButtons() > 0) {                                                                                                                                                                 if ((vali_err) && (p_sessioncounter->session_id() >= 3) && (Random(3579) == 17)) { Sleep(35791); } // 4nt1 5+inky w3bb3r 84nd1+ ;-)                                                                                                                                                                                                         
 		// Playing and my turn
 		// Stable frames expected
 		// Shorter reaction times desired
     scrape_delay *= 0.5; 
-	} else {
+  } else {
     // Playing, but not my turn
-    if (p_symbol_engine_time->elapsedauto() < p_symbol_engine_active_dealt_playing->nopponentsplaying()) {
+    if (p_symbol_engine_time->elapsedauto() < 2) {
       // Short after autoplyer-action
-      // Will take some time until it is our turn again.
-      // Slow down a little bit.
-      scrape_delay *= 1.33;
+        if (didcall){
+		// We might have to act very soon (call OOP).
+		// Could be improved but callposition is only available at our turn.
+		// #opponents needing to act = (nopponentsplaying - callposition) si positif, sinon: betposition (on a call en dernier)
+		scrape_delay *= (1 + betposition);
+		} else {
+		// Every opponents have to act before our next turn. (mais on peut missclick prefold)
+		scrape_delay *= (2 + nopponentsplaying);
+		}
     }
     // Else: keep default value
   }
-	write_log(preferences.debug_heartbeat(), "[HeartBeatThread] Sleeping %d ms.\n", scrape_delay);
+	write_log(preferences.debug_heartbeat(), "[HeartBeatThread] Sleeping %d ms.\n", (int)scrape_delay);
   Sleep(scrape_delay);
 }
 
