@@ -165,6 +165,7 @@
     </Filter>
     <Filter Include="Source Files\GUI\Unused_might_be_recycled">
       <UniqueIdentifier>{94d59cbb-2478-484c-a4a0-0f28a192adfd}</UniqueIdentifier>
+      <ParseFiles>true</ParseFiles>
     </Filter>
     <Filter Include="Source Files\Symbols\ToDo">
       <UniqueIdentifier>{deb1712a-592a-4104-b014-17c41e0e4556}</UniqueIdentifier>
@@ -716,9 +717,6 @@
     </ClCompile>
     <ClCompile Include="CSymbolEngineColourCodes.cpp">
       <Filter>Source Files\Symbols\Symbol_Engines</Filter>
-    </ClCompile>
-    <ClCompile Include="DialogSAPrefs9.cpp">
-      <Filter>Source Files\GUI\Unused_might_be_recycled</Filter>
     </ClCompile>
     <ClCompile Include="SLimitInfo.cpp">
       <Filter>Source Files</Filter>
