@@ -325,7 +325,8 @@ void CSymbolEnginePokerval::CalculateRankBits()
 
 	int tsuitcommon = p_symbol_engine_cards->tsuitcommon();
   int tsuit = p_symbol_engine_cards->tsuit();
-	
+	plcomsuit = tsuit ;
+	comsuit = tsuitcommon;
 	// player cards
 	for (int i=0; i<kNumberOfCardsPerPlayer; i++) {
 		if (p_table_state->User()->HasKnownCards()) {
