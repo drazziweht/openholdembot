@@ -155,11 +155,13 @@ double RoundToBeautifulBetsize(const double amount_to_raise_to) {
       "[SwagAdjustment] RoundToBeautifulBetsize: no rounding, because too small betsize\n");
     return amount_to_raise_to;
   }
-  // Otherwise: eo0und to beautiful numbers without caring about our stack/
+  // Otherwise: Round to beautiful numbers without caring about our stack/
   // This adjustment will happen later.
   double result;
-  // sblind / nnlind
-  if (amount_to_raise_to < (10 * p_symbol_engine_tablelimits->sblind())) {
+  // sblind / bblind
+  if ( (amount_to_raise_to < (10 * p_symbol_engine_tablelimits->sblind()))
+	&& (amount_to_raise_to != Rounding(amount_to_raise_to, p_symbol_engine_tablelimits->bblind())))
+  {
     result = Rounding(amount_to_raise_to, p_symbol_engine_tablelimits->sblind());
   } else {
     result = Rounding(amount_to_raise_to, p_symbol_engine_tablelimits->bblind());

@@ -652,9 +652,9 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 		"SELECT (case when ActionOpportunities = 0 then -1 \
 				 else cast(ActionCount as real) / ActionOpportunities \
 				 end) as result \
-		 FROM	(SELECT	sum(case when flg_p_4bet then 1 else 0 end) \
+			FROM	(SELECT	sum(case when (flg_p_4bet AND flg_p_first_raise) then 1 else 0 end) \
 						 as ActionCount, \
-						sum(case when flg_p_4bet_opp then 1 else 0 end) \
+						sum(case when (flg_p_4bet_opp AND flg_p_first_raise) then 1 else 0 end) \
 						 as ActionOpportunities \
 				 FROM	player as P, %TYPE%_hand_player_statistics as S \
 				 WHERE	S.id_player = P.id_player AND \

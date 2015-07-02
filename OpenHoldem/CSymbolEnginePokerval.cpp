@@ -329,7 +329,7 @@ void CSymbolEnginePokerval::CalculateRankBits()
 	// player cards
 	for (int i=0; i<kNumberOfCardsPerPlayer; i++) {
 		if (p_table_state->User()->HasKnownCards()) {
-      int card = p_table_state->User()->_hole_cards[i].GetValue();
+			int card = p_table_state->User()->_hole_cards[i].GetValue();
 			CardMask_SET(plCards, card);
 			CardMask_SET(plcomCards, card);
 		}
@@ -337,10 +337,10 @@ void CSymbolEnginePokerval::CalculateRankBits()
 
 	// common cards
 	for (int i=0; i<kNumberOfCommunityCards; i++) {
-    Card card = p_table_state->_common_cards[i];
-    if (card.IsKnownCard())
+		Card card = p_table_state->_common_cards[i];
+		if (card.IsKnownCard())
 		{
-      CardMask_SET(comCards, card.GetValue());
+			CardMask_SET(comCards, card.GetValue());
 			CardMask_SET(plcomCards, card.GetValue());
 		}
 	}
