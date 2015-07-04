@@ -85,6 +85,7 @@ void CSymbolEnginePokerval::ResetOnHeartbeat()
 	_rankbitspoker = 0;
 	_srankbitsplayer = 0;
 	_srankbitscommon = 0;
+	_srankbitscommonp = 0;
 	_srankbitspoker = 0;
 
 	CalculateRankBits();
@@ -309,7 +310,7 @@ CString CSymbolEnginePokerval::HandType()
 
 void CSymbolEnginePokerval::CalculateRankBits()
 {
-	int				_rank = 0, suit = 0, plcomsuit = 0, comsuit = 0;
+	int				_rank = 0, suit = 0 ;
 	CardMask		plCards = {0}, comCards = {0}, plcomCards = {0};
 
 	CardMask_RESET(plCards);
@@ -321,12 +322,11 @@ void CSymbolEnginePokerval::CalculateRankBits()
 	_rankbitspoker   = 0;
 	_srankbitsplayer = 0;
 	_srankbitscommon = 0;
+	_srankbitscommonp = 0;
 	_srankbitspoker  = 0;
 
-	int tsuitcommon = p_symbol_engine_cards->tsuitcommon();
+  int tsuitcommon = p_symbol_engine_cards->tsuitcommon();
   int tsuit = p_symbol_engine_cards->tsuit();
-	plcomsuit = tsuit ;
-	comsuit = tsuitcommon;
 	// player cards
 	for (int i=0; i<kNumberOfCardsPerPlayer; i++) {
 		if (p_table_state->User()->HasKnownCards()) {
@@ -370,26 +370,30 @@ void CSymbolEnginePokerval::CalculateRankBits()
 
 	for (_rank=StdDeck_Rank_LAST; _rank>=StdDeck_Rank_FIRST; _rank--)
 	{
-		if (CardMask_CARD_IS_SET(plCards, StdDeck_MAKE_CARD(_rank, plcomsuit)))
+		if (CardMask_CARD_IS_SET(plCards, StdDeck_MAKE_CARD(_rank, tsuit)))
 		{
 			SetRankBit(&_srankbitsplayer, _rank);
 		}
-		if (CardMask_CARD_IS_SET(comCards, StdDeck_MAKE_CARD(_rank, comsuit)))
+		if (CardMask_CARD_IS_SET(comCards, StdDeck_MAKE_CARD(_rank, tsuitcommon)))
 		{
 			SetRankBit(&_srankbitscommon, _rank);
+		}
+		if (CardMask_CARD_IS_SET(comCards, StdDeck_MAKE_CARD(_rank, tsuit)))
+		{
+			SetRankBit(&_srankbitscommonp, _rank);
 		}
 	}
 
 	_srankbitspoker =														
-			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>16)&0xf)-2, plcomsuit)) ?
+			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>16)&0xf)-2, tsuit)) ?
 			 (1<<((_pokerval>>16)&0xf)) : 0) |
-			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>12)&0xf)-2, plcomsuit)) ?
+			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>12)&0xf)-2, tsuit)) ?
 			 (1<<((_pokerval>>12)&0xf)) : 0) |
-			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>8)&0xf)-2, plcomsuit)) ?
+			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>8)&0xf)-2, tsuit)) ?
 			 (1<<((_pokerval>>8)&0xf)) : 0) |
-			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>4)&0xf)-2, plcomsuit)) ?
+			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>4)&0xf)-2, tsuit)) ?
 			 (1<<((_pokerval>>4)&0xf)) : 0) |
-			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>0)&0xf)-2, plcomsuit)) ?
+			(CardMask_CARD_IS_SET(plcomCards, StdDeck_MAKE_CARD(((_pokerval>>0)&0xf)-2, tsuit)) ?
 		 (1<<((_pokerval>>0)&0xf)) : 0);
 	_srankbitspoker += ((_srankbitspoker&0x4000) ? (1<<1) : 0); //ace	
 
