@@ -75,6 +75,7 @@ CLazyScraper::~CLazyScraper() {
 // If in doubt be conservative.
 
 void CLazyScraper::DoScrape() {
+	_is_identical_scrape = false;
 	if (p_scraper->IsIdenticalScrape())	{
 		_is_identical_scrape = true;
 	}
