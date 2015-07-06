@@ -77,14 +77,12 @@ CLazyScraper::~CLazyScraper() {
 void CLazyScraper::DoScrape() {
 	if (p_scraper->IsIdenticalScrape())	{
 		_is_identical_scrape = true;
-		return;
 	}
-  _is_identical_scrape = false;
 	p_scraper->ScrapeLimits();
 	if (NeedDealerChair() && !_is_identical_scrape) {
 		p_scraper->ScrapeDealer();
 	}
-	if (NeedUsersCards() && !_is_identical_scrape)	{
+	if (NeedUsersCards())	{
 		assert(p_symbol_engine_userchair->userchair_confirmed());
 		p_scraper->ScrapePlayerCards(p_symbol_engine_userchair->userchair());
 	}
@@ -110,12 +108,12 @@ void CLazyScraper::DoScrape() {
 	if (NeedBetpotButtons()) {
 		p_scraper->ScrapeBetpotButtons();
 	}
-	if (NeedSlider() && !_is_identical_scrape)	{
+	if (NeedSlider())	{
 		p_scraper->ScrapeSlider();
 	}
 	// Swagbox AKA i3edit does not need to be scraped
 	// The CasinoInterface checks the existence and uses this region automatically
-	if (NeedBetsAndBalances()) {
+	if (NeedBetsAndBalances() && !_is_identical_scrape) {
 		p_scraper->ScrapeBetsAndBalances();
 		p_scraper->ScrapePots();
 	}
@@ -126,10 +124,10 @@ void CLazyScraper::DoScrape() {
 	if (NeedUnknownPlayerNames() && !_is_identical_scrape)	{
 		ScrapeUnknownPlayerNames();
 	}
-  if (NeedColourCodes()) {
+  if (NeedColourCodes() && !_is_identical_scrape) {
     p_scraper->ScrapeColourCodes();
   }
-  if (NeedMTTRegions()) {
+  if (NeedMTTRegions() && !_is_identical_scrape) {
     p_scraper->ScrapeMTTRegions();
   }
 }
