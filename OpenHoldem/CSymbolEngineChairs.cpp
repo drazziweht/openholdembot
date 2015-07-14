@@ -114,7 +114,8 @@ void CSymbolEngineChairs::CalculateCallerChairs() {
   for (int i=1; i<_nchairs; ++i) {
     int next_chair = (p_symbol_engine_userchair->userchair() + i) % _nchairs;
     double next_bet = p_table_state->_players[next_chair]._bet;
-    if ((next_bet == last_raisers_bet) && (next_bet > 0)) {
+    if ((next_bet == last_raisers_bet) && (next_bet > 0) 
+		&& !((next_chair==_bigblind_chair) && (next_bet==p_symbol_engine_tablelimits->bblind())) ) {
       // We have a caller, at least the temporary last one
       _lastcaller_chair = next_chair;
       if (_firstcaller_chair == kUndefined) {
