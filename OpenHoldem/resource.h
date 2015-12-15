@@ -437,7 +437,6 @@
 #define IDC_DEBUG_MEMORY_USAGE          1402
 #define IDC_DEBUG_ALLIN_ADJUSTMENT      1403
 #define IDC_USE_AUTO_REPLAY				1404
-#define IDC_RESTORE_POSITION_AND_FOCUS	1405
 #define IDC_SCINCTRL                    2000
 #define ID_EDIT_FORMULA                 32771
 #define ID_EDIT_PREFERENCES             32772

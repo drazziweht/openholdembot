@@ -365,12 +365,11 @@ void CCasinoInterface::MoveMouseToParkingZone() {
   // !!!
   // If other instances in autoplayer-waiting-queue then ignore the parking-zone.
   // The mouse will be moved shortly, superfluous movements are undesired.
+  SetMousePosition(50, 50);
+  return;
+  //!!!!!
   RECT parkingzone;
-  bool defined = p_tablemap_access->GetTableMapRect("parkingzone", &parkingzone);
-  if (!defined) {
-    write_log(preferences.debug_autoplayer(), "[CasinoInterface] r$parkingzone not defined in tablemap.\n");
-    return;
-  }
+
   (theApp._dll_mouse_move)(p_autoconnector->attached_hwnd(), parkingzone);
   write_log(preferences.debug_autoplayer(), "[CasinoInterface] Moved mouse to r$parkingzone (%i, %i, %i, %i)\n",
     parkingzone.left, parkingzone.top, parkingzone.right, parkingzone.bottom);

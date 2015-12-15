@@ -199,6 +199,7 @@
     <ClCompile Include="CLimitScraper.cpp" />
     <ClCompile Include="CMyMutex.cpp" />
     <ClCompile Include="COcclusionCheck.cpp" />
+    <ClCompile Include="CParkingZone.cpp" />
     <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="CPreferences.cpp" />
@@ -474,6 +475,7 @@
     <ClInclude Include="CLimitScraper.h" />
     <ClInclude Include="CMyMutex.h" />
     <ClInclude Include="COcclusionCheck.h" />
+    <ClInclude Include="CParkingZone.h" />
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPopupHandler.h" />
     <ClInclude Include="CPreferences.h" />
