@@ -490,53 +490,53 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 #endif
 
 #if PT4_QUERY_SUPPORT__BB_3B_VS_STEAL
-	/* PT4 query to get BB 3B vs. steal */
-	{
-		// name
-		"bb_3bet_vs_steal",
-		// description_for_editor
-		"Poker Tracker BB 3bet vs. steal",
-		// query
-		"SELECT (case when ActionOpportunities = 0 then -1 \
-				 else cast(ActionCount as real) / ActionOpportunities \
-				 end) as result \
-		 FROM	(SELECT	sum(case when ((flg_blind_b=TRUE) AND (flg_blind_def_opp=TRUE) AND (cnt_p_raise>0)) then 1 else 0 end) \
-						 as ActionCount, \
-						sum(case when ((flg_blind_b=TRUE) AND (flg_blind_def_opp=TRUE)) then 1 else 0 end) \
-						 as ActionOpportunities \
-				 FROM	player as P, %TYPE%_hand_player_statistics as S \
-				 WHERE	S.id_player = P.id_player AND \
-						S.id_gametype = %GAMETYPE% AND \
-						P.id_site = %SITEID% AND \
-						P.player_name LIKE '%SCREENNAME%') foo",
+   /* PT4 query to get BB 3B vs. steal */
+   {
+      // name
+      "bb_3bet_vs_steal",
+      // description_for_editor
+      "Poker Tracker BB 3bet vs. steal",
+      // query
+      "SELECT (case when ActionOpportunities = 0 then -1 \
+             else cast(ActionCount as real) / ActionOpportunities \
+             end) as result \
+             FROM   (SELECT   sum(case when (flg_blind_b AND flg_blind_def_opp AND flg_p_3bet) then 1 else 0 end) \
+                   as ActionCount, \
+                  sum(case when (flg_blind_b AND flg_blind_def_opp AND flg_p_3bet_opp) then 1 else 0 end) \
+                   as ActionOpportunities \
+             FROM   player as P, %TYPE%_hand_player_statistics as S \
+             WHERE   S.id_player = P.id_player AND \
+                  S.id_gametype = %GAMETYPE% AND \
+                  P.id_site = %SITEID% AND \
+                  P.player_name LIKE '%SCREENNAME%') foo",
       // stat_group
       pt_group_positional
-	},
+   },
 #endif
 
 #if PT4_QUERY_SUPPORT__SB_3B_VS_STEAL
-	/* PT4 query to get SB 3B vs. steal */
-	{
-		// name
-		"sb_3bet_vs_steal",
-		// description_for_editor
-		"Poker Tracker SB 3bet vs. steal",
-		// query
-		"SELECT (case when ActionOpportunities = 0 then -1 \
-				 else cast(ActionCount as real) / ActionOpportunities \
-				 end) as result \
-		 FROM	(SELECT	sum(case when ((flg_blind_s=TRUE) AND (flg_blind_def_opp=TRUE) AND (cnt_p_raise>0)) then 1 else 0 end) \
-						 as ActionCount, \
-						sum(case when ((flg_blind_s=TRUE) AND (flg_blind_def_opp=TRUE)) then 1 else 0 end) \
-						 as ActionOpportunities \
-				 FROM	player as P, %TYPE%_hand_player_statistics as S \
-				 WHERE	S.id_player = P.id_player AND \
-						S.id_gametype = %GAMETYPE% AND \
-						P.id_site = %SITEID% AND \
-						P.player_name LIKE '%SCREENNAME%') foo",
-		// stat_group
-		pt_group_positional
-	},
+   /* PT4 query to get SB 3B vs. steal */
+   {
+      // name
+      "sb_3bet_vs_steal",
+      // description_for_editor
+      "Poker Tracker SB 3bet vs. steal",
+      // query
+      "SELECT (case when ActionOpportunities = 0 then -1 \
+             else cast(ActionCount as real) / ActionOpportunities \
+             end) as result \
+       FROM   (SELECT   sum(case when (flg_blind_s AND flg_blind_def_opp AND flg_p_3bet) then 1 else 0 end) \
+                   as ActionCount, \
+                  sum(case when (flg_blind_s AND flg_blind_def_opp AND flg_p_3bet_opp) then 1 else 0 end) \
+                   as ActionOpportunities \
+             FROM   player as P, %TYPE%_hand_player_statistics as S \
+             WHERE   S.id_player = P.id_player AND \
+                  S.id_gametype = %GAMETYPE% AND \
+                  P.id_site = %SITEID% AND \
+                  P.player_name LIKE '%SCREENNAME%') foo",
+      // stat_group
+      pt_group_positional
+   },
 #endif
 
 #if PT4_QUERY_SUPPORT__PREFLOP_CALLED_RAISE
