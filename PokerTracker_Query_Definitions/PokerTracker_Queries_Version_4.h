@@ -88,24 +88,33 @@
 // POSTFLOP Other stats
 #define PT4_QUERY_SUPPORT__TOTAL_BVM					(TRUE)	// "total_bvm"
 #define PT4_QUERY_SUPPORT__TOTAL_FOLD_TO_BVM			(TRUE)	// "total_fold_to_bvm"
+#define PT4_QUERY_SUPPORT__TOTAL_FOLD_TO_RAISE			(TRUE)	// "total_fold_to_raise"
 #define PT4_QUERY_SUPPORT__POSTFLOP_FOLD_TO_3B			(TRUE)	// "postflop_fold_to_3bet"
 
 // FLOP Other stats
+#define PT4_QUERY_SUPPORT__FLOP_FOLD_TO_RAISE			(TRUE)	// "flop_fold_to_raise"
 #define PT4_QUERY_SUPPORT__FLOP_FOLD_TO_3B				(FALSE)	// "flop_fold_to_3bet"   // 3b is a reraise, we should have a "flop_fold_to_raise" stat first.
 #define PT4_QUERY_SUPPORT__FLOP_CHECK_RAISE				(TRUE)	// "flop_checkraise"
 #define PT4_QUERY_SUPPORT__FLOP_DONKBET					(TRUE)	// "flop_donkbet"
 #define PT4_QUERY_SUPPORT__FLOP_FOLD_TO_DONKBET			(TRUE)	// "flop_fold_to_donkbet"
 
 // TURN Other stats
+#define PT4_QUERY_SUPPORT__TURN_FOLD_TO_RAISE			(TRUE)	// "turn_fold_to_raise"
 #define PT4_QUERY_SUPPORT__TURN_FOLD_TO_3B				(FALSE)	// "turn_fold_to_3bet" // 3b is a reraise, we should have a "turn_fold_to_raise" stat first.
 #define PT4_QUERY_SUPPORT__TURN_CHECK_RAISE				(TRUE)	// "turn_checkraise"
 #define PT4_QUERY_SUPPORT__TURN_CHECK_CALL				(TRUE)	// "turn_checkcall"
 
 // RIVER Other stats
+#define PT4_QUERY_SUPPORT__RIVER_FOLD_TO_RAISE			(TRUE)	// "river_fold_to_raise"
 #define PT4_QUERY_SUPPORT__RIVER_FOLD_TO_3B				(FALSE)	// "river_fold_to_3bet" // 3b is a reraise, we should have a "river_fold_to_raise" stat first.
 #define PT4_QUERY_SUPPORT__RIVER_BET     				(TRUE)	// "river_bet"
 
-
+// GENERAL by position
+#define PT4_QUERY_SUPPORT__SB_RFI						(TRUE)	// "sb_rfi"
+#define PT4_QUERY_SUPPORT__BTN_RFI						(TRUE)	// "btn_rfi"
+#define PT4_QUERY_SUPPORT__CO_RFI						(TRUE)	// "co_rfi"
+#define PT4_QUERY_SUPPORT__MP3_RFI						(TRUE)	// "mp_rfi"
+#define PT4_QUERY_SUPPORT__MP2_RFI						(TRUE)	// "ep_rfi"
 
 const int k_number_of_pokertracker_stats =  // GENERAL STATS
 											(PT4_QUERY_SUPPORT__ICON ? 1 : 0) +
@@ -174,24 +183,34 @@ const int k_number_of_pokertracker_stats =  // GENERAL STATS
 
 											// POSTFLOP stats
 											(PT4_QUERY_SUPPORT__TOTAL_BVM ? 1 : 0) +
+											(PT4_QUERY_SUPPORT__TOTAL_FOLD_TO_RAISE ? 1 : 0) +
 											(PT4_QUERY_SUPPORT__TOTAL_FOLD_TO_BVM ? 1 : 0) +
 											(PT4_QUERY_SUPPORT__POSTFLOP_FOLD_TO_3B ? 1 : 0) +
 
 											//  Flop Other stats
+											(PT4_QUERY_SUPPORT__FLOP_FOLD_TO_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FLOP_FOLD_TO_3B ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FLOP_CHECK_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FLOP_DONKBET ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FLOP_FOLD_TO_DONKBET ? 1 : 0) + 
 
 											//  Turn Other stats
+											(PT4_QUERY_SUPPORT__TURN_FOLD_TO_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__TURN_FOLD_TO_3B ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__TURN_CHECK_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__TURN_CHECK_CALL ? 1 : 0) + 
 
 											//  River Other stats
+											(PT4_QUERY_SUPPORT__RIVER_FOLD_TO_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__RIVER_FOLD_TO_3B ? 1 : 0) + 
-											(PT4_QUERY_SUPPORT__RIVER_BET ? 1 : 0) ;
+											(PT4_QUERY_SUPPORT__RIVER_BET ? 1 : 0) +
 
+											// Positional stats
+											(PT4_QUERY_SUPPORT__SB_RFI ? 1 : 0) +
+											(PT4_QUERY_SUPPORT__BTN_RFI ? 1 : 0) +
+											(PT4_QUERY_SUPPORT__CO_RFI ? 1 : 0) +
+											(PT4_QUERY_SUPPORT__MP3_RFI ? 1 : 0) +
+											(PT4_QUERY_SUPPORT__MP2_RFI ? 1 : 0);
 
 // PokerTracker support
 enum PT_Groups
@@ -667,28 +686,28 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 #endif
 
 #if PT4_QUERY_SUPPORT__PREFLOP_FOLD_TO_4B
-	/* PT4 query to get Preflop fold to 4B */
-	{
-		// name
-		"fold_to_4bet",
-		// description_for_editor
-		"Poker Tracker Preflop fold to 4bet",
-		// query
-		"SELECT (case when ActionOpportunities = 0 then -1 \
-				 else cast(ActionCount as real) / ActionOpportunities \
-				 end) as result \
-		 FROM	(SELECT	sum(case when (enum_p_4bet_action='F') then 1 else 0 end) \
-						 as ActionCount, \
-						sum(case when flg_p_4bet_def_opp then 1 else 0 end) \
-						 as ActionOpportunities \
-				 FROM	player as P, %TYPE%_hand_player_statistics as S \
-				 WHERE	S.id_player = P.id_player AND \
-						S.id_gametype = %GAMETYPE% AND \
-						P.id_site = %SITEID% AND \
-						P.player_name LIKE '%SCREENNAME%') foo",
-		// stat_group
-		pt_group_positional
-	},
+   /* PT4  query to get PREFLOP fold to 3 bet */
+   {
+      // name
+      "fold_to_4bet",   
+      // description_for_editor
+      "Poker Tracker Fold to 4Bet After 3Bet",
+      // query
+      "SELECT (case when ActionOpportunities = 0 then -1 \
+             else cast(ActionCount as real) / ActionOpportunities \
+             end) as result \
+       FROM   (SELECT   sum(case when(s.enum_p_4bet_action='F' AND s.flg_p_3bet) then 1 else  0 end) \
+                   as ActionCount, \
+                  sum(case when(s.flg_p_4bet_def_opp AND s.flg_p_3bet) then 1 else  0 end) \
+                   as ActionOpportunities \
+             FROM   player as P, %TYPE%_hand_player_statistics as S \
+             WHERE   S.id_player = P.id_player AND \
+                  S.id_gametype = %GAMETYPE% AND \
+                  P.id_site = %SITEID% AND \
+                  P.player_name LIKE '%SCREENNAME%') foo",
+      // stat_group
+      pt_group_advanced
+   },
 #endif
 
 #if PT4_QUERY_SUPPORT__FLOP_AGGRESSION_FACTOR
@@ -1490,6 +1509,37 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 	},
 #endif
 
+
+#if PT4_QUERY_SUPPORT__TOTAL_FOLD_TO_RAISE
+	/* PT4  query to get flop fold to float */
+	{
+		// name
+		"total_fold_to_raise",
+		// description_for_editor
+		"Poker Tracker total fold to raise after bet",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+				 FROM	(SELECT	sum(case when ( (flg_f_bet AND flg_f_face_raise AND (cnt_f_raise=0) AND flg_f_fold) OR \
+												(flg_t_bet AND flg_t_face_raise AND (cnt_t_raise=0) AND flg_t_fold) OR \
+												(flg_r_bet AND flg_r_face_raise AND (cnt_r_raise=0) AND flg_r_fold) )then 1 else 0 end) \
+								 as ActionCount, \
+								 sum(case when ( (flg_f_bet AND flg_f_face_raise) OR \
+												 (flg_t_bet AND flg_t_face_raise) OR \
+												 (flg_r_bet AND flg_r_face_raise) ) then 1 else 0 end) \
+								 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+
 #if PT4_QUERY_SUPPORT__POSTFLOP_FOLD_TO_3B
 	/* PT4  query to get total fold to 3 bet without preflop*/
 	{
@@ -1505,6 +1555,31 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 						 as ActionCount, \
 						sum(case when flg_f_3bet_def_opp or flg_t_3bet_def_opp or flg_r_3bet_def_opp then 1 else 0 end) \
 						 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__FLOP_FOLD_TO_RAISE
+	/* PT4  query to get flop fold to float */
+	{
+		// name
+		"flop_fold_to_raise",
+		// description_for_editor
+		"Poker Tracker flop fold to raise after bet",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+				 FROM	(SELECT	sum(case when ( flg_f_bet AND flg_f_face_raise AND (cnt_f_raise=0) AND flg_f_fold) then 1 else 0 end) \
+								 as ActionCount, \
+								 sum(case when ( flg_f_bet AND flg_f_face_raise ) then 1 else 0 end) \
+								 as ActionOpportunities \
 				 FROM	player as P, %TYPE%_hand_player_statistics as S \
 				 WHERE	S.id_player = P.id_player AND \
 						S.id_gametype = %GAMETYPE% AND \
@@ -1623,6 +1698,31 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 	},
 #endif
 
+#if PT4_QUERY_SUPPORT__TURN_FOLD_TO_RAISE
+	/* PT4  query to get flop fold to float */
+	{
+		// name
+		"turn_fold_to_raise",
+		// description_for_editor
+		"Poker Tracker turn fold to raise after bet",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+				 FROM	(SELECT	sum(case when ( flg_t_bet AND flg_t_face_raise AND (cnt_t_raise=0) AND flg_t_fold) then 1 else 0 end) \
+								 as ActionCount, \
+								 sum(case when ( flg_t_bet AND flg_t_face_raise ) then 1 else 0 end) \
+								 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
 #if PT4_QUERY_SUPPORT__TURN_FOLD_TO_3B
 	/* PT4  query to get TURN fold to 3 bet */
 	{
@@ -1698,6 +1798,31 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 	},
 #endif
 
+#if PT4_QUERY_SUPPORT__RIVER_FOLD_TO_RAISE
+	/* PT4  query to get flop fold to float */
+	{
+		// name
+		"river_fold_to_raise",
+		// description_for_editor
+		"Poker Tracker river fold to raise after bet",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+				 FROM	(SELECT	sum(case when ( flg_r_bet AND flg_r_face_raise AND (cnt_r_raise=0) AND flg_r_fold) then 1 else 0 end) \
+								 as ActionCount, \
+								 sum(case when ( flg_r_bet AND flg_r_face_raise ) then 1 else 0 end) \
+								 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
 #if PT4_QUERY_SUPPORT__RIVER_FOLD_TO_3B
 	/* PT4  query to get RIVER fold to 3 bet */
 	{
@@ -1747,6 +1872,112 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 		pt_group_advanced
 	},
 #endif
+
+#if PT4_QUERY_SUPPORT__SB_RFI
+	/* PT4  query to get SmallBlind raise first in */
+	{
+		//name
+		"sb_rfi",
+		// description_for_editor
+		"Poker Tracker small blind raise first in",
+		//query
+		"SELECT (case when  (sum((case when(s.flg_p_open_opp and s.position=9) then  1 else  0 end))) = 0 then -1\ else cast(sum(case when(s.flg_p_first_raise AND \
+		           s.flg_p_open_opp and s.position=9) then  1 else  0 end)As Real)/  \
+		           (sum((case when(s.flg_p_open_opp and s.position=9) then  1 else  0 end))) end) as result \
+		FROM   player as P, %TYPE%_hand_player_statistics as S \
+		         WHERE  S.id_player = P.id_player AND \
+		                S.id_gametype = %GAMETYPE% AND \
+		                P.id_site = %SITEID% AND \
+		                P.player_name LIKE '%SCREENNAME%'",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__BTN_RFI
+	/* PT4  query to get Button raise first in */
+	{
+		//name
+		"btn_rfi",
+		// description_for_editor
+		"Poker Tracker button raise first in",
+		//query
+		"SELECT (case when  (sum((case when(s.flg_p_open_opp and s.position=0) then  1 else  0 end))) = 0 then -1\ else cast(sum(case when(s.flg_p_first_raise AND \
+		           s.flg_p_open_opp and s.position=0) then  1 else  0 end)As Real)/  \
+		           (sum((case when(s.flg_p_open_opp and s.position=0) then  1 else  0 end))) end) as result \
+		FROM   player as P, %TYPE%_hand_player_statistics as S \
+		         WHERE  S.id_player = P.id_player AND \
+		                S.id_gametype = %GAMETYPE% AND \
+		                P.id_site = %SITEID% AND \
+		                P.player_name LIKE '%SCREENNAME%'",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__CO_RFI
+	/* PT4  query to get Cut-Off raise first in */
+	{
+		//name
+		"co_rfi",
+		// description_for_editor
+		"Poker Tracker cut off raise first in",
+		//query
+		"SELECT (case when  (sum((case when(s.flg_p_open_opp and s.position=1) then  1 else  0 end))) = 0 then -1\ else cast(sum(case when(s.flg_p_first_raise AND \
+		           s.flg_p_open_opp and s.position=1) then  1 else  0 end)As Real)/  \
+		           (sum((case when(s.flg_p_open_opp and s.position=1) then  1 else  0 end))) end) as result \
+		FROM   player as P, %TYPE%_hand_player_statistics as S \
+		         WHERE  S.id_player = P.id_player AND \
+		                S.id_gametype = %GAMETYPE% AND \
+		                P.id_site = %SITEID% AND \
+		                P.player_name LIKE '%SCREENNAME%'",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__MP3_RFI
+	/* PT4  query to get Middle Position 3 raise first in */
+	{
+		//name
+		"mp3_rfi",
+		// description_for_editor
+		"Poker Tracker middle position 3 raise first in",
+		//query
+		"SELECT (case when  (sum((case when(s.flg_p_open_opp and s.position=2) then  1 else  0 end))) = 0 then -1\ else cast(sum(case when(s.flg_p_first_raise AND \
+		           s.flg_p_open_opp and s.position=2) then  1 else  0 end)As Real)/  \
+		           (sum((case when(s.flg_p_open_opp and s.position=2) then  1 else  0 end))) end) as result \
+		FROM   player as P, %TYPE%_hand_player_statistics as S \
+		         WHERE  S.id_player = P.id_player AND \
+		                S.id_gametype = %GAMETYPE% AND \
+		                P.id_site = %SITEID% AND \
+		                P.player_name LIKE '%SCREENNAME%'",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__MP2_RFI
+	/* PT4  query to get Middle Position 2 raise first in */
+	{
+		//name
+		"mp2_rfi",
+		// description_for_editor
+		"Poker Tracker middle position 2 raise first in",
+		//query
+		"SELECT (case when  (sum((case when(s.flg_p_open_opp and s.position=3) then  1 else  0 end))) = 0 then -1\ else cast(sum(case when(s.flg_p_first_raise AND \
+		           s.flg_p_open_opp and s.position=3) then  1 else  0 end)As Real)/  \
+		           (sum((case when(s.flg_p_open_opp and s.position=3) then  1 else  0 end))) end) as result \
+		FROM   player as P, %TYPE%_hand_player_statistics as S \
+		         WHERE  S.id_player = P.id_player AND \
+		                S.id_gametype = %GAMETYPE% AND \
+		                P.id_site = %SITEID% AND \
+		                P.player_name LIKE '%SCREENNAME%'",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
 };
 
 #endif // INC_POKERTRACKER_QUERIES_VERSION_3_H
