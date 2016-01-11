@@ -31,6 +31,18 @@ bool StringAIsPrefixOfStringB(const char *string_a, const char *string_b) {
 	return (memcmp(string_a, string_b, strlen(string_a)) == 0);
 }
 
+bool StringAIsPostfixOfStringB(const char *string_a, const char *string_b) {
+	if (strlen(string_a) > strlen(string_b)) {
+		return false;
+	}
+	// Result of memcmp == 0 means: identical
+	// See http://www.cplusplus.com/reference/clibrary/cstring/memcmp/
+  int offset = strlen(string_b) - strlen(string_a);
+  const char* position_to_start = string_b + offset;
+	bool result =  (memcmp(position_to_start, string_a, strlen(string_a)) == 0);
+  return result;
+}
+
 CString Bool2CString(bool b) {
 	return (b ? "true" : "false");
 }

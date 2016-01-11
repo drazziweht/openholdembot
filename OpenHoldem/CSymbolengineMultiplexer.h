@@ -38,6 +38,7 @@ class CSymbolEngineMultiplexer: public CVirtualSymbolEngine {
 	CString SymbolsProvided();
  private:
   inline bool FastExitOnLastCharacter(int last_character_of_symbol);
+  void Multiplex(const char* complete_name, int multiplex_index, double* result);
 };
 
 extern CSymbolEngineMultiplexer *p_symbol_engine_multiplexer;
