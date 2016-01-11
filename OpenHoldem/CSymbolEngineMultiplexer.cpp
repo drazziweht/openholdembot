@@ -18,8 +18,9 @@
 #include "stdafx.h"
 #include "CSymbolEngineMultiplexer.h"
 
-#include "CFunctionCollection.h"
+#include "CEngineContainer.h"
 #include "CPreferences.h"
+#include "OH_MessageBox.h"
 #include "StringFunctions.h"
 
 CSymbolEngineMultiplexer *p_symbol_engine_multiplexer = NULL;
@@ -82,7 +83,23 @@ inline bool CSymbolEngineMultiplexer::FastExitOnLastCharacter(int last_character
   }
 }
 
-void CSymbolEngineMultiplexer::Multiplex(const char* complete_name, int multiplex_index, double* result) {
+inline int CSymbolEngineMultiplexer::MultiplexerChair(int multiplex_index) {
+  // !!! TODO: possible optimization: calculate only once per heartbeat
+  assert(multiplex_index >= 0);
+  assert(multiplex_index < kNumberOfSupportedPostfixes);
+  const char* multiplexer_chair_symbol = kSupportedPostFixes[multiplex_index];
+  double result = kUndefined;
+  // Return value (success) does not matter here
+  // We know that all chair-symbols are supported.
+  p_engine_container->EvaluateSymbol(
+    multiplexer_chair_symbol, &result, true);
+  int chair = int(result);
+  write_log(true, "[CSymbolEngineMultiplexer] Chair(%s( = %i\n",
+    multiplexer_chair_symbol, chair);
+  return chair;
+}
+
+inline bool CSymbolEngineMultiplexer::Multiplex(const char* complete_name, int multiplex_index, double* result) {
   // Multiplexing symbols like "currentbet_dealer"
   // that consist of a general symbol prefix and a chair postfix,
   // finallz evaluationg someting like "currentbetX", 
@@ -99,23 +116,27 @@ void CSymbolEngineMultiplexer::Multiplex(const char* complete_name, int multiple
   assert(multiplexer_length > 0);
   assert(symbol_prefix_length > 0);
   CString symbol_prefix = complete_symbol.Left(symbol_prefix_length);
-  CString multiplexer_postfix = complete_symbol.Right(multiplexer_length);
   assert(symbol_prefix != "");
-  assert(multiplexer_postfix != "");
-  int chair = p_function_collection->Evaluate(multiplexer_postfix, true);
-  write_log(true, "[CSymbolEngineMultiplexer] Chair(%s( = %i\n",
-    multiplexer_postfix, chair);
+  int chair = MultiplexerChair(multiplex_index);
   if ((chair < 0) || (chair > kLastChair)) {
     write_log(k_always_log_errors, "[CSymbolEngineMultiplexer] WARNING! Chair out of range\n");
     *result = kUndefined;
-    return;
+    // Still successful evaluation.
+    // It's just a chair out of range,
+    // maybe because such a chair (e.g. "lastraiser")
+    // does at the moment not exist.
+    return true;
   }
   CString multiplexed_symbol_with_chair_number;
   multiplexed_symbol_with_chair_number.Format("%s%i",
     symbol_prefix, chair);
-  *result = p_function_collection->Evaluate(multiplexed_symbol_with_chair_number);
+  bool success = p_engine_container->EvaluateSymbol(
+    multiplexed_symbol_with_chair_number, result, true);
   write_log(true, "[CSymbolEngineMultiplexer] Evaluated multiplexed symbol %s -> %.3f\n",
     multiplexed_symbol_with_chair_number, *result);
+  write_log(true, "[CSymbolEngineMultiplexer] Success: %s\n",
+    Bool2CString(success));
+  return success;
 }
 
 bool CSymbolEngineMultiplexer::EvaluateSymbol(const char *name, double *result, bool log /* = false */) {
@@ -147,8 +168,17 @@ bool CSymbolEngineMultiplexer::EvaluateSymbol(const char *name, double *result, 
     // (before postfix) then continue
     if (RightCharacter(name, length_of_postfix) != '_') continue;
     if (StringAIsPostfixOfStringB(kSupportedPostFixes[i], name)) {
-      Multiplex(name, i, result);
-      return true;
+      // We found a symbol with a supported multiplexer-postfix
+      bool success = Multiplex(name, i, result);
+      if (success == false) {
+        CString message;
+        message.Format("Unable to multiplex symbol\n"
+          "%s\n"
+          "Probably invalid prefix or no postfix allowed\n.",
+          name);
+        OH_MessageBox_Error_Warning(message);
+      }
+      return success; // !!!!! Might lead to too many error-messages
     }
   }
   // Symbol of a different symbol-engine
