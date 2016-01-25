@@ -31,8 +31,7 @@
 
 CSymbolEnginePokerTracker *p_symbol_engine_pokertracker = NULL;
 
-CSymbolEnginePokerTracker::CSymbolEnginePokerTracker()
-{
+CSymbolEnginePokerTracker::CSymbolEnginePokerTracker() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
@@ -129,18 +128,19 @@ int CSymbolEnginePokerTracker::PlayerIcon(const int chair) {
   return PT_DLL_GetStat("icon", chair);
 }
 
-bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result, bool log /* = false */)
-{
+bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result, bool log /* = false */) {
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
-	if (memcmp(name,"pt_",3)!=0)
-	{
+	if (memcmp(name, "pt_", 3) != 0) {
 		// Symbol of a different symbol-engine
+		return false;
+	}
+  if (memcmp(name, "pt_icon", 7) == 0 ) {
+		// PokerTracker-icons get handled by ab extra symbol-engine
 		return false;
 	}
 	CString s = name;
 	CheckForChangedPlayersOncePerHeartbeatAndSymbolLookup();
-	if (IsOldStylePTSymbol(s))
-	{
+	if (IsOldStylePTSymbol(s)) {
 		CString error_message;
 		error_message.Format(
 			"Old style PokerTracker symbol detected: %s.\n"
@@ -164,15 +164,13 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result,
 		*result = kUndefined;
 		return true;
 	}
-	if (!PT_DLL_IsValidSymbol(CString(s)))
-	{
+	if (!PT_DLL_IsValidSymbol(CString(s))) {
 		// Invalid PokerTracker symbol
 		WarnAboutInvalidPTSymbol(s);
 		*result = kUndefined;
 		return true;
 	}
 	int chair = 0;
-
 	if (!p_pokertracker_thread->IsConnected()) 	{
 		if (!p_symbol_engine_userchair->userchair_confirmed() || p_formula_parser->IsParsing()) {
 			// We are not yet seated or formula is getting parsed.
@@ -189,8 +187,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result,
 		*result = kUndefined;
 		return true;
 	}
-
-	CString standard_symbol_name;
+  CString standard_symbol_name;
 	assert(StringAIsPrefixOfStringB("pt_", s));
 	// PokerTracker symbols for the raise-chair
 	if (s.Right(10) == "_raischair") {
