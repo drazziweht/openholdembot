@@ -27,6 +27,7 @@
 // PREFLOP STATS
 #define PT4_QUERY_SUPPORT__STEAL_ATTEMPT				(TRUE)	// "steal_attempt"
 #define PT4_QUERY_SUPPORT__FOLD_BB_TO_STEAL				(TRUE)	// "bb_fold_to_steal"
+#define PT4_QUERY_SUPPORT__FOLD_BB_TO_SB_STEAL			(TRUE)	// "bb_fold_to_sbsteal"
 #define PT4_QUERY_SUPPORT__FOLD_SB_TO_STEAL				(TRUE)	// "sb_fold_to_steal"
 #define PT4_QUERY_SUPPORT__3B_VS_STEAL					(TRUE)	// "3bet_vs_steal"
 #define PT4_QUERY_SUPPORT__BB_3B_VS_STEAL				(TRUE)	// "bb_3bet_vs_steal"
@@ -128,6 +129,7 @@ const int k_number_of_pokertracker_stats =  // GENERAL STATS
 											// PREFLOP STATS
 											(PT4_QUERY_SUPPORT__STEAL_ATTEMPT ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FOLD_BB_TO_STEAL ? 1 : 0) + 
+											(PT4_QUERY_SUPPORT__FOLD_BB_TO_SB_STEAL ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__FOLD_SB_TO_STEAL ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__3B_VS_STEAL ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__BB_3B_VS_STEAL ? 1 : 0) + 
@@ -451,6 +453,32 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 				 FROM	player as P, %TYPE%_hand_player_statistics as S \
 				 WHERE	S.id_player = P.id_player AND \
 						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_positional
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__FOLD_BB_TO_SB_STEAL
+	/* PT4  query to get flop float */
+	{
+		// name
+		"bb_fold_to_sbsteal",
+		// description_for_editor
+		"Poker Tracker folded big blind to sb steal",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+				 FROM	(SELECT	sum(case when flg_bb_steal_fold AND (HSum.str_aggressors_p LIKE '89%') then 1 else 0 end) \
+						 as ActionCount, \
+						 sum(case when flg_blind_def_opp AND flg_blind_b AND (HSum.str_aggressors_p LIKE '89%') then 1 else 0 end) \
+						 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_summary as HSum, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						HSum.id_hand = S.id_hand AND \
 						P.id_site = %SITEID% AND \
 						P.player_name LIKE '%SCREENNAME%') foo",
 		// stat_group
