@@ -308,22 +308,31 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
   else if (_function_name.Left(4) == "list") {
     // ##listXYZ##
     write_log(preferences.debug_parser(), 
-	  "[FormulaParser] Parsing list\n");
-    COHScriptList *new_list = new COHScriptList(&_function_name, 
+	    "[FormulaParser] Parsing list\n");
+      // Look up the list first.
+  // It might already exist (in case of Editor -> Apply).
+  // Just adding a new one causes a memory leak.
+  // http:// !!!!!
+    COHScriptList *p_new_list = (COHScriptList*)p_function_collection->LookUp(_function_name);
+    if (p_new_list == NULL) {  
+      write_log(preferences.debug_parser(), 
+        "[FormulaParser] Creating new list object for %s\n", _function_name);
+      p_new_list = new COHScriptList(&_function_name, 
         &function_text, starting_line);
-    ParseListBody(new_list);
-    p_function_collection->Add((COHScriptObject*)new_list); 
+    }
+    ParseListBody(p_new_list);
+    p_function_collection->Add(p_new_list); 
     return;
   } else if (_function_name.MakeLower() == "dll") {
     // ##DLL##
     write_log(preferences.debug_parser(), 
-	  "[FormulaParser] Parsing ##DLL##\n");
+	    "[FormulaParser] Parsing ##DLL##\n");
     // Nothing more to do
-    // We extract the DLL later
+    // We extract the DLL-path later
   } else if (_function_name.MakeLower() == "notes") {
     // ##Notes##
     write_log(preferences.debug_parser(), 
-	  "[FormulaParser] Found ##Notes##. Nothing to parse\n");
+	    "[FormulaParser] Found ##Notes##. Nothing to parse\n");
     // Don't do anything.
     // This is just a special type of global comment.
   } else {
@@ -331,10 +340,20 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
       "Did you forget \"f$\"?\n");
     return;
   }
-  CFunction *p_new_function = new CFunction(&_function_name, 
-	  &function_text, starting_line);
-  p_new_function->SetParseTree(function_body);
-  p_function_collection->Add((COHScriptObject*)p_new_function);
+  // Look up the function first.
+  // It might already exist (in case of Editor -> Apply).
+  // Just adding a new one causes a memory leak.
+  // http:// !!!!!
+  CFunction *p_new_function = (CFunction*)p_function_collection->LookUp(_function_name);
+  if (p_new_function == NULL) {  
+    write_log(preferences.debug_parser(), 
+      "[FormulaParser] Creating new function object for %s\n", _function_name);
+    p_new_function = new CFunction(&_function_name, 
+	    &function_text, starting_line);
+  }
+  // UpdateParseTree also deletes the potentially existing old one
+  p_new_function->UpdateParseTree(function_body);
+  p_function_collection->Add(p_new_function);
   // Care about operator precendence
   _parse_tree_rotator.Rotate(p_new_function);
 #ifdef DEBUG_PARSER
@@ -343,6 +362,8 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
 }
 
 void CFormulaParser::ParseListBody(COHScriptList *list) {
+  // First clearing the list in case it was a reused one (Editor -> Apply)
+  list->Clear();
 	int token_ID = _tokenizer.GetToken();
 	while (token_ID != kTokenEndOfFunction)	{
 		if ((token_ID == kTokenIdentifier)      // High cards (at least one), like AK2 T2o

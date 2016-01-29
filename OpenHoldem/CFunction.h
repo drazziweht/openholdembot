@@ -27,7 +27,7 @@ public:
       int absolute_line);
   ~CFunction();
  public:
-  void SetParseTree(TPParseTreeNode _new_parse_tree);
+  void UpdateParseTree(TPParseTreeNode _new_parse_tree);
   void ClearCache();
  public:
   double Evaluate(bool log = false);

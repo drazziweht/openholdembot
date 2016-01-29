@@ -42,8 +42,13 @@ CFunction::~CFunction() {
   }
 }
 
-void CFunction::SetParseTree(TPParseTreeNode _new_parse_tree)
-{
+void CFunction::UpdateParseTree(TPParseTreeNode _new_parse_tree) {
+  // UpdateParseTree has to delete a potentially existing parse-tree
+  // otherwise we get a memory-leak.
+  // http://!!!!!
+  if (_parse_tree_node != NULL) {
+    delete _parse_tree_node;
+  }
 	_parse_tree_node = _new_parse_tree;
 }
 
