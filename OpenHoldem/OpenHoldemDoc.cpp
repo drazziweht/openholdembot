@@ -70,12 +70,11 @@ BOOL COpenHoldemDoc::SaveModified()
 BOOL COpenHoldemDoc::OnNewDocument() {
 	if (!CDocument::OnNewDocument())
 		return FALSE;
-
 	// Default bot
+  p_function_collection->DeleteAll(false, true);
 	p_function_collection->SetEmptyDefaultBot();
 	SetModifiedFlag(false);
 	p_openholdem_title->UpdateTitle();
-
   // Try to (re)load dll
 	p_dll_extension->Load("");
 	return true;

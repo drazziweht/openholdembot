@@ -66,10 +66,10 @@ double CFunction::Evaluate(bool log /* = false */) {
       "Stopping autoplayer.\n"
       "\n"
       "Last function: ") + _name;
-	OH_MessageBox_Error_Warning(error_message);
-	p_autoplayer->EngageAutoplayer(false);
-	++recursion_depth;
-	return kUndefinedZero;
+	  OH_MessageBox_Error_Warning(error_message);
+	  p_autoplayer->EngageAutoplayer(false);
+	  ++recursion_depth;
+	  return kUndefinedZero;
   }
   // Result already cached
   if (_is_result_cached) {
@@ -137,5 +137,3 @@ void CFunction::SetValue(double value) {
   _cached_result = value;
   _is_result_cached = true;
 }
-
-

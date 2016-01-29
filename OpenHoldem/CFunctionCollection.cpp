@@ -507,8 +507,12 @@ void CFunctionCollection::Delete(CString name) {
     if (it != _function_map.end()) {
       write_log(preferences.debug_formula(), 
         "[CFunctionCollection] Deleting %s\n", name);
+      // Remove the entry from the lookup-table
+      // nut this does not delete the object physically!
       _function_map.erase(it);
     }
+    // Delete physically, i.e call destructor and release memory
+    delete object_to_delete;
   }
 }
 

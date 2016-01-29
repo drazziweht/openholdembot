@@ -309,10 +309,10 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
     // ##listXYZ##
     write_log(preferences.debug_parser(), 
 	    "[FormulaParser] Parsing list\n");
-      // Look up the list first.
-  // It might already exist (in case of Editor -> Apply).
-  // Just adding a new one causes a memory leak.
-  // http:// !!!!!
+    // Look up the list first.
+    // It might already exist (in case of Editor -> Apply).
+    // Just adding a new one causes a memory leak.
+    // http:// !!!!!
     COHScriptList *p_new_list = (COHScriptList*)p_function_collection->LookUp(_function_name);
     if (p_new_list == NULL) {  
       write_log(preferences.debug_parser(), 
