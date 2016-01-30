@@ -312,7 +312,7 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
     // Look up the list first.
     // It might already exist (in case of Editor -> Apply).
     // Just adding a new one causes a memory leak.
-    // http:// !!!!!
+    // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19276
     COHScriptList *p_new_list = (COHScriptList*)p_function_collection->LookUp(_function_name);
     if (p_new_list == NULL) {  
       write_log(preferences.debug_parser(), 
@@ -343,7 +343,7 @@ void CFormulaParser::ParseSingleFormula(CString function_text, int starting_line
   // Look up the function first.
   // It might already exist (in case of Editor -> Apply).
   // Just adding a new one causes a memory leak.
-  // http:// !!!!!
+  // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19276
   CFunction *p_new_function = (CFunction*)p_function_collection->LookUp(_function_name);
   if (p_new_function == NULL) {  
     write_log(preferences.debug_parser(), 

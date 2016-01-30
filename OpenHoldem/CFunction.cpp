@@ -45,7 +45,7 @@ CFunction::~CFunction() {
 void CFunction::UpdateParseTree(TPParseTreeNode _new_parse_tree) {
   // UpdateParseTree has to delete a potentially existing parse-tree
   // otherwise we get a memory-leak.
-  // http://!!!!!
+  // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19276
   if (_parse_tree_node != NULL) {
     delete _parse_tree_node;
   }
