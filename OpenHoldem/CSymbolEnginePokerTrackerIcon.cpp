@@ -12,12 +12,29 @@
 //
 //*******************************************************************************
 
-
 #include "stdafx.h"
 #include "CSymbolEnginePokerTrackerIcon.h"
 
 #include "CSymbolEnginePokerTracker.h"
+#include "CTableState.h"
 #include "StringFunctions.h"
+
+/*
+LoosePassiveFish
+ExtraLoose
+ShowdownMuppet
+TightUnknown
+WeakTight
+SemiLooseAggressiveGambler 
+TightPassiveRock
+UltraAggressive
+LooseAggressiveManiac
+SemiLooseUnknown
+CallingStation
+SemiLoosePassive
+LooseUnknown
+TightAggressiveTAG
+*/
 
 CSymbolEnginePokerTrackerIcon::CSymbolEnginePokerTrackerIcon() {
 	// The values of some symbol-engines depend on other engines.
@@ -34,17 +51,19 @@ void CSymbolEnginePokerTrackerIcon::InitOnStartup() {
 }
 
 void CSymbolEnginePokerTrackerIcon::ResetOnConnection() {
+  ClearAllStats();
 }
 
 void CSymbolEnginePokerTrackerIcon::ResetOnHandreset() {
+  // Clear computed stats once on hand-reset.
+  // We want to calculate them only once per hand (if necessary).
+  ClearAllStats();
 }
 
 void CSymbolEnginePokerTrackerIcon::ResetOnNewRound() {
 }
 
 void CSymbolEnginePokerTrackerIcon::ResetOnMyTurn() {
-  // Clear computed stats once on my turn
-  ClearAllStats();
 }
 
 void CSymbolEnginePokerTrackerIcon::ResetOnHeartbeat() {
@@ -52,8 +71,24 @@ void CSymbolEnginePokerTrackerIcon::ResetOnHeartbeat() {
 
 void CSymbolEnginePokerTrackerIcon::ClearAllStats() {
   for (int i=0; i<kMaxNumberOfPlayers; ++i) {
-    _icon[i] = kUndefined;
+    _precomputed_icon[i] = kUndefined;
   }
+}
+
+void CSymbolEnginePokerTrackerIcon::ComputeIcon(int chair) {
+
+}
+
+int CSymbolEnginePokerTrackerIcon::PokerTrackerIcon(int chair) {
+  if (chair < 0) return kUndefined;
+  if (chair > kLastChair) return kUndefined;
+  // Take care about stale data (game over, player no longer seated, ...)
+  if (!p_table_state->Player(chair)->seated()) return kUndefined;
+  // Compute icon for chair if needed
+  if (_precomputed_icon[chair] == kUndefined) {
+    ComputeIcon(chair);
+  }
+  return _precomputed_icon[chair];
 }
 
 bool CSymbolEnginePokerTrackerIcon::EvaluateSymbol(const char *name, double *result, bool log /* = false */) {
@@ -63,10 +98,11 @@ bool CSymbolEnginePokerTrackerIcon::EvaluateSymbol(const char *name, double *res
 	}
   if (strlen(name) != 8) {
 		// Symbol of a different symbol-engine or ivalid pt_icon
+    //!!!!! to do constants
 		return false;
 	}
-  //!!!!!
   int chair = RightDigitCharacterToNumber(name);
+  *result = PokerTrackerIcon(chair);
   return true;
 }
 

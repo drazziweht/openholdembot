@@ -122,12 +122,6 @@ void CSymbolEnginePokerTracker::ClearAllStats()
 	}
 }
 
-int CSymbolEnginePokerTracker::PlayerIcon(const int chair) {
-  assert(chair >= 0);
-  assert(chair <= kLastChair);
-  return PT_DLL_GetStat("icon", chair);
-}
-
 bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result, bool log /* = false */) {
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
 	if (memcmp(name, "pt_", 3) != 0) {

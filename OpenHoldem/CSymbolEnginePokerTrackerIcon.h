@@ -33,12 +33,12 @@ class CSymbolEnginePokerTrackerIcon: public CVirtualSymbolEngine {
 	// Public accessors	
 	bool EvaluateSymbol(const char *name, double *result, bool log = false);
 	CString SymbolsProvided();
- public: //!!!!!?????
-  int PlayerIcon(const int chair);
  private:
   void ClearAllStats();
+  void ComputeIcon(int chair);
+  int PokerTrackerIcon(int chair);
  private:
-	int _icon[kMaxNumberOfPlayers];
+	int _precomputed_icon[kMaxNumberOfPlayers];
 };
 
 extern CSymbolEnginePokerTrackerIcon *p_symbol_engine_pokertracker_icon;
