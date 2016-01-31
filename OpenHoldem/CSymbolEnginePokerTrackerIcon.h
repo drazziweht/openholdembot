@@ -37,8 +37,11 @@ class CSymbolEnginePokerTrackerIcon: public CVirtualSymbolEngine {
   void ClearAllStats();
   void ComputeIcon(int chair);
   int PokerTrackerIcon(int chair);
+  bool PlayerMatchesIconDefinition(int chair, int icon);
  private:
 	int _precomputed_icon[kMaxNumberOfPlayers];
+  // stats for current player
+  // to be looked up once, but used multiple times
 };
 
 extern CSymbolEnginePokerTrackerIcon *p_symbol_engine_pokertracker_icon;

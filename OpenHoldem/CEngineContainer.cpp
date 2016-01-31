@@ -54,6 +54,7 @@
 #include "CSymbolEngineOpenPPLUserVariables.h"
 #include "CSymbolEnginePokerAction.h"
 #include "CSymbolEnginePokerTracker.h"
+#include "CSymbolEnginePokerTrackerIcon.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEnginePrwin.h"
@@ -209,6 +210,9 @@ void CEngineContainer::CreateSymbolEngines() {
   // CSymbolEnginePokerTracker
   p_symbol_engine_pokertracker = new CSymbolEnginePokerTracker;
   AddSymbolEngine(p_symbol_engine_pokertracker);
+  // CSymbolEnginePokerTrackerIcon
+  p_symbol_engine_pokertracker_icon = new CSymbolEnginePokerTrackerIcon;
+  AddSymbolEngine(p_symbol_engine_pokertracker_icon);
   // CSymbolEngineIniFunctions
   // "depends" on all other engines,
   // as it can only be called after all symbols have been initialized.
