@@ -20,21 +20,21 @@
 #include "StringFunctions.h"
 
 typedef enum {
-  pt_LoosePassiveFish,
-  pt_ExtraLoose,
-  pt_ShowdownMuppet,
-  pt_TightUnknown,
-  pt_WeakTight,
-  pt_SemiLooseAggressiveGambler,
-  pt_TightPassiveRock,
-  pt_UltraAggressive,
-  pt_LooseAggressiveManiac,
-  pt_SemiLooseUnknown,
-  pt_CallingStation,
-  pt_SemiLoosePassive,
-  pt_LooseUnknown,
-  pt_TightAggressiveTAG,
-  pt_Unknown,
+  pt_icon_LoosePassiveFish,
+  pt_icon_ExtraLoose,
+  pt_icon_ShowdownMuppet,
+  pt_icon_TightUnknown,
+  pt_icon_WeakTight,
+  pt_icon_SemiLooseAggressiveGambler,
+  pt_icon_TightPassiveRock,
+  pt_icon_UltraAggressive,
+  pt_icon_LooseAggressiveManiac,
+  pt_icon_SemiLooseUnknown,
+  pt_icon_CallingStation,
+  pt_icon_SemiLoosePassive,
+  pt_icon_LooseUnknown,
+  pt_icon_TightAggressiveTAG,
+  pt_icon_Unknown,
   // always keepe this the very last one
   kNumberOfPokerTrackerIcons,
 } enum_pt_icons;
@@ -197,9 +197,10 @@ bool CSymbolEnginePokerTrackerIcon::EvaluateSymbol(const char *name, double *res
 		// Symbol of a different symbol-engine
 		return false;
 	}
-  if (strlen(name) != 8) {
-		// Symbol of a different symbol-engine or ivalid pt_icon
-    //!!!!! to do constants
+  if (strlen(name) > 8) {
+    // Probably a player-type
+    //!!!!!
+		// Symbol of a different symbol-engine or invalid pt_icon
 		return false;
 	}
   int chair = RightDigitCharacterToNumber(name);
