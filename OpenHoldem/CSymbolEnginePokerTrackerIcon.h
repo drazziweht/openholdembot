@@ -34,6 +34,8 @@ class CSymbolEnginePokerTrackerIcon: public CVirtualSymbolEngine {
 	bool EvaluateSymbol(const char *name, double *result, bool log = false);
 	CString SymbolsProvided();
  private:
+  double LookupStat(CString symbol, int chair);
+ private:
   void ClearAllStats();
   void ComputeIcon(int chair);
   int PokerTrackerIcon(int chair);

@@ -20,6 +20,10 @@
 #include "CTableState.h"
 #include "StringFunctions.h"
 
+// Stats based on less hands are meaningless
+// and the player will be treated as "unknown".
+const int kNumberOfMinimalSampleSize = 25;
+
 typedef enum {
   pt_icon_LoosePassiveFish,
   pt_icon_ExtraLoose,
@@ -209,6 +213,10 @@ bool CSymbolEnginePokerTrackerIcon::PlayerMatchesIconDefinition(int chair, int i
 }
 
 void CSymbolEnginePokerTrackerIcon::ComputeIcon(int chair) {
+  int hands = LookupStat("hands", chair");
+  if (hands < kNumberOfMinimalSampleSize) {
+    return pt_icon_Unknown;
+  }
   for (int icon=0; icon<kNumberOfPokerTrackerIcons; ++icon) {
     if (PlayerMatchesIconDefinition(chair, icon)) {
       _precomputed_icon[chair] = icon;
