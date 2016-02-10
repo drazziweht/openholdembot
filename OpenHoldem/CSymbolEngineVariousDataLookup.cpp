@@ -21,7 +21,6 @@
 
 #include "CAutoconnector.h"
 #include "CAutoplayerTrace.h"
-#include "CBetroundCalculator.h"
 #include "CDllExtension.h"
 #include "CFlagsToolbar.h"
 #include "CFormulaParser.h"
@@ -60,6 +59,7 @@ void CSymbolEngineVariousDataLookup::ResetOnConnection() {
 
 void CSymbolEngineVariousDataLookup::ResetOnHandreset() {
   // Reset display
+  // Here?????
   InvalidateRect(theApp.m_pMainWnd->GetSafeHwnd(), NULL, true);
 }
 
@@ -85,8 +85,6 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const char *name, double *re
   }
   // Various symbols below
   // without any optimized lookup.
-  //ROUND&POSITIONS
-  else if (memcmp(name, "betround", 8)==0 && strlen(name)==8)	*result = p_betround_calculator->betround();
   //FLAGS
   else if (memcmp(name, "fmax", 4)==0 && strlen(name)==4)			*result = p_flags_toolbar->GetFlagMax();
   // flags f0..f9
@@ -141,7 +139,7 @@ CString CSymbolEngineVariousDataLookup::SymbolsProvided() {
   // This list includes some prefixes of symbols that can't be verified,
   // e.g. "dll$, pl_chair$, ....
   CString list = "dll$ pl_ vs$ msgbox$ log$ "
-    "betround fmax f flagbits "
+    "fmax f flagbits "
     "session version islobby "
     "handsplayed handsplayed_headsup ";
   list += RangeOfSymbols("f%i", 0, 19);

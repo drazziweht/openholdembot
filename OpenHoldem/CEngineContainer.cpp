@@ -30,6 +30,7 @@
 #include "CScraperAccess.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
+#include "CSymbolEngineBetrounds.h"
 #include "CSymbolEngineBlinds.h"
 #include "CSymbolEngineCallers.h"
 #include "CSymbolEngineCards.h"
@@ -104,13 +105,22 @@ void CEngineContainer::CreateSymbolEngines() {
   // Some symbols to be calculated depend on symbols of other engines.
   // The engines inserted first will be called first later.
   // But we assure correct ordering by assertions in the constructors of the engines.
-
-  // CFunctionCollection
-  p_function_collection = new CFunctionCollection;
-  AddSymbolEngine(p_function_collection);
+  //
   // CSymbolEngineMultiplexer
+  // Must be the very first, because it preprocesses symbol-lookups
+  // and creates modified queries, e.g.
+  // didbetsizeroud_flop -> didbetsizeroud2
+  // This includes multiplexing for user-defined functions
+  // and OpenPPL-symbols
   p_symbol_engine_multiplexer = new CSymbolEngineMultiplexer();
   AddSymbolEngine(p_symbol_engine_multiplexer);
+  // CFunctionCollection
+  // Very early, because good code uses lots of functions.
+  p_function_collection = new CFunctionCollection;
+  AddSymbolEngine(p_function_collection);
+  // CSymbolEngineBetrounds
+  p_symbol_engine_betrounds = new CSymbolEngineBetrounds();
+  AddSymbolEngine(p_symbol_engine_betrounds);
   // CSymbolEngineUserchair
   p_symbol_engine_userchair = new CSymbolEngineUserchair();
   AddSymbolEngine(p_symbol_engine_userchair);
