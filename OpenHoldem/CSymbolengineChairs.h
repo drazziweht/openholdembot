@@ -33,11 +33,19 @@ class CSymbolEngineChairs: public CVirtualSymbolEngine {
 	// Public accessors
 	bool EvaluateSymbol(const char *name, double *result, bool log = false);
 	CString SymbolsProvided();
- public:
-  int opponent_headsup_chair() { return _opponent_headsup_chair; }
-  int smallblind_chair()       { return _smallblind_chair; }
-  int bigblind_chair()         { return _bigblind_chair; }
-  int cutoff_chair()           { return _cutoff_chair; }
+ private:
+  // Dealer, user, bigblind and smallblind
+  // get handled by different symbol engines
+  int headsup_chair(); 
+  int cutoff_chair();
+  int mp3_chair();
+  int mp2_chair();
+  int mp1_chair();
+  int ep3_chair();
+  int ep2_chair();
+  int ep1_chair();
+  int utg_chair();
+  // !!!!! to do: raischair, firstcaller. firstraiser, lastcaller
  private:
   void CalculateOpponentHeadsupChair();
   void CalculateSmallBlindChair();
@@ -45,6 +53,7 @@ class CSymbolEngineChairs: public CVirtualSymbolEngine {
   void CalculateCutOffChair();
  private:
   int GetChairByDealposition(int dealposition);
+  int GetChairByOffsetFromDealer(int counter_clockwise_offset);
  private:
   int _opponent_headsup_chair;
   int _smallblind_chair;

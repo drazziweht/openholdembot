@@ -98,7 +98,6 @@ void CSymbolEngineChairs::CalculateCutOffChair() {
   _cutoff_chair = GetChairByDealposition(cutoff_dealposition);
 }
 
-
 int CSymbolEngineChairs::GetChairByDealposition(int dealposition) {
   for (int i=0; i<_nchairs; ++i) {
     if (p_symbol_engine_poker_action->DealPosition(i) == dealposition) {
@@ -106,6 +105,61 @@ int CSymbolEngineChairs::GetChairByDealposition(int dealposition) {
     }
   }
   return kUndefined;
+}
+
+int CSymbolEngineChairs::GetChairByOffsetFromDealer(int counter_clockwise_offset) {
+  // Dealer has offset 0
+  // Cutoff has offset 1
+  // ...
+  // Blinds are undefined, they have a symbol-engine on their own.
+  // This function returns -1 if such a chair does not exist
+  assert(counter_clockwise_offset >= 0);
+  int nplayersdealt = ;
+  int nplayers_non_blinds = nplayersdealt - kUsualNumberOfBlindPosters; 
+  if (SmallBlindMissing) {
+    // One additional player who doesn't post blinds
+    ++nplayers_non_blinds;
+  }
+  if (counter_clockwise_offset >= nplayers_non_blinds) {
+    // Such a position does not exist in the current game
+    return kUndefined;
+  }
+  int dealposition = nplayersdealt - counter_clockwise_offset;
+  assert(dealposition >= 0);
+  return GetChairByDealposition(dealposition);
+}
+
+int CSymbolEngineChairs::cutoff_chair() {
+  return GetChairByOffsetFromDealer(1);
+}
+
+int CSymbolEngineChairs::mp3_chair() {
+  return GetChairByOffsetFromDealer(2);
+}
+
+int CSymbolEngineChairs::mp2_chair() {
+  return GetChairByOffsetFromDealer(3);
+}
+
+int CSymbolEngineChairs::mp1_chair() {
+  return GetChairByOffsetFromDealer(4);
+}
+
+int CSymbolEngineChairs::ep3_chair() {
+  return GetChairByOffsetFromDealer(5);
+}
+
+int CSymbolEngineChairs::ep2_chair() {
+  return GetChairByOffsetFromDealer(6);
+}
+
+int CSymbolEngineChairs::ep1_chair() {
+  return GetChairByOffsetFromDealer(7);
+}
+
+int CSymbolEngineChairs::utg_chair() {
+  // UTG is the first player after bigblind.
+  // !!!!! to do: headsup
 }
 
 bool CSymbolEngineChairs::EvaluateSymbol(const char *name, double *result, bool log /* = false */) {
@@ -127,6 +181,7 @@ bool CSymbolEngineChairs::EvaluateSymbol(const char *name, double *result, bool 
 }
 
 CString CSymbolEngineChairs::SymbolsProvided() {
-  return "opponent_chair_headsup smallblind_chair bigblind_chair "
-    "cutoff_chair ";
+  return "headsupchair cutoffchair utgchair "
+    "mp3chair mp2chair mp1chair "
+    "ep3chair ep2chair ep1chair ;
 }
