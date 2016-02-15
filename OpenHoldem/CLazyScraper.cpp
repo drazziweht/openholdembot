@@ -186,7 +186,7 @@ bool CLazyScraper::NeedAllPlayerNames() {
 	// * at our turn we have stable frames
 	// * new players after our turn can't affect the current hand
 	//return (!p_symbol_engine_history->DidActThisHand());
-	return (p_symbol_engine_time->elapsedhand() < 3);
+	return (p_symbol_engine_time->elapsedhand() > 1) && (p_symbol_engine_time->elapsedhand() < 3);
 	
 }
 
