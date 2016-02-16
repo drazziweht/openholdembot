@@ -256,6 +256,9 @@ CString TokenString(int token) {
   case kTokenActionRaiseTo: return "RaiseTo";
   case kTokenActionRaiseBy: return "RaiseBy";
   case kTokenActionRaiseHalfPot: return "RaiseHalfPot";
+  case kTokenActionRaiseThirdPot: return "RaiseThirdPot";
+  case kTokenActionRaiseTwoThirdPot: return "RaiseTwoThirdPot";
+  case kTokenActionRaiseThreeFourthPot: return "RaiseThreeFourthPot";
   case kTokenActionRaisePot: return "RaisePot";
   case kTokenActionRaiseMax: return "RaiseMax";
   case kTokenActionReturn: return "Return";

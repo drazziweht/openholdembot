@@ -105,6 +105,15 @@ void CAutoplayerFunctions::CheckIfDecisionMatchesElementaryAction(int decision, 
       break;
     case k_autoplayer_function_betpot_1_2:
       action_name = "RaiseHalfPot";
+      break;   
+	case k_autoplayer_function_betpot_1_3:
+      action_name = "RaiseThirdPot";
+      break;
+	case k_autoplayer_function_betpot_2_3:
+      action_name = "RaiseTwoThirdPot";
+      break;
+	case k_autoplayer_function_betpot_3_4:
+      action_name = "RaiseThreeFourthPot";
       break;
     case k_autoplayer_function_raise:
       action_name = "Raise";
@@ -153,6 +162,9 @@ void CAutoplayerFunctions::TranslateOpenPPLDecisionToAutoplayerFunctions(double 
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_allin);
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_betpot_1_1);
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_betpot_1_2);
+    CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_betpot_1_3);
+    CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_betpot_2_3);
+    CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_betpot_3_4);
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_raise);
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_call);
     CheckIfDecisionMatchesElementaryAction(decision, k_autoplayer_function_check);
@@ -205,6 +217,15 @@ void CAutoplayerFunctions::CalculateOpenPPLBackupActions() {
   // 1/2 BetPot -> Raise
   CalculateSingleOpenPPLBackupAction(
     k_autoplayer_function_betpot_1_2, k_autoplayer_function_raise);
+  // 1/3 BetPot -> Raise
+  CalculateSingleOpenPPLBackupAction(
+    k_autoplayer_function_betpot_1_3, k_autoplayer_function_raise);
+  // 2/3 BetPot -> Raise
+  CalculateSingleOpenPPLBackupAction(
+    k_autoplayer_function_betpot_2_3, k_autoplayer_function_raise);
+  // 3/4 BetPot -> Raise
+  CalculateSingleOpenPPLBackupAction(
+    k_autoplayer_function_betpot_3_4, k_autoplayer_function_raise);
   // Also: f$betsize -> Raise
   CalculateSingleOpenPPLBackupAction(
     k_autoplayer_function_betsize, k_autoplayer_function_raise);
