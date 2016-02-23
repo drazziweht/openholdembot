@@ -544,7 +544,7 @@ raischair
 AND NOT BotIsLastRaiser
 
 ##BotIsLastRaiser##
-(AggressorChair==userchair)
+(AggressorChair == userchair)
 
 ##BotRaisedBeforeFlop##
    (sitename$openholdem ? HINT_Counting_Only_Autoplayer_Actions_Not_Manual_User_Actions : False)
@@ -695,17 +695,8 @@ VerifyHeartbeatIDForBetsCallsChecksRaises
 ERROR_Action_History_Only_Valid_On_My_Turn_Most_Favourite_PEBKAC
 
 ##LastRaiserCurrentBet##
-raischair == 0 ? currentbet0 :
-raischair == 1 ? currentbet1 :
-raischair == 2 ? currentbet2 :
-raischair == 3 ? currentbet3 :
-raischair == 4 ? currentbet4 :
-raischair == 5 ? currentbet5 :
-raischair == 6 ? currentbet6 :
-raischair == 7 ? currentbet7 :
-raischair == 8 ? currentbet8 :
-raischair == 9 ? currentbet9 :
-HINT_There_Is_No_Raiser_Therefore_No_CurrentBet
+raischair < 0 ? HINT_There_Is_No_Raiser_Therefore_No_CurrentBet :
+currentbet_raischair
 
 ##PlayersRaisingOrColdCallingTheLastRaise##
 // Counting the last raiser + all cold callers
@@ -768,32 +759,6 @@ VerifyHeartbeatIDForBetsCallsChecksRaises
 + ismyturn ? me_re_MemChecks :
 ERROR_Action_History_Only_Valid_On_My_Turn_Most_Favourite_PEBKAC
 
-##DealPosition1Chair##
-ac_dealpos0 == 1 ? 0 :
-ac_dealpos1 == 1 ? 1 :
-ac_dealpos2 == 1 ? 2 :
-ac_dealpos3 == 1 ? 3 :
-ac_dealpos4 == 1 ? 4 :
-ac_dealpos5 == 1 ? 5 :
-ac_dealpos6 == 1 ? 6 :
-ac_dealpos7 == 1 ? 7 :
-ac_dealpos8 == 1 ? 8 :
-ac_dealpos9 == 1 ? 9 :
-ERROR_DealPosition1Chair_Not_Recognized__Check_Your_TableMap
-
-##CurrentbetOfDealPosition1Chair##
-(DealPosition1Chair == 0) ? currentbet0 :
-(DealPosition1Chair == 1) ? currentbet1 :
-(DealPosition1Chair == 2) ? currentbet2 :
-(DealPosition1Chair == 3) ? currentbet3 :
-(DealPosition1Chair == 4) ? currentbet4 :
-(DealPosition1Chair == 5) ? currentbet5 :
-(DealPosition1Chair == 6) ? currentbet6 :
-(DealPosition1Chair == 7) ? currentbet7 :
-(DealPosition1Chair == 8) ? currentbet8 :
-(DealPosition1Chair == 9) ? currentbet9 :
-ERROR_DealPosition1Chair_Not_Recognized__Check_Your_TableMap
-
 ##PlayersBehindDealPosition2ChairDidAct##
 // Needed for detection of missing small blind.
 // First checking for folded players,
@@ -814,11 +779,8 @@ ERROR_DealPosition1Chair_Not_Recognized__Check_Your_TableMap
 [(playersplayingbits & 0b1000000000) AND (currentbet9 == 0)] ? False :
 True
 
-
-
 ##MissingSmallBlind##
-VerifyHeartbeatIDForBetsCallsChecksRaises
-+ me_re_MemMissingSmallBlind
+smallblindchair < 0
 
 ##NoBettingOnFlop##
 (nbetsround2 == 0)
@@ -934,7 +896,6 @@ ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 [(playersplayingbits & 0b1000000000) AND (nopponentsplaying-NumberOfOpponentsAllin==1) 
   AND userchair!=9 AND balance9>0] ? Stack9:
 ERROR_Game_Is_Not_HeadsUp
-
 
 ##InitRaisesBeforeFlop##
 (betround == ConstBetRoundPreflop) ? me_st_MemRaisesBeforeFlop_Raises : 
@@ -1067,52 +1028,52 @@ ERROR_BotsActionsOnThisRound_Out_Of_Range
 (bblind > 0) ? (ante / bblind) : 
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair0StartingStackSize##
+##StartingStackSizeChair0##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance0 + currentbet0 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair1StartingStackSize##
+##StartingStackSizeChair1##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance1 + currentbet1 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair2StartingStackSize##
+##StartingStackSizeChair2##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance2 + currentbet2 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair3StartingStackSize##
+##StartingStackSizeChair3##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance3 + currentbet3 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair4StartingStackSize##
+##StartingStackSizeChair4##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance4 + currentbet4 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair5StartingStackSize##
+##StartingStackSizeChair5##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance5 + currentbet5 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair6StartingStackSize##
+##StartingStackSizeChair6##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance6 + currentbet6 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair7StartingStackSize##
+##StartingStackSizeChair7##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance7 + currentbet7 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair8StartingStackSize##
+##StartingStackSizeChair8##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance8 + currentbet8 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
-##Chair9StartingStackSize##
+##StartingStackSizeChair9##
 // Amount in bets (big blinds for preflop)
 (bet > 0) ? ((balance9 + currentbet9 + ante) / bet) :
 ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
@@ -1144,76 +1105,40 @@ StartingStackSize_mp1chair
 
 ##EarlyPosition3StartingStackSize##
 // Amount in bets (big blinds for preflop)
-ep3chair < 0 ? ERROR_earlyPosition3Chair_Not_Recognized__Check_Your_TableMap :
+ep3chair < 0 ? ERROR_EarlyPosition3Chair_Not_Recognized__Check_Your_TableMap :
 StartingStackSize_ep3chair
 
 ##EarlyPosition2StartingStackSize##
 // Amount in bets (big blinds for preflop)
-ep2chair < 0 ? ERROR_earlyPosition2Chair_Not_Recognized__Check_Your_TableMap :
+ep2chair < 0 ? ERROR_EarlyPosition2Chair_Not_Recognized__Check_Your_TableMap :
 StartingStackSize_ep2chair
 
 ##EarlyPosition1StartingStackSize##
 // Amount in bets (big blinds for preflop)
-ep1chair < 0 ? ERROR_earlyPosition1Chair_Not_Recognized__Check_Your_TableMap :
+ep1chair < 0 ? ERROR_EarlyPosition1Chair_Not_Recognized__Check_Your_TableMap :
 StartingStackSize_ep1chair
 
 ##BigBlindStartingStackSize##
 // Amount in bets (big blinds for preflop)
-BigBlindChair == 0 ? Chair0StartingStackSize :
-BigBlindChair == 1 ? Chair1StartingStackSize :
-BigBlindChair == 2 ? Chair2StartingStackSize :
-BigBlindChair == 3 ? Chair3StartingStackSize :
-BigBlindChair == 4 ? Chair4StartingStackSize :
-BigBlindChair == 5 ? Chair5StartingStackSize :
-BigBlindChair == 6 ? Chair6StartingStackSize :
-BigBlindChair == 7 ? Chair7StartingStackSize :
-BigBlindChair == 8 ? Chair8StartingStackSize :
-BigBlindChair == 9 ? Chair9StartingStackSize :
-ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap
+bigblindchair < 0 ? ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_bigblind
 
 ##SmallBlindStartingStackSize##
 // Amount in bets (big blinds for preflop)
-SmallBlindChair == 0 ? Chair0StartingStackSize :
-SmallBlindChair == 1 ? Chair1StartingStackSize :
-SmallBlindChair == 2 ? Chair2StartingStackSize :
-SmallBlindChair == 3 ? Chair3StartingStackSize :
-SmallBlindChair == 4 ? Chair4StartingStackSize :
-SmallBlindChair == 5 ? Chair5StartingStackSize :
-SmallBlindChair == 6 ? Chair6StartingStackSize :
-SmallBlindChair == 7 ? Chair7StartingStackSize :
-SmallBlindChair == 8 ? Chair8StartingStackSize :
-SmallBlindChair == 9 ? Chair9StartingStackSize :
-ERROR_SmallBlindChair_Not_Recognized__Check_Your_TableMap
+smallblindchair < 0 ? ERROR_SmallBlindChair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_smallblind
 
 ##BigBlindCurrentBet##
 // Amount in bets (big blinds for preflop)
 (bet <= 0) ? ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap :
-(BigBlindChair == 0) ? (currentbet0 / bet) :
-(BigBlindChair == 1) ? (currentbet1 / bet) :
-(BigBlindChair == 2) ? (currentbet2 / bet) :
-(BigBlindChair == 3) ? (currentbet3 / bet) :
-(BigBlindChair == 4) ? (currentbet4 / bet) :
-(BigBlindChair == 5) ? (currentbet5 / bet) :
-(BigBlindChair == 6) ? (currentbet6 / bet) :
-(BigBlindChair == 7) ? (currentbet7 / bet) :
-(BigBlindChair == 8) ? (currentbet8 / bet) :
-(BigBlindChair == 9) ? (currentbet9 / bet) :
-ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap
+(BigBlindChair < 0) ? ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap :
+(currentbet_bigblindchair / bet)
 
 ##SmallBlindCurrentBet##
 // Amount in bets (big blinds for preflop)
 (bet <= 0) ? ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap :
-(SmallBlindChair == 0) ? (currentbet0 / bet) :
-(SmallBlindChair == 1) ? (currentbet1 / bet) :
-(SmallBlindChair == 2) ? (currentbet2 / bet) :
-(SmallBlindChair == 3) ? (currentbet3 / bet) :
-(SmallBlindChair == 4) ? (currentbet4 / bet) :
-(SmallBlindChair == 5) ? (currentbet5 / bet) :
-(SmallBlindChair == 6) ? (currentbet6 / bet) :
-(SmallBlindChair == 7) ? (currentbet7 / bet) :
-(SmallBlindChair == 8) ? (currentbet8 / bet) :
-(SmallBlindChair == 9) ? (currentbet9 / bet) :
-ERROR_SmallBlindChair_Not_Recognized__Check_Your_TableMap
+(SmallBlindChair < 0) ? ERROR_SmallBlindChair_Not_Recognized__Check_Your_TableMap :
+(currentbet_smallblindchair / bet)
 
 ##MaximumPossibleBetsizeIndollars##
 (balance + currentbet)
