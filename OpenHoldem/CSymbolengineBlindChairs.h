@@ -37,13 +37,17 @@ class CSymbolEngineBlindChairs: public CVirtualSymbolEngine {
   int smallblind_chair()       { return _smallblind_chair; }
   int bigblind_chair()         { return _bigblind_chair; }
  private:
+  void CalculateMissingSmallBlind();
   void CalculateSmallBlindChair();
   void CalculateBigBlindChair();
+ private:
+  double CurrentBetByDealPosition(int dealposition);
+  bool AllOpponentsDidActPreflop();
  private:
   int _smallblind_chair;
   int _bigblind_chair;
  private:
-  int _nchairs;
+  bool _missing_small_blind;
 };
 
 extern CSymbolEngineBlindChairs *p_symbol_engine_blind_chairs;

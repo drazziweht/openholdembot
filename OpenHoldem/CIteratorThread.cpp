@@ -671,7 +671,7 @@ void CIteratorThread::StandardDealingAlgorithmForUpTo13Opponents(int nopponents)
 				if (p_symbol_engine_history->nbetsround(betround) < 1.1 
 					&& p_symbol_engine_history->didcall(betround) 
 					&& (p_symbol_engine_active_dealt_playing->playersplayingbits() 
-						& p_symbol_engine_blinds->bblindbits()))
+						& p_symbol_engine_blinds->bblindbits())) //!!!!!??????
 				{
 					break;
 				}

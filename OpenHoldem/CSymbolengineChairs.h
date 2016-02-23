@@ -18,6 +18,7 @@
 #include "CVirtualSymbolEngine.h"
 
 class CSymbolEngineChairs: public CVirtualSymbolEngine {
+  friend class CSymbolEngineBlindChairs;
  public:
 	CSymbolEngineChairs();
 	~CSymbolEngineChairs();
@@ -33,6 +34,8 @@ class CSymbolEngineChairs: public CVirtualSymbolEngine {
 	// Public accessors
 	bool EvaluateSymbol(const char *name, double *result, bool log = false);
 	CString SymbolsProvided();
+ protected:
+  int GetChairByDealposition(int dealposition);
  private:
   // Dealer, user, bigblind and smallblind
   // get handled by different symbol engines
@@ -52,7 +55,6 @@ class CSymbolEngineChairs: public CVirtualSymbolEngine {
   void CalculateBigBlindChair();
   void CalculateCutOffChair();
  private:
-  int GetChairByDealposition(int dealposition);
   int GetChairByOffsetFromDealer(int counter_clockwise_offset);
  private:
   int _opponent_headsup_chair;

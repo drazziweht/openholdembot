@@ -35,7 +35,6 @@
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
-#include "CSymbolEngineBlinds.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
@@ -51,7 +50,6 @@ CSymbolEngineICM::CSymbolEngineICM() {
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
 	assert(p_symbol_engine_active_dealt_playing != NULL);
-  assert(p_symbol_engine_blinds != NULL);
   assert(p_symbol_engine_chip_amounts != NULL);
   assert(p_symbol_engine_dealerchair != NULL);
   assert(p_symbol_engine_userchair != NULL);
@@ -116,7 +114,6 @@ int CSymbolEngineICM::GetChairFromDealPos(const char* name)
 	int	sym_playersseatedbits =	p_symbol_engine_active_dealt_playing->playersseatedbits();
 	int	sym_nplayersseated =	p_symbol_engine_active_dealt_playing->nplayersseated();
 	int	sym_dealerchair =		p_symbol_engine_dealerchair->dealerchair();
-	int	sym_nplayersblind =		p_symbol_engine_blinds->nplayersblind();
 	int	chair = -1, sb_offset = 1, hu_offset = 0, eb_offset = 1;
 
 	if (sym_playersseatedbits&k_exponents[sym_dealerchair])

@@ -24,7 +24,6 @@
 #include "CPreferences.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineBlinds.h"
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineDealerchair.h"
@@ -59,7 +58,6 @@ CSymbolEngineIniFunctions::CSymbolEngineIniFunctions() {
   // as it can only be called after all symbols have been initialized.
   assert(p_symbol_engine_active_dealt_playing != NULL);
   assert(p_symbol_engine_autoplayer != NULL);
-  assert(p_symbol_engine_blinds != NULL);
   assert(p_symbol_engine_cards != NULL);
   assert(p_symbol_engine_chip_amounts != NULL);
   assert(p_symbol_engine_dealerchair != NULL);
