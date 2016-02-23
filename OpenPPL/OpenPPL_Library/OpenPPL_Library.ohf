@@ -521,7 +521,8 @@ VerifyHeartbeatIDForBetsCallsChecksRaises
 ((playersactivebits >> BigBlindChair & 1) == 0)
 
 ##SmallBlindSittingOut##
-(BigBlindChair < 0) ? ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap :
+// Missng small blind is OK contrary to missing big blind above
+(SmallBlindChair < 0) ? False :
 ((playersactivebits >> SmallBlindChair & 1) == 0)
 
 ##OpponentsLeftSittingOut##
@@ -813,27 +814,7 @@ ERROR_DealPosition1Chair_Not_Recognized__Check_Your_TableMap
 [(playersplayingbits & 0b1000000000) AND (currentbet9 == 0)] ? False :
 True
 
-##CalculateMissingSmallBlind##
-// True, if SB is missing, false otherwise
-// Should be called at our first action preflop only.
-(CurrentbetOfDealPosition1Chair == sblind) ? False :
-// If we are NOT the Second player to be dealt and see a bet 
-// of 1 big blind left to the dealer, then it is the big blind (SB missing)
-[(dealposition != 2) AND (CurrentbetOfDealPosition1Chair == bblind)] ? True :
-// Problematic is only the case when I am in "big blind" (Second player to be dealt)
-// * if bet of DealPosition1Chair > 1 bblind then SB raised and is present
-// * if bet = 1 big blind and players "behind me" did act, then SB is present and limped
-// * if bet = 1 big blind and players behind me still to act, then SB is missing
-[(dealposition == 2) AND (CurrentbetOfDealPosition1Chair > bblind)] ? False :
-// Case 2 and 3: precondition: bet = 1 big blind
-[(dealposition == 2) AND PlayersBehindDealPosition2ChairDidAct] ? False :
-[(dealposition == 2) AND NOT PlayersBehindDealPosition2ChairDidAct] ? True :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
 
-##InitMissingSmallBlind##
-[(betround == ConstBetRoundPreflop) AND  (BotsActionsOnThisRoundIncludingChecks == 0)] ? 
-me_st_MemMissingSmallBlind_CalculateMissingSmallBlind :
-HINT_Nothing_To_Do_But_All_OK
 
 ##MissingSmallBlind##
 VerifyHeartbeatIDForBetsCallsChecksRaises
@@ -1138,115 +1119,43 @@ ERROR_Blinds_Not_Recognized_Correctly__Check_Your_TableMap
 
 ##ButtonStartingStackSize##
 // Amount in bets (big blinds for preflop)
-ButtonChair == 0 ? Chair0StartingStackSize :
-ButtonChair == 1 ? Chair1StartingStackSize :
-ButtonChair == 2 ? Chair2StartingStackSize :
-ButtonChair == 3 ? Chair3StartingStackSize :
-ButtonChair == 4 ? Chair4StartingStackSize :
-ButtonChair == 5 ? Chair5StartingStackSize :
-ButtonChair == 6 ? Chair6StartingStackSize :
-ButtonChair == 7 ? Chair7StartingStackSize :
-ButtonChair == 8 ? Chair8StartingStackSize :
-ButtonChair == 9 ? Chair9StartingStackSize :
-ERROR_ButtonChair_Not_Recognized__Check_Your_TableMap
+Bbttonchair < 0 ? ERROR_ButtonChair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_dealerchair
 
 ##CutOffStartingStackSize##
 // Amount in bets (big blinds for preflop)
-CutOffChair == 0 ? Chair0StartingStackSize :
-CutOffChair == 1 ? Chair1StartingStackSize :
-CutOffChair == 2 ? Chair2StartingStackSize :
-CutOffChair == 3 ? Chair3StartingStackSize :
-CutOffChair == 4 ? Chair4StartingStackSize :
-CutOffChair == 5 ? Chair5StartingStackSize :
-CutOffChair == 6 ? Chair6StartingStackSize :
-CutOffChair == 7 ? Chair7StartingStackSize :
-CutOffChair == 8 ? Chair8StartingStackSize :
-CutOffChair == 9 ? Chair9StartingStackSize :
-ERROR_CutOffChair_Not_Recognized__Check_Your_TableMap
+cutoffchair < 0 ? ERROR_CutOffChair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_cutoffchair
 
 ##MiddlePosition3StartingStackSize##
 // Amount in bets (big blinds for preflop)
-MiddlePosition3Chair == 0 ? Chair0StartingStackSize :
-MiddlePosition3Chair == 1 ? Chair1StartingStackSize :
-MiddlePosition3Chair == 2 ? Chair2StartingStackSize :
-MiddlePosition3Chair == 3 ? Chair3StartingStackSize :
-MiddlePosition3Chair == 4 ? Chair4StartingStackSize :
-MiddlePosition3Chair == 5 ? Chair5StartingStackSize :
-MiddlePosition3Chair == 6 ? Chair6StartingStackSize :
-MiddlePosition3Chair == 7 ? Chair7StartingStackSize :
-MiddlePosition3Chair == 8 ? Chair8StartingStackSize :
-MiddlePosition3Chair == 9 ? Chair9StartingStackSize :
-ERROR_MiddlePosition3Chair_Not_Recognized__Check_Your_TableMap
+mp3chair < 0 ? ERROR_MiddlePosition3Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_mp3chair
 
 ##MiddlePosition2StartingStackSize##
 // Amount in bets (big blinds for preflop)
-MiddlePosition2Chair == 0 ? Chair0StartingStackSize :
-MiddlePosition2Chair == 1 ? Chair1StartingStackSize :
-MiddlePosition2Chair == 2 ? Chair2StartingStackSize :
-MiddlePosition2Chair == 3 ? Chair3StartingStackSize :
-MiddlePosition2Chair == 4 ? Chair4StartingStackSize :
-MiddlePosition2Chair == 5 ? Chair5StartingStackSize :
-MiddlePosition2Chair == 6 ? Chair6StartingStackSize :
-MiddlePosition2Chair == 7 ? Chair7StartingStackSize :
-MiddlePosition2Chair == 8 ? Chair8StartingStackSize :
-MiddlePosition2Chair == 9 ? Chair9StartingStackSize :
-ERROR_MiddlePosition2Chair_Not_Recognized__Check_Your_TableMap
+mp2chair < 0 ? ERROR_MiddlePosition2Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_mp2chair
 
 ##MiddlePosition1StartingStackSize##
 // Amount in bets (big blinds for preflop)
-MiddlePosition1Chair == 0 ? Chair0StartingStackSize :
-MiddlePosition1Chair == 1 ? Chair1StartingStackSize :
-MiddlePosition1Chair == 2 ? Chair2StartingStackSize :
-MiddlePosition1Chair == 3 ? Chair3StartingStackSize :
-MiddlePosition1Chair == 4 ? Chair4StartingStackSize :
-MiddlePosition1Chair == 5 ? Chair5StartingStackSize :
-MiddlePosition1Chair == 6 ? Chair6StartingStackSize :
-MiddlePosition1Chair == 7 ? Chair7StartingStackSize :
-MiddlePosition1Chair == 8 ? Chair8StartingStackSize :
-MiddlePosition1Chair == 9 ? Chair9StartingStackSize :
-ERROR_MiddlePosition1Chair_Not_Recognized__Check_Your_TableMap
+mp1chair < 0 ? ERROR_MiddlePosition1Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_mp1chair
 
 ##EarlyPosition3StartingStackSize##
 // Amount in bets (big blinds for preflop)
-EarlyPosition3Chair == 0 ? Chair0StartingStackSize :
-EarlyPosition3Chair == 1 ? Chair1StartingStackSize :
-EarlyPosition3Chair == 2 ? Chair2StartingStackSize :
-EarlyPosition3Chair == 3 ? Chair3StartingStackSize :
-EarlyPosition3Chair == 4 ? Chair4StartingStackSize :
-EarlyPosition3Chair == 5 ? Chair5StartingStackSize :
-EarlyPosition3Chair == 6 ? Chair6StartingStackSize :
-EarlyPosition3Chair == 7 ? Chair7StartingStackSize :
-EarlyPosition3Chair == 8 ? Chair8StartingStackSize :
-EarlyPosition3Chair == 9 ? Chair9StartingStackSize :
-ERROR_EarlyPosition3Chair_Not_Recognized__Check_Your_TableMap
+ep3chair < 0 ? ERROR_earlyPosition3Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_ep3chair
 
 ##EarlyPosition2StartingStackSize##
 // Amount in bets (big blinds for preflop)
-EarlyPosition2Chair == 0 ? Chair0StartingStackSize :
-EarlyPosition2Chair == 1 ? Chair1StartingStackSize :
-EarlyPosition2Chair == 2 ? Chair2StartingStackSize :
-EarlyPosition2Chair == 3 ? Chair3StartingStackSize :
-EarlyPosition2Chair == 4 ? Chair4StartingStackSize :
-EarlyPosition2Chair == 5 ? Chair5StartingStackSize :
-EarlyPosition2Chair == 6 ? Chair6StartingStackSize :
-EarlyPosition2Chair == 7 ? Chair7StartingStackSize :
-EarlyPosition2Chair == 8 ? Chair8StartingStackSize :
-EarlyPosition2Chair == 9 ? Chair9StartingStackSize :
-ERROR_EarlyPosition2Chair_Not_Recognized__Check_Your_TableMap
+ep2chair < 0 ? ERROR_earlyPosition2Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_ep2chair
 
 ##EarlyPosition1StartingStackSize##
 // Amount in bets (big blinds for preflop)
-EarlyPosition1Chair == 0 ? Chair0StartingStackSize :
-EarlyPosition1Chair == 1 ? Chair1StartingStackSize :
-EarlyPosition1Chair == 2 ? Chair2StartingStackSize :
-EarlyPosition1Chair == 3 ? Chair3StartingStackSize :
-EarlyPosition1Chair == 4 ? Chair4StartingStackSize :
-EarlyPosition1Chair == 5 ? Chair5StartingStackSize :
-EarlyPosition1Chair == 6 ? Chair6StartingStackSize :
-EarlyPosition1Chair == 7 ? Chair7StartingStackSize :
-EarlyPosition1Chair == 8 ? Chair8StartingStackSize :
-EarlyPosition1Chair == 9 ? Chair9StartingStackSize :
-ERROR_EarlyPosition1Chair_Not_Recognized__Check_Your_TableMap
+ep1chair < 0 ? ERROR_earlyPosition1Chair_Not_Recognized__Check_Your_TableMap :
+StartingStackSize_ep1chair
 
 ##BigBlindStartingStackSize##
 // Amount in bets (big blinds for preflop)
@@ -3650,20 +3559,10 @@ InSmallBlind ? 1 :
 // we decided to provide both forms of naming in the library.
 
 ##SmallBlind##
-// Small blind missing, therefore we can't be small blind
-MissingSmallBlind ? False :
-// 3 or more handed, normal blinds
-   ((nplayersdealt != 2) AND (dealposition == 1))
-// Headsup, reversed blinds
-OR ((nplayersdealt == 2) AND (dealposition == 2))
+WHEN userchair = smallblindchair RETURN True FORCE
 
 ##BigBlind##
-// Missing small blind, big blind is the first dealt player
-MissingSmallBlind ? (dealposition == 1) :
-// 3 or more handed, normal blinds
-   ((nplayersdealt != 2) AND (dealposition == 2))
-// Headsup, reversed blinds
-OR ((nplayersdealt == 2) AND (dealposition == 1))
+WHEN userchair = bigblindchair RETURN True FORCE
 
 ##Button##
 // If the game in not 10-handed, some positions would be both "normal" and in the blinds.
@@ -3763,150 +3662,45 @@ UTG
 MissingSmallBlind ? 1 : 2
 
 ##BigBlindChair##
-ac_dealpos0 == TrueDealPositionOfBigBlind ? 0 :
-ac_dealpos1 == TrueDealPositionOfBigBlind ? 1 :
-ac_dealpos2 == TrueDealPositionOfBigBlind ? 2 :
-ac_dealpos3 == TrueDealPositionOfBigBlind ? 3 :
-ac_dealpos4 == TrueDealPositionOfBigBlind ? 4 :
-ac_dealpos5 == TrueDealPositionOfBigBlind ? 5 :
-ac_dealpos6 == TrueDealPositionOfBigBlind ? 6 :
-ac_dealpos7 == TrueDealPositionOfBigBlind ? 7 :
-ac_dealpos8 == TrueDealPositionOfBigBlind ? 8 :
-ac_dealpos9 == TrueDealPositionOfBigBlind ? 9 :
-ERROR_BigBlindChair_Not_Recognized__Check_Your_TableMap
+bigblindchair
   
 ##SmallBlindChair##
-MissingSmallBlind ? HINT_There_Is_No_SmallNlind_In_This_Game :
-ac_dealpos0 == 1 ? 0 :
-ac_dealpos1 == 1 ? 1 :
-ac_dealpos2 == 1 ? 2 :
-ac_dealpos3 == 1 ? 3 :
-ac_dealpos4 == 1 ? 4 :
-ac_dealpos5 == 1 ? 5 :
-ac_dealpos6 == 1 ? 6 :
-ac_dealpos7 == 1 ? 7 :
-ac_dealpos8 == 1 ? 8 :
-ac_dealpos9 == 1 ? 9 :
-ERROR_SmallBlindChair_Not_Recognized__Check_Your_TableMap
+bigblindchair
 
 ##ButtonChair##
-// We ignore the case of headsup,
-// where button = small blind or button = big blind,
-// as this seems to be different for each casino.
-// For us: button = bigblind, if the game is headsup.
-ac_dealpos0 == nplayersdealt ? 0 :
-ac_dealpos1 == nplayersdealt ? 1 :
-ac_dealpos2 == nplayersdealt ? 2 :
-ac_dealpos3 == nplayersdealt ? 3 :
-ac_dealpos4 == nplayersdealt ? 4 :
-ac_dealpos5 == nplayersdealt ? 5 :
-ac_dealpos6 == nplayersdealt ? 6 :
-ac_dealpos7 == nplayersdealt ? 7 :
-ac_dealpos8 == nplayersdealt ? 8 :
-ac_dealpos9 == nplayersdealt ? 9 :
-ERROR_ButtonChair_Not_Recognized__Check_Your_TableMap
+buttonchair
 
 ##CutOffChair##
 // We have to make sure, that the userchair in question is not a blind,
 // which would be the case for CutOff, if the game was 3-handed.
 // For 3-handed games "CutOff" = BigBlind, but blinds take priority.
 // We could test for dealposition > 2, but counting players is more simple.
-(nplayersdealt <= 3) ? HINT_CutOff_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 1) ? 0 :
-ac_dealpos1 == (nplayersdealt - 1) ? 1 :
-ac_dealpos2 == (nplayersdealt - 1) ? 2 :
-ac_dealpos3 == (nplayersdealt - 1) ? 3 :
-ac_dealpos4 == (nplayersdealt - 1) ? 4 :
-ac_dealpos5 == (nplayersdealt - 1) ? 5 :
-ac_dealpos6 == (nplayersdealt - 1) ? 6 :
-ac_dealpos7 == (nplayersdealt - 1) ? 7 :
-ac_dealpos8 == (nplayersdealt - 1) ? 8 :
-ac_dealpos9 == (nplayersdealt - 1) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(cutoffchair < 0) ? HINT_CutOff_Does_Not_Exist :
+cutoffchaor
 
 ##MiddlePosition3Chair##
-(nplayersdealt <= 4) ? HINT_MiddlePosition3_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 2) ? 0 :
-ac_dealpos1 == (nplayersdealt - 2) ? 1 :
-ac_dealpos2 == (nplayersdealt - 2) ? 2 :
-ac_dealpos3 == (nplayersdealt - 2) ? 3 :
-ac_dealpos4 == (nplayersdealt - 2) ? 4 :
-ac_dealpos5 == (nplayersdealt - 2) ? 5 :
-ac_dealpos6 == (nplayersdealt - 2) ? 6 :
-ac_dealpos7 == (nplayersdealt - 2) ? 7 :
-ac_dealpos8 == (nplayersdealt - 2) ? 8 :
-ac_dealpos9 == (nplayersdealt - 2) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp3chair < 0) ? HINT_MiddlePosition3_Does_Not_Exist :
+mp3chair
 
 ##MiddlePosition2Chair##
-(nplayersdealt <= 5) ? HINT_MiddlePosition2_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 3) ? 0 :
-ac_dealpos1 == (nplayersdealt - 3) ? 1 :
-ac_dealpos2 == (nplayersdealt - 3) ? 2 :
-ac_dealpos3 == (nplayersdealt - 3) ? 3 :
-ac_dealpos4 == (nplayersdealt - 3) ? 4 :
-ac_dealpos5 == (nplayersdealt - 3) ? 5 :
-ac_dealpos6 == (nplayersdealt - 3) ? 6 :
-ac_dealpos7 == (nplayersdealt - 3) ? 7 :
-ac_dealpos8 == (nplayersdealt - 3) ? 8 :
-ac_dealpos9 == (nplayersdealt - 3) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp2chair < 0) ? HINT_MiddlePosition2_Does_Not_Exist :
+mp2chair
 
 ##MiddlePosition1Chair##
-(nplayersdealt <= 6) ? HINT_MiddlePosition1_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 4) ? 0 :
-ac_dealpos1 == (nplayersdealt - 4) ? 1 :
-ac_dealpos2 == (nplayersdealt - 4) ? 2 :
-ac_dealpos3 == (nplayersdealt - 4) ? 3 :
-ac_dealpos4 == (nplayersdealt - 4) ? 4 :
-ac_dealpos5 == (nplayersdealt - 4) ? 5 :
-ac_dealpos6 == (nplayersdealt - 4) ? 6 :
-ac_dealpos7 == (nplayersdealt - 4) ? 7 :
-ac_dealpos8 == (nplayersdealt - 4) ? 8 :
-ac_dealpos9 == (nplayersdealt - 4) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp1chair < 0) ? HINT_MiddlePosition1_Does_Not_Exist :
+mp1chair
 
 ##EarlyPosition3Chair##
-(nplayersdealt <= 7) ? HINT_EarlyPosition3_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 5) ? 0 :
-ac_dealpos1 == (nplayersdealt - 5) ? 1 :
-ac_dealpos2 == (nplayersdealt - 5) ? 2 :
-ac_dealpos3 == (nplayersdealt - 5) ? 3 :
-ac_dealpos4 == (nplayersdealt - 5) ? 4 :
-ac_dealpos5 == (nplayersdealt - 5) ? 5 :
-ac_dealpos6 == (nplayersdealt - 5) ? 6 :
-ac_dealpos7 == (nplayersdealt - 5) ? 7 :
-ac_dealpos8 == (nplayersdealt - 5) ? 8 :
-ac_dealpos9 == (nplayersdealt - 5) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp3chair < 0) ? HINT_EarlyPosition3_Does_Not_Exist :
+mp3chair
 
 ##EarlyPosition2Chair##
-(nplayersdealt <= 8) ? HINT_EarlyPosition2_Does_Not_Exist :
-(ac_dealpos0 == (nplayersdealt - 6)) ? 0 :
-(ac_dealpos1 == (nplayersdealt - 6)) ? 1 :
-(ac_dealpos2 == (nplayersdealt - 6)) ? 2 :
-(ac_dealpos3 == (nplayersdealt - 6)) ? 3 :
-(ac_dealpos4 == (nplayersdealt - 6)) ? 4 :
-(ac_dealpos5 == (nplayersdealt - 6)) ? 5 :
-(ac_dealpos6 == (nplayersdealt - 6)) ? 6 :
-(ac_dealpos7 == (nplayersdealt - 6)) ? 7 :
-(ac_dealpos8 == (nplayersdealt - 6)) ? 8 :
-(ac_dealpos9 == (nplayersdealt - 6)) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp2chair) ? HINT_EarlyPosition2_Does_Not_Exist :
+mp2chair
 
 ##EarlyPosition1Chair##
-(nplayersdealt <= 9) ? HINT_EarlyPosition1_Does_Not_Exist :
-ac_dealpos0 == (nplayersdealt - 7) ? 0 :
-ac_dealpos1 == (nplayersdealt - 7) ? 1 :
-ac_dealpos2 == (nplayersdealt - 7) ? 2 :
-ac_dealpos3 == (nplayersdealt - 7) ? 3 :
-ac_dealpos4 == (nplayersdealt - 7) ? 4 :
-ac_dealpos5 == (nplayersdealt - 7) ? 5 :
-ac_dealpos6 == (nplayersdealt - 7) ? 6 :
-ac_dealpos7 == (nplayersdealt - 7) ? 7 :
-ac_dealpos8 == (nplayersdealt - 7) ? 8 :
-ac_dealpos9 == (nplayersdealt - 7) ? 9 :
-ERROR_THIS_SHOULD_NOT_HAPPEN__THERE_SEEMS_TO_BE_A_PROBLEM_IN_THE_LIBRARY
+(mp1chair < 0) ? HINT_EarlyPosition1_Does_Not_Exist :
+mp1chair
 
 ##DealPositionLastRaiser##
 // This function does also count blind-raisers.
@@ -4065,7 +3859,7 @@ Middle
 
 //*****************************************************************************
 //
-// OpenPPL - Poker Tracker Symbols
+// OpenPPL - Checks for correct initializations
 //
 // Sanity-checks for correct usage of symbols like Raises, Calls, etc.
 // These symbols
@@ -4153,7 +3947,6 @@ WHEN NOT TimeToInitMemorySymbols RETURN HINT_Nothing_To_Do_But_All_OK FORCE
 // are used correctly, at well-defined times only.
 // And InitRaises, etc. will use them very soon -- and correctly.
 WHEN Others RETURN (RememberHeartbeatID 
-  XOR InitMissingSmallBlind 
   XOR InitBets
   XOR InitChecks
   XOR InitCalls
