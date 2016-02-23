@@ -305,7 +305,6 @@
     <ClCompile Include="CGameState.cpp" />
     <ClCompile Include="CSymbolEngineActiveDealtPlaying.cpp" />
     <ClCompile Include="CSymbolEngineAutoplayer.cpp" />
-    <ClCompile Include="CSymbolEngineBlinds.cpp" />
     <ClCompile Include="CSymbolEngineCards.cpp" />
     <ClCompile Include="CSymbolEngineChipAmounts.cpp" />
     <ClCompile Include="CSymbolengineDealerchair.cpp" />
@@ -563,7 +562,6 @@
     <ClInclude Include="UnknownSymbols.h" />
     <ClInclude Include="CSymbolEngineActiveDealtPlaying.h" />
     <ClInclude Include="CSymbolEngineAutoplayer.h" />
-    <ClInclude Include="CSymbolEngineBlinds.h" />
     <ClInclude Include="CSymbolEngineCards.h" />
     <ClInclude Include="CSymbolEngineChipAmounts.h" />
     <ClInclude Include="CSymbolEngineDealerchair.h" />

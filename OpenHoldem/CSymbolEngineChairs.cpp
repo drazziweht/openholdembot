@@ -114,7 +114,7 @@ int CSymbolEngineChairs::GetChairByOffsetFromDealer(int counter_clockwise_offset
   // Blinds are undefined, they have a symbol-engine on their own.
   // This function returns -1 if such a chair does not exist
   assert(counter_clockwise_offset >= 0);
-  int nplayersdealt = ;
+  int nplayersdealt = p_symbol_engine_active_dealt_playing->nplayersdealt();
   int nplayers_non_blinds = nplayersdealt - kUsualNumberOfBlindPosters; 
   if (SmallBlindMissing) {
     // One additional player who doesn't post blinds
@@ -183,5 +183,5 @@ bool CSymbolEngineChairs::EvaluateSymbol(const char *name, double *result, bool 
 CString CSymbolEngineChairs::SymbolsProvided() {
   return "headsupchair cutoffchair utgchair "
     "mp3chair mp2chair mp1chair "
-    "ep3chair ep2chair ep1chair ;
+    "ep3chair ep2chair ep1chair ";
 }

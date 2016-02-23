@@ -197,21 +197,21 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result,
 		chair = p_symbol_engine_raisers->raischair();
 	}
 	// PokerTracker symbols for the opponent headsup chair
-	else if (s.Right(8) == "_headsup") {
+	/*else if (s.Right(8) == "_headsup") {
     chair = p_symbol_engine_chairs->opponent_headsup_chair();
-	}
+	}*/
   // PokerTracker symbols for the smallblind chair
-	else if (s.Right(11) == "_smallblind") {
+	/*else if (s.Right(11) == "_smallblind") {
     chair = p_symbol_engine_chairs->smallblind_chair();
-	}
+	}*/
   // PokerTracker symbols for the bigblind chair
-	else if (s.Right(9) == "_bigblind") {
-    chair = p_symbol_engine_chairs->bigblind_chair();
-	}
+	//R!!!!!else if (s.Right(9) == "_bigblind") {
+  //  chair = p_symbol_engine_chairs->bigblind_chair();
+	//}
   // PokerTracker symbols for the cutoff chair
-	else if (s.Right(7) == "_cutoff") {
+	/*else if (s.Right(7) == "_cutoff") {
     chair = p_symbol_engine_chairs->cutoff_chair();
-	}
+	}*/
   // PokerTracker symbols for the firstcaller chair
 	else if (s.Right(12) == "_firstcaller") {
     chair = p_symbol_engine_callers->firstcaller_chair();

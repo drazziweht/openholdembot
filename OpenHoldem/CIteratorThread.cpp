@@ -22,7 +22,7 @@
 #include "CScraperAccess.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineBlinds.h"
+#include "CSymbolEngineBlindChairs.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEnginePokerval.h"
@@ -663,16 +663,15 @@ void CIteratorThread::StandardDealingAlgorithmForUpTo13Opponents(int nopponents)
 			//put break for i=0 and opponent unraised BB case (cannot assume anything about his cards)
 			//In round 1 we should really do an analysis of chairs to find out how many have still to
 			//place a bet. Not implemented since accuracy of prwin pre-flop is less critical.
-			if (!i)
-			{
+			if (i == 0)			{
 				//if we called then we are not BB, BB limped to flop,
 				//BB still playing, so do not weight his cards
 				int betround = p_betround_calculator->betround();
 				if (p_symbol_engine_history->nbetsround(betround) < 1.1 
-					&& p_symbol_engine_history->didcall(betround) 
-					&& (p_symbol_engine_active_dealt_playing->playersplayingbits() 
-						& p_symbol_engine_blinds->bblindbits())) //!!!!!??????
-				{
+					  && p_symbol_engine_history->didcall(betround) 
+            && (p_table_state->Player(p_symbol_engine_blind_chairs->bigblind_chair())->HasAnyCards())) {
+          // First player to be initialized and we have one checked big blind.
+          // Use random initialization for this one, not weighted.
 					break;
 				}
 			}

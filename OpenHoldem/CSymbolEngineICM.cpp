@@ -120,6 +120,8 @@ int CSymbolEngineICM::GetChairFromDealPos(const char* name)
 		eb_offset = 0;
 		
 	// if 2 players posted blinds, no sb_offset
+  //R!!!!!
+  int sym_nplayersblind= 2;
 	if (sym_nplayersblind == 2)
 		sb_offset = 0;
 

@@ -399,9 +399,6 @@
     <ClCompile Include="CSymbolEngineAutoplayer.cpp">
       <Filter>Source Files\Symbols\Symbol_Engines</Filter>
     </ClCompile>
-    <ClCompile Include="CSymbolEngineBlinds.cpp">
-      <Filter>Source Files\Symbols\Symbol_Engines</Filter>
-    </ClCompile>
     <ClCompile Include="CSymbolEngineCards.cpp">
       <Filter>Source Files\Symbols\Symbol_Engines</Filter>
     </ClCompile>
@@ -1142,9 +1139,6 @@
       <Filter>Header Files\Symbols\Symbol_Engines</Filter>
     </ClInclude>
     <ClInclude Include="CSymbolEngineAutoplayer.h">
-      <Filter>Header Files\Symbols\Symbol_Engines</Filter>
-    </ClInclude>
-    <ClInclude Include="CSymbolEngineBlinds.h">
       <Filter>Header Files\Symbols\Symbol_Engines</Filter>
     </ClInclude>
     <ClInclude Include="CSymbolEngineCards.h">

@@ -176,7 +176,7 @@ void CEngineContainer::CreateSymbolEngines() {
   p_symbol_engine_poker_action = new CSymbolEnginePokerAction();
   AddSymbolEngine(p_symbol_engine_poker_action);
   // CSymbolEngineBlindChairs
-  p_symbol_engine_blind?chairs = new CSymbolEngineBlindChairs();
+  p_symbol_engine_blind_chairs = new CSymbolEngineBlindChairs();
   AddSymbolEngine(p_symbol_engine_blind_chairs);
   // CSymbolEngineChairs
   p_symbol_engine_chairs = new CSymbolEngineChairs();
