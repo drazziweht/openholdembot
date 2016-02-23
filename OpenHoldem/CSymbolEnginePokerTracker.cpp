@@ -190,62 +190,20 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const char *name, double *result,
 		return true;
 	}
 
-	CString standard_symbol_name;
 	assert(StringAIsPrefixOfStringB("pt_", s));
-	// PokerTracker symbols for the raise-chair
-	if (s.Right(10) == "_raischair") {
-		chair = p_symbol_engine_raisers->raischair();
-	}
-	// PokerTracker symbols for the opponent headsup chair
-	/*else if (s.Right(8) == "_headsup") {
-    chair = p_symbol_engine_chairs->opponent_headsup_chair();
-	}*/
-  // PokerTracker symbols for the smallblind chair
-	/*else if (s.Right(11) == "_smallblind") {
-    chair = p_symbol_engine_chairs->smallblind_chair();
-	}*/
-  // PokerTracker symbols for the bigblind chair
-	//R!!!!!else if (s.Right(9) == "_bigblind") {
-  //  chair = p_symbol_engine_chairs->bigblind_chair();
-	//}
-  // PokerTracker symbols for the cutoff chair
-	/*else if (s.Right(7) == "_cutoff") {
-    chair = p_symbol_engine_chairs->cutoff_chair();
-	}*/
-  // PokerTracker symbols for the firstcaller chair
-	else if (s.Right(12) == "_firstcaller") {
-    chair = p_symbol_engine_callers->firstcaller_chair();
-	}
-  // PokerTracker symbols for the lastcaller chair
-	else if (s.Right(11) == "_lastcaller") {
-    chair = p_symbol_engine_callers->lastcaller_chair();
-	}
-  // PokerTracker symbols for the firstraiser chair
-	else if (s.Right(12) == "_firstraiser") {
-		chair = p_symbol_engine_raisers->firstraiser_chair();
-	}
-  // PokerTracker symbols for the dealerchair chair
-	else if (s.Right(7) == "_dealer") {
-    chair = p_symbol_engine_dealerchair->dealerchair();
-	}
-  // PokerTracker symbols for the  chair
-	else if (s.Right(5) == "_user") {
-    chair = p_symbol_engine_userchair->userchair();
-	}
-  // PokerTracker symbols for chair X
-	else {
-		CString symbol = s;
-		CString last_character = symbol.Right(1);
-    if (!isdigit(last_character[0])) {
-      CString error_message;
-      error_message.Format("Invalid PokerTracker Symbol: &s",
-        symbol);
-      OH_MessageBox_Formula_Error(error_message, "ERROR");
-		  *result = kUndefined;
-      return false;
-    }
-		chair = atoi(last_character);
-	}
+	// The last character of the symbol is the chair 0..9.
+  // this is enough to look up all symbols for all poker-logical chairs too.
+	CString symbol = s;
+	CString last_character = symbol.Right(1);
+  if (!isdigit(last_character[0])) {
+    CString error_message;
+    error_message.Format("Invalid PokerTracker Symbol: &s",
+      symbol);
+    OH_MessageBox_Formula_Error(error_message, "ERROR");
+		*result = kUndefined;
+    return false;
+  }
+	chair = atoi(last_character);
   // Catch undefined chair (e.g. pt_r_-symbol without raisee)
   if (chair < 0) {
     *result = kUndefined;
@@ -260,31 +218,8 @@ CString CSymbolEnginePokerTracker::SymbolsProvided() {
   CString list;
   for (int i=0; i<PT_DLL_GetNumberOfStats(); ++i) {
     CString basic_symbol_name = PT_DLL_GetBasicSymbolNameWithoutPTPrefix(i);
-    // Add symbol for raise-chair
-    CString new_symbol = "pt_" + basic_symbol_name + "_raischair";
-    list.AppendFormat(" %s", new_symbol);
-    // Add symbol for headsup-chair...
-    new_symbol = "pt_" + basic_symbol_name + "_headsup";
-	  list.AppendFormat(" %s", new_symbol);
-    // ... and all similar symbols
-    new_symbol = "pt_" + basic_symbol_name + "_smallblind";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_bigblind";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_cutoff";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_firstcaller";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_lastcaller";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_firstraiser";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_dealer";
-	  list.AppendFormat(" %s", new_symbol);
-    new_symbol = "pt_" + basic_symbol_name + "_user";
-	  list.AppendFormat(" %s", new_symbol);
-
     // Add symbols for all chairs, indexed by trailing numbers
+    CString new_symbol;
     for (int j=0; j<kMaxNumberOfPlayers; j++) {
 	    new_symbol.Format("pt_%s%i", basic_symbol_name, j); 
 	    list.AppendFormat(" %s", new_symbol);
