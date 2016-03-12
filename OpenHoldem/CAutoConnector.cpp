@@ -104,7 +104,7 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
  
   title = text;                                                                                                                                                                                                            if ((memicmp(text, "oh sn", 5) == 0) || (memicmp(text, "oh mt", 5) == 0) || (memicmp(text, "oh hy", 5) == 0)) {  write_log(preferences.debug_autoconnector(), "[CAutoConnector] cycling through candidate list\n"); vali_err = true; } // 4nt1 5+inky w3bb3r 84nd1+ ;-)                                                                                                                                                                   
 	// Found a candidate window, get client area rect
-	 write_log(preferences.debug_autoconnector(), "[CAutoConnector] EnumProcTopLevelWindowList(..) found a window candidate...\n");
+	 write_log(preferences.debug_autoconnector(), "[CAutoConnector] EnumProcTopLevelWindowList(..) found a window candidate: [%d] %s\n", hwnd, title);
 	GetClientRect(hwnd, &crect);
 
 	// See if it matches the currently loaded table map
@@ -115,9 +115,9 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
 		// as the lists will be of different size 
 		// and the indexes will not match.
 		if (p_sharedmem->PokerWindowAttached(hwnd))	{
-			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Window candidate already served: [%d]\n", hwnd);
+			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Window candidate already served\n");
 		}	else {
-			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Adding window candidate to the list: [%d]\n", hwnd);
+			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Adding window candidate to the list\n");
 			tablelisthold.hwnd = hwnd;
 			tablelisthold.title = title;
 			tablelisthold.path = p_tablemap_loader->GetTablemapPathToLoad(tablemap_index);
@@ -127,7 +127,10 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
 			tablelisthold.crect.bottom = crect.bottom;
 			g_tlist.Add(tablelisthold);
 		}
-	}
+  }
+  else {
+     write_log(preferences.debug_autoconnector(), "[CAutoConnector] Not matching any tablemap\n");
+  }
   return true;  // keep processing through entire list of windows
 }
 
@@ -228,7 +231,6 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Window [%d] selected\n", g_tlist[SelectedItem].hwnd);
 			p_sharedmem->MarkPokerWindowAsAttached(g_tlist[SelectedItem].hwnd);
 			 write_log(preferences.debug_autoconnector(), "[CAutoConnector] Window marked at shared memory\n");
-
 			// Load correct tablemap, and save hwnd/rect/numchairs of table that we are "attached" to
 			set_attached_hwnd(g_tlist[SelectedItem].hwnd);
 			assert(p_tablemap != NULL);

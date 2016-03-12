@@ -189,26 +189,29 @@ bool Check_TM_Against_Single_Window(int MapIndex, HWND h, RECT r, CString title)
   bool      good_table_points = false;
 	int				width = 0, height = 0, x = 0, y = 0;
 	HDC				hdcScreen = NULL, hdcCompatible = NULL;
-	HBITMAP			hbmScreen = NULL, hOldScreenBitmap = NULL;
+	HBITMAP		hbmScreen = NULL, hOldScreenBitmap = NULL;
 	BYTE			*pBits = NULL, alpha = 0, red = 0, green = 0, blue = 0;
-	CTransform		trans;
+	CTransform	trans;
 	CString			s;
 
-	 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Check_TM_Against_Single_Window(..)\n");
-	 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Checking map nr. %d\n", MapIndex);
-	 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Window title: %s\n", title);
-	
+	 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+     "[CTablemapLoader] Check_TM_Against_Single_Window(..)\n");
+	 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+    "[CTablemapLoader] Checking map nr. %d\n", MapIndex);
+	 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+    "[CTablemapLoader] Window title: %s\n", title);
 	// Check for client size that falls within min/max
 	if (!((r.right   >= tablemap_connection_data[MapIndex].ClientSizeMinX)
 			&& (r.right  <= tablemap_connection_data[MapIndex].ClientSizeMaxX)
 			&& (r.bottom >= tablemap_connection_data[MapIndex].ClientSizeMinY)
 			&& (r.bottom <= tablemap_connection_data[MapIndex].ClientSizeMaxY))) {
-		 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] No good size: (%dpx, %dpx) out of clientsizemin/max\n",
-			r.right,
+		 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+      "[CTablemapLoader] No good size: (%dpx, %dpx) out of clientsizemin/max\n",	
+      r.right,
 			r.bottom);
 		return false;
 	}
-	 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Size matches; checking the rest...\n");
+	 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), "[CTablemapLoader] Size matches; checking the rest...\n");
   
   // Check for match positive title text matches
 	good_pos_title = false;
@@ -227,7 +230,8 @@ bool Check_TM_Against_Single_Window(int MapIndex, HWND h, RECT r, CString title)
 		}
 	}
 	if (!good_pos_title) {
-		 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] No good title.\n");
+		 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+      "[CTablemapLoader] No good title.\n");
 		return false;
 	}
 
@@ -245,9 +249,9 @@ bool Check_TM_Against_Single_Window(int MapIndex, HWND h, RECT r, CString title)
 			}
 		}
 	}
-	if (good_neg_title)
-	{
-		 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Negative title found -> window is no match.\n"); 
+	if (good_neg_title)	{
+		 write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+      "[CTablemapLoader] Negative title found -> window is no match.\n"); 
 		return false;
 	}
 
@@ -290,30 +294,27 @@ bool Check_TM_Against_Single_Window(int MapIndex, HWND h, RECT r, CString title)
 
       COLORREF Color = tablemap_connection_data[MapIndex].TablePoint[i].color;
       // positive radius
-      if (tablemap_connection_data[MapIndex].TablePoint[i].radius >= 0)
-      {
-         if (!trans.IsInARGBColorCube((Color>>24)&0xff, // function GetAValue() does not exist
+      if (tablemap_connection_data[MapIndex].TablePoint[i].radius >= 0) {
+        if (!trans.IsInARGBColorCube((Color>>24)&0xff, // function GetAValue() does not exist
                                GetRValue(Color),
                                GetGValue(Color),
                                GetBValue(Color),
                                tablemap_connection_data[MapIndex].TablePoint[i].radius,
                                alpha, red, green, blue)) {
-            good_table_points = false;
-         }
+          good_table_points = false;
+        }
       }
       // negative radius (logical not)
       else {
-         if (trans.IsInARGBColorCube((Color>>24)&0xff, // function GetAValue() does not exist
+        if (trans.IsInARGBColorCube((Color>>24)&0xff, // function GetAValue() does not exist
                               GetRValue(Color),
                               GetGValue(Color),
                               GetBValue(Color),
                               -tablemap_connection_data[MapIndex].TablePoint[i].radius,
-                              alpha, red, green, blue))
-         {
-            good_table_points = false;
-         }
+                              alpha, red, green, blue)) {
+          good_table_points = false;
+        }
       }
-
       // Clean up
       HeapFree(GetProcessHeap(), NULL, bmi);
       delete []pBits;
@@ -321,15 +322,15 @@ bool Check_TM_Against_Single_Window(int MapIndex, HWND h, RECT r, CString title)
       DeleteObject(hbmScreen);
       DeleteDC(hdcCompatible);
       ReleaseDC(h, hdcScreen);
-
       if (!good_table_points) {
-          write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Not all tablepoints match.\n");
-         return false;
+         write_log(preferences.debug_tablemap_loader() || preferences.debug_autoconnector(), 
+          "[CTablemapLoader] Not all tablepoints match.\n");
+        return false;
       }
     }
 	}
-
-	 write_log(preferences.debug_tablemap_loader(), "[CTablemapLoader] Window ia a match\n");
+   write_log(preferences.debug_tablemap_loader(), 
+    "[CTablemapLoader] Window ia a match\n");
 	return true;
 }
 
