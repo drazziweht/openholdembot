@@ -14,7 +14,10 @@ BUG FIXES:
   [THF]
 
 MAINTENANCE:
-
+- Removed the option to connect once on start,
+  as it is not really practical to require the table to be open 
+  and start OpenHoldem only later.
+  [THF]
 
 v9.1.0 2016-02-16
 ==================
