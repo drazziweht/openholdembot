@@ -27,12 +27,15 @@
 #define LIMIT_FL		2
 
 // Window Size
-#define MM_WIDTH		580
-#define MM_HEIGHT		360
+// Only the width is fixed,
+// the total height needs to be calculated
+// depending on the size of the title-bar,
+// otherwise the client-size would be affected
+// and connecting 7 scraping would no longer work.
+#define MM_WIDTH 580
 
 // Startup path
 extern char	startup_path[MAX_PATH];
-
 
 enum {
 	P0C0, P0C1, P1C0, P1C1, P2C0, P2C1, P3C0, P3C1, P4C0, P4C1, 

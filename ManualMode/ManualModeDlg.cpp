@@ -328,7 +328,6 @@ BOOL CManualModeDlg::OnInitDialog()
 {
 	Registry	reg;
 	int			max_x, max_y;
-
 	CDialog::OnInitDialog();
 
 	// Add "About..." menu item to system menu.
@@ -355,14 +354,12 @@ BOOL CManualModeDlg::OnInitDialog()
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 
-	// TODO: Add extra initialization here
-	SetWindowPos(NULL, 0, 0, MM_WIDTH, MM_HEIGHT, SWP_NOMOVE);
-
 	// Restore window location and size
 	reg.read_reg();
 	max_x = GetSystemMetrics(SM_CXSCREEN) - GetSystemMetrics(SM_CXICON);
 	max_y = GetSystemMetrics(SM_CYSCREEN) - GetSystemMetrics(SM_CYICON);
-	SetWindowPos(NULL, min(reg.manual_x, max_x), min(reg.manual_y, max_y), MM_WIDTH, MM_HEIGHT, SWP_NOCOPYBITS);
+  //!!!!! Make it adapt automatically depending on size of titlebar
+	SetWindowPos(NULL, min(reg.manual_x, max_x), min(reg.manual_y, max_y), 590, 374, SWP_NOCOPYBITS);
 
 	// Get last used macro
 	macro_text = reg.macro;
