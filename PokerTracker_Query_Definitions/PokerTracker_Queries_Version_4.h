@@ -34,6 +34,7 @@
 #define PT4_QUERY_SUPPORT__SB_3B_VS_STEAL				(TRUE)	// "sb_3bet_vs_steal"
 #define PT4_QUERY_SUPPORT__PREFLOP_CALLED_RAISE			(TRUE)	// "preflop_called_raise"
 #define PT4_QUERY_SUPPORT__PREFLOP_3B					(TRUE)	// "3bet"
+#define PT4_QUERY_SUPPORT__PREFLOP_SQUEEZE				(TRUE)	// "squeeze"
 #define PT4_QUERY_SUPPORT__PREFLOP_FOLD_TO_3B			(TRUE)	// "fold_to_3bet"
 #define PT4_QUERY_SUPPORT__PF_FOLD_TO_RESTEAL			(TRUE)	// "fold_to_resteal"
 #define PT4_QUERY_SUPPORT__PREFLOP_4B					(TRUE)	// "4bet"
@@ -136,6 +137,7 @@ const int k_number_of_pokertracker_stats =  // GENERAL STATS
 											(PT4_QUERY_SUPPORT__SB_3B_VS_STEAL ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__PREFLOP_CALLED_RAISE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__PREFLOP_3B ? 1 : 0) + 
+											(PT4_QUERY_SUPPORT__PREFLOP_SQUEEZE ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__PREFLOP_FOLD_TO_3B ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__PF_FOLD_TO_RESTEAL ? 1 : 0) + 
 											(PT4_QUERY_SUPPORT__PREFLOP_4B ? 1 : 0) + 
@@ -627,6 +629,31 @@ t_QueryDefinition query_definitions[k_number_of_pokertracker_stats] =
 		 FROM	(SELECT	sum(case when flg_p_3bet then 1 else 0 end) \
 						 as ActionCount, \
 						sum(case when flg_p_3bet_opp then 1 else 0 end) \
+						 as ActionOpportunities \
+				 FROM	player as P, %TYPE%_hand_player_statistics as S \
+				 WHERE	S.id_player = P.id_player AND \
+						S.id_gametype = %GAMETYPE% AND \
+						P.id_site = %SITEID% AND \
+						P.player_name LIKE '%SCREENNAME%') foo",
+		// stat_group
+		pt_group_advanced
+	},
+#endif
+
+#if PT4_QUERY_SUPPORT__PREFLOP_SQUEEZE
+	/* PT4  query to get PREFLOP SQUEEZE */
+	{
+		// name
+		"squeeze",	
+		// description_for_editor
+		"Poker Tracker squeeze preflop",
+		// query
+		"SELECT (case when ActionOpportunities = 0 then -1 \
+				 else cast(ActionCount as real) / ActionOpportunities \
+				 end) as result \
+		 FROM	(SELECT	sum(case when flg_p_squeeze then 1 else 0 end) \
+						 as ActionCount, \
+						sum(case when flg_p_squeeze_opp then 1 else 0 end) \
 						 as ActionOpportunities \
 				 FROM	player as P, %TYPE%_hand_player_statistics as S \
 				 WHERE	S.id_player = P.id_player AND \
