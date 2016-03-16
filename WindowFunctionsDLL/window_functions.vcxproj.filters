@@ -11,11 +11,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="window_functions.def">
-      <Filter>Source Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="window_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -24,5 +19,8 @@
     <ClInclude Include="window_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="window_functions.def" />
   </ItemGroup>
 </Project>

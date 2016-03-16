@@ -21,6 +21,7 @@
 #include "ManualModeDlg.h"
 
 #include "..\OpenHoldem\MagicNumbers.h"
+#include "..\WindowFunctionsDLL\window_functions.h"
 #include "ManualMode.h"
 #include "poker_defs.h"
 #include "debug.h"
@@ -358,8 +359,18 @@ BOOL CManualModeDlg::OnInitDialog()
 	reg.read_reg();
 	max_x = GetSystemMetrics(SM_CXSCREEN) - GetSystemMetrics(SM_CXICON);
 	max_y = GetSystemMetrics(SM_CYSCREEN) - GetSystemMetrics(SM_CYICON);
-  //!!!!! Make it adapt automatically depending on size of titlebar
-	SetWindowPos(NULL, min(reg.manual_x, max_x), min(reg.manual_y, max_y), 590, 374, SWP_NOCOPYBITS);
+  // Setting size and position,
+  // automatically adapting for correct clientsize
+  const int client_size_x = 574;
+  const int client_size_y = 335;
+  //!!!! NULL my window
+	SetWindowPos(
+    NULL, 
+    min(reg.manual_x, max_x), 
+    min(reg.manual_y, max_y), 
+    CalculateTotalWidthForClientWidth(NULL, client_size_x),
+    CalculateTotalHeightForClientHeight(NULL, client_size_y),
+    SWP_NOCOPYBITS);
 
 	// Get last used macro
 	macro_text = reg.macro;
