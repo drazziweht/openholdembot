@@ -46,6 +46,18 @@ bool COHScriptObject::EvaluatesToBinaryNumber() {
   return false;
 }
 
+bool COHScriptObject::IsOpenPPLSymbol(CString name) {
+  if (name == "Random") {
+    // Random is now a special symbol that does no longer get handled
+    // by the OpenPPL-library to avoid caching.
+    // It gets now handled by CSymbolEngineRandom
+    // which evaluates it each time new.
+    // www!!!!!
+    return false;
+  }
+  return isupper(name[0]);
+}
+
 bool COHScriptObject::IsMainOpenPPLFunction(CString name) {
   for (int i=kBetroundPreflop; i<=kBetroundRiver; ++i) {
     if (name == k_OpenPPL_function_names[i]) {

@@ -147,6 +147,14 @@ bool CFunctionCollection::Exists(CString name) {
 // To be used by the parser
 void CFunctionCollection::VerifyExistence(CString name) {
   if (Exists(name)) return;
+  if (name == "Random") {
+    // Random is a special symbol that does no longer get handled
+    // by the OpenPPL-library to avoid caching.
+    // It gets now handley by CSymbolEngineRandom
+    // which evaluates it each time new.
+    // www!!!!!
+    return;
+  }
   // Error: function does not exist
   CString message;
   message.Format("Function used but never defined: %s\n\n", name);

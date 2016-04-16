@@ -84,7 +84,14 @@ double CFunction::Evaluate(bool log /* = false */) {
       }
       p_autoplayer_trace->Indent(true);
       _cached_result = _parse_tree_node->Evaluate(log);
-      _is_result_cached = true;
+      if (_name != "Random") {
+        // All functions get evaluated at most once per heartbeat,
+        // The evaluated result gets cached.
+        // Single exception: the OpenPPL-symbol "Random",
+        // that gets evaluated each time again per specification.
+        // www!!!!!
+        _is_result_cached = true;
+      }
       if (log) {
         p_autoplayer_trace->BackPatchValueAndLine(
           log_line, _cached_result, _starting_line_of_function);
