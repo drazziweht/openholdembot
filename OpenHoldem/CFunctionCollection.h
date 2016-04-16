@@ -15,6 +15,7 @@
 #define INC_CFUNCTIONCOLLECTION_H
 
 #include "..\CCritSec\CCritSec.h"
+#include "CDebugTab.h"
 #include "COHScriptObject.h"
 #include "CVirtualSymbolEngine.h"
 #include <map>
@@ -58,6 +59,7 @@ class CFunctionCollection: public CVirtualSymbolEngine {
  public:
   void Add(COHScriptObject *new_function);
   COHScriptObject *LookUp(CString name);
+  CDebugTab* DebugTab();
   bool Rename(CString from_name, CString to_name);
   void Delete(CString name);
   void SetFunctionText(CString name, CString content);

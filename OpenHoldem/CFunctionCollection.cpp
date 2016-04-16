@@ -192,6 +192,11 @@ COHScriptObject *CFunctionCollection::LookUp(CString name) {
   return it->second;
 }
 
+CDebugTab* CFunctionCollection::DebugTab() {
+  CDebugTab* p_debug_tab = (CDebugTab*)p_function_collection->LookUp("f$debug");
+  return p_debug_tab;
+}
+
 double CFunctionCollection::Evaluate(CString function_name, bool log /* = false */) {
   CSLock lock(m_critsec);
   double result = kUndefined;
@@ -448,7 +453,7 @@ void CFunctionCollection::Save(CArchive &ar) {
   }
   // f$test and f$debug are again special
   SaveObject(ar, LookUp("f$test"));
-  SaveObject(ar, LookUp("f$debug"));
+  SaveObject(ar, DebugTab());
   // Handlists
   COHScriptObject *next_object = GetFirst();
   while (next_object != NULL) {
@@ -514,6 +519,7 @@ void CFunctionCollection::Delete(CString name) {
   COHScriptObject *object_to_delete = LookUp(name);
   if (object_to_delete != NULL) {
     std::map<CString, COHScriptObject*>::iterator it; 
+    if (name == "f$debug") return; //!!!!!
     it = _function_map.find(name);
     if (it != _function_map.end()) {
        write_log(preferences.debug_formula(), 

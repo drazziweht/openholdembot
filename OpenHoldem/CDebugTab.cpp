@@ -16,8 +16,6 @@
 
 #include "CPreferences.h"
 
-CDebugTab *p_debug_tab = NULL; 
-
 // These arrays are global, 
 // because -- when private members --
 // all entries of the 2nd array (except the first element)

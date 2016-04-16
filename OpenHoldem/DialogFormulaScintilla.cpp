@@ -1531,7 +1531,11 @@ void CDlgFormulaScintilla::StopAutoButton()
 
 void CDlgFormulaScintilla::UpdateDebugAuto(void) {
   p_function_collection->ClearCache();
-  CString result = p_debug_tab->EvaluateAll();
+  CDebugTab *p_debug_tab = (CDebugTab*)p_function_collection->DebugTab();
+  CString result = "";
+  if (p_debug_tab != NULL) {
+    result = p_debug_tab->EvaluateAll();
+  }
   m_pActiveScinCtrl->SendMessage(SCI_SETMODEVENTMASK, 0, 0);
   m_pActiveScinCtrl->SendMessage(SCI_SETTEXT,0,(LPARAM)result.GetString());
   m_pActiveScinCtrl->SendMessage(SCI_EMPTYUNDOBUFFER);

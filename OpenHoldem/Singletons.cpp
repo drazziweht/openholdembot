@@ -97,9 +97,6 @@ void InstantiateAllSingletons() {
    write_log(preferences.debug_alltherest(), "[Singletons] Going to create CTablemapAccess\n");
   assert(!p_tablemap_access);
   p_tablemap_access = new CTablemapAccess;
-   write_log(preferences.debug_alltherest(), "[Singletons] Going to create CDebugTab\n");
-  assert(p_debug_tab == NULL);
-  p_debug_tab = new CDebugTab;
    write_log(preferences.debug_alltherest(), "[Singletons] Going to create CParserSymbolTable\n");
   assert(!p_parser_symbol_table);
   p_parser_symbol_table = new CParserSymbolTable;
@@ -243,8 +240,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_formula_parser)
    write_log(preferences.debug_alltherest(), "[Singletons] Deleting 09\n");
   DELETE_AND_CLEAR(p_parser_symbol_table)
-   write_log(preferences.debug_alltherest(), "[Singletons] Deleting 10\n");
-  DELETE_AND_CLEAR(p_debug_tab)
    write_log(preferences.debug_alltherest(), "[Singletons] Deleting 11\n");
   DELETE_AND_CLEAR(p_tablemap_access)
    write_log(preferences.debug_alltherest(), "[Singletons] Deleting 12\n");
