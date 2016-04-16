@@ -512,6 +512,13 @@ bool CFunctionCollection::Rename(CString from_name, CString to_name) {
 void CFunctionCollection::Delete(CString name) {
   CSLock lock(m_critsec);
   COHScriptObject *object_to_delete = LookUp(name);
+  if (name == "f$debug") {
+    // Don't delete the debug-tab.
+    // It is a global object and only in the function-collection
+    // for standardized lookup, e.g. by the Scintilla formula-editor.
+    // www.!!!!!
+    return;
+  }
   if (object_to_delete != NULL) {
     std::map<CString, COHScriptObject*>::iterator it; 
     it = _function_map.find(name);
