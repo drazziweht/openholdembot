@@ -17,103 +17,80 @@
 #include "CPreferences.h"
 #include "OH_MessageBox.h"
 
-
 CConfigurationCheck *p_configurationcheck = 0;
 
 // A full list of keyboard layout codes can be found here:
 // http://msdn.microsoft.com/en-us/goglobal/bb895996.aspx
 const TCHAR k_KeyboardLayout_UK_US_English[KL_NAMELENGTH] = "00000409";
 
-CConfigurationCheck::CConfigurationCheck()
-{
+CConfigurationCheck::CConfigurationCheck() {
 	CheckEverything();
 }
 
-CConfigurationCheck::~CConfigurationCheck()
-{}
+CConfigurationCheck::~CConfigurationCheck() {
+}
 
-void CConfigurationCheck::CheckEverything()
-{
+void CConfigurationCheck::CheckEverything() {
 	// Check really critical settings in any case.
 	// OpenHoldem will never work, if these are not right.
 	CheckColourDepth();
 	CheckForSwapMouseBtns();
-
-	// OpenHoldem may or may not work, if these are not right.
-	if (preferences.configurationcheck_input_settings())
-	{
+  // OpenHoldem may or may not work, if these are not right.
+	if (preferences.configurationcheck_input_settings()) {
 		CheckInputSettings();
 	}
-
-	if (preferences.configurationcheck_theme_settings())
-	{
-		CheckForClassicalTheme();
-	}
-
-	if (preferences.configurationcheck_font_settings())
-	{
+  // No longer executing CheckForClassicalTheme();
+  // Since OH 9.1.2 we support both Windows 10 and XP 
+  // out of the box with the same tablemaps.
+  if (preferences.configurationcheck_font_settings())	{
 		CheckForFontSmoothing();
 	}
   // !!! Might be reused for MSVCRT 2010
 	//CheckForMissingMSVCRT();
 }
 
-HKEY CConfigurationCheck::GetHive(CString mhive)
-{
-	HKEY hive;
-
-	if (mhive == "HKCU")
-		hive = HKEY_CURRENT_USER;
-
-	if (mhive == "HKLM")
-		hive = HKEY_LOCAL_MACHINE;
-
+HKEY CConfigurationCheck::GetHive(CString mhive) {
+  HKEY hive;
+  if (mhive == "HKCU") {
+    hive = HKEY_CURRENT_USER;
+  }
+  if (mhive == "HKLM") {
+    hive = HKEY_LOCAL_MACHINE;
+  }
 	return hive;
 }
 
-bool CConfigurationCheck::OpenKey(CString mhive, CString registry_path)
-{
+bool CConfigurationCheck::OpenKey(CString mhive, CString registry_path) {
 	HKEY hive, hKey;
 	hive = GetHive(mhive);
 
-	if (RegOpenKeyEx(hive, registry_path, 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
-	{
+	if (RegOpenKeyEx(hive, registry_path, 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS) {
 		RegCloseKey(hKey);
 		return true;
 	}
-
-	RegCloseKey(hKey);
+  RegCloseKey(hKey);
 	return false;
 }
 
-
-CString CConfigurationCheck::GetValue(CString mhive, int type, CString registry_path, CString key_name)
-{
+CString CConfigurationCheck::GetValue(CString mhive, int type, CString registry_path, CString key_name) {
 	DWORD dwData, nBytes, dwType;
 	CString value;
 	HKEY hive, pKey;
 	hive = GetHive(mhive);
 
 	// Open the Key
-	if(RegOpenKeyEx(hive,registry_path,0,KEY_QUERY_VALUE,&pKey)==ERROR_SUCCESS)
-	{
-		switch(type)
-		{
+	if (RegOpenKeyEx(hive,registry_path,0,KEY_QUERY_VALUE,&pKey)==ERROR_SUCCESS) {
+		switch(type) {
 			//REG_DWORD
 			case 0 :
-
-				if(RegQueryValueEx(pKey,key_name,NULL,&dwType,(LPBYTE)&dwData,&nBytes)==ERROR_SUCCESS)
-				{
+        if(RegQueryValueEx(pKey,key_name,NULL,&dwType,(LPBYTE)&dwData,&nBytes)==ERROR_SUCCESS) {
 					value.Format("%d", dwData);
 					RegCloseKey(pKey);
 					return value;
 				}
-
 			//REG_SZ, REG_EXPAND_SZ
 			case 1 :
-
-				if(RegQueryValueEx(pKey,key_name,NULL,&dwType,0,&nBytes)==ERROR_SUCCESS)
-				{
+				if(RegQueryValueEx(pKey,key_name,NULL,&dwType,0,&nBytes)==ERROR_SUCCESS) {
 					// Allocate string buffer
 					LPTSTR buffer = value.GetBuffer(nBytes/sizeof(TCHAR));
 					// Read string
@@ -124,13 +101,10 @@ CString CConfigurationCheck::GetValue(CString mhive, int type, CString registry_
 					RegCloseKey(pKey);
 					return value;
 				}
-
 			default :
 				return NULL;
 		}
-	}
-	else
-	{
+	}	else {
 		return NULL;
 	}
 }
@@ -191,33 +165,22 @@ void CConfigurationCheck::CheckForSwapMouseBtns()
 	}
 }
 
-void CConfigurationCheck::CheckForClassicalTheme()
-{
+void CConfigurationCheck::CheckForClassicalTheme() {
 	CString p_szKeyThemeActive = "Software\\Microsoft\\Windows\\CurrentVersion\\ThemeManager\\";
 	CString p_szKeyWinVersion = "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\";
-
-	CString p_szNameThemeActive = "ThemeActive";
+  CString p_szNameThemeActive = "ThemeActive";
 	CString p_szNameWinVersion = "CurrentVersion";
 
 	bool classic_theme = false;
-
-	CString win_Vs = GetValue("HKLM", 1, p_szKeyWinVersion, p_szNameWinVersion);
-
-	CString WIN_2000 = "5.0";
+  CString win_Vs = GetValue("HKLM", 1, p_szKeyWinVersion, p_szNameWinVersion);
+  CString WIN_2000 = "5.0";
 	CString SRV_2003 = "5.2";
-
-	if(win_Vs == WIN_2000 || win_Vs == SRV_2003)
-	{
+  if(win_Vs == WIN_2000 || win_Vs == SRV_2003) {
+		classic_theme = true;
+	}	else if (atoi(GetValue("HKCU", 1, p_szKeyThemeActive, p_szNameThemeActive)) == 0) {
 		classic_theme = true;
 	}
-
-	else if (atoi(GetValue("HKCU", 1, p_szKeyThemeActive, p_szNameThemeActive)) == 0)
-	{
-		classic_theme = true;
-	}
-
-	if (classic_theme == false)
-	{
+  if (classic_theme == false)	{
 		OH_MessageBox_Error_Warning("Classical Theme Not Found\n"
 			"Settings deviate from recommended defaults.\n"
 			"\n"
@@ -226,7 +189,6 @@ void CConfigurationCheck::CheckForClassicalTheme()
 			"Caution: Classical Theme Disabled");
 	}
 }
-
 
 void CConfigurationCheck::CheckForFontSmoothing()
 {

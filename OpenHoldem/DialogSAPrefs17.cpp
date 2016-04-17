@@ -25,19 +25,15 @@
 IMPLEMENT_DYNAMIC(CDlgSAPrefs17, CSAPrefsSubDlg)
 
 CDlgSAPrefs17::CDlgSAPrefs17(CWnd* pParent /*=NULL*/)
-		: CSAPrefsSubDlg(CDlgSAPrefs17::IDD, pParent)
-{
+		: CSAPrefsSubDlg(CDlgSAPrefs17::IDD, pParent) {
 }
 
-CDlgSAPrefs17::~CDlgSAPrefs17()
-{
+CDlgSAPrefs17::~CDlgSAPrefs17() {
 }
 
-void CDlgSAPrefs17::DoDataExchange(CDataExchange* pDX)
-{
+void CDlgSAPrefs17::DoDataExchange(CDataExchange* pDX) {
 	CSAPrefsSubDlg::DoDataExchange(pDX);
-	DDX_Control(pDX, IDC_CONFIGURATION_INPUT_SETTINGS, m_ConfigurationInputSettings_Button);
-	DDX_Control(pDX, IDC_CONFIGURATION_THEME_SETTINGS, m_ConfigurationThemeSettings_Button);
+	DDX_Control(pDX, IDC_CONFIGURATION_INPUT_SETTINGS, m_ConfigurationInputSettings_Button);	
 	DDX_Control(pDX, IDC_CONFIGURATION_FONT_SETTINGS, m_ConfigurationFontSettings_Button);
 }
 
@@ -46,24 +42,19 @@ BEGIN_MESSAGE_MAP(CDlgSAPrefs17, CSAPrefsSubDlg)
 END_MESSAGE_MAP()
 
 // CDlgSAPrefs1 message handlers
-BOOL CDlgSAPrefs17::OnInitDialog()
-{
+BOOL CDlgSAPrefs17::OnInitDialog() {
 	CSAPrefsSubDlg::OnInitDialog();
 	m_ConfigurationInputSettings_Button.SetCheck(preferences.configurationcheck_input_settings() != 0);
-	m_ConfigurationThemeSettings_Button.SetCheck(preferences.configurationcheck_theme_settings() != 0);
 	m_ConfigurationFontSettings_Button.SetCheck(preferences.configurationcheck_font_settings() != 0);
-
-	return TRUE;  // return TRUE unless you set the focus to a control
+  return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CDlgSAPrefs17::OnOK()
-{
+void CDlgSAPrefs17::OnOK() {
 	preferences.SetValue(k_prefs_configurationcheck_input_settings, m_ConfigurationInputSettings_Button.GetCheck());
-	preferences.SetValue(k_prefs_configurationcheck_theme_settings, m_ConfigurationThemeSettings_Button.GetCheck());
 	preferences.SetValue(k_prefs_configurationcheck_font_settings, m_ConfigurationFontSettings_Button.GetCheck());
 	CSAPrefsSubDlg::OnOK();
 }
 
-void CDlgSAPrefs17::OnBnClickedCheck1()
-{}
+void CDlgSAPrefs17::OnBnClickedCheck1() {
+}

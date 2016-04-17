@@ -32,13 +32,13 @@ class CSymbolEngineRandom: public CVirtualSymbolEngine {
  public:
 	// Public accessors
 	bool EvaluateSymbol(const char *name, double *result, bool log = false);
-	CString SymbolsProvided();;
+	CString SymbolsProvided();
  public:
 	// "random" gets calculated each time new
-	double random()				{ return Random_0_1(); }
-	double randomhand()			{ return _randomhand; }
+	double random()				    { return Random_0_1(); }
+	double randomhand()		  	{ return _randomhand; }
 	double randomheartbeat()	{ return _randomheartbeat; }
-	double randomround()		{ return _randomround; }
+	double randomround()	  	{ return _randomround; }
  private:
 	double Random_0_1();
  private:
