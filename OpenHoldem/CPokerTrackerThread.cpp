@@ -191,7 +191,8 @@ bool CPokerTrackerThread::NameLooksLikeBadScrape(char *oh_scraped_name)
 			&& oh_scraped_name[i] != '1'
 			&& oh_scraped_name[i] != 'i' 
 			&& oh_scraped_name[i] != '.' 
-			&& oh_scraped_name[i] != ',')
+			&& oh_scraped_name[i] != ',' 
+			&& oh_scraped_name[i] != '*')
 		{
 			// Good name, good character found, no bad scrape
 			return false;
@@ -481,7 +482,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 	bool			result = false;
 	CLevDistance	myLD;
 	int				siteid = 0;
-	double			Levenshtein_distance_matching_factor = 0.3;
+	double			Levenshtein_distance_matching_factor = 0.34;
 
 	//No more unnecessary queries when we don't even have a siteid to check
 	siteid = pt_lookup.GetSiteId();
