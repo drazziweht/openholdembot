@@ -18,11 +18,10 @@
 
 #include <assert.h>
 #include "CAutoPlayer.h"
+#include "CHeartbeatThread.h"
 #include "CLazyScraper.h"
 #include "CPreferences.h"
 #include "CReplayFrame.h"
-#include "CStableFramesCounter.h"
-#include "CSymbolEngineAutoplayer.h"
 #include "CTableState.h"
 #include "MagicNumbers.h"
 #include "CSymbolEngineCasino.h"
@@ -33,7 +32,9 @@ CSymbolEngineReplayFrameController::CSymbolEngineReplayFrameController() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_symbol_engine_autoplayer != NULL);
+  //
+  // This engine does not use any other engines.
+  int _heartbeat_of_last_replay_frame = kUndefined;
 }
 
 CSymbolEngineReplayFrameController::~CSymbolEngineReplayFrameController() {
@@ -44,7 +45,6 @@ void CSymbolEngineReplayFrameController::InitOnStartup() {
 }
 
 void CSymbolEngineReplayFrameController::UpdateOnConnection() {
-	set_replay_recored_this_turn(false);
 }
 
 void CSymbolEngineReplayFrameController::UpdateOnHandreset() {
@@ -56,21 +56,22 @@ void CSymbolEngineReplayFrameController::UpdateOnNewRound() {
 void CSymbolEngineReplayFrameController::UpdateOnMyTurn() {
 }
 
-void CSymbolEngineReplayFrameController::set_replay_recored_this_turn(bool p_b) {
-	__replay_recored_this_turn = p_b;
+void CSymbolEngineReplayFrameController::UpdateAfterAutoplayerAction(int autoplayer_action_code) {
+  if (preferences.replay_record() == kShootReplyFramesOnMyTurn) {
+    // Replay-frame already in scraper memory, it only needs to be stored.
+    // Therefore it does not matter if we shoot "after" action.
+    write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] Replay required (on my turn and time to act)\n");
+    ShootReplayFrameIfNotYetDone();
+  }
 }
 
-bool CSymbolEngineReplayFrameController::is_replay_recored_this_turn() const {
-	return __replay_recored_this_turn;
-} 
-
 void CSymbolEngineReplayFrameController::UpdateOnHeartbeat() {
-	if(p_symbol_engine_casino->ConnectedToOHReplay()){
+	if (p_symbol_engine_casino->ConnectedToOHReplay()){
     // No point in shooting frames when connected to OHReplay
     write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] No replay required, as connected to OHReplay\n");
 		return;	
 	}
-  if(!p_autoplayer->autoplayer_engaged()){
+  if (!p_autoplayer->autoplayer_engaged()){
     // No point in shooting frames if the autoplayer is turned off
     write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] No replay required, as autoplayer turned off\n");
 		return;	
@@ -91,33 +92,19 @@ void CSymbolEngineReplayFrameController::UpdateOnHeartbeat() {
 	  ShootReplayFrameIfNotYetDone();
 	  return;
 	}
-	if ((preferences.replay_record() == kShootReplyFramesOnMyTurn)			
-		  && p_symbol_engine_autoplayer->ismyturn() 
-      && p_autoplayer->autoplayer_engaged()
-		  && p_stableframescounter->NumberOfStableFrames() == preferences.frame_delay()) {
-    // If it's my turn and we have enough stable frames
-    // then we will usually act and shoot a replay-frame on this heartbeat.
-    // Shooting exactly once in case of no action is ensured by
-    // "p_stableframescounter->NumberOfStableFrames() == preferences.frame_delay()".
-    // As NumberOfStableFrames() updates OnHeartbeat we have to put that code here
-    // and can~t make use of OnMyTurn();
-    write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] Replay required (on my turn and time to act)\n");
-		ShootReplayFrameIfNotYetDone();
-    return;
-	}
-  // UpdateOnHeartbeat() is the last function to be called,
-  // whereas the first one depends on circumstances.
-  // therefore we reset _replay_recored_this_turn here at the very end. 
-	set_replay_recored_this_turn(false);
 }
 
 void CSymbolEngineReplayFrameController::ShootReplayFrameIfNotYetDone() {
+  int heartbeat_counter = p_heartbeat_thread->heartbeat_counter();
 	// Don't shoot replay-frames twice per heartbeat
-	if (is_replay_recored_this_turn())	{
+	if (_heartbeat_of_last_replay_frame == heartbeat_counter)	{
 		write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] Not shooting a replay-frame, because we already shot one this heartbeat\n");
 		return;
 	}
 	write_log(preferences.debug_replayframes(), "[CSymbolEngineReplayFrameController] Going to shooting a replay-frame\n");
 	CReplayFrame crf;
 	crf.CreateReplayFrame();
+  _heartbeat_of_last_replay_frame = heartbeat_counter;
 }
+
+
