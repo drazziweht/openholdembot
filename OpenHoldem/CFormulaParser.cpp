@@ -41,7 +41,7 @@
 #include "CValidator.h"
 #include "CWatchdog.h"
 #include "MemoryLogging.h"
-#include "NumericalFunctions.h"
+
 #include "OH_MessageBox.h"
 #include "TokenizerConstants.h"
 

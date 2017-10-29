@@ -53,7 +53,7 @@ DEBUG_DLL_API void write_log_separator(bool debug_settings_for_this_message, con
 //******************************************************************************
 
 
-#include "../CCritSec/CCritSec.h"
+
 
 //!!!!! This lets transform.cpp know which source tree is #include'ing it
 #ifndef OPENHOLDEM_PROGRAM

@@ -130,7 +130,7 @@ BOOL COpenHoldemApp::InitInstance() {
 	// Start logging immediatelly after the loading the preferences
 	// and initializing the sessioncounter, which is necessary for 
 	// the filename of the log (oh_0.log, etc).
-	start_log();
+	start_log(p_sessioncounter->session_id(), false); //!!!!!
   // ...then re-Load the preferences immediately after creation 
   // of the log-file again, as We might want to to log the preferences too,
   // which was not yet possible some lines above.

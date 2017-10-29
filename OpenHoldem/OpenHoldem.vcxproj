@@ -271,7 +271,6 @@
     <ClCompile Include="CTitleEvaluator.cpp" />
     <ClCompile Include="CValidator.cpp" />
     <ClCompile Include="CWhiteInfoBox.cpp" />
-    <ClCompile Include="debug.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MD5_Checksum.cpp" />
     <ClCompile Include="Median.cpp" />
@@ -395,7 +394,6 @@
     <ClCompile Include="CFilenames.cpp" />
     <ClCompile Include="CStringHashtableTemplate.cpp" />
     <ClCompile Include="CStringMatch.cpp" />
-    <ClCompile Include="MagicNumbers.cpp" />
     <ClCompile Include="NumericalFunctions.cpp" />
     <ClCompile Include="WebSafeColours.cpp" />
     <ClCompile Include="CFormulaFileSplitter.cpp" />
@@ -561,7 +559,6 @@
     <ClInclude Include="CTitleEvaluator.h" />
     <ClInclude Include="CValidator.h" />
     <ClInclude Include="CWhiteInfoBox.h" />
-    <ClInclude Include="debug.h" />
     <ClInclude Include="MD5_Checksum.h" />
     <ClInclude Include="Median.h" />
     <ClInclude Include="MemoryLogging.h" />
@@ -715,7 +712,6 @@
     <ClInclude Include="CStringHashtableTemplate.h" />
     <ClInclude Include="CStringMatch.h" />
     <ClInclude Include="FloatingPoint_Comparisions.h" />
-    <ClInclude Include="MagicNumbers.h" />
     <ClInclude Include="NumericalFunctions.h" />
     <ClInclude Include="WebSafeColours.h" />
     <ClInclude Include="CFormulaFileSplitter.h" />

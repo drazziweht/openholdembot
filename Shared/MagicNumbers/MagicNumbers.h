@@ -581,19 +581,3 @@ const int  kMaxLogSymbolsForWhiteBox = 1;
 
 // For string handling
 const int kOneCharacterExtraForTerminatingNull = 1;
-
-/*!!! related to resource.h
-// Statusbar
-static UINT basic_statusba_indicators[] = {
-	ID_INDICATOR_GENERAL_HINT // Do you need "Help -> Problem solver?"
-};
-
-static UINT indicators[] = {
-  ID_INDICATOR_STATUS_ACTION,
-  ID_INDICATOR_STATUS_DUMMY,
-	ID_INDICATOR_STATUS_HANDRANK,
-	ID_INDICATOR_STATUS_PRWIN,
-};*/
-
-
-

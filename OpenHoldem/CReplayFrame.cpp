@@ -319,8 +319,8 @@ void CReplayFrame::CreateReplaySessionDirectoryIfNecessary() {
 void CReplayFrame::CreateBitMapFile() {
 	CString path;
   CreateReplaySessionDirectoryIfNecessary();
-	CreateBMPFile(p_filenames->ReplayBitmapFilename(_next_replay_frame), 
-		p_scraper->entire_window_cur());
+	/*CreateBMPFile(p_filenames->ReplayBitmapFilename(_next_replay_frame), 
+		p_scraper->entire_window_cur());!!!!!*/
 }
 
 CString CReplayFrame::GetLinksToPrevAndNextFile() {

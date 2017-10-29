@@ -20,7 +20,7 @@
     <ClInclude Include="debug.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9A3A25E1-3045-4EC3-BE51-5BD55F1F94B9}</ProjectGuid>
+    <ProjectGuid>{67108CE5-CEE0-4F22-8772-01BAE26A0335}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>

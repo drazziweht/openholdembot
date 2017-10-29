@@ -37,7 +37,7 @@
 #include "CTablePositioner.h"
 #include "CVersionInfo.h"
 #include "DialogScraperOutput.h"
-#include "MagicNumbers.h"
+
 #include "MainFrm.h"
 #include "OH_MessageBox.h"
 #include "OpenHoldem.h"

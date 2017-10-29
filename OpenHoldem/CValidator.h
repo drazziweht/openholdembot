@@ -14,7 +14,7 @@
 #ifndef INC_VALIDATOR_H
 #define INC_VALIDATOR_H
 
-#include "NumericalFunctions.h"
+
 
 // !!! ATTENTION
 // !!! CString not properly declared/included.

@@ -20,7 +20,7 @@
 #include "CPreferences.h"
 #include "CTablemapCompletenessChecker.h"
 #include "CTablePointChecker.h"
-#include "MagicNumbers.h"
+
 #include "..\CTablemap\CTablemapAccess.h"
 #include "OH_MessageBox.h"
 #include "OpenHoldem.h"

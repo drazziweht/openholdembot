@@ -60,7 +60,7 @@
 #include "DialogSAPrefs22.h"
 #include "DialogScraperOutput.h"
 #include "inlines/eval.h"
-#include "MagicNumbers.h"
+
 #include "OH_MessageBox.h"
 #include "OpenHoldem.h"
 #include "OpenHoldemDoc.h"

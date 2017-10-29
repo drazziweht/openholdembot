@@ -41,7 +41,7 @@
 #include "DialogScraperOutput.h"
 #include "MainFrm.h"
 #include "MemoryLogging.h"
-#include "NumericalFunctions.h"
+
 #include "OpenHoldem.h"
 
 CHeartbeatThread	 *p_heartbeat_thread = NULL;

@@ -28,7 +28,6 @@
 #include "..\CTablemap\CTablemap.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CTableState.h"
-#include "debug.h"
 #include "OH_MessageBox.h"
 
 CRebuyManagement *p_rebuymanagement = NULL;
