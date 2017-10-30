@@ -14,8 +14,8 @@
 #define DEBUG_DLL_EXPORTS
 
 #include "debug.h"
+#include "afxwin.h"
 #include <assert.h>
-#include <atlstr.h>
 #include <stdarg.h>
 #include <stdio.h>
 
