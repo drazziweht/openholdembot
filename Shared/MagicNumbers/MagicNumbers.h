@@ -20,6 +20,9 @@
 //   http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=11724
 //   (Same problem like the singletons in OpenHoldem.cpp)
 
+#include "stdafx.h"
+#include "assert.h"
+
 // Constants that are used in the DLL-interface
 // are defined there: user.h
 
@@ -128,7 +131,44 @@ const int k_button_undefined = -1;
 
 const int k_double_click_delay = 100; // ms
 
-int DefaultButtonNumber(int button_code);
+int DefaultButtonNumber(int button_code)
+{
+	/*
+		Returns the default button number by definition
+		(ignoring label overrides) 
+
+		0 - fold button
+		1 - call button
+		2 - raise button 
+		3 - allin button.
+	*/
+
+	// i3button
+  if (button_code == k_button_i3) {
+	return button_code;
+  }
+	if ((button_code >= k_button_i86 * k_max_number_of_i86X_buttons) && (button_code < k_button_i86*k_max_number_of_i86X_buttons + k_max_number_of_i86X_buttons))
+		return button_code;
+	int button_number = k_button_undefined;
+	switch(button_code)
+	{
+		case k_button_fold:
+			button_number = 0;
+			break;
+		case k_button_call:
+			button_number = 1;
+			break;
+		case k_button_raise:
+			button_number = 2;
+			break;
+		case k_button_allin:
+			button_number = 3;
+			break;
+		default :
+			break;
+	}
+	return button_number;
+}
 
 // Tablemap constants
 #define RGB_MASK	0x00FFFFFF
@@ -546,7 +586,16 @@ enum ActionConstant {
 // Function to access the name of the action constants.
 // As fold is negative we can no longer use the constants 
 // as indices for an array.
-const char* ActionConstantNames(int action_constant);
+const char* ActionConstantNames(int autoplayer_function_code) {
+  // names of action-constants for use in the autoplayer-log.
+  // Formerly 4 digits (WinHoldem-style), now more sane.
+  // Also considering all secondary formulas.
+	if ((autoplayer_function_code >= k_autoplayer_function_beep)
+      && (autoplayer_function_code <= k_standard_function_chat)) {
+		return k_standard_function_names[autoplayer_function_code];
+	}
+	return "UNDEFINED";
+}
 
 // for rank to card translation
 // Suits
