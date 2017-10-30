@@ -132,13 +132,13 @@ void delete_log() {
   remove(log_filename().GetString());
 }
 
-void __stdcall clear_log() {
+void clear_log() {
   stop_log();
   assert(session_ID > 0);
   start_log(session_ID, true);
 }
 
-void __stdcall start_log(int current_session_iD, bool delete_old_log) {
+void start_log(int current_session_iD, bool delete_old_log) {
   if (log_fp != NULL) {
     return;
   }
@@ -155,7 +155,7 @@ void __stdcall start_log(int current_session_iD, bool delete_old_log) {
   }
 }
 
-void __stdcall write_log_vl(bool debug_settings_for_this_message, const char* fmt, va_list vl) {
+void write_log_vl(bool debug_settings_for_this_message, const char* fmt, va_list vl) {
   char		buff[10000];
   char		nowtime[26];
   write_footer_if_necessary();
@@ -171,7 +171,7 @@ void __stdcall write_log_vl(bool debug_settings_for_this_message, const char* fm
   }
 }
 
-void __stdcall write_log(bool debug_settings_for_this_message, const char* fmt, ...) {
+void write_log(bool debug_settings_for_this_message, const char* fmt, ...) {
   char		buff[10000];
   va_list		ap;
   char		nowtime[26];
@@ -191,7 +191,7 @@ void __stdcall write_log(bool debug_settings_for_this_message, const char* fmt, 
   fflush(log_fp);
 }
 
-void __stdcall write_log_nostamp(bool debug_settings_for_this_message, const char* fmt, ...) {
+void write_log_nostamp(bool debug_settings_for_this_message, const char* fmt, ...) {
   char		buff[10000];
   va_list		ap;
   write_footer_if_necessary();
@@ -209,7 +209,7 @@ void __stdcall write_log_nostamp(bool debug_settings_for_this_message, const cha
   fflush(log_fp);
 }
 
-void __stdcall stop_log(void) {
+void stop_log(void) {
   write_footer_if_necessary();
   if (log_fp == NULL) return;
   write_log_separator(k_always_log_basic_information, "LOG FILE CLOSED");
@@ -217,7 +217,7 @@ void __stdcall stop_log(void) {
   log_fp = NULL;
 }
 
-void __stdcall write_log_separator(bool debug_settings_for_this_message, const char* header_message) {
+void write_log_separator(bool debug_settings_for_this_message, const char* header_message) {
   if ((header_message == NULL) || (strcmp(header_message, "") == 0)) {
     // Empty header, i.e. footer
     // Don't write it immediatelly to avoid multiple consecutive headers

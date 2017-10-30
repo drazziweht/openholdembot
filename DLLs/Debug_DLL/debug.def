@@ -1,4 +1,4 @@
-LIBRARY	debug_DLL
+LIBRARY	debug
 start_log(int current_session_iD, bool delete_old_log);
 stop_log
 clear_log
