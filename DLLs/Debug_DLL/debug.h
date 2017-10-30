@@ -15,7 +15,7 @@
 #ifdef DEBUG_DLL_EXPORTS
 #define DEBUG_DLL_API extern "C" __declspec(dllexport)
 #else
-#define DEBUG_DLL_API __declspec(dllimport)
+#define DEBUG_DLL_API extern "C" __declspec(dllimport)
 #endif
 
 #include <stdarg.h>
