@@ -14,8 +14,6 @@
 #ifndef INC_VALIDATOR_H
 #define INC_VALIDATOR_H
 
-
-
 // !!! ATTENTION
 // !!! CString not properly declared/included.
 // !!! atlstr / afxstr don't work.
