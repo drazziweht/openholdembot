@@ -20,7 +20,6 @@
 //   http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=11724
 //   (Same problem like the singletons in OpenHoldem.cpp)
 
-#include "stdafx.h"
 #include "assert.h"
 
 // Constants that are used in the DLL-interface
