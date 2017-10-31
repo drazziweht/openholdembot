@@ -55,31 +55,24 @@ CString LogsDirectory();
 CString OpenHoldemDirectory();
 CString OpenPPLLibraryDirectory();
 CString PathOfExecutable();
-CString ReplaySessionDirectory();
+CString ReplaySessionDirectory(int session_ID);
 CString ScraperDirectory();
 CString ToolsDirectory();
 // Filenames
-CString ReplayBitmapFilename(int frame_number);
-CString ReplayHTMLFilename(int frame_number);
+CString ReplayBitmapFilename(int session_ID, int frame_number);
+CString ReplayHTMLFilename(int session_ID, int frame_number);
 CString ExecutableFilename();
 CString PureExecutableFilename();
 // Paths
 CString IniFilePath();
-CString LogFilePath();
+CString LogFilePath(int session_ID);
 CString VersusPath();
 CString CustomLibraryPath();
 CString ManualModePath();
 // Others
 CString TableMapWildcard();
 void SwitchToOpenHoldemDirectory();
-bool Exists(CString filename_or_pattern);
+//!!bool FileExists(CString filename_or_pattern);
 CString FilenameWithoutPath(CString path);
 CString FilenameWithoutPathAndExtension(CString path);
 CString IniFilename();
-
-
-
-
-char _startup_path[MAX_PATH];
-
-

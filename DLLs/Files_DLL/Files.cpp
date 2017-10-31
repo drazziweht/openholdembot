@@ -17,8 +17,9 @@
 #include <assert.h>
 
 const char* k_default_ini_filename = "OpenHoldem_Preferences__feel_free_to_rename_this_file_to_whatever_you_like.INI";
+char _startup_path[MAX_PATH];
 
-CFilenames() { //!!!!! ti dll entry
+/*CFilenames() { //!!!!! ti dll entry
   // Save directory that contains openHoldem for future use.
   // This is NOT GetCurrentDirectory(), which returns the working-directorz,
   // i.e. the working directorz of the process that started OpenHoldem.
@@ -37,7 +38,7 @@ CFilenames() { //!!!!! ti dll entry
   }
   // Create logs-directoy if necessary
   CreateDirectory(LogsDirectory(), NULL);
-}
+}*/
 
 CString OpenHoldemDirectory() {
   assert(_startup_path != "");
@@ -83,11 +84,11 @@ CString IniFilename() {
   // http://msdn.microsoft.com/en-us/library/windows/desktop/aa364428(v=vs.85).aspx
   if (FindNextFile(h_find, &find_file_data)) {
     FindClose(h_find);
-    OH_MessageBox_Error_Warning(
+    /*!!!OH_MessageBox_Error_Warning(
       "More than one ini-file in OpenHoldem-directory.\n"
       "Don't know which one to use.\n"
       "\n"
-      "Going to terminate...");
+      "Going to terminate...");*/
     PostQuitMessage(-1);
     // Previously we returned "a_result_to_make_the_compiler_happy.ini"
     // believing the result was meaning-less and would never be used.
@@ -132,24 +133,25 @@ CString ToolsDirectory() {
   return tools_dir;
 }
 
-CString ReplaySessionDirectory() {
+CString ReplaySessionDirectory(int session_ID) {
+  assert(session_ID >= 0);
   assert(_startup_path != "");
   CString path;
-  path.Format("%sreplay\\session_%lu\\", _startup_path, p_sessioncounter->session_id());
+  path.Format("%sreplay\\session_%lu\\", _startup_path, session_ID);
   return path;
 }
 
-CString ReplayBitmapFilename(int frame_number) {
-  AssertRange(frame_number, 0, preferences.replay_max_frames());
+CString ReplayBitmapFilename(int session_ID, int frame_number) {
+  assert(frame_number >= 0);
   CString path;
-  path.Format("%sframe%06d.bmp", ReplaySessionDirectory(), frame_number);
+  path.Format("%sframe%06d.bmp", ReplaySessionDirectory(session_ID), frame_number);
   return path;
 }
 
-CString ReplayHTMLFilename(int frame_number) {
-  AssertRange(frame_number, 0, preferences.replay_max_frames());
+CString ReplayHTMLFilename(int session_ID, int frame_number) {
+  assert(frame_number >= 0);
   CString path;
-  path.Format("%sframe%06d.htm", ReplaySessionDirectory(), frame_number);
+  path.Format("%sframe%06d.htm", ReplaySessionDirectory(session_ID), frame_number);
   return path;
 }
 
@@ -160,23 +162,11 @@ CString LogsDirectory() {
   return path;
 };
 
-CString LogFilePath() {
+CString LogFilePath(int session_ID) {
+  assert(session_ID >= 0);
   CString path;
-  path.Format("%soh_%lu.log", LogsDirectory(), p_sessioncounter->session_id());
+  path.Format("%soh_%lu.log", LogsDirectory(), session_ID);
   return path;
-}
-
-CString MiniDumpFilename() {
-  SYSTEMTIME	stLocalTime;
-  char		szFileName[MAX_PATH];
-
-  GetLocalTime(&stLocalTime);
-  assert(_startup_path != "");
-  sprintf_s(szFileName, MAX_PATH, "%s\\%s-%s-%04d%02d%02d-%02d%02d%02d-%ld-%ld.dmp",
-    _startup_path, "OpenHoldem", VERSION_TEXT, stLocalTime.wYear, stLocalTime.wMonth,
-    stLocalTime.wDay, stLocalTime.wHour, stLocalTime.wMinute, stLocalTime.wSecond,
-    GetCurrentProcessId(), GetCurrentThreadId());
-  return szFileName;
 }
 
 CString PathOfExecutable() {
@@ -241,21 +231,3 @@ CString FilenameWithoutPathAndExtension(CString path) {
   }
   return result;
 }
-
-
-
-
-
-
-
-
-
-#include "debug.h"
-#include "afxwin.h"
-#include <assert.h>
-#include <stdarg.h>
-#include <stdio.h>
-
-#include <time.h>
-#include "..\..\Shared\CCritSec\CCritSec.h"
-#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
