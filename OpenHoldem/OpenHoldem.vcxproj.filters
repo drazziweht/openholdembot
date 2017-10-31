@@ -179,7 +179,6 @@
     <ClCompile Include="CLazyScraper.cpp" />
     <ClCompile Include="CScraper.cpp" />
     <ClCompile Include="CardFunctions.cpp" />
-    <ClCompile Include="CFilenames.cpp" />
     <ClCompile Include="CStringHashtableTemplate.cpp" />
     <ClCompile Include="CStringMatch.cpp" />
     <ClCompile Include="NumericalFunctions.cpp" />
@@ -414,7 +413,6 @@
     <ClInclude Include="..\CTablemap\CTableMapAccess.h" />
     <ClInclude Include="CTablemapCompletenessChecker.h" />
     <ClInclude Include="CardFunctions.h" />
-    <ClInclude Include="CFilenames.h" />
     <ClInclude Include="CStringHashtableTemplate.h" />
     <ClInclude Include="CStringMatch.h" />
     <ClInclude Include="FloatingPoint_Comparisions.h" />

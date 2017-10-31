@@ -15,14 +15,11 @@
 //
 #include "stdafx.h"
 #include "OpenHoldem.h"
-
 #include <psapi.h>
 #include <windows.h>
-
 #include "..\CTablemap\CTablemap.h"
 #include "..\CTablemap\CTableMapAccess.h"
 #include "CAutoConnector.h"
-#include "CFilenames.h"
 #include "CFormulaParser.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
@@ -124,7 +121,7 @@ BOOL COpenHoldemApp::InitInstance() {
   // First we have to read the pre4ferences,
   // as start_log() needs to know if the old log has to be deleted...
   free((void*)m_pszProfileName);
-  m_pszProfileName = _strdup(p_filenames->IniFilePath().GetString());
+  m_pszProfileName = _strdup(IniFilePath().GetString());
   preferences.LoadPreferences();
 	if (!p_sessioncounter) p_sessioncounter = new CSessionCounter();
 	// Start logging immediatelly after the loading the preferences

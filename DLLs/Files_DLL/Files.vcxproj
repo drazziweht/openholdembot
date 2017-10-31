@@ -20,7 +20,7 @@
     <None Include="Files.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{67108CE5-CEE0-4F22-8772-01BAE26A0335}</ProjectGuid>
+    <ProjectGuid>{6D9F9D81-4D08-4C57-A773-4B041360D150}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
