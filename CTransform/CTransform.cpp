@@ -22,7 +22,7 @@
 #include "..\OpenHoldem\WebSafeColours.h"
 
 #ifdef OPENHOLDEM_PROGRAM
-#include "..\DLLs\Debug_DLL\debug.h"
+//include "../DLLs/Debug_DLL\debug.h"
 #endif
 
 #ifdef OPENSCRAPE_PROGRAM
