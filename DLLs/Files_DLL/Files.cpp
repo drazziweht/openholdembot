@@ -17,37 +17,32 @@
 #include <assert.h>
 
 const char* k_default_ini_filename = "OpenHoldem_Preferences__feel_free_to_rename_this_file_to_whatever_you_like.INI";
-char _startup_path[MAX_PATH];
 
-/*CFilenames() { //!!!!! ti dll entry
-  // Save directory that contains openHoldem for future use.
+CString OpenHoldemDirectory() {
+  // Get the  directory that contains openHoldem for future use.
   // This is NOT GetCurrentDirectory(), which returns the working-directorz,
   // i.e. the working directorz of the process that started OpenHoldem.
-  //  
+  //
   // If we don't get this path right and the user stars OpenHoldem
   // from a different directorz with a script we won't find our files.
   // http://stackoverflow.com/questions/143174/how-do-i-get-the-directory-that-a-program-is-running-from
   // http://stackoverflow.com/questions/4517425/how-to-get-program-path
-  ::GetModuleFileName(NULL, _startup_path, _MAX_PATH);
+  char path[MAX_PATH];
+  ::GetModuleFileName(NULL, path, _MAX_PATH);
   // Remove executable filename from path
   // http://pic.dhe.ibm.com/infocenter/zvm/v6r2/index.jsp?topic=%2Fcom.ibm.zvm.v620.edclv%2Fstrrchr.htm
-  char *last_backslash_in_path = strrchr(_startup_path, '\\');
+  char *last_backslash_in_path = strrchr(path, '\\');
   if (last_backslash_in_path != NULL) {
     ++last_backslash_in_path;
     *last_backslash_in_path = '\0';
   }
-  // Create logs-directoy if necessary
-  CreateDirectory(LogsDirectory(), NULL);
-}*/
-
-CString OpenHoldemDirectory() {
-  assert(_startup_path != "");
-  return _startup_path;
+  CString result(path);
+  return result;
 }
 
 CString BotlogicDirectory() {
-  assert(_startup_path != "");
-  CString bot_logic_dir = CString(_startup_path) + "bot_logic\\";
+  assert(OpenHoldemDirectory() != "");
+  CString bot_logic_dir = CString(OpenHoldemDirectory()) + "bot_logic\\";
   return bot_logic_dir;
 }
 
@@ -59,7 +54,8 @@ CString IniFilePath() {
   // We need the complete path here,
   // otherwise the file would be expected in the default location,
   // i.e. the Windows-directory.
-  return OpenHoldemDirectory() + CString("\\") + IniFilename();
+  CString result = OpenHoldemDirectory() + CString("\\") + IniFilename();
+  return result;
 }
 
 CString IniFilename() {
@@ -105,8 +101,8 @@ CString IniFilename() {
 }
 
 void SwitchToOpenHoldemDirectory() {
-  assert(_startup_path != "");
-  SetCurrentDirectory(_startup_path);
+  assert(OpenHoldemDirectory() != "");
+  SetCurrentDirectory(OpenHoldemDirectory());
 }
 
 CString OpenPPLLibraryDirectory() {
@@ -114,30 +110,30 @@ CString OpenPPLLibraryDirectory() {
 }
 
 CString TableMapWildcard() {
-  assert(_startup_path != "");
+  assert(OpenHoldemDirectory() != "");
   CString wildcard;
-  wildcard.Format("%sscraper\\*.tm", _startup_path);
+  wildcard.Format("%sscraper\\*.tm", OpenHoldemDirectory());
   return wildcard;
 }
 
 CString ScraperDirectory() {
-  assert(_startup_path != "");
-  CString scraper_dir = CString(_startup_path) + "scraper\\";
+  assert(OpenHoldemDirectory() != "");
+  CString scraper_dir = CString(OpenHoldemDirectory()) + "scraper\\";
   return scraper_dir;
 }
 
 CString ToolsDirectory() {
-  assert(_startup_path != "");
-  CString tools_dir = CString(_startup_path) + "tools\\";
+  assert(OpenHoldemDirectory() != "");
+  CString tools_dir = CString(OpenHoldemDirectory()) + "tools\\";
 
   return tools_dir;
 }
 
 CString ReplaySessionDirectory(int session_ID) {
   assert(session_ID >= 0);
-  assert(_startup_path != "");
+  assert(OpenHoldemDirectory() != "");
   CString path;
-  path.Format("%sreplay\\session_%lu\\", _startup_path, session_ID);
+  path.Format("%sreplay\\session_%lu\\", OpenHoldemDirectory(), session_ID);
   return path;
 }
 
@@ -156,9 +152,11 @@ CString ReplayHTMLFilename(int session_ID, int frame_number) {
 }
 
 CString LogsDirectory() {
-  assert(_startup_path != "");
+  assert(OpenHoldemDirectory() != "");
   CString path;
-  path.Format("%slogs\\", _startup_path);
+  path.Format("%slogs\\", OpenHoldemDirectory());
+  // Create logs-directoy if necessary
+  CreateDirectory(path, NULL);
   return path;
 };
 
