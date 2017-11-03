@@ -15,6 +15,7 @@
 #define VALIDATOR_DLL_EXPORTS
 
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
+#include "..\..\OpenHoldem\CSymbolEngineAutoplayer.h"
 
 // Constants for the validators range-checks
 #define UNDEFINED_ZERO 0

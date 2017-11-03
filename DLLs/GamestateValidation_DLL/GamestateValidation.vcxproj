@@ -20,7 +20,7 @@
     <None Include="GamestateValidation.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6D9F9D81-4D08-4C57-A773-4B041360D150}</ProjectGuid>
+    <ProjectGuid>{F7FC9500-4048-4E34-AD58-5DC7EB072198}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
