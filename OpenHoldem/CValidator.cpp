@@ -17,25 +17,17 @@
 #include "StdAfx.h"
 #include "CValidator.h"
 
-#include "CAutoPlayer.h"
 #include "CEngineContainer.h"
 #include "CPreferences.h"
-#include "CSharedMem.h"
 #include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineHandRank.h"
 #include "CSymbolEngineIsTournament.h"
-#include "CSymbolEngineRandom.h"
-#include "CSymbolEngineReplayFrameController.h"
-#include "CSymbolEngineTime.h"
 #include "CSymbolEngineVersus.h"
-#include "CTableState.h"
-#include "FloatingPoint_Comparisions.h"
-#include "OH_MessageBox.h"
+#include "..\DLLs\GamestateValidation_DLL\GamestateValidation.h"
 
 CValidator *p_validator = NULL;
 
 CValidator::CValidator() {
-	_enabled_manually = false;
+  _enabled_manually = false;
 }
 
 CValidator::~CValidator() {
@@ -45,15 +37,7 @@ void CValidator::SetEnabledManually(bool Enabled) {
 	_enabled_manually = Enabled;
 }
 
-// gws function to access the symbols by name
-//
-double CValidator::gws(const char *the_Symbol) {
-  double result = kUndefined;
-  p_engine_container->EvaluateSymbol(the_Symbol, &result);
-  return result;
-}
-
-void CValidator::ValidateGameState() {
+void CValidator::Validate() {
   if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) {
     // Validate only if it is my turn.
     //   * because then we have stable frames
@@ -73,21 +57,8 @@ void CValidator::ValidateGameState() {
 	  // we just put them in external files
 	  // and include them here as is.
 	  //
-    _no_errors_this_heartbeat = true;
-    ValidateGameState()
-    ValidateVersusDBOnlyIfInstalled();
-     ValidateICMOnlyIfTournament();
-  }
-}
-
-void CValidator::ValidateVersusDBOnlyIfInstalled() {
-	if(p_engine_container->symbol_engine_versus()->VersusBinLoaded())	{
-    ValidateGamestateVersusBin();
-	}
-}
-
-void CValidator::ValidateICMOnlyIfTournament() {
-  if (p_engine_container->symbol_engine_istournament()->istournament()) {
-
+    ValidateGamestate(preferences.validator_use_heuristic_rules(),
+      p_engine_container->symbol_engine_istournament()->istournament(),
+      p_engine_container->symbol_engine_versus()->VersusBinLoaded());
   }
 }

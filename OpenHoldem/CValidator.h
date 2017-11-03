@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_VALIDATOR_H
-#define INC_VALIDATOR_H
-
 // !!! ATTENTION
 // !!! CString not properly declared/included.
 // !!! atlstr / afxstr don't work.
@@ -26,19 +24,11 @@ public:
 	// public functions
 	CValidator();
 	~CValidator();
-	void ValidateGameState();
+public:
+  void Validate();
 	void SetEnabledManually(bool Enabled);
-private:
-	// private functions
-	CString Symbols_And_Values(const CString symbols_possibly_affected);
-private:
-	// private data members, not (directly) accessible
-private:
-	bool _enabled_manually;
+ private:
+  bool _enabled_manually;
 };
 
-extern CValidator *p_validator; 
-
-#endif
-
-																																																						
+extern CValidator *p_validator; 																																																					

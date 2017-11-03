@@ -119,7 +119,7 @@ CString Symbols_And_Values(const CString symbols_possibly_affected) {
   return Result;
 }
 
-void ValidateSingleRule() {
+bool ValidateSingleRule() {
   // Heuristic rules and not to be tested?
 /*!!!!!  if (_heuristic && !preferences.validator_use_heuristic_rules()) {
     return;
@@ -160,6 +160,7 @@ void ValidateSingleRule() {
       //!!!!!write_log(k_always_log_errors, "%s%s\n", "VALIDATOR ERROR: ", the_ErrorMessage);
     }
   }
+  return _no_errors_this_heartbeat; //!!!!!=????
 }
 
 bool ValidateGamestate(
@@ -214,4 +215,5 @@ bool ValidateGamestate(
   if (versus_bin_loaded) {
 #include "Validator_Rules\range_checks_versus_inline.cpp_"
   }
+  return _no_errors_this_heartbeat;
 } 
