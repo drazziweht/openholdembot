@@ -24,7 +24,6 @@
 #include "CAutoplayerTrace.h"
 #include "CDebugTab.h"
 #include "CEngineContainer.h"
-#include "CFilenames.h"
 #include "CFlagsToolbar.h"
 #include "CFunction.h"
 #include "CFunctionCollection.h"

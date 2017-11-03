@@ -151,6 +151,7 @@
 #include "FloatingPoint_Comparisions.h"
 #include "NumericalFunctions.h"
 #include "..\DLLs\Debug_DLL\debug.h"
+#include "..\DLLs\Files_DLL\files.h"
 #include "..\Shared\CCritSec\CCritSec.h"
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\StructsDefines\structs_defines.h"

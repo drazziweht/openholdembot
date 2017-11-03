@@ -22,7 +22,6 @@
 #include "CAutoplayer.h"
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-#include "CFilenames.h"
 #include "CFlagsToolbar.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
