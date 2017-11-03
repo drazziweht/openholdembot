@@ -33,11 +33,8 @@ private:
 	CString Symbols_And_Values(const CString symbols_possibly_affected);
 private:
 	// private data members, not (directly) accessible
-	
-	
 private:
 	bool _enabled_manually;
-	bool _no_errors_this_heartbeat;
 };
 
 extern CValidator *p_validator; 

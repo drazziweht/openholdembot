@@ -86,20 +86,86 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 
-double gws(const char *the_Symbol);
+char *_testcase_id;
+bool _heuristic;
+char *_reasoning;
+bool _precondition;
+bool _postcondition;
+char *_symbols_possibly_affected;
+bool _no_errors_this_heartbeat;
 
-void ValidateSingleRule();
+double gws(const char *the_Symbol) {
+  return kUndefined; //!!!!!
+}
+
+// Create a stringified list of (symbol: value)-pairs
+// for output in the error-message.
+CString Symbols_And_Values(const CString symbols_possibly_affected) {
+  CString Result = "";
+  int Token_Pos = 0;
+  while (Token_Pos < symbols_possibly_affected.GetLength()) {
+    // Tokenize the string, using space or commas as delimiters.
+    CString Symbol = symbols_possibly_affected.Tokenize(" ,", Token_Pos);
+    double Symbol_Value = gws(Symbol);
+    CString Symbol_Value_String;
+    // Convert symbol value to string, 7 digits total, 2 digits precision
+    Symbol_Value_String.Format("%7.2f", Symbol_Value);
+    Result += "\n    ("
+      + Symbol
+      + ": "
+      + Symbol_Value_String
+      + ")";
+  }
+  return Result;
+}
+
+void ValidateSingleRule() {
+  // Heuristic rules and not to be tested?
+/*!!!!!  if (_heuristic && !preferences.validator_use_heuristic_rules()) {
+    return;
+  }*/
+  // Test to be executed?
+  if (_precondition) {
+    // Test failed?
+    if (!_postcondition) {
+      if (_no_errors_this_heartbeat) {
+        // First error: shoot replayframe, if needed
+/*!!!!!        if (preferences.validator_shoot_replayframe_on_error()) {
+          p_engine_container->symbol_engine_replayframe_controller()->ShootReplayFrameIfNotYetDone();
+        }*/
+        _no_errors_this_heartbeat = false;
+      }
+      /*!!!!!       if (preferences.validator_stop_on_error()) {
+        p_autoplayer->EngageAutoplayer(false);
+      }*/
+      // Create error message
+      CString the_ErrorMessage = "TESTCASE ID: "
+        + CString(_testcase_id)
+        + "\n\n";
+      if (_heuristic) {
+        the_ErrorMessage += "HEURISTIC RULE: yes\n\n";
+      }
+      the_ErrorMessage += "REASONING: "
+        + CString(_reasoning)
+        + "\n\n"
+        + "SYMBOLS AFFECTED: "
+        + Symbols_And_Values(_symbols_possibly_affected)
+        + "\n\n"
+        + "(The validator is a tool to help you finding errors in your tablemap.)\n";
+      // Show error message, if appropriate
+      //!!!!!OH_MessageBox_Error_Warning(the_ErrorMessage, "VALIDATOR ERROR");
+      // Log error message
+      the_ErrorMessage.Replace("\n\n", ". ");
+      the_ErrorMessage.Replace("\n", " ");
+      //!!!!!write_log(k_always_log_errors, "%s%s\n", "VALIDATOR ERROR: ", the_ErrorMessage);
+    }
+  }
+}
 
 bool ValidateGamestate(
     bool use_heuristic_rules,
 	  bool is_tournament,
 	  bool versus_bin_loaded) {
-  char *_testcase_id;
-  bool _heuristic;
-  char *_reasoning;
-  bool _precondition;
-  bool _postcondition;
-  char *_symbols_possibly_affected;
 #include "Validator_Rules\range_checks_general_symbols_inline.cpp_"
 #include "Validator_Rules\range_checks_tablemap_symbols_inline.cpp_"
 #include "Validator_Rules\range_checks_formula_file_inline.cpp_"
