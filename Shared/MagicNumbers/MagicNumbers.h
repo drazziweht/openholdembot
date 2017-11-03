@@ -196,7 +196,7 @@ const int F_OK = 0;
 
 // thread timeout
 #define THREAD_WAIT					3000
-const DWORD k_max_time_to_wait_for_thread_to_shutdown = 60000; // milli-seconds
+const int k_max_time_to_wait_for_thread_to_shutdown = 60000; // milli-seconds
 // "This must not happen."
 // It is better to have a named constant then to write "assert(false);".
 const bool kThisMustNotHappen = false;
@@ -353,7 +353,7 @@ const char k_Shanky_style_betrounds[kNumberOfBetrounds + 1][k_max_length_of_Shan
 // meaningful to the log when the end of an open-ended when-condition 
 // gets reached during evaluation.
 // Needs to be lower-cases because it is built-in.
-const CString kEmptyExpression_False_Zero_WhenOthersFoldForce =
+const char* kEmptyExpression_False_Zero_WhenOthersFoldForce =
   "empty_expression__false__zero__when_others_fold_force";
   
 enum table_positioner_options {
