@@ -14,6 +14,8 @@
 #ifndef INC_CCRITSEC_H
 #define INC_CCRITSEC_H
 
+#include <afxwin.h>
+
 class CCritSec
 {
 public:

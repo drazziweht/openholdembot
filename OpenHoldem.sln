@@ -44,6 +44,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "window_functions", "DLLs\Wi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "string_functions", "DLLs\StringFunctions_DLL\string_functions.vcxproj", "{9A3A25E1-3045-4EC3-BE51-5BD55F1F94B9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Preferences", "DLLs\Preferences_DLL\Preferences.vcxproj", "{11E82A06-6DEB-49EA-A176-A7F9C1164F11}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -241,6 +243,16 @@ Global
 		{9A3A25E1-3045-4EC3-BE51-5BD55F1F94B9}.Release|Any CPU.ActiveCfg = Release|Win32
 		{9A3A25E1-3045-4EC3-BE51-5BD55F1F94B9}.Release|Win32.ActiveCfg = Release|Win32
 		{9A3A25E1-3045-4EC3-BE51-5BD55F1F94B9}.Release|Win32.Build.0 = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Debug|Win32.ActiveCfg = Debug|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Debug|Win32.Build.0 = Debug|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release - Optimized|Any CPU.ActiveCfg = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release - Optimized|Any CPU.Build.0 = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release - Optimized|Win32.ActiveCfg = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release - Optimized|Win32.Build.0 = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release|Any CPU.ActiveCfg = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release|Win32.ActiveCfg = Release|Win32
+		{11E82A06-6DEB-49EA-A176-A7F9C1164F11}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
