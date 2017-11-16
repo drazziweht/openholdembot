@@ -167,7 +167,7 @@ enum {
   k_prefs_last_CString_value,
 };
 
-PREFERENCES_DLL_EXPORTS class CPreferences {
+class __declspec(dllimport) CPreferences {
 public:
   // public functions
   CPreferences();

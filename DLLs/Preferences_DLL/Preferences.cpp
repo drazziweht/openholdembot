@@ -246,14 +246,14 @@ void CPreferences::ReadPreferences() {
   // Then read the registry values and overwrite the defaults if defined
   for (int i = 0; i<k_prefs_last_numerical_value; i++) {
     assert(k_registry_keys_for_numerical_values[i] != "");
-    write_log(debug_preferences(), "[CPreferences] Reading %2i. (numerical) %s\n",
-      i, k_registry_keys_for_numerical_values[i]);
+    /*write_log(debug_preferences(), "[CPreferences] Reading %2i. (numerical) %s\n",
+      i, k_registry_keys_for_numerical_values[i]);*/
     ReadReg(k_registry_keys_for_numerical_values[i], &prefs_numerical_values[i]);
   }
   for (int i = 0; i<k_prefs_last_CString_value; i++) {
     assert(k_registry_keys_for_CStrings[i] != "");
-    write_log(debug_preferences(), "[CPreferences] Reading %2i. (textual) %s\n",
-      i, k_registry_keys_for_CStrings[i]);
+    /*write_log(debug_preferences(), "[CPreferences] Reading %2i. (textual) %s\n",
+      i, k_registry_keys_for_CStrings[i]);*/
     ReadReg(k_registry_keys_for_CStrings[i], &prefs_CString_values[i]);
   }
 }
@@ -263,8 +263,8 @@ void CPreferences::ReadReg(const LPCTSTR registry_key, CString *registry_value) 
   value = "";//!!!!!AfxGetApp()->GetProfileString(_preferences_heading, registry_key);
   if (!value.IsEmpty())
     *registry_value = value;
-  write_log(debug_preferences(), "[CPreferences] %s = %s\n",
-    registry_key, registry_value->GetString());
+  /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
+    registry_key, registry_value->GetString());*/
 }
 
 void CPreferences::ReadReg(const LPCTSTR registry_key, double *registry_value) {
@@ -272,8 +272,8 @@ void CPreferences::ReadReg(const LPCTSTR registry_key, double *registry_value) {
   value = "";//!!!!!AfxGetApp()->GetProfileString(_preferences_heading, registry_key);
   if (!value.IsEmpty())
     *registry_value = atof(value);
-  write_log(debug_preferences(), "[CPreferences] %s = %s\n",
-    registry_key, Number2CString(*registry_value));
+  /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
+    registry_key, Number2CString(*registry_value));*/
 }
 
 void CPreferences::WriteReg(const LPCTSTR registry_key, const CString &registry_value) {
@@ -293,8 +293,8 @@ void CPreferences::SetValue(int index_of_variable, CString value) {
   //!!!!!AssertRange(index_of_variable, 0, k_prefs_last_CString_value);
   prefs_CString_values[index_of_variable] = value;
   WriteReg(k_registry_keys_for_CStrings[index_of_variable], value);
-  write_log(debug_preferences(), "[CPreferences] %s = %s\n",
-    k_registry_keys_for_CStrings[index_of_variable], value);
+  /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
+    k_registry_keys_for_CStrings[index_of_variable], value);*/
 }
 
 void CPreferences::SetValue(int index_of_variable, double value) {
@@ -307,6 +307,6 @@ void CPreferences::SetValue(int index_of_variable, double value) {
   else */{
     WriteReg(k_registry_keys_for_numerical_values[index_of_variable], value);
   }
-  write_log(debug_preferences(), "[CPreferences] %s = %s\n",
-    k_registry_keys_for_numerical_values[index_of_variable], Number2CString(value));
+  /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
+    k_registry_keys_for_numerical_values[index_of_variable], Number2CString(value));*/
 }
