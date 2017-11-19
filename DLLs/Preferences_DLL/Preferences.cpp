@@ -17,6 +17,7 @@
 //#include "..\..\OpenHoldem\NumericalFunctions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Files_DLL\Files.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 
@@ -27,6 +28,7 @@ CPreferences preferences;
 // Constructor and destructor
 //
 CPreferences::CPreferences() {
+  ini_filename = IniFilePath();
 }
 
 CPreferences::~CPreferences() {
@@ -165,7 +167,6 @@ const char* k_registry_keys_for_CStrings[k_prefs_last_CString_value + 1] = {
 };
 
 void CPreferences::LoadPreferences() {
-  _preferences_heading = "Preferences";
   InitDefaults();
   ReadPreferences();
 }
@@ -259,31 +260,59 @@ void CPreferences::ReadPreferences() {
 }
 
 void CPreferences::ReadReg(const LPCTSTR registry_key, CString *registry_value) {
-  CString value;
-  value = "";//!!!!!AfxGetApp()->GetProfileString(_preferences_heading, registry_key);
-  if (!value.IsEmpty())
-    *registry_value = value;
+  const int kSizeOgInputBuffer = 1000;
+  char input_buffer[kSizeOgInputBuffer];
+  // https://msdn.microsoft.com/en-us/library/windows/desktop/ms724353(v=vs.85).aspx
+  // The parameters are
+  //   * ini-file-section
+  //   * ini-file-key
+  //   * default
+  //   * result-buffer
+  //   * size of result-buffer
+  //   * filename
+  GetPrivateProfileString(
+    kPreferencesSectionInIniFile,
+    registry_key,
+    "",
+    input_buffer,
+    kSizeOgInputBuffer,
+    ini_filename);
+  if (input_buffer[0] != '\n') {
+    *registry_value = CString(input_buffer);
+  }
   /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
     registry_key, registry_value->GetString());*/
+  MessageBox(0, registry_key, *registry_value, 0);
 }
 
 void CPreferences::ReadReg(const LPCTSTR registry_key, double *registry_value) {
   CString value;
-  value = "";//!!!!!AfxGetApp()->GetProfileString(_preferences_heading, registry_key);
-  if (!value.IsEmpty())
+  ReadReg(registry_key, &value);
+  if (!value.IsEmpty()) {
     *registry_value = atof(value);
+  }
   /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
     registry_key, Number2CString(*registry_value));*/
 }
 
 void CPreferences::WriteReg(const LPCTSTR registry_key, const CString &registry_value) {
-  //!!!!!AfxGetApp()->WriteProfileString(_preferences_heading, registry_key, registry_value);
+  // https://msdn.microsoft.com/en-us/library/windows/desktop/ms725501(v=vs.85).aspx
+  // Parameters
+  //   * ini-file-section
+  //   * ini-file-key
+  //   * value
+  //   * filename
+  WritePrivateProfileString(
+    kPreferencesSectionInIniFile,
+    registry_key,
+    registry_value,
+    ini_filename);
 }
 
 void CPreferences::WriteReg(const LPCTSTR registry_key, const double registry_value) {
   CString str;
   str.Format("%.2f", registry_value);
-  //!!!!!AfxGetApp()->WriteProfileString(_preferences_heading, registry_key, str);
+  WriteReg(registry_key, str);
 }
 
 #define ENT CSLock lock(m_critsec);

@@ -203,24 +203,20 @@ public:
   const CString pt_dbname() { return prefs_CString_values[k_prefs_pt_dbname]; }
   const CString pt_user() { return prefs_CString_values[k_prefs_pt_user]; }
   const CString pt_pass() { return prefs_CString_values[k_prefs_pt_pass]; }
-
   //  PokerChat
   const int chat_min_delay() { return prefs_numerical_values[k_prefs_chat_min_delay]; }
   const int chat_random_delay() { return prefs_numerical_values[k_prefs_chat_random_delay]; }
-
   // Logging and debugging
   // Most options always enabled for beginners
   // who are "smart" enough to disable logging,
   // but then cry because the log does not show any info.
   const bool disable_msgbox() { return prefs_numerical_values[k_prefs_disable_msgbox]; }
   const int log_max_logsize() { return prefs_numerical_values[k_prefs_log_max_logsize]; }
-
   const bool log_delay_function() { return prefs_numerical_values[k_prefs_log_delay_function]; }
   const bool log_hopper_functions() { return prefs_numerical_values[k_prefs_log_hopper_functions]; }
   const bool log_icm_functions() { return prefs_numerical_values[k_prefs_log_icm_functions]; }
   const bool log_ini_functions() { return prefs_numerical_values[k_prefs_log_ini_functions]; }
   const bool log_prwin_functions() { return prefs_numerical_values[k_prefs_log_prwin_functions]; }
-
   // Debugging
   const bool	debug_autoconnector() { return prefs_numerical_values[k_prefs_debug_autoconnector]; }
   const bool	debug_autoplayer() { return prefs_numerical_values[k_prefs_debug_autoplayer]; }
@@ -275,7 +271,6 @@ public:
   const bool  debug_nutfullhouse() { return prefs_numerical_values[k_prefs_debug_nutfullhouse]; }
   const bool  debug_multiplexer() { return prefs_numerical_values[k_prefs_debug_multiplexer]; }
   const bool  debug_symbol_verification() { return prefs_numerical_values[k_prefs_debug_symbol_verification]; }
-
   // Main window locations
   const int main_x() { return prefs_numerical_values[k_prefs_main_x]; }
   const int main_y() { return prefs_numerical_values[k_prefs_main_y]; }
@@ -345,9 +340,10 @@ private:
   void WriteReg(const LPCTSTR registry_key, const double registry_value);
 private:
   CCritSec m_critsec;
-  CString	_preferences_heading;
+  const char* kPreferencesSectionInIniFile = "Preferences";;
+  CString ini_filename;
 };
 
-PREFERENCES_DLL_EXPORTS extern CPreferences preferences;
+extern __declspec(dllimport) CPreferences preferences;
 
 
