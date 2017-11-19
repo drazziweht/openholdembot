@@ -15,7 +15,7 @@
 #include "CTablePositioner.h"
 
 #include "CAutoConnector.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "../CTablemap/CTableMapAccess.h"

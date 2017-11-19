@@ -31,7 +31,7 @@
 #include "COpenHoldemHopperCommunication.h"
 #include "COpenHoldemStatusbar.h"
 #include "COpenHoldemTitle.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CProblemSolver.h"
 #include "CSymbolEngineReplayFrameController.h"
 #include "CScraper.h"

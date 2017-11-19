@@ -21,7 +21,7 @@
 #include "CParseTreeTerminalNodeEndOfFunction.h"
 #include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 #include "CPokerTrackerThread.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineCallers.h"
 #include "CSymbolEngineChairs.h"
 #include "CSymbolengineDealerchair.h"

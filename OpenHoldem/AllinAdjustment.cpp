@@ -17,7 +17,7 @@
 #include <assert.h>
 #include "BetpotCalculations.h"
 #include "CFunctionCollection.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolengineGameType.h"
 #include "CSymbolEngineIsTournament.h"

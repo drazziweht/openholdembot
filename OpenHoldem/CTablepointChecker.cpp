@@ -16,7 +16,7 @@
 #include "CTablepointChecker.h"
 
 #include "CAutoConnector.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CTableMapLoader.h"
 #include "..\CTransform\CTransform.h"

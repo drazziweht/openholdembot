@@ -17,7 +17,7 @@
 
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CTableState.h"

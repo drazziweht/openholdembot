@@ -19,7 +19,7 @@
 #include "CFormulaParser.h"
 #include "CFunctionCollection.h"
 #include "COpenHoldemTitle.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CTableMaploader.h"
 #include "MainFrm.h"
 #include "OpenHoldem.h"

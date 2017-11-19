@@ -13,7 +13,8 @@
 
 #include "StdAfx.h"
 #include "CMyMutex.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 CMyMutex::CMyMutex() : _mutex(false, preferences.mutex_name()) {
   // We want a long timeout to let OHs instances act in FIFO order.

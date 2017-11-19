@@ -53,7 +53,7 @@
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CTableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"

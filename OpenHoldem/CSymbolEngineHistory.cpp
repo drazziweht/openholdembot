@@ -16,7 +16,8 @@
 
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineTableLimits.h"

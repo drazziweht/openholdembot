@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "CSymbolEngineOpenPPLUserVariables.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CStringHashtableTemplate.h"
 
 CSymbolEngineOpenPPLUserVariables::CSymbolEngineOpenPPLUserVariables() {

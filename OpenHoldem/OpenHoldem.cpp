@@ -25,7 +25,7 @@
 #include "CIteratorThread.h"
 #include "COpenHoldemHopperCommunication.h"
 #include "COpenHoldemTitle.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSessionCounter.h"
 #include "DialogFormulaScintilla.h"
 #include "MainFrm.h"

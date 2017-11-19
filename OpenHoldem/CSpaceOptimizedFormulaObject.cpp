@@ -17,7 +17,7 @@
 
 #include <assert.h>
 #include "CMemoryPool.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 // Custom memory-allocation to avoid always getting
 // a 4KB-block when we create a little object

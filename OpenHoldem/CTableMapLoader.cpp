@@ -16,7 +16,7 @@
 
 #include "CAutoConnector.h"
 #include "CFileSystemMonitor.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CTablemapCompletenessChecker.h"
 #include "CTablePointChecker.h"
 

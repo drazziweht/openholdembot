@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "CHandHistoryAction.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 
 

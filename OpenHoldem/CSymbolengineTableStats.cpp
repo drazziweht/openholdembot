@@ -17,7 +17,7 @@
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 #include "CHandresetDetector.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CStringMatch.h"
 #include "CSymbolEngineActiveDealtPlaying.h"

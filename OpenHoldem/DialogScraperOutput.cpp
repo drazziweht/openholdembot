@@ -16,7 +16,7 @@
 
 #include "CFlagsToolbar.h"
 #include "CHeartbeatThread.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "..\CTransform\CTransform.h"
 #include "MainFrm.h"

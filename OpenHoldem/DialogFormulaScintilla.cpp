@@ -29,7 +29,7 @@
 #include "CFunctionCollection.h"
 #include "CHeartbeatThread.h"
 #include "COHScriptList.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIniFunctions.h"

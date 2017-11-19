@@ -15,7 +15,7 @@
 #define INC_MEMORYLOGGING_H
 
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 // Logs memory-usage if enabled at debugging-preferences
 // Message should not contain a new-line (otherwise log-file messed up)

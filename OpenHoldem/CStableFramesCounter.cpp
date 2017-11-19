@@ -18,7 +18,7 @@
 #include "CStableFramesCounter.h"
 
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIsOmaha.h"

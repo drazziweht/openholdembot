@@ -19,7 +19,7 @@
 #include "CBlindGuesser.h"
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"

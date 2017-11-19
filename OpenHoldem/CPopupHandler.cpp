@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "CPopupHandler.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"

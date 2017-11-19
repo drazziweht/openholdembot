@@ -17,7 +17,7 @@
 #include <assert.h>
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CTableState.h"

@@ -18,7 +18,8 @@
 #include "CSymbolEngineDebug.h"
 
 #include "CBetroundCalculator.h"
-#include "CPreferences.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CStringMatch.h"
 #include "CTableState.h"

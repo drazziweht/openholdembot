@@ -17,7 +17,7 @@
 
 #include "CFunction.h"
 #include "CMemoryPool.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "TokenizerConstants.h"
 
 CParseTreeNode::CParseTreeNode(int relative_line_number) {

@@ -19,7 +19,7 @@
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 #include "COpenHoldemStatusbar.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"

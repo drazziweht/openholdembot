@@ -16,7 +16,7 @@
 
 #include "CAutoplayer.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CSymbolEngineReplayFrameController.h"

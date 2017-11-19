@@ -16,7 +16,7 @@
 
 #include "CBetroundCalculator.h"
 #include "CCasinoInterface.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CStringMatch.h"
 #include "CTableState.h"

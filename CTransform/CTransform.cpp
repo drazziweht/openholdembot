@@ -15,7 +15,7 @@
 #include "CTransform.h"
 
 #include <Math.h>
-#include "..\OpenHoldem\CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\OpenHoldem\NumericalFunctions.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"

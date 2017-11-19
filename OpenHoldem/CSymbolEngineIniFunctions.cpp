@@ -22,7 +22,7 @@
 #include "CEngineContainer.h"
 #include "CFormulaParser.h"
 #include "CFunctionCollection.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineBlinds.h"

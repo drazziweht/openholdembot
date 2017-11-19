@@ -27,7 +27,8 @@
 #include "CSymbolEngineICM.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "CScraper.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
@@ -404,7 +405,6 @@ bool CSymbolEngineICM::EvaluateSymbol(const CString name, double *result, bool l
 			//assume callers are n smallest stacks
 			bool callers[kMaxNumberOfPlayers] = {0};
 			int ncallers = min(RightDigitCharacterToNumber(name), sym_nopponentsplaying);
-      
       for (int i = 0; i < ncallers; i++)
 			{
 				int jsmallest = -1;

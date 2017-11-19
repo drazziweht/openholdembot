@@ -22,7 +22,7 @@
 
 #ifdef OPENHOLDEM_PROGRAM
 #include "../DLLs/Debug_DLL/debug.h"
-#include "../OpenHoldem/CPreferences.h"
+#include "../DLLs/Preferences_DLL/Preferences.h"
 #endif
 
 #ifdef OPENSCRAPE_PROGRAM

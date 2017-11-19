@@ -18,7 +18,7 @@
 #include "CAutoplayerTrace.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoInterface.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "../CTablemap/CTablemap.h"
 #include "OpenHoldem.h"
 

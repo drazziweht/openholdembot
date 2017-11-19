@@ -15,7 +15,7 @@
 //
 
 #include "stdafx.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "DialogSAPrefs16.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "SAPrefsSubDlg.h"

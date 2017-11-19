@@ -23,7 +23,7 @@
 
 #include "CHandHistoryDealPhase.h"
 #include "CHandHistoryUncontested.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CTableState.h"
 

@@ -20,7 +20,7 @@
 #include "CFunctionCollection.h"
 #include "COHScriptObject.h"
 #include "CopenHoldemStatusbar.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineChipAmounts.h"

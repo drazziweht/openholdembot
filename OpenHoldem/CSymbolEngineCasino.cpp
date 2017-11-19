@@ -23,7 +23,7 @@
 #include "CAutoplayerTrace.h"
 #include "inlines/eval.h"
 #include "Chair$Symbols.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSessionCounter.h"
 #include "CStringMatch.h"

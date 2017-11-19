@@ -18,7 +18,7 @@
 #include "CEngineContainer.h"
 #include "CFormulaParser.h"
 #include "CParseErrors.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"

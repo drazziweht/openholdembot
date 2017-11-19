@@ -15,7 +15,7 @@
 
 #include "stdafx.h"
 #include "CWatchdog.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 

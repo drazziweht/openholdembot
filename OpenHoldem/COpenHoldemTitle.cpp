@@ -17,7 +17,7 @@
 #include <assert.h>
 #include "CAutoConnector.h"
 #include "CFunctionCollection.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "../CTablemap/CTablemap.h"
 #include "CTableTitle.h"
 #include "MainFrm.h"

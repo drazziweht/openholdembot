@@ -20,7 +20,7 @@
 #include "CFunctionCollection.h"
 #include "COpenHoldemHopperCommunication.h"
 #include "COpenHoldemTitle.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "DialogFormulaScintilla.h"
 #include "MainFrm.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"

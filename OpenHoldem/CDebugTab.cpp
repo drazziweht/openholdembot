@@ -15,7 +15,7 @@
 #include "CDebugTab.h"
 
 #include "CFormulaParser.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 CDebugTab *p_debug_tab = NULL; 
 

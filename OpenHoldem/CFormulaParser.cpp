@@ -35,7 +35,7 @@
 #include "CParseTreeTerminalNodeIdentifier.h"
 #include "CParseTreeTerminalNodeNumber.h"
 #include "CParseTreeTerminalNodeUserVariable.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineOpenPPL.h"
 #include "CValidator.h"
 #include "CWatchdog.h"

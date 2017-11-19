@@ -34,7 +34,7 @@
 #include "CParserSymbolTable.h"
 #include "CPokerTrackerThread.h"
 #include "CPopupHandler.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CRebuyManagement.h"
 #include "CScraper.h"
 #include "CSessionCounter.h"

@@ -18,7 +18,7 @@
 
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs10.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 #define MAX_DELAY 1000000

@@ -18,7 +18,7 @@
 #include "DialogSAPrefs19.h"
 
 #include "SAPrefsSubDlg.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 
 // CDlgSAPrefs19 dialog

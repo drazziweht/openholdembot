@@ -18,7 +18,7 @@
 #include "CCasinoInterface.h"
 #include "CConfigurationCheck.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEngineTime.h"

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CPokerTrackerLookup.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\CTablemap\CTablemap.h"
 
 CPokerTrackerLookup pt_lookup;

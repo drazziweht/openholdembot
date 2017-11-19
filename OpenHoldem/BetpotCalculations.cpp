@@ -15,7 +15,7 @@
 #include "BetpotCalculations.h"
 
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineUserchair.h"
 #include "CTableState.h"

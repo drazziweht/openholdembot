@@ -22,7 +22,7 @@
 #include "CFunctionCollection.h"
 #include "CHeartbeatThread.h"
 #include "CLazyScraper.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CReplayFrame.h"
 #include "CStableFramesCounter.h"
 #include "CSymbolEngineAutoplayer.h"

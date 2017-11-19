@@ -19,7 +19,7 @@
 
 #include <limits.h>
 #include "SAPrefsSubDlg.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 #define MAX_MAX_LOG 1000000

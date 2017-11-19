@@ -17,7 +17,7 @@
 #include "COcclusionCheck.h"
 
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSCraper.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CTableState.h"

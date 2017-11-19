@@ -19,7 +19,7 @@
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 #include "CIteratorThread.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolenginePokerval.h"

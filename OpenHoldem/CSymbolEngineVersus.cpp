@@ -23,7 +23,7 @@
 #include "inlines/eval.h"
 #include "CFunctionCollection.h"
 #include "CParseErrors.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineUserchair.h"
 #include "CTableState.h"

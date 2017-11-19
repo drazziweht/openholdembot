@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "MemoryLogging.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 #include <psapi.h>
 #include "Windows.h"

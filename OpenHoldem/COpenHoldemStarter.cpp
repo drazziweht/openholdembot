@@ -16,7 +16,7 @@
 
 #include "CAutoConnector.h"
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSharedMem.h"
 #include "CSessionCounter.h"
 #include "CSymbolEngineTime.h"

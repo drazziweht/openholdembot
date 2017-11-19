@@ -20,7 +20,7 @@
 
 #include "CEngineContainer.h"
 #include "CFormulaParser.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 

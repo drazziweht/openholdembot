@@ -21,7 +21,7 @@
 #include "CFunction.h"
 #include "CParseErrors.h"
 #include "CParserSymbolTable.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSelftestParserEvaluator.h"
 
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"

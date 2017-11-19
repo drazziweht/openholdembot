@@ -17,7 +17,7 @@
 #include "stdafx.h"
 #include "DialogSAPrefs20.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "SAPrefsSubDlg.h"
 
 // CDlgSAPrefs20 dialog

@@ -27,7 +27,7 @@
 #include "CFunctionCollection.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CRebuyManagement.h"
 #include "CReplayFrame.h"
 #include "CScraper.h"

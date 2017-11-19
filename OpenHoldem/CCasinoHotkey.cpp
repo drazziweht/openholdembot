@@ -15,7 +15,7 @@
 #include "CCasinoHotkey.h"
 
 #include "CCasinoInterface.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 

@@ -18,7 +18,7 @@
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 #ifdef OPENHOLDEM_PROGRAM
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CTableState.h"
 #include "CTableTitle.h"

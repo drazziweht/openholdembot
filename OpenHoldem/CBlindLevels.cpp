@@ -24,7 +24,7 @@
 #include "stdafx.h"
 #include "CBlindLevels.h"
 
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 
 // Small-blind, big-blind, big-bet
 const int kNumberOfValuesPerLevel =   3; 

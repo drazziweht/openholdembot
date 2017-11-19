@@ -17,7 +17,7 @@
 #include "stdafx.h"
 
 #include "CPokerTrackerThread.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "DialogSAPrefs6.h"
 #include "OpenHoldem.h"
 #include "MainFrm.h"

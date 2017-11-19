@@ -16,7 +16,7 @@
 #include "CSymbolEngineIsRush.h"
 
 #include "CEngineContainer.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineIsTournament.h"

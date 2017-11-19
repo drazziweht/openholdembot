@@ -17,7 +17,7 @@
 #include "CFunctionCollection.h"
 #include "CMemoryPool.h"
 #include "COHScriptObject.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CTokenizer.h"
 
 // static

@@ -27,7 +27,7 @@
 #include "CHandHistoryWriter.h"
 #include "CHandresetDetector.h"
 #include "CParseErrors.h"
-#include "CPreferences.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "CSessionCounter.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
