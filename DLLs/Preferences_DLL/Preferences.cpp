@@ -24,6 +24,10 @@
 // CPreferences needs to be globally created, in order to provide saved settings to CMainFrame::PreCreateWindow method
 CPreferences preferences;
 
+CPreferences* Preferences() {
+  return &preferences;
+}
+
 //
 // Constructor and destructor
 //
@@ -282,7 +286,7 @@ void CPreferences::ReadReg(const LPCTSTR registry_key, CString *registry_value) 
   }
   /*write_log(debug_preferences(), "[CPreferences] %s = %s\n",
     registry_key, registry_value->GetString());*/
-  MessageBox(0, registry_key, *registry_value, 0);
+  //MessageBox(0, registry_key, *registry_value, 0);
 }
 
 void CPreferences::ReadReg(const LPCTSTR registry_key, double *registry_value) {

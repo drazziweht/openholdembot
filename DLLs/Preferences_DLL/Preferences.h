@@ -167,7 +167,7 @@ enum {
   k_prefs_last_CString_value,
 };
 
-class __declspec(dllimport) CPreferences {
+class DEBUG_DLL_API CPreferences {
 public:
   // public functions
   CPreferences();
@@ -344,6 +344,6 @@ private:
   CString ini_filename;
 };
 
-extern __declspec(dllimport) CPreferences preferences;
+DEBUG_DLL_API CPreferences* Preferences();
 
 
