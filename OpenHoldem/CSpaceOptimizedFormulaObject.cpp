@@ -23,7 +23,7 @@
 // a 4KB-block when we create a little object
 void* CSpaceOptimizedFormulaObject::operator new(size_t size) {
   assert(PMemoryPoolParser() != NULL);
-  write_log(preferences.debug_memory_usage(), "[CParseTreeNode] Allocating %i bytes\n", size);
+  write_log(Preferences()->debug_memory_usage(), "[CParseTreeNode] Allocating %i bytes\n", size);
   return PMemoryPoolParser()->Allocate(size);
 }
 

@@ -170,7 +170,7 @@ void COHScriptList::ErrorOldStyleFormat(CString list_member) {
 }
 
 double COHScriptList::Evaluate(bool log /* = false */) {
-  write_log(preferences.debug_formula(), 
+  write_log(Preferences()->debug_formula(), 
     "[COHScriptList] Evaluating list %s\n", _name); 
   if (!p_table_state->User()->HasKnownCards()) return false;
   return IsOnList(p_engine_container->symbol_engine_pokerval()->rankhiplayer(),
@@ -180,13 +180,13 @@ double COHScriptList::Evaluate(bool log /* = false */) {
 
 void COHScriptList::Parse() {
   if (NeedsToBeParsed()) {
-    write_log(preferences.debug_formula() || preferences.debug_parser(),
+    write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),
       "[CFunction] Parsing %s\n", _name);
     p_formula_parser->ParseFormula(this);
     MarkAsParsed();
   }
   else {
-    write_log(preferences.debug_formula() || preferences.debug_parser(),
+    write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),
       "[COHScriptList] No need to parse %s\n", _name);
   }
 }

@@ -855,7 +855,7 @@ void CTransform::CalcHexmash(const int left, const int right, const int top, con
 	unsigned int	hexval = 0;
 	char			t[20] = {0};
 #ifdef OPENHOLDEM_PROGRAM
-  write_log(preferences.debug_alltherest(),
+  write_log(Preferences()->debug_alltherest(),
     "[CTransform] CalcHexmash(%i, %i, %i, %i)\n",
     left, right, top, bottom);
 #endif

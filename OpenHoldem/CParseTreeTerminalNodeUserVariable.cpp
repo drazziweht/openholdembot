@@ -43,7 +43,7 @@ CParseTreeTerminalNodeUserVariable::~CParseTreeTerminalNodeUserVariable() {
 
 double CParseTreeTerminalNodeUserVariable::Evaluate(bool log /* = false */){
   CString name = _terminal_name;
-  write_log(preferences.debug_formula(), 
+  write_log(Preferences()->debug_formula(), 
     "[CParseTreeTerminalNode] Evaluating node type %i %s\n", 
 		_node_type, name);
   p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
