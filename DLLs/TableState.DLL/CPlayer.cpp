@@ -12,10 +12,11 @@
 //******************************************************************************
 
 #include "CPlayer.h"
-#include "CBetroundCalculator.h"
+/*!!!!!!!#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 #include "CSymbolEngineIsOmaha.h"
-#include "CSymbolEngineTableLimits.h"
+#include "CSymbolEngineTableLimits.h"*/
+#include "..\..\OpenHoldem\FloatingPoint_Comparisions.h" //!!!!! Move to numerical DLL
 
 // Blobal dummy to handle access to non-existing cards easily
 Card dummy_card_nocard;
@@ -46,7 +47,7 @@ bool CPlayer::HasAnyCards() {
 	// but for cardbacks or cards.
 	// This way we can play all cards face-up at PokerAcademy.
 	// http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=13384
-  for (int i = 0; i < NumberOfCardsPerPlayer(); ++i) {
+  for (int i = 0; i < 2 /*!!!!!!!NumberOfCardsPerPlayer()*/; ++i) {
     if (!_hole_cards[i].IsAnyCard()) {
       return false;
     }
@@ -58,7 +59,7 @@ CString CPlayer::Cards() {
 	// log new hand
   if (HasKnownCards()) {
     CString result; 
-    for (int i = 0; i < NumberOfCardsPerPlayer(); ++i) {
+    for (int i = 0; i < 2 /*!!!!!!!NumberOfCardsPerPlayer()*/; ++i) {
       result += _hole_cards[i].ToString();
     }
     return result;
@@ -74,14 +75,14 @@ CString CPlayer::CardsAsHTML() {
   // Returning "**" on case of card-backs
   // Returning non-breaking spaces in case of no cards
   CString result;
-  for (int i = 0; i < NumberOfCardsPerPlayer(); ++i) {
+  for (int i = 0; i < 2 /*!!!!!!!NumberOfCardsPerPlayer()*/; ++i) {
     result += hole_cards(i)->ToHTML();
   }
   return result;
 }
 
 bool CPlayer::HasKnownCards() {
-  for (int i = 0; i < NumberOfCardsPerPlayer(); ++i) {
+  for (int i = 0; i < 2/*!!!!!!!NumberOfCardsPerPlayer()*/; ++i) {
     if (!_hole_cards[i].IsKnownCard()) {
       return false;
     }
@@ -123,7 +124,7 @@ bool CPlayer::IsAllin() {
 }
 
 bool CPlayer::PostingBothBlinds() {
-  if (p_betround_calculator->betround() > kBetroundPreflop) {
+  if (false/*!!!!!!!p_betround_calculator->betround() > kBetroundPreflop*/) {
     // No blind posters postflop
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=19043
     return false;
@@ -137,17 +138,18 @@ bool CPlayer::PostingBothBlinds() {
   // We have to calculate in cents here, as IsApproximatellyEqual uses rounding internally.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=18743
   double bet_in_cents = 100 * _bet.GetValue();
-  double both_blinds_in_cents = 100 * (p_engine_container->symbol_engine_tablelimits()->sblind() + p_engine_container->symbol_engine_tablelimits()->bblind());
+  double both_blinds_in_cents = 100 * 1; //!!!!!!! (p_engine_container->symbol_engine_tablelimits()->sblind() + p_engine_container->symbol_engine_tablelimits()->bblind());
   return (_seated && _active && HasAnyCards()
     && IsApproximatellyEqual(bet_in_cents, both_blinds_in_cents));
 }
 
 bool CPlayer::PostingAnte() {
+  /*!!!!!!!
   if (p_betround_calculator->betround() > kBetroundPreflop) {
     // No ante posters postflop
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=19043
     return false;
-  }
+  }*/
   if (IsAllin()) {
     // A person who is allin for SB + BB can't be new at the table, 
     // therefore not posting antes.
@@ -157,7 +159,7 @@ bool CPlayer::PostingAnte() {
   if (_bet.GetValue() <= 0) {
     return false;
   }
-  if (_bet.GetValue() >= p_engine_container->symbol_engine_tablelimits()->sblind()) {
+  if (_bet.GetValue() >= 1) { //!!!!!!!p_engine_container->symbol_engine_tablelimits()->sblind()) {
     // Assuming the ante is smaller as the small blind
     // There are exceptions, but we use this function 
     // only as one of many handreset-methods.

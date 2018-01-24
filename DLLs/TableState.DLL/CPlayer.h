@@ -16,6 +16,7 @@
 
 #include "Card.h"
 #include "CScrapedMoney.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CPlayer {
  public:
