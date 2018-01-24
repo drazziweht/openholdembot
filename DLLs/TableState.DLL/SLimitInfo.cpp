@@ -7,12 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Container-class that gets (unrewliable) info about gam-type 
+//   and blind-levels from title-evaluator and scraper.
+//   This information has to be evaluated, it should not be used directly. 
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "SLimitInfo.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CLimitInfo::CLimitInfo() {
   Reset();

@@ -14,9 +14,11 @@
 #ifndef INC_CTABLETITLE_H
 #define INC_CTABLETITLE_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+#include <afxwin.h>
+//!!!!!!!#include "CSpaceOptimizedGlobalObject.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
-class CTableTitle : public CSpaceOptimizedGlobalObject {
+class CTableTitle /*!!!!!!!: public CSpaceOptimizedGlobalObject*/ {
   friend class CDlgEditSymbols;
  public:
   CTableTitle();
