@@ -6,6 +6,7 @@
 *.pfb
 *.pdb
 *.exp
+*.idb
 *.jar
 *.lyx~
 *.lyx#
@@ -19,18 +20,22 @@
 *.opendb
 *.sdf
 *.suo
+*.tlog
 *.vspx
 ..bfg-report
-Debug
-DLLs/DLL_Template
+unsuccessfulbuild
+Debug/
+DLLs/DLL_Template/
+DLLs/TableState.DLL/Debug/
+DLLs/TableState.DLL/Release/
 Documentation/OpenHoldem_Manual.chm
-Documentation/Chapters/titlepage/images/Temp
+Documentation/Chapters/titlepage/images/Temp/
 Documentation/Chapters/titlepage/original_images
-OpenHoldem/Release - Optimized
-Release
-Release - Optimized
-scintilla/bin
-\.vs/OpenHoldem/v14/.suo
+OpenHoldem/Release - Optimized/
+Release/
+Release - Optimized/
+scintilla/bin/
+\.vs/OpenHoldem/v14/.suo/
 \.vs/
 
 
