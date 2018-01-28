@@ -10,8 +10,6 @@
 //
 // Purpose: Game-state class for the table
 //   (common cards and players)
-//   Actually it should be named CGameSate,
-//   but there already is a symbol engine with that name.
 //
 //******************************************************************************
 
@@ -66,6 +64,6 @@ private:
   Card    _common_cards[kNumberOfCommunityCards];
   CScrapedMoney _pot[kMaxNumberOfPots];
 private:
-  //CTableTitle _table_title;
+  CTableTitle _table_title;
 };
 
