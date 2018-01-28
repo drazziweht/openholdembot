@@ -25,7 +25,7 @@
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 #include "CSymbolEngineCasino.h"
@@ -52,8 +52,8 @@ double MinimumBetsizeDueToPreviousRaise() {
 double MaximumPossibleBetsizeBecauseOfBalance() {
 	assert(p_engine_container->symbol_engine_userchair() != NULL);
   assert(p_engine_container->symbol_engine_userchair()->userchair_confirmed());
-	double maximum_betsize = p_table_state->User()->_bet.GetValue()
-		+ p_table_state->User()->_balance.GetValue();
+	double maximum_betsize = TableState()->User()->_bet.GetValue()
+		+ TableState()->User()->_balance.GetValue();
 	if (maximum_betsize <= 0) {
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=17915#p124550
     write_log(k_always_log_errors, "[BetsizeAdjustment] Invalid balance and bet. Sum <= 0.\n");
@@ -74,7 +74,7 @@ double SwagAmountAjustedToCasino(double amount_to_raise_to) {
 	// http://forum.winholdem.net/wbb/viewtopic.php?t=1849
 	if (p_tablemap->swagtextmethod() == 2) {
 		// Old adjustment: call, so currentbet is too much
-		swag_amount_ajusted_to_casino = amount_to_raise_to - p_table_state->User()->_bet.GetValue();
+		swag_amount_ajusted_to_casino = amount_to_raise_to - TableState()->User()->_bet.GetValue();
 	}	else if (p_tablemap->swagtextmethod() == 3)	{
 		// Old adjustment: call + currentbet.
 		// Everything fine, nothing to do.
@@ -82,7 +82,7 @@ double SwagAmountAjustedToCasino(double amount_to_raise_to) {
 		// Default: swagtextmethod == 1
 		// Old adjustment: 0, currentbet and call are too much.
 		swag_amount_ajusted_to_casino = amount_to_raise_to 
-			- p_table_state->User()->_bet.GetValue()
+			- TableState()->User()->_bet.GetValue()
 			- p_engine_container->symbol_engine_chip_amounts()->call();
 	}
 	write_log(Preferences()->debug_betsize_adjustment(), "[BetsizeAdjustment] SwagAmountAjustedToCasino %.2f\n",
@@ -215,7 +215,7 @@ double RoundToBeautifulBetsize(const double amount_to_raise_to) {
 }
 
 double MaximumBetsizeDueToMaxOppStack() {
-	double maximum = p_engine_container->symbol_engine_chip_amounts()->call() + p_table_state->User()->_bet.GetValue() + p_engine_container->symbol_engine_chip_amounts()->MaxActiveOpponentStack();
+	double maximum = p_engine_container->symbol_engine_chip_amounts()->call() + TableState()->User()->_bet.GetValue() + p_engine_container->symbol_engine_chip_amounts()->MaxActiveOpponentStack();
 	write_log(Preferences()->debug_betsize_adjustment(), "[BetsizeAdjustment] MaximumBetsizeDueToMaxOppStack: %.2f\n", maximum);
 	assert(maximum > 0);
 	return maximum;

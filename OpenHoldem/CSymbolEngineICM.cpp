@@ -37,7 +37,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEnginePokerAction.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
@@ -300,8 +300,8 @@ bool CSymbolEngineICM::EvaluateSymbol(const CString name, double *result, bool l
 	{
 		if (IsBitSet(sym_playersseatedbits, i))
 		{
-			stacks[i] = p_table_state->Player(i)->_balance.GetValue();
-			sym_currentbet[i] = p_table_state->Player(i)->_bet.GetValue();
+			stacks[i] = TableState()->Player(i)->_balance.GetValue();
+			sym_currentbet[i] = TableState()->Player(i)->_bet.GetValue();
 		}
 	}
 

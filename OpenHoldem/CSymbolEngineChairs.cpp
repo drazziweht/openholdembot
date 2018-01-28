@@ -25,7 +25,7 @@
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -154,12 +154,12 @@ int CSymbolEngineChairs::SmallStackChair() {
       // not an opponent
       continue;
     }
-    if (!p_table_state->Player(i)->HasAnyCards()) {
+    if (!TableState()->Player(i)->HasAnyCards()) {
       // Not seated, not dealt or folded
       continue;
     }
-    if (p_table_state->Player(i)->stack() < smallest_stack) {
-      smallest_stack = p_table_state->Player(i)->stack();
+    if (TableState()->Player(i)->stack() < smallest_stack) {
+      smallest_stack = TableState()->Player(i)->stack();
       result = i;
     }
   }
@@ -176,12 +176,12 @@ int CSymbolEngineChairs::BigStackChair() {
       // not an opponent
       continue;
     }
-    if (!p_table_state->Player(i)->HasAnyCards()) {
+    if (!TableState()->Player(i)->HasAnyCards()) {
       // Not seated, not dealt or folded
       continue;
     }
-    if (p_table_state->Player(i)->stack() > biggest_stack) {
-      biggest_stack = p_table_state->Player(i)->stack();
+    if (TableState()->Player(i)->stack() > biggest_stack) {
+      biggest_stack = TableState()->Player(i)->stack();
       result = i;
     }
   }
@@ -240,7 +240,7 @@ int CSymbolEngineChairs::CalculateMissingSmallBlind() {
   }
   int dealposition1_chair = ChairByDealposition(1);
   assert(dealposition1_chair >= 0);
-  double currentbet_of_dealposition1_chair = p_table_state->Player(dealposition1_chair)->_bet.GetValue();
+  double currentbet_of_dealposition1_chair = TableState()->Player(dealposition1_chair)->_bet.GetValue();
   assert(currentbet_of_dealposition1_chair >= 0);
   if (currentbet_of_dealposition1_chair == p_engine_container->symbol_engine_tablelimits()->sblind()) {
     // Small blind found
@@ -290,8 +290,8 @@ bool CSymbolEngineChairs::PlayersBehindDealPosition2ChairDidAct() {
     return true;
   }
   for (int i = 0; i < _nchairs; ++i) {
-    if (p_table_state->Player(i)->HasAnyCards()
-      && (p_table_state->Player(i)->_bet.GetValue() == 0.0)) {
+    if (TableState()->Player(i)->HasAnyCards()
+      && (TableState()->Player(i)->_bet.GetValue() == 0.0)) {
       // Playing, but not yet acted
       return false;
     }

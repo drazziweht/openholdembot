@@ -25,7 +25,7 @@
 #include "CHandHistoryUncontested.h"
 
 #include "CScraper.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CHandHistoryWriter *p_handhistory_writer = NULL;
@@ -100,7 +100,7 @@ void CHandHistoryWriter::WinsUncontested(int chair) {
 CString CHandHistoryWriter::PlayerName(int chair) {
   assert(chair >= 0);
   assert(chair <= kLastChair);
-  return p_table_state->Player(chair)->name();
+  return TableState()->Player(chair)->name();
 }
 
 // Should be called

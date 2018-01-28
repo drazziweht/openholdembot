@@ -29,7 +29,7 @@
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -201,9 +201,9 @@ bool CSymbolEngineIsTournament::BetsAndBalancesAreTournamentLike() {
   // not necessarily for other late tables (fractional bets, uneven sums).
   double sum_of_all_chips = 0.0;
   for (int i=0; i<p_tablemap->nchairs(); i++) {
-	  if (p_table_state->Player(i)->active()==true) {
-	    sum_of_all_chips += p_table_state->Player(i)->_balance.GetValue();
-		  sum_of_all_chips += p_table_state->Player(i)->_bet.GetValue();}
+	  if (TableState()->Player(i)->active()==true) {
+	    sum_of_all_chips += TableState()->Player(i)->_balance.GetValue();
+		  sum_of_all_chips += TableState()->Player(i)->_bet.GetValue();}
   }
  write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Sum of chips at the table: %.2f\n",
     sum_of_all_chips);
@@ -235,7 +235,7 @@ bool CSymbolEngineIsTournament::AntesPresent() {
 	}
 	int players_with_antes = 0;
 	for (int i=0; i<p_tablemap->nchairs(); i++) {
-		double players_bet = p_table_state->Player(i)->_bet.GetValue();
+		double players_bet = TableState()->Player(i)->_bet.GetValue();
 		if ((players_bet > 0) && (players_bet < p_engine_container->symbol_engine_tablelimits()->sblind())) {
 			players_with_antes++;
 		}
@@ -245,7 +245,7 @@ bool CSymbolEngineIsTournament::AntesPresent() {
 
 bool CSymbolEngineIsTournament::TitleStringContainsIdentifier(
     const char *identifiers[], int number_of_identifiers) {
-	CString title = p_table_state->TableTitle()->Title();
+	CString title = TableState()->TableTitle()->Title();
 	title = title.MakeLower();
 	for (int i=0; i<number_of_identifiers; i++) {
     assert(identifiers[i] != "");
@@ -268,7 +268,7 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
 		write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] decision already locked\n");
 		return;
 	}
-  if (p_table_state->_s_limit_info.buyin() > 0) {
+  if (TableState()->_s_limit_info.buyin() > 0) {
    write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Tournament due to positive buyin detected\n");
     _istournament = true;
     _decision_locked = true;

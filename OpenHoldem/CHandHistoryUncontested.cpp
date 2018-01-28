@@ -19,7 +19,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 
@@ -63,7 +63,7 @@ void CHandHistoryUncontested::UpdateOnHeartbeat() {
     if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersactivebits(), i)) {
       CString message;
       message.Format("Player %s wins the pot uncontested\n",
-        p_table_state->Player(i)->name());
+        TableState()->Player(i)->name());
       p_handhistory_writer->AddMessage(message);
       _job_done = true;
       return;

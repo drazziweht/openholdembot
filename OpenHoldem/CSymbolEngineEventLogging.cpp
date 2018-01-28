@@ -21,8 +21,8 @@
 #include "CScraper.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
-#include "CTableTitle.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "CVersionInfo.h"
 
 CSymbolEngineEventLogging::CSymbolEngineEventLogging()

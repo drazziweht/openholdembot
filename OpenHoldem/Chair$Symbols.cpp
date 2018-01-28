@@ -17,13 +17,13 @@
 #include "CScraper.h"
 
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 double Chair$(const char *name)
 {
 	for (int i=0; i<p_tablemap->nchairs(); i++)
 	{
-		if (p_table_state->Player(i)->name().Find(&name[0]) != kNotFound)
+		if (TableState()->Player(i)->name().Find(&name[0]) != kNotFound)
 			return i;
 	}
 	return kUndefined;

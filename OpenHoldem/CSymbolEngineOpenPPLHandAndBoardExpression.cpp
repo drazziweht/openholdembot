@@ -22,7 +22,7 @@
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 const int prime_coded_card_ranks[k_rank_ace+1] = {
@@ -73,21 +73,21 @@ void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnMyTurn() {
 void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnHeartbeat() {
   if (p_engine_container->symbol_engine_isomaha()->isomaha()) {
     _prime_coded_hole_cards = PrimeCodedRanks(
-      p_table_state->User()->hole_cards(0)->GetOpenHoldemRank(),
-      p_table_state->User()->hole_cards(1)->GetOpenHoldemRank(),
-      p_table_state->User()->hole_cards(2)->GetOpenHoldemRank(),
-      p_table_state->User()->hole_cards(3)->GetOpenHoldemRank());
+      TableState()->User()->hole_cards(0)->GetOpenHoldemRank(),
+      TableState()->User()->hole_cards(1)->GetOpenHoldemRank(),
+      TableState()->User()->hole_cards(2)->GetOpenHoldemRank(),
+      TableState()->User()->hole_cards(3)->GetOpenHoldemRank());
   } else {
     _prime_coded_hole_cards = PrimeCodedRanks(
-      p_table_state->User()->hole_cards(0)->GetOpenHoldemRank(),
-      p_table_state->User()->hole_cards(1)->GetOpenHoldemRank());
+      TableState()->User()->hole_cards(0)->GetOpenHoldemRank(),
+      TableState()->User()->hole_cards(1)->GetOpenHoldemRank());
   }
 	_prime_coded_board_cards = PrimeCodedRanks(
-    p_table_state->CommonCards(0)->GetOpenHoldemRank(),
-    p_table_state->CommonCards(1)->GetOpenHoldemRank(),
-    p_table_state->CommonCards(2)->GetOpenHoldemRank(),
-    p_table_state->TurnCard()->GetOpenHoldemRank(),
-    p_table_state->RiverCard()->GetOpenHoldemRank());
+    TableState()->CommonCards(0)->GetOpenHoldemRank(),
+    TableState()->CommonCards(1)->GetOpenHoldemRank(),
+    TableState()->CommonCards(2)->GetOpenHoldemRank(),
+    TableState()->TurnCard()->GetOpenHoldemRank(),
+    TableState()->RiverCard()->GetOpenHoldemRank());
   write_log(Preferences()->debug_hand_and_board_expressions(), 
 		"[CSymbolEngineOpenPPLHandAndBoardExpression] _prime_coded_hole_cards = %i\n",
 		_prime_coded_hole_cards);
@@ -234,10 +234,10 @@ bool CSymbolEngineOpenPPLHandAndBoardExpression::EvaluateSymbol(const CString na
         // Code below works for both HoldEm and Omaha
         // Undefined cards are OK
 				if (!IsCardInCollection(icard_with_specific_suit,
-					  p_table_state->User()->hole_cards(0)->GetValue(),
-            p_table_state->User()->hole_cards(1)->GetValue(),
-            p_table_state->User()->hole_cards(2)->GetValue(),
-            p_table_state->User()->hole_cards(3)->GetValue())) {
+					  TableState()->User()->hole_cards(0)->GetValue(),
+            TableState()->User()->hole_cards(1)->GetValue(),
+            TableState()->User()->hole_cards(2)->GetValue(),
+            TableState()->User()->hole_cards(3)->GetValue())) {
 					write_log(Preferences()->debug_hand_and_board_expressions(),
 						"[CSymbolEngineOpenPPLHandAndBoardExpression] No match, concrete hole cards do not fit\n");
 					*result = false;
@@ -245,11 +245,11 @@ bool CSymbolEngineOpenPPLHandAndBoardExpression::EvaluateSymbol(const CString na
 				}
 			}	else {
 				if (!IsCardInCollection(icard_with_specific_suit,
-            p_table_state->CommonCards(0)->GetValue(),
-            p_table_state->CommonCards(1)->GetValue(),
-            p_table_state->CommonCards(2)->GetValue(),
-            p_table_state->TurnCard()->GetValue(),
-            p_table_state->RiverCard()->GetValue())) 	{
+            TableState()->CommonCards(0)->GetValue(),
+            TableState()->CommonCards(1)->GetValue(),
+            TableState()->CommonCards(2)->GetValue(),
+            TableState()->TurnCard()->GetValue(),
+            TableState()->RiverCard()->GetValue())) 	{
 					write_log(Preferences()->debug_hand_and_board_expressions(),
 						"[CSymbolEngineOpenPPLHandAndBoardExpression] No match, concrete board cards do not fit\n");
 					*result = false;

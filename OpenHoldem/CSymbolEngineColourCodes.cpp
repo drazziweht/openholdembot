@@ -18,7 +18,7 @@
 
 #include "CScraper.h"
 #include "CStringMatch.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineColourCodes::CSymbolEngineColourCodes() {
@@ -59,7 +59,7 @@ bool CSymbolEngineColourCodes::EvaluateSymbol(const CString name, double *result
   if ((memcmp(name, "colourcode", 10) == 0) && (strlen(name) == 11)) {
     // colourcode0..colourcode9
     int index = RightDigitCharacterToNumber(name);
-    *result = p_table_state->Player(index)->colourcode();
+    *result = TableState()->Player(index)->colourcode();
     return true;
   }
 	// Symbol of a different symbol-engine
@@ -76,5 +76,5 @@ int CSymbolEngineColourCodes::ColourCodeToDisplay(const int chair) {
   // Scraped colour-code 
   // Coloour-code for PT-Icon removed in rev. 4283,
   // as PT4 does no longer support the auto-rate-icon
-  return p_table_state->Player(chair)->colourcode();
+  return TableState()->Player(chair)->colourcode();
 }

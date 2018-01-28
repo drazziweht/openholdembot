@@ -21,7 +21,7 @@
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 int handrank_table_2652[kMaxNumberOfPlayers][kNumberOfStartingHands] =
@@ -98,8 +98,8 @@ void CSymbolEngineHandrank::CalculateHandrank() {
   char		cardstr[10] = { 0 };
   // Get name string containing the players' current cards
   GetCardstring(cardstr,
-    p_table_state->User()->hole_cards(0)->GetValue(),
-    p_table_state->User()->hole_cards(1)->GetValue());
+    TableState()->User()->hole_cards(0)->GetValue(),
+    TableState()->User()->hole_cards(1)->GetValue());
   // !!!! looks wrong
   // !!!! int _nopponents = p_engine_container->symbol_engine_prwin()->nopponents_for_prwin();
   int nopponents = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsdealt();

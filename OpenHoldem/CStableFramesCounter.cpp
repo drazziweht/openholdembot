@@ -22,7 +22,7 @@
 #include "CScraper.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIsOmaha.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CStableFramesCounter *p_stableframescounter = NULL;
@@ -63,15 +63,15 @@ void CStableFramesCounter::SaveCurrentState() {
 	*/
   _myturnbitslast = p_engine_container->symbol_engine_autoplayer()->myturnbits();
   for (int i=0; i<kNumberOfCommunityCards; i++) {
-    _card_common_last[i] = p_table_state->CommonCards(i)->GetValue();
+    _card_common_last[i] = TableState()->CommonCards(i)->GetValue();
   }
   for (int i=0; i<kMaxNumberOfPlayers; i++) {
     for (int j = 0; j < kMaxNumberOfCardsPerPlayer; ++j) {
-      _card_player_last[i][j] = p_table_state->Player(i)->hole_cards(j)->GetValue();
+      _card_player_last[i][j] = TableState()->Player(i)->hole_cards(j)->GetValue();
     }
-		_dealer_last[i]         = p_table_state->Player(i)->dealer();
-		_playerbalance_last[i]  = p_table_state->Player(i)->_balance.GetValue();
-		_playerbet_last[i]      = p_table_state->Player(i)->_bet.GetValue();
+		_dealer_last[i]         = TableState()->Player(i)->dealer();
+		_playerbalance_last[i]  = TableState()->Player(i)->_balance.GetValue();
+		_playerbet_last[i]      = TableState()->Player(i)->_bet.GetValue();
 	}
 }
 
@@ -102,7 +102,7 @@ int CStableFramesCounter::UpdateNumberOfStableFrames() {
   }
 	for (int i=0; i<kNumberOfCommunityCards; i++) {
 		if(!same_scrape) break;
-    if (p_table_state->CommonCards(i)->GetValue() != _card_common_last[i]) {
+    if (TableState()->CommonCards(i)->GetValue() != _card_common_last[i]) {
 			same_scrape = false;
 			write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Community-cards don't match\n");
 		}
@@ -112,18 +112,18 @@ int CStableFramesCounter::UpdateNumberOfStableFrames() {
       break;
     }
     write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Checking player: %d\n", i);
-    if (p_table_state->Player(i)->dealer() != _dealer_last[i]) {
+    if (TableState()->Player(i)->dealer() != _dealer_last[i]) {
 			same_scrape = false;
 			write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Dealer%d-position does not match\n", i);
-		}	else if (p_table_state->Player(i)->_balance.GetValue() != _playerbalance_last[i])	{
+		}	else if (TableState()->Player(i)->_balance.GetValue() != _playerbalance_last[i])	{
 			same_scrape = false;
 			write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Player%d-balance does not match\n", i);
-		}	else if (p_table_state->Player(i)->_bet.GetValue()	 != _playerbet_last[i]) {
+		}	else if (TableState()->Player(i)->_bet.GetValue()	 != _playerbet_last[i]) {
 			same_scrape = false;
 			write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Player%d-bet does not match\n", i);
     } else {
       for (int j = 0; j < kMaxNumberOfCardsPerPlayer; ++j) {
-        if (p_table_state->Player(i)->hole_cards(j)->GetValue() != _card_player_last[i][j]) {
+        if (TableState()->Player(i)->hole_cards(j)->GetValue() != _card_player_last[i][j]) {
           same_scrape = false;
           write_log(Preferences()->debug_stableframescounter(), "[CStableFramesCounter] Player%d-cards don't match\n", i);
           break;

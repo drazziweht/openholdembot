@@ -28,8 +28,8 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
-#include "CTableTitle.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "..\CTablemap\CTablemap.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
@@ -177,7 +177,7 @@ bool CHandresetDetector::IsHandresetByDealerChair() {
 }
 
 bool CHandresetDetector::IsHandresetByUserCards() {
-	bool ishandreset = (p_table_state->User()->HasKnownCards()
+	bool ishandreset = (TableState()->User()->HasKnownCards()
 		&& (playercards[0] != last_playercards[0]) 
 		&& (playercards[1] != last_playercards[1]));
 	write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Handreset by cards: %s\n",
@@ -303,7 +303,7 @@ bool CHandresetDetector::IsHandresetByButtonsAfterFold() {
 
 bool CHandresetDetector::SmallBlindExists() {
   for (int i=0; i<p_tablemap->nchairs(); ++i) {
-    double players_bet = p_table_state->Player(i)->_bet.GetValue();
+    double players_bet = TableState()->Player(i)->_bet.GetValue();
     if ((players_bet > 0) && (players_bet < _bblind)) {
       // Either SB or ante, first orbit preflop, hand-reset
       return true;
@@ -335,30 +335,30 @@ void CHandresetDetector::GetNewSymbolValues() {
 		dealerchair = p_engine_container->symbol_engine_dealerchair()->dealerchair();	
 		write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Setting new dealerchair to [%i]\n", dealerchair);
 	}
-	if (IsValidHandNumber(p_table_state->_s_limit_info.handnumber()))	{
+	if (IsValidHandNumber(TableState()->_s_limit_info.handnumber()))	{
 		write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Setting handnumber to [%s]\n", handnumber);
-		handnumber = p_table_state->_s_limit_info.handnumber();	
+		handnumber = TableState()->_s_limit_info.handnumber();	
 	}	else {
 		write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Setting handnumber to [%s] was skipped. Reason: [digits number not in range]\n", handnumber);
 	}
 	assert(p_engine_container->symbol_engine_userchair() != NULL);
 	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
   _potsize = p_engine_container->symbol_engine_chip_amounts()->pot();
-  _community_cards = p_table_state->NumberOfCommunityCards();
+  _community_cards = TableState()->NumberOfCommunityCards();
   _nopponentsplaying = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying();
   _bblind = p_engine_container->symbol_engine_tablelimits()->bblind();
-  _showdown_cards_visible = p_table_state->ShowdownCardsVisible();
-  _antes_visible = p_table_state->AntesVisible();
+  _showdown_cards_visible = TableState()->ShowdownCardsVisible();
+  _antes_visible = TableState()->AntesVisible();
   _buttons_visible = p_casino_interface->IsMyTurn();
 	for (int i=0; i<kMaxNumberOfCardsPerPlayer; i++) {
 		if ((userchair >= 0) && (userchair < p_tablemap->nchairs())) {
-      playercards[i] = p_table_state->User()->hole_cards(i)->GetValue();
+      playercards[i] = TableState()->User()->hole_cards(i)->GetValue();
 		} else {
 			playercards[i] = CARD_UNDEFINED;
 		}
 	}
   for (int i=0; i<p_tablemap->nchairs(); ++i) {
-    _balance[i] = p_table_state->Player(i)->_balance.GetValue();
+    _balance[i] = TableState()->Player(i)->_balance.GetValue();
   }
   assert(p_table_title != NULL);
   _ohreplay_framenumber = p_table_title->OHReplayFrameNumber();

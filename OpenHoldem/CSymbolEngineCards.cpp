@@ -24,7 +24,7 @@
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "inlines/eval.h"
 #include "..\CTransform\CTransform.h"
 
@@ -113,20 +113,20 @@ void CSymbolEngineCards::CalcPocketTests() {
 	_issuited    = false;
 	_isconnector = false;
 
-	if (!p_table_state->User()->HasKnownCards()) 	{
+	if (!TableState()->User()->HasKnownCards()) 	{
 		return;
 	}
 
-  if (p_table_state->User()->hole_cards(0)->GetOpenHoldemRank()
-			== p_table_state->User()->hole_cards(1)->GetOpenHoldemRank()) {
+  if (TableState()->User()->hole_cards(0)->GetOpenHoldemRank()
+			== TableState()->User()->hole_cards(1)->GetOpenHoldemRank()) {
 		_ispair = true;															
 	}
-	if (p_table_state->User()->hole_cards(0)->GetSuit()
-			== p_table_state->User()->hole_cards(1)->GetSuit())	{
+	if (TableState()->User()->hole_cards(0)->GetSuit()
+			== TableState()->User()->hole_cards(1)->GetSuit())	{
 		_issuited = true;														
 	}
-	if (abs((p_table_state->User()->hole_cards(0)->GetOpenHoldemRank()
-			- p_table_state->User()->hole_cards(1)->GetOpenHoldemRank())) == 1)	{
+	if (abs((TableState()->User()->hole_cards(0)->GetOpenHoldemRank()
+			- TableState()->User()->hole_cards(1)->GetOpenHoldemRank())) == 1)	{
 		_isconnector = true;														
 	}
 }
@@ -201,7 +201,7 @@ void CSymbolEngineCards::CalcFlushesStraightsSets()
 	// player cards
 	CardMask_RESET(plCards);
 	for (int i=0; i<NumberOfCardsPerPlayer(); i++)	{
-    Card* card = p_table_state->User()->hole_cards(i);
+    Card* card = TableState()->User()->hole_cards(i);
 		if (card->IsKnownCard())	{
 			write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] Setting card mask player: %i\n",
 				card);
@@ -212,7 +212,7 @@ void CSymbolEngineCards::CalcFlushesStraightsSets()
 	// common cards
 	CardMask_RESET(comCards);
 	for (int i=0; i<kNumberOfCommunityCards; i++)	{
-		Card *card = p_table_state->CommonCards(i);
+		Card *card = TableState()->CommonCards(i);
 		if (card->IsKnownCard())		{
 			write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] Setting card mask common (and player): %i\n",
         card->GetValue());
@@ -495,7 +495,7 @@ void CSymbolEngineCards::CalcFlushesStraightsSets()
 void CSymbolEngineCards::CalculateCommonCards() {
 	_ncommoncardsknown = 0;
 	for (int i=0; i<kNumberOfCommunityCards; i++)	{
-    if (p_table_state->CommonCards(i)->IsKnownCard())		{
+    if (TableState()->CommonCards(i)->IsKnownCard())		{
 			_ncommoncardsknown++;							
 		}
 	}
@@ -515,7 +515,7 @@ void CSymbolEngineCards::CalcUnknownCards()
 	for (int i=0; i<NumberOfCardsPerPlayer(); i++)
 	{
 		// player cards
-    Card* card = p_table_state->User()->hole_cards(i);
+    Card* card = TableState()->User()->hole_cards(i);
 		if (card->IsKnownCard())
 		{
       CardMask_SET(stdCards, card->GetValue());
@@ -525,7 +525,7 @@ void CSymbolEngineCards::CalcUnknownCards()
 	for (int i=0; i<kNumberOfCommunityCards; i++)
 	{
 		// common cards
-		Card *card = p_table_state->CommonCards(i);
+		Card *card = TableState()->CommonCards(i);
 		if (card->IsKnownCard())
 		{
       CardMask_SET(stdCards, card->GetValue());
@@ -545,13 +545,13 @@ void CSymbolEngineCards::CalcUnknownCards()
 		write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] userchair confirmed; calculating nouts...\n");
 		// iterate through every unseen card and see what happens to our handvals
 		for (int i=0; i<kNumberOfCardsPerDeck; i++)	{
-      if (i!=p_table_state->User()->hole_cards(0)->GetValue()  
-				  && i!=p_table_state->User()->hole_cards(1)->GetValue() 
-          && i!=p_table_state->CommonCards(0)->GetValue()
-          && i!=p_table_state->CommonCards(1)->GetValue()
-          && i!=p_table_state->CommonCards(2)->GetValue()
-          && i!=p_table_state->TurnCard()->GetValue()
-          && i!=p_table_state->RiverCard()->GetValue()) {
+      if (i!=TableState()->User()->hole_cards(0)->GetValue()  
+				  && i!=TableState()->User()->hole_cards(1)->GetValue() 
+          && i!=TableState()->CommonCards(0)->GetValue()
+          && i!=TableState()->CommonCards(1)->GetValue()
+          && i!=TableState()->CommonCards(2)->GetValue()
+          && i!=TableState()->TurnCard()->GetValue()
+          && i!=TableState()->RiverCard()->GetValue()) {
 				CardMask_SET(stdCards, i);
 				handval_std_plus1 = Hand_EVAL_N(stdCards, nstdCards+1);
 				CardMask_UNSET(stdCards, i);
@@ -624,14 +624,14 @@ bool CSymbolEngineCards::IsHand(const char *name) {
 		cardrank[1] = temp;
 	}
   // playercards
-	plcardrank[0] = p_table_state->User()->hole_cards(0)->GetOpenHoldemRank();
-	plcardrank[1] = p_table_state->User()->hole_cards(1)->GetOpenHoldemRank();
+	plcardrank[0] = TableState()->User()->hole_cards(0)->GetOpenHoldemRank();
+	plcardrank[1] = TableState()->User()->hole_cards(1)->GetOpenHoldemRank();
 	if (plcardrank[1] > plcardrank[0])	{
 		SwapInts(&plcardrank[0], &plcardrank[1]);
 	}
   bool plsuited = false;
-  if (p_table_state->User()->hole_cards(0)->GetSuit() == 
-		  p_table_state->User()->hole_cards(1)->GetSuit()) {
+  if (TableState()->User()->hole_cards(0)->GetSuit() == 
+		  TableState()->User()->hole_cards(1)->GetSuit()) {
 		plsuited = true;
 	}
 	// check for non suited/offsuit match
@@ -661,17 +661,17 @@ bool CSymbolEngineCards::EvaluateSymbol(const CString name, double *result, bool
 	if (memcmp(name, "$", 1)==0) {
     int right_most_digit = RightDigitCharacterToNumber(name);
 		if (memcmp(name, "$$pc", 4)==0)	{
-      *result = p_table_state->User()->hole_cards(right_most_digit)->GetValue();
+      *result = TableState()->User()->hole_cards(right_most_digit)->GetValue();
 		}	else if (memcmp(name, "$$pr", 4)==0) {
-			*result = p_table_state->User()->hole_cards(right_most_digit)->GetOpenHoldemRank();
+			*result = TableState()->User()->hole_cards(right_most_digit)->GetOpenHoldemRank();
 		}	else if (memcmp(name, "$$ps", 4)==0) {
-			*result = p_table_state->User()->hole_cards(right_most_digit)->GetSuit();
+			*result = TableState()->User()->hole_cards(right_most_digit)->GetSuit();
 		} else if (memcmp(name, "$$cc", 4)==0) {
-      *result = p_table_state->CommonCards(right_most_digit)->GetValue();
+      *result = TableState()->CommonCards(right_most_digit)->GetValue();
 		}	else if (memcmp(name, "$$cr", 4)==0) {
-      *result = p_table_state->CommonCards(right_most_digit)->GetOpenHoldemRank();
+      *result = TableState()->CommonCards(right_most_digit)->GetOpenHoldemRank();
 		}	else if (memcmp(name, "$$cs", 4)==0) {
-			*result = p_table_state->CommonCards(right_most_digit)->GetSuit();
+			*result = TableState()->CommonCards(right_most_digit)->GetSuit();
 		}	else if (memcmp(name, "$", 1)==0) {
 			*result = IsHand(name);
 		}	else {

@@ -20,7 +20,7 @@
 #include "CSymbolEngineGameType.h"
 #include "CSymbolengineTableLimits.h"
 #include "CSymbolengineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 CWhiteInfoBox *p_white_info_box = NULL;
@@ -39,7 +39,7 @@ void CWhiteInfoBox::Draw(RECT client_rect, LOGFONT logfont, CDC *pDC,
 	CFont		*oldfont = NULL, cFont;
 	int			left = 0, top = 0, right = 0, bottom = 0;
 		
-	bool sym_playing		= p_table_state->User()->HasKnownCards();
+	bool sym_playing		= TableState()->User()->HasKnownCards();
 	// "White box" in the OpenHoldem-GUI with basic important info
 	const int k_basic_height = 2;				// pixels
 	const int k_extra_height_per_line = 16;	// pixels

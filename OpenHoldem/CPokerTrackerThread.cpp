@@ -32,7 +32,7 @@
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CPokerTrackerThread	*p_pokertracker_thread = NULL;
@@ -236,13 +236,13 @@ bool CPokerTrackerThread::CheckIfNameExistsInDB(int chair)
 	write_log(Preferences()->debug_pokertracker(), "[PokerTracker] CheckIfNameExistsInDB() chair = %i\n", chair);
 	
   assert(p_table_state != NULL);
-	if (p_table_state->Player(chair)->name() == "")	{
+	if (TableState()->Player(chair)->name() == "")	{
 		write_log(Preferences()->debug_pokertracker(), "[PokerTracker] CheckIfNameExistsInDB() No name known for this chair\n");
 		return false;
 	}
 
-	if (p_table_state->Player(chair)->name().GetLength() <= kMaxLengthOfPlayername) 	{
-		strcpy_s(oh_scraped_name, kMaxLengthOfPlayername, p_table_state->Player(chair)->name());
+	if (TableState()->Player(chair)->name().GetLength() <= kMaxLengthOfPlayername) 	{
+		strcpy_s(oh_scraped_name, kMaxLengthOfPlayername, TableState()->Player(chair)->name());
 	}
 
 	write_log(Preferences()->debug_pokertracker(), "[PokerTracker] CheckIfNameExistsInDB() Scraped name: [%s]\n", oh_scraped_name);
@@ -289,8 +289,8 @@ bool CPokerTrackerThread::CheckIfNameHasChanged(int chair)
 	memset(best_name, 0, kMaxLengthOfPlayername);
 	
   //!!!!! bad code, copying to char-array
-	if (p_table_state->Player(chair)->name() == "") return false;
-	strcpy_s(oh_scraped_name, kMaxLengthOfPlayername, p_table_state->Player(chair)->name());
+	if (TableState()->Player(chair)->name() == "") return false;
+	strcpy_s(oh_scraped_name, kMaxLengthOfPlayername, TableState()->Player(chair)->name());
 
 	if (NameLooksLikeBadScrape(oh_scraped_name))return false;
 	// We already have the name, and it has not changed since we last checked, so do nothing

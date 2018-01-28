@@ -27,7 +27,7 @@
 #include "CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CSymbolEngineTableLimits.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CRebuyManagement *p_rebuymanagement = NULL;
@@ -82,7 +82,7 @@ bool CRebuyManagement::NoCards(){
     write_log(Preferences()->debug_rebuy(), "[CRebuyManagement] No_Cards: true, as userchair not detected\n");
 		return true;
 	}
-	if (!p_table_state->User()->HasKnownCards()) 	{
+	if (!TableState()->User()->HasKnownCards()) 	{
     write_log(Preferences()->debug_rebuy(), "[CRebuyManagement] No_Cards: true.\n");
 		return true;
 	}
@@ -147,7 +147,7 @@ void CRebuyManagement::ExecuteRebuyScript() {
 	double BigBlind = p_engine_container->symbol_engine_tablelimits()->bblind();
 	double BigBet = p_engine_container->symbol_engine_tablelimits()->bigbet();
 	int UserChair = p_engine_container->symbol_engine_userchair()->userchair();
-	double Balance = p_table_state->User()->_balance.GetValue();
+	double Balance = TableState()->User()->_balance.GetValue();
 	double TargetAmount = p_function_collection->Evaluate(k_standard_function_names[k_hopper_function_rebuy]);
 	CString RebuyScript = Preferences()->rebuy_script();
 	CString CommandLine;

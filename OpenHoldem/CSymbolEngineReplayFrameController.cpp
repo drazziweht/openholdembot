@@ -26,7 +26,7 @@
 #include "CReplayFrame.h"
 #include "CStableFramesCounter.h"
 #include "CSymbolEngineAutoplayer.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "CSymbolEngineCasino.h"
 
@@ -69,7 +69,7 @@ void CSymbolEngineReplayFrameController::UpdateOnHeartbeat() {
 	  return;
 	}  
 	if ((Preferences()->replay_record() == kShootReplyFramesOnEveryChangeWhilePlaying)	
-		  && p_table_state->User()->HasKnownCards()) {
+		  && TableState()->User()->HasKnownCards()) {
 		write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] Replay required (on change while in hand)\n");
 	  ShootReplayFrameIfNotYetDone();
 	  return;

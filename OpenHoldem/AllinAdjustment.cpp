@@ -24,7 +24,7 @@
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "SwagAdjustment.h"
 
@@ -40,7 +40,7 @@ bool ChangeBetsizeToAllin(double amount_to_raise_to) {
     return false;
   }
   // Safety measure: good balance?
-  if (p_table_state->User()->_balance.GetValue() <= 0.0) {
+  if (TableState()->User()->_balance.GetValue() <= 0.0) {
     write_log(Preferences()->debug_allin_adjustment(),
       "[AllinAdjustment] Cancelled due to bad users balance\n");
     return false;
@@ -51,7 +51,7 @@ bool ChangeBetsizeToAllin(double amount_to_raise_to) {
   // If our currentbet is "too large" or our balance "too low"
   // then we alreadz should be allin or something is wrong.
   // Act conservatively here
-  if (p_table_state->User()->_bet.GetValue() >= critical_betsize) {
+  if (TableState()->User()->_bet.GetValue() >= critical_betsize) {
     write_log(Preferences()->debug_allin_adjustment(),
       "[AllinAdjustment] Cancelled as we already should be allin if input was right.\n");
     return false;

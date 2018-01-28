@@ -26,7 +26,7 @@
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CLazyScraper *p_lazyscraper = NULL;
@@ -214,8 +214,8 @@ bool CLazyScraper::NeedCommunityCards() {
 
 void CLazyScraper::ScrapeUnknownPlayerNames() {
 	for (int i=0; i<p_tablemap->nchairs(); i++) {
-		if (p_table_state->Player(i)->seated()
-			  && (p_table_state->Player(i)->name() == "")) {
+		if (TableState()->Player(i)->seated()
+			  && (TableState()->Player(i)->name() == "")) {
 			p_scraper->ScrapeName(i);
 		}
 	}

@@ -22,7 +22,7 @@
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineBlinds::CSymbolEngineBlinds()
@@ -98,7 +98,7 @@ void CSymbolEngineBlinds::CalculateBlinds()
 	else
 	{
 		// Is Hero SB or BB ?
-		double my_bet = p_table_state->User()->_bet.GetValue();
+		double my_bet = TableState()->User()->_bet.GetValue();
 
 		if (my_bet <= p_engine_container->symbol_engine_tablelimits()->sblind() && my_bet > 0)
 		{
@@ -116,7 +116,7 @@ void CSymbolEngineBlinds::CalculateBlinds()
 		for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+p_tablemap->nchairs(); i++)
 		{
 			int chair = i%p_tablemap->nchairs();
-			double p_bet = p_table_state->Player(chair)->_bet.GetValue();
+			double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 			// search SB
 			if (sbchair == kUndefined && p_bet <= p_engine_container->symbol_engine_tablelimits()->sblind() && p_bet > 0) 
@@ -142,7 +142,7 @@ void CSymbolEngineBlinds::CalculateBlinds()
 			for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+p_tablemap->nchairs(); i++)
 			{
 				int chair = i%p_tablemap->nchairs();
-				double p_bet = p_table_state->Player(chair)->_bet.GetValue();
+				double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 				// 1st caller/raiser after dealer is sb
 				if (p_bet >= p_engine_container->symbol_engine_tablelimits()->bblind() && sbchair == kUndefined && chair != bbchair)

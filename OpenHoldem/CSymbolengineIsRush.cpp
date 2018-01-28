@@ -21,7 +21,7 @@
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CSymbolEngineTime.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 // Maximum average time between last action and handreset

@@ -23,7 +23,7 @@
 #include "CScraper.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolenginePokerval.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CSymbolEnginePrwin::CSymbolEnginePrwin() {
 	// The values of some symbol-engines depend on other engines.
@@ -90,7 +90,7 @@ void CSymbolEnginePrwin::CalculateNhands() {
 	CardMask_RESET(plCards);
 	nplCards = 0;
 	for (int i=0; i<NumberOfCardsPerPlayer(); i++) {
-    Card* card = p_table_state->User()->hole_cards(i);
+    Card* card = TableState()->User()->hole_cards(i);
     if (card->IsKnownCard()) {
       CardMask_SET(plCards, card->GetValue());
 			nplCards++;
@@ -100,7 +100,7 @@ void CSymbolEnginePrwin::CalculateNhands() {
 	CardMask_RESET(comCards);
 	ncomCards = 0;
 	for (int i=0; i<kNumberOfCommunityCards; i++) {
-    Card *card = p_table_state->CommonCards(i);
+    Card *card = TableState()->CommonCards(i);
     if (card->IsKnownCard()) {
       CardMask_SET(comCards, card->GetValue());
 			ncomCards++;

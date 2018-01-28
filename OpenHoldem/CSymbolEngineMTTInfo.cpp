@@ -18,7 +18,7 @@
 
 #include "CScraper.h"
 #include "CStringMatch.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineMTTInfo::CSymbolEngineMTTInfo() {

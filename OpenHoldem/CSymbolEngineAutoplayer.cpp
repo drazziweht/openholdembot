@@ -26,7 +26,7 @@
 #include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 
@@ -120,7 +120,7 @@ void CSymbolEngineAutoplayer::CalculateSitInState() {
 }
 
 bool CSymbolEngineAutoplayer::isfinaltable() {
-  return p_table_state->_s_limit_info.is_final_table();
+  return TableState()->_s_limit_info.is_final_table();
 }
 
 void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
@@ -140,7 +140,7 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
 		_isfinalanswer = false;
 	}
   // if we are not playing (occluded?) 2008-03-25 Matrix
-	else if (!p_table_state->User()->HasKnownCards())	{
+	else if (!TableState()->User()->HasKnownCards())	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because the user is \"not playing\"\n");
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Chair %d (locked) has no cards\n", p_engine_container->symbol_engine_userchair()->userchair());
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Possibly a tablemap-problem\n");

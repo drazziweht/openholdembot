@@ -50,7 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Preferences", "DLLs\Preferences_DLL\Preferences.vcxproj", "{11E82A06-6DEB-49EA-A176-A7F9C1164F11}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TableState", "DLLs\TableState.DLL\TableState.vcxproj", "{869175AB-75A6-4A8C-A524-AE25971C63E8}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TableState", "DLLs\TableState_DLL\TableState.vcxproj", "{869175AB-75A6-4A8C-A524-AE25971C63E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

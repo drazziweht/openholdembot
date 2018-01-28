@@ -211,7 +211,6 @@
     <ClCompile Include="AllinAdjustment.cpp" />
     <ClCompile Include="BetpotCalculations.cpp" />
     <ClCompile Include="CAllinSlider.cpp" />
-    <ClCompile Include="Card.cpp" />
     <ClCompile Include="CAutoplayerButton.cpp" />
     <ClCompile Include="CBetsizeInputBox.cpp" />
     <ClCompile Include="CBlindGuesser.cpp" />
@@ -240,10 +239,8 @@
     <ClCompile Include="CParseTreeTerminalNodeIdentifier.cpp" />
     <ClCompile Include="CParseTreeTerminalNodeNumber.cpp" />
     <ClCompile Include="CParseTreeTerminalNodeUserVariable.cpp" />
-    <ClCompile Include="CPlayer.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="crc32hash.cpp" />
-    <ClCompile Include="CScrapedMoney.cpp" />
     <ClCompile Include="CSelftestParserEvaluator.cpp" />
     <ClCompile Include="CShankySymbolNameTranslator.cpp" />
     <ClCompile Include="CSpaceOptimizedFormulaObject.cpp" />
@@ -266,8 +263,6 @@
     <ClCompile Include="CSymbolengineUserDLL.cpp" />
     <ClCompile Include="CSymbolEngineVersus.cpp" />
     <ClCompile Include="CSymbolEngineFormulaSwitching.cpp" />
-    <ClCompile Include="CTableState.cpp" />
-    <ClCompile Include="CTableTitle.cpp" />
     <ClCompile Include="CTitleEvaluator.cpp" />
     <ClCompile Include="CValidator.cpp" />
     <ClCompile Include="CWhiteInfoBox.cpp" />
@@ -281,7 +276,6 @@
     <ClCompile Include="COpenHoldemStarter.cpp" />
     <ClCompile Include="CWatchdog.cpp" />
     <ClCompile Include="Singletons.cpp" />
-    <ClCompile Include="SLimitInfo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Optimized|Win32'">Create</PrecompiledHeader>
@@ -380,7 +374,6 @@
     <ClCompile Include="CTableMapLoader.cpp" />
     <ClCompile Include="CTablePositioner.cpp" />
     <ClCompile Include="CTablepointChecker.cpp" />
-    <ClCompile Include="CPokerTrackerLookUp.cpp" />
     <ClCompile Include="CPokerTrackerThread.cpp" />
     <ClCompile Include="CIteratorThread.cpp" />
     <ClCompile Include="PrWinHandranges.cpp" />
@@ -388,7 +381,6 @@
     <ClCompile Include="Bitmaps.cpp" />
     <ClCompile Include="CLazyScraper.cpp" />
     <ClCompile Include="CScraper.cpp" />
-    <ClCompile Include="CardFunctions.cpp" />
     <ClCompile Include="CStringHashtableTemplate.cpp" />
     <ClCompile Include="CStringMatch.cpp" />
     <ClCompile Include="NumericalFunctions.cpp" />
@@ -480,7 +472,6 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenHoldem_Preferences__feel_free_to_rename_this_file_to_whatever_you_like.INI" />
-    <None Include="..\##_OpenHoldem_Release_Directory_##\sources of code.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\ManualMode Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OHReplay Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenHoldem Release Notes.txt" />
@@ -494,7 +485,6 @@
     <ClInclude Include="AllinAdjustment.h" />
     <ClInclude Include="BetpotCalculations.h" />
     <ClInclude Include="CAllinSlider.h" />
-    <ClInclude Include="Card.h" />
     <ClInclude Include="CAutoplayerButton.h" />
     <ClInclude Include="CBetsizeInputBox.h" />
     <ClInclude Include="CBlindGuesser.h" />
@@ -525,10 +515,8 @@
     <ClInclude Include="CParseTreeTerminalNodeIdentifier.h" />
     <ClInclude Include="CParseTreeTerminalNodeNumber.h" />
     <ClInclude Include="CParseTreeTerminalNodeuserVariable.h" />
-    <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPopupHandler.h" />
     <ClInclude Include="crc32hash.h" />
-    <ClInclude Include="CScrapedMoney.h" />
     <ClInclude Include="CSelftestParserEvaluator.h" />
     <ClInclude Include="CShankySymbolNameTranslator.h" />
     <ClInclude Include="CSpaceOptimizedFormulalObject.h" />
@@ -547,13 +535,10 @@
     <ClInclude Include="CSymbolengineNutFullhouseOrFourOfAKind.h" />
     <ClInclude Include="CSymbolEngineOpenPPL.h" />
     <ClInclude Include="CSymbolEnginePokerAction.h" />
-    <ClInclude Include="CSymbolEngineRaisers.h" />
     <ClInclude Include="CSymbolengineTableStats.h" />
     <ClInclude Include="CSymbolengineUserDLL.h" />
     <ClInclude Include="CSymbolengineVersus.h" />
     <ClInclude Include="CSymbolEngineFormulaSwitching.h" />
-    <ClInclude Include="CTableState.h" />
-    <ClInclude Include="CTableTitle.h" />
     <ClInclude Include="CTitleEvaluator.h" />
     <ClInclude Include="CValidator.h" />
     <ClInclude Include="CWhiteInfoBox.h" />
@@ -568,7 +553,6 @@
     <ClInclude Include="CWatchdog.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Singletons.h" />
-    <ClInclude Include="SLimitInfo.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="..\winmgr\SizerBar.h" />
     <ClInclude Include="..\winmgr\WinMgr.h" />

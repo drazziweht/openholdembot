@@ -26,7 +26,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "COHScriptList.h"
 
@@ -128,17 +128,17 @@ bool CSymbolEngineVersus::GetCounts() {
 	
 	int betround = p_betround_calculator->betround();
 	for (int i=0; i<kNumberOfCardsPerPlayerHoldEm; i++) {
-    card_player[i] = p_table_state->User()->hole_cards(i)->GetValue();
+    card_player[i] = TableState()->User()->hole_cards(i)->GetValue();
   }
 	for (int i=0; i<kNumberOfCommunityCards; i++) {
-    card_common[i] = p_table_state->CommonCards(i)->GetValue();
+    card_common[i] = TableState()->CommonCards(i)->GetValue();
   }
   // Get the lock
 	CSLock lock(m_critsec);
   ClearWinTieLosData();
 	if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed()) return false;
 
-  if (!p_table_state->User()->HasKnownCards()) return false;
+  if (!TableState()->User()->HasKnownCards()) return false;
 
 	_nwin = _ntie = _nlos = _nhands = 0;
 	_nhandshi = _nhandsti = _nhandslo = 0;
@@ -421,7 +421,7 @@ bool CSymbolEngineVersus::EvaluateVersusHandListSymbol(const char *name, double 
   double n_los = 0;
   write_log(Preferences()->debug_versus(),
     "[CVersus] EvaluateVersusHandListSymbol enumeration...\n");
-  if (p_table_state->User()->HasKnownCards()) {
+  if (TableState()->User()->HasKnownCards()) {
     // Versus makes only sense if we have known cards
     for (int i=0; i<(kNumberOfCardsPerDeck - 1); i++) {
       for (int j=i+1; j<kNumberOfCardsPerDeck; j++) {
@@ -455,7 +455,7 @@ bool CSymbolEngineVersus::EvaluateVersusHandListSymbol(const char *name, double 
       "[CVersus] Total hands on list: %d\n", hand_list->NHandsOnList());
   } 
   double n_total = n_win + n_tie + n_los;
-  if (!p_table_state->User()->HasKnownCards() || (n_total == 0)) {
+  if (!TableState()->User()->HasKnownCards() || (n_total == 0)) {
     // Unknown user-cards or empty list
     // Win / los / tie are zero.
     // Set total to 1 to avoid division by zero

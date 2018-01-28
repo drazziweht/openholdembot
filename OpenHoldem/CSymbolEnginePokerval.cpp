@@ -24,7 +24,7 @@
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\CTransform\CTransform.h"
 #include "inlines/eval.h"
 
@@ -102,15 +102,15 @@ void CSymbolEnginePokerval::PrepareConstantSuitMasks() {
 
 void CSymbolEnginePokerval::CalculateCardMasks() {
   CardMask_RESET(_player_cards);
-  if (p_table_state->User()->HasKnownCards()) {
+  if (TableState()->User()->HasKnownCards()) {
     for (int i = 0; i<NumberOfCardsPerPlayer(); i++) {
-      CardMask_SET(_player_cards, p_table_state->User()->hole_cards(i)->GetValue());
+      CardMask_SET(_player_cards, TableState()->User()->hole_cards(i)->GetValue());
     }
   }
   CardMask_RESET(_board_cards);
   for (int i = 0; i<kNumberOfCommunityCards; i++) {
     // common cards
-    Card *card = p_table_state->CommonCards(i);
+    Card *card = TableState()->CommonCards(i);
     if (card->IsKnownCard()) {
       CardMask_SET(_board_cards, card->GetValue());
     }
@@ -185,8 +185,8 @@ void CSymbolEnginePokerval::CalcPokerValues() {
   handval = HandEval(_all_cards);
 	_pcbits = 0;
 	_pokerval = CalculatePokerval(handval, CardCount(_all_cards), &_pcbits,				
-    p_table_state->User()->hole_cards(0)->GetValue(), 
-    p_table_state->User()->hole_cards(1)->GetValue());
+    TableState()->User()->hole_cards(0)->GetValue(), 
+    TableState()->User()->hole_cards(1)->GetValue());
 
   write_log(Preferences()->debug_symbolengine(), "[CSymbolEnginePokerval] handval = %i\n", handval);
 	write_log(Preferences()->debug_symbolengine(), "[CSymbolEnginePokerval] pokerval = %i\n", _pokerval);
@@ -438,15 +438,15 @@ int CSymbolEnginePokerval::CalculatePokerval(HandVal hv, int n, int *pcb, int ca
 		CardMask_RESET(Cards);
 		for (int i=0; i<NumberOfCardsPerPlayer(); i++)
 		{
-			if (p_table_state->User()->HasKnownCards())
+			if (TableState()->User()->HasKnownCards())
 			{
-        CardMask_SET(Cards, p_table_state->User()->hole_cards(i)->GetValue());
+        CardMask_SET(Cards, TableState()->User()->hole_cards(i)->GetValue());
 			}
 		}
 
 		for (int i=0; i<kNumberOfCommunityCards; i++)
 		{
-      Card *card = p_table_state->CommonCards(i);
+      Card *card = TableState()->CommonCards(i);
       if (card->IsKnownCard()) {
         CardMask_SET(Cards, card->GetValue());
 			}

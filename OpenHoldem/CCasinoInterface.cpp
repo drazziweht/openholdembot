@@ -32,7 +32,7 @@
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEngineRandom.h"
 #include "CSymbolEngineTime.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "MainFrm.h"
 #include "OpenHoldem.h"
@@ -177,8 +177,8 @@ bool CCasinoInterface::HandleInterfacebuttonsI86(void) {
 
 bool CCasinoInterface::EnterBetsizeForAllin() {
   write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Going to enter betsize allin\n");
-	double betsize_for_allin = p_table_state->User()->_bet.GetValue()
-	  + p_table_state->User()->_balance.GetValue(); 
+	double betsize_for_allin = TableState()->User()->_bet.GetValue()
+	  + TableState()->User()->_balance.GetValue(); 
   return EnterBetsize(betsize_for_allin);
 }
 

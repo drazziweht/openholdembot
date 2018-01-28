@@ -54,7 +54,7 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
 
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -179,7 +179,7 @@ double CSymbolEngineRaisers::MinimumStartingBetCurrentOrbit(bool searching_for_r
     int last_known_actor = ChairInFrontOfFirstPossibleActor();
     int nchairs = p_tablemap->nchairs();
     AssertRange(last_known_actor, 0, (nchairs - 1));
-    return p_table_state->Player(last_known_actor)->_bet.GetValue();
+    return TableState()->Player(last_known_actor)->_bet.GetValue();
   }
   // Not yet acted: 0 bb (postflop) or 1 bb (preflop) for the first orbit
   if (p_betround_calculator->betround() > kBetroundPreflop) {
@@ -203,7 +203,7 @@ double CSymbolEngineRaisers::MinimumStartingBetCurrentOrbit(bool searching_for_r
   // This discards a (already folded) SB if we are in BB
   // This counts any limper (including limping SB) if we are in BB.
   // And finally the "fake User" will return 0.0 if the userchair is unknown.
-  return (p_table_state->User()->_bet.GetValue());
+  return (TableState()->User()->_bet.GetValue());
 }
 
 void CSymbolEngineRaisers::CalculateRaisers() {
@@ -226,7 +226,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
 		first_possible_raiser, last_possible_raiser, highest_bet); 
 	for (int i=first_possible_raiser; i<=last_possible_raiser; ++i) {
 		int chair = i % p_tablemap->nchairs();
-		double current_players_bet = p_table_state->Player(chair)->_bet.GetValue();
+		double current_players_bet = TableState()->Player(chair)->_bet.GetValue();
     write_log(Preferences()->debug_symbolengine(), 
       "[CSymbolEngineRaisers] chair %d bet %.2f\n",
       chair, current_players_bet);
@@ -235,7 +235,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
 		// * who are still playing, not counting people who bet/fold in later orbits
     // * either betting/raising postflop or truely raising preflop
     //   (not counting the infamous "blind raisers")
-    if (!p_table_state->Player(chair)->HasAnyCards()) {
+    if (!TableState()->Player(chair)->HasAnyCards()) {
       write_log(Preferences()->debug_symbolengine(), 
         "[CSymbolEngineRaisers] chair %d has no cards.\n", chair);
       continue;
@@ -249,7 +249,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
         "[CSymbolEngineRaisers] chair %d so-called \"blind raiser\". To be ignored.\n", chair);
       continue;
     } else if ((p_betround_calculator->betround() == kBetroundPreflop)
-      && p_table_state->Player(chair)->PostingBothBlinds()) {
+      && TableState()->Player(chair)->PostingBothBlinds()) {
       write_log(Preferences()->debug_symbolengine(), 
         "[CSymbolEngineRaisers] chair %d is posting both blinds at once. To be ignored.\n", chair);
       continue;

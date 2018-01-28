@@ -9,7 +9,7 @@
 
 #include "CSymbolEngineCards.h"
 #include "CSymbolEnginePokerval.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 COHScriptList::COHScriptList(
@@ -172,7 +172,7 @@ void COHScriptList::ErrorOldStyleFormat(CString list_member) {
 double COHScriptList::Evaluate(bool log /* = false */) {
   write_log(Preferences()->debug_formula(), 
     "[COHScriptList] Evaluating list %s\n", _name); 
-  if (!p_table_state->User()->HasKnownCards()) return false;
+  if (!TableState()->User()->HasKnownCards()) return false;
   return IsOnList(p_engine_container->symbol_engine_pokerval()->rankhiplayer(),
     p_engine_container->symbol_engine_pokerval()->rankloplayer(),
     p_engine_container->symbol_engine_cards()->issuited());

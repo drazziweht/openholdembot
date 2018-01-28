@@ -20,7 +20,7 @@
 
 #include "CSCraper.h"
 #include "CSymbolEngineChipAmounts.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 COcclusionCheck *p_occlusioncheck = NULL;
@@ -49,7 +49,7 @@ bool COcclusionCheck::UserBalanceNonZero()
 {
 	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
 	if (UserChairKnown() 
-		&& (p_table_state->User()->_balance.GetValue() > 0))
+		&& (TableState()->User()->_balance.GetValue() > 0))
 	{
 		return true;
 	}
@@ -65,7 +65,7 @@ bool COcclusionCheck::UserNameKnown() {
 	if ((Userchair < 0) || (Userchair > 9))	{
 		write_log(Preferences()->debug_occlusionchecker(), "[COcclusionCheck] UserNameKnown: false; chair out of range\n");
 		return false;
-	} else if (UserChairKnown() && (p_table_state->User()->name() != ""))	{	
+	} else if (UserChairKnown() && (TableState()->User()->name() != ""))	{	
 		return true;
 	}	else {
 		write_log(Preferences()->debug_occlusionchecker(), "[COcclusionCheck] UserNameKnown: false\n");
@@ -78,7 +78,7 @@ bool COcclusionCheck::AnyOpponentNameKnown()
 	int Userchair = p_engine_container->symbol_engine_userchair()->userchair();
 	for (int i=0; i<=9; i++)
 	{
-    if ((i != Userchair) && (p_table_state->Player(i)->name() != ""))
+    if ((i != Userchair) && (TableState()->Player(i)->name() != ""))
 		{
 			return true;
 		}
@@ -92,7 +92,7 @@ bool COcclusionCheck::AnyApponentBalanceNonZero()
 	int Userchair = p_engine_container->symbol_engine_userchair()->userchair();
 	for (int i=0; i<=9; i++)
 	{
-		if ((i != Userchair) && (p_table_state->Player(i)->_balance.GetValue() > 0))
+		if ((i != Userchair) && (TableState()->Player(i)->_balance.GetValue() > 0))
 		{
 			return true;
 		}

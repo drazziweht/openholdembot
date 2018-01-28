@@ -19,7 +19,7 @@
 #include "CFunctionCollection.h"
 
 #include "../CTablemap/CTablemap.h"
-#include "CTableTitle.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "MainFrm.h"
 
 COpenHoldemTitle *p_openholdem_title = NULL;

@@ -29,7 +29,7 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
 
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -125,13 +125,13 @@ void CSymbolEngineCallers::CalculateCallers() {
       break;
     }
     int chair = i % _nchairs;
-    if (!p_table_state->Player(chair)->HasAnyCards()) {
+    if (!TableState()->Player(chair)->HasAnyCards()) {
       // Folded or not dealt, therefore of no interest
       write_log(Preferences()->debug_symbolengine(),
         "[CSymbolEngineCallers] Chair %i folded or not dealt\n", chair);
       continue;
     }
-    double current_players_bet = p_table_state->Player(chair)->_bet.GetValue();
+    double current_players_bet = TableState()->Player(chair)->_bet.GetValue();
     if (current_players_bet == 0) {
       // Player is checking
       write_log(Preferences()->debug_symbolengine(),
@@ -163,7 +163,7 @@ void CSymbolEngineCallers::CalculateCallers() {
       // or not yet acted
       continue;
     }
-    if ((current_players_bet < highest_bet) && !p_table_state->Player(chair)->IsAllin()) {
+    if ((current_players_bet < highest_bet) && !TableState()->Player(chair)->IsAllin()) {
       // Not a caller
       write_log(Preferences()->debug_symbolengine(),
         "[CSymbolEngineCallers] Chair %i not calling (bet too small)\n", chair);
@@ -175,7 +175,7 @@ void CSymbolEngineCallers::CalculateCallers() {
       // if we count some callers twice.
       break;
     }
-    if (p_table_state->Player(chair)->IsAllin()) {
+    if (TableState()->Player(chair)->IsAllin()) {
       // Raisers already handled
       assert(current_players_bet <= highest_bet);
       if (IsBitSet(_allinbits_previous_orbit, chair)) {

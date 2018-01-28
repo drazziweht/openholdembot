@@ -18,13 +18,19 @@
 
 #include "globals.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\TableState_DLL\TableState.h"
 
 CPreferences preferences;
+CTableState table_state;
 
 GLOBALS_DLL_API void InitGlobals() {
 }
 
 GLOBALS_DLL_API CPreferences* Preferences() {
   return &preferences;
+}
+
+GLOBALS_DLL_API CTableState* TableState() {
+  return &table_state;
 }
 

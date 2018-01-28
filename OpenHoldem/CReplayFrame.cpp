@@ -24,7 +24,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "OpenHoldem.h"
@@ -87,12 +87,12 @@ void CReplayFrame::CreateReplayFrame(void){
 		// First line has to be the "title" of the table.
 		// This is no longer valid HTML, but the way Ray.E.Bornert did it
 		// for WinHoldem and WinScrape.
-		fprintf(fp, "%s\n", LPCSTR(p_table_state->TableTitle()->Title()));
+		fprintf(fp, "%s\n", LPCSTR(TableState()->TableTitle()->Title()));
     fprintf(fp, "<br>\n");
 		// HTML header
 		fprintf(fp, "<html>\n");
 		fprintf(fp, "  <head>\n");
-		fprintf(fp, "    <title>%s</title>\n", LPCSTR(p_table_state->TableTitle()->Title()));
+		fprintf(fp, "    <title>%s</title>\n", LPCSTR(TableState()->TableTitle()->Title()));
 		fprintf(fp, "  </head>");
 		fprintf(fp, "<style>\n");
 		fprintf(fp, "td {text-align:right;}\n");
@@ -144,7 +144,7 @@ CString CReplayFrame::GeneralInfo() {
   result += "<table border=4 cellpadding=1 cellspacing=1>\n";
   // Table title
   result += "<tr><td>\n";
-	result += p_table_state->TableTitle()->Title();
+	result += TableState()->TableTitle()->Title();
   result += "</td></tr>\n";
 	// Session, 
   result += "<tr><td>\n";
@@ -211,16 +211,16 @@ CString CReplayFrame::GetPlayerInfoAsHTML() {
 		player_info += text;  
 		// Cards
     text.Format("      <td>%s</td>\n",
-      p_table_state->Player(i)->CardsAsHTML());
+      TableState()->Player(i)->CardsAsHTML());
 		player_info += text;  
 		// Bet
-		text.Format("      <td>%11.2f</td>\n", p_table_state->Player(i)->_bet.GetValue());
+		text.Format("      <td>%11.2f</td>\n", TableState()->Player(i)->_bet.GetValue());
 		player_info += text; 
 		// Balance
-		text.Format("      <td>%11.2f</td>\n", p_table_state->Player(i)->_balance.GetValue());
+		text.Format("      <td>%11.2f</td>\n", TableState()->Player(i)->_balance.GetValue());
 		player_info += text;  
 		// Name
-		text.Format("      <td>%-15s</td>\n", p_table_state->Player(i)->name().GetString());
+		text.Format("      <td>%-15s</td>\n", TableState()->Player(i)->name().GetString());
 		player_info += text;
 		player_info += "    </tr>\n";
 	}
@@ -271,11 +271,11 @@ CString CReplayFrame::GetCommonCardsAsHTML() {
 	common_cards += "<tr>\n";
 	// Common cards
   text.Format("<td>%s%s%s%s%s</td>\n",
-    p_table_state->CommonCards(0)->ToHTML(),
-    p_table_state->CommonCards(1)->ToHTML(),
-    p_table_state->CommonCards(2)->ToHTML(),
-    p_table_state->TurnCard()->ToHTML(),
-    p_table_state->RiverCard()->ToHTML());
+    TableState()->CommonCards(0)->ToHTML(),
+    TableState()->CommonCards(1)->ToHTML(),
+    TableState()->CommonCards(2)->ToHTML(),
+    TableState()->TurnCard()->ToHTML(),
+    TableState()->RiverCard()->ToHTML());
 	common_cards += text;
 	// Table footer
 	common_cards += "</tr>\n";
@@ -290,14 +290,14 @@ CString CReplayFrame::GetPotsAsHTML() {
 	pots += "  <tr><th>#</th><th>pot</th></tr>\n";
 	pots += "  <tr>\n";
 	// Main pot
-	text.Format("    <td>0</td><td>%11.2f</td>\n", p_table_state->Pot(0));
+	text.Format("    <td>0</td><td>%11.2f</td>\n", TableState()->Pot(0));
 	pots += text;
 	pots += "  </tr>\n";
 	// Side pots
 	for (int i=1; i<kMaxNumberOfPots; i++) {
-		if (p_table_state->Pot(i)) {
+		if (TableState()->Pot(i)) {
 			pots += "  <tr>\n";
-			text.Format("    <td>%d</td><td>%11.2f</td>\n", i, p_table_state->Pot(i));
+			text.Format("    <td>%d</td><td>%11.2f</td>\n", i, TableState()->Pot(i));
 			pots += text;
 			pots += "  </tr>\n";
 		}	else {

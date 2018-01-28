@@ -20,7 +20,7 @@
 
 #include "CScraper.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -75,8 +75,8 @@ void CSymbolEngineIsOmaha::UpdateOnHeartbeat() {
     return;
   }
   // Checking the two "additional" cards
-  if (p_table_state->User()->hole_cards(2)->IsKnownCard()
-    && p_table_state->User()->hole_cards(3)->IsKnownCard()) {
+  if (TableState()->User()->hole_cards(2)->IsKnownCard()
+    && TableState()->User()->hole_cards(3)->IsKnownCard()) {
     write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineIsOmaha] Found Omaha hole-cards\n");
     _isomaha = true;
     return;

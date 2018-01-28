@@ -35,7 +35,7 @@
 #include "..\CTablemap\CTablemap.h"
 #include "CTableMapLoader.h"
 #include "CTablepointChecker.h"
-#include "CTableTitle.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "CTablePositioner.h"
 #include "CValidator.h"
 #include "DialogScraperOutput.h"

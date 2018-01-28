@@ -16,7 +16,7 @@
 
 
 #include "CScraper.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -46,13 +46,13 @@ void CBetroundCalculator::OnNewHeartbeat() {
 	// to determine what symbols shall be calculated.
 	// So we can hardly do it with a symbol-engine and do it here
 	if (!p_scraper->IsCommonAnimation()) {
-    if (p_table_state->RiverCard()->IsKnownCard()) {
+    if (TableState()->RiverCard()->IsKnownCard()) {
 			_betround = kBetroundRiver;
-		} else if (p_table_state->TurnCard()->IsKnownCard()) {
+		} else if (TableState()->TurnCard()->IsKnownCard()) {
 			_betround = kBetroundTurn;
-		} else if (p_table_state->CommonCards(2)->IsKnownCard() 
-			  && p_table_state->CommonCards(1)->IsKnownCard() 
-			  && p_table_state->CommonCards(0)->IsKnownCard()) {
+		} else if (TableState()->CommonCards(2)->IsKnownCard() 
+			  && TableState()->CommonCards(1)->IsKnownCard() 
+			  && TableState()->CommonCards(0)->IsKnownCard()) {
 			_betround = kBetroundFlop;
 		}	else {
 			_betround = kBetroundPreflop;

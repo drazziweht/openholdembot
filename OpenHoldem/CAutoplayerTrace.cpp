@@ -29,7 +29,7 @@
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #define ENT CSLock lock(m_critsec);
 
@@ -201,22 +201,22 @@ void CAutoplayerTrace::LogBasicInfo(const char *action_taken) {
   int		betround  = p_betround_calculator->betround();
   // Player cards
   // There always exists a user, if not then we have a fake-player. ;-)
-  assert(p_table_state->User() != NULL);
-  CString player_cards = p_table_state->User()->Cards();
+  assert(TableState()->User() != NULL);
+  CString player_cards = TableState()->User()->Cards();
   // Common cards
   comcards = "";
   if (betround >= kBetroundFlop) {
     for (int i=0; i<kNumberOfFlopCards; i++) {
-      if (p_table_state->CommonCards(i)->IsKnownCard()) {
-        comcards.Append(p_table_state->CommonCards(i)->ToString());
+      if (TableState()->CommonCards(i)->IsKnownCard()) {
+        comcards.Append(TableState()->CommonCards(i)->ToString());
       }
     }
   }
   if (betround >= kBetroundTurn) {
-    comcards.Append(p_table_state->TurnCard()->ToString());
+    comcards.Append(TableState()->TurnCard()->ToString());
   }
   if (betround >= kBetroundRiver) {
-    comcards.Append(p_table_state->RiverCard()->ToString());
+    comcards.Append(TableState()->RiverCard()->ToString());
   }
   comcards.Append("..........");
   comcards = comcards.Left(10);
@@ -244,8 +244,8 @@ void CAutoplayerTrace::LogBasicInfo(const char *action_taken) {
   write_log(k_always_log_basic_information, "  Community:     %s\n",    comcards.GetString());
   write_log(k_always_log_basic_information, "  Handrank:      %s\n",    rank.GetString());
   write_log(k_always_log_basic_information, "  Hand:          %s\n",    pokerhand.GetString());
-  write_log(k_always_log_basic_information, "  My balance:    %9.2f\n", p_table_state->User()->_balance.GetValue());
-  write_log(k_always_log_basic_information, "  My currentbet: %9.2f\n", p_table_state->User()->_bet.GetValue()); 
+  write_log(k_always_log_basic_information, "  My balance:    %9.2f\n", TableState()->User()->_balance.GetValue());
+  write_log(k_always_log_basic_information, "  My currentbet: %9.2f\n", TableState()->User()->_bet.GetValue()); 
   write_log(k_always_log_basic_information, "  To call:       %9.2f\n", p_engine_container->symbol_engine_chip_amounts()->call());
   write_log(k_always_log_basic_information, "  Pot:           %9.2f\n", p_engine_container->symbol_engine_chip_amounts()->pot());
   write_log(k_always_log_basic_information, "  Big blind:     %9.2f\n", p_engine_container->symbol_engine_tablelimits()->bblind());
@@ -273,7 +273,7 @@ void CAutoplayerTrace::LogPlayers() {
   for (int i = 0; i < nchairs; ++i) {
     int chair = (userchair + i) % nchairs;
     CString data;
-    data.Format("Chair %2i  %s\n", chair, p_table_state->Player(chair)->DataDump());
+    data.Format("Chair %2i  %s\n", chair, TableState()->Player(chair)->DataDump());
    write_log(k_always_log_basic_information, data.GetBuffer());
   }
   write_log_separator(k_always_log_basic_information, "");

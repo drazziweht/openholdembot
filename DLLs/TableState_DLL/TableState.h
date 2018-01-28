@@ -10,7 +10,7 @@
 //
 // Purpose: Game-state class for the table
 //   (common cards and players)
-//   Actually it should be names CGameSate,
+//   Actually it should be named CGameSate,
 //   but there already is a symbol engine with that name.
 //
 //******************************************************************************
@@ -49,6 +49,9 @@ public:
   Card *TurnCard();
   Card *RiverCard();
   int  NumberOfCommunityCards();
+  // For CHandresetDetector
+  bool ShowdownCardsVisible();
+  bool AntesVisible();
 public:
   CTableTitle *TableTitle();
 public:

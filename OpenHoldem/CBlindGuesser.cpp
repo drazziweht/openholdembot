@@ -24,7 +24,7 @@
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineHistory.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CBlindGuesser::CBlindGuesser() {
 }
@@ -177,14 +177,14 @@ void CBlindGuesser::GetFirstBlindDataFromBetsAtTheTable(double *sblind,
   // (because of stable frames).
   int dealer = p_engine_container->symbol_engine_dealerchair()->dealerchair();
   // Exit on undefined or wrong dealer (outdated, from last hand)
-  if ((dealer == kUndefined) || (p_table_state->Player(dealer)->dealer() == false)) {
+  if ((dealer == kUndefined) || (TableState()->Player(dealer)->dealer() == false)) {
     return;
   }
   int first_chair = dealer + 1;
   int last_chair = dealer + p_tablemap->nchairs();
   for (int i = first_chair; i <= last_chair; ++i) {
     int normalized_chair = i % p_tablemap->nchairs();
-    double players_bet = p_table_state->Player(normalized_chair)->_bet.GetValue();
+    double players_bet = TableState()->Player(normalized_chair)->_bet.GetValue();
     if (players_bet <= 0) continue;
     if (first_bet_after_dealer <= 0) {
       // Probably SB found
@@ -269,9 +269,9 @@ void CBlindGuesser::GetFirstBlindDataFromScraper(double *sblind,
                                                  double *bblind, 
                                                  double *bbet) {
   // Get values from the scraper (ttlimits / c0limits)
-  *sblind = p_table_state->_s_limit_info.sblind();
-  *bblind = p_table_state->_s_limit_info.bblind();
-  *bbet   = p_table_state->_s_limit_info.bbet();
+  *sblind = TableState()->_s_limit_info.sblind();
+  *bblind = TableState()->_s_limit_info.bblind();
+  *bbet   = TableState()->_s_limit_info.bbet();
   write_log(Preferences()->debug_table_limits(), 
     "[CBlindGuesser] Data from scraper (ttlimits, c0limits): %.2f / %.2f / %.2f\n",
     *sblind, *bblind, *bbet);

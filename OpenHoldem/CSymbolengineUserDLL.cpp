@@ -23,7 +23,8 @@
 #include "COpenHoldemTitle.h"
 #include "CScraper.h"
 #include "CSymbolengineVersus.h"
-#include "CTableState.h"
+#include "..\DLLs\TableState_DLL\CTableTitle.h"
+#include "..\DLLs\TableState_DLL\TableState.h"
 #include "..\DLLs\User_DLL\user.h"
 
 CSymbolEngineUserDLL *p_symbol_engine_formula_loading = NULL;
@@ -123,7 +124,7 @@ EXE_IMPLEMENTS char* GetPlayerName(int chair) {
   if (chair > kLastChair) {
     return nullptr;
   }
-  return p_table_state->Player(chair)->name().GetBuffer();
+  return TableState()->Player(chair)->name().GetBuffer();
 }
 
 EXE_IMPLEMENTS char* GetTableTitle() {

@@ -44,8 +44,8 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CTableMaploader.h"
 #include "CTablePositioner.h"
-#include "CTableState.h"
-#include "CTableTitle.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "CTitleEvaluator.h"
 #include "CValidator.h"
 #include "CVersionInfo.h"
@@ -72,9 +72,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerTrace\n");
   assert(!p_autoplayer_trace);
   p_autoplayer_trace = new CAutoplayerTrace;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTableState\n");
-  assert(!p_table_state);
-  p_table_state = new CTableState;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CHandresetDetector\n");
   assert(!p_handreset_detector);
   p_handreset_detector = new CHandresetDetector;
@@ -267,8 +264,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_handreset_detector)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 22\n");
   DELETE_AND_CLEAR(p_autoplayer_trace)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 23\n");
-  DELETE_AND_CLEAR(p_table_state)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 24\n");
   DELETE_AND_CLEAR(p_string_match)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 26\n");

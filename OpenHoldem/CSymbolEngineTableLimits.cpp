@@ -24,7 +24,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineIsTournament.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "FloatingPoint_Comparisions.h"
 #include "Median.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
@@ -103,15 +103,15 @@ void CSymbolEngineTableLimits::UpdateOnHeartbeat() {
     _blind_guesser.Guess(&tablelimit_best_guess.sblind,
       &tablelimit_best_guess.bblind,
       &tablelimit_best_guess.bbet);
-    if (p_table_state->_s_limit_info.ante() > 0) {
-      if (p_table_state->_s_limit_info.ante() > sblind()) {
+    if (TableState()->_s_limit_info.ante() > 0) {
+      if (TableState()->_s_limit_info.ante() > sblind()) {
         write_log(k_always_log_errors,
           "[CSymbolEngineTableLimits] WARNING! ante larger than small blind\n");
         write_log(k_always_log_errors,
           "[CSymbolEngineTableLimits] This looks like a problem in your tablemap.\n");
         _ante = kUndefinedZero;
       } else {
-        _ante = p_table_state->_s_limit_info.ante();
+        _ante = TableState()->_s_limit_info.ante();
       }
     }
     AutoLockBlinds();
@@ -256,28 +256,28 @@ double CSymbolEngineTableLimits::ante() {
 }
 
 double CSymbolEngineTableLimits::buyin() {
-  if (p_table_state->_s_limit_info.buyin() > 0) {
-    return p_table_state->_s_limit_info.buyin();
+  if (TableState()->_s_limit_info.buyin() > 0) {
+    return TableState()->_s_limit_info.buyin();
   }
   return kUndefinedZero;
 }
 
 double CSymbolEngineTableLimits::prizepool() {
-	if (p_table_state->_s_limit_info.prizepool() > 0) {
-		return p_table_state->_s_limit_info.prizepool();
-	} else if (p_table_state->_s_limit_info.prizepoolmultiplier() > 0) {
-		return p_table_state->_s_limit_info.prizepoolmultiplier() * buyin();
+	if (TableState()->_s_limit_info.prizepool() > 0) {
+		return TableState()->_s_limit_info.prizepool();
+	} else if (TableState()->_s_limit_info.prizepoolmultiplier() > 0) {
+		return TableState()->_s_limit_info.prizepoolmultiplier() * buyin();
 	}
 	//2 is the minimum prize-pool multiplier.
 	return buyin() * 2;
 }
 
 double CSymbolEngineTableLimits::prizepoolmultiplier() {
-	if (p_table_state->_s_limit_info.prizepoolmultiplier() > 0) {
-		return p_table_state->_s_limit_info.prizepoolmultiplier();
+	if (TableState()->_s_limit_info.prizepoolmultiplier() > 0) {
+		return TableState()->_s_limit_info.prizepoolmultiplier();
 	//If (prizepool > 0), buyin never could be 0.
-	} else if (p_table_state->_s_limit_info.prizepool() > 0) {
-		return p_table_state->_s_limit_info.prizepool() / buyin();		
+	} else if (TableState()->_s_limit_info.prizepool() > 0) {
+		return TableState()->_s_limit_info.prizepool() / buyin();		
 	}
 	//2 is the minimum prize-pool multiplier.
 	return 2;

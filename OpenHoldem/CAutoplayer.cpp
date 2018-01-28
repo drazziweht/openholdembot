@@ -37,7 +37,7 @@
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "MainFrm.h"
 #include "OpenHoldem.h"
 #include "PokerChat.hpp"
@@ -529,7 +529,7 @@ bool CAutoplayer::DoBetsize() {
 
 bool CAutoplayer::DoPrefold(void) {
 	assert(p_function_collection->EvaluateAutoplayerFunction(k_standard_function_prefold) != 0);
-	if (!p_table_state->User()->HasKnownCards()) {
+	if (!TableState()->User()->HasKnownCards()) {
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Prefold skipped. No known cards.\n");
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Smells like a bad f$prefold-function.\n");
 	}

@@ -19,7 +19,7 @@
 
 #include "CScraper.h"
 #include "CStringMatch.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineUserchair::CSymbolEngineUserchair() {
@@ -67,7 +67,7 @@ bool CSymbolEngineUserchair::IsNotShowdown() {
 }
 
 void CSymbolEngineUserchair::CalculateUserChair() {
-	if (userchair_confirmed() && p_table_state->User()->HasKnownCards()) {
+	if (userchair_confirmed() && TableState()->User()->HasKnownCards()) {
 		write_log(Preferences()->debug_symbolengine(),
 			"[CSymbolEngineUserchair] CalculateUserChair() Known cards for known chair. Keeping userchair as is\n");
 	}	else {
@@ -75,7 +75,7 @@ void CSymbolEngineUserchair::CalculateUserChair() {
 		// Looking for known cards and new chair
 		for (int i=0; i<p_tablemap->nchairs(); i++)
 		{
-			if (p_table_state->Player(i)->HasKnownCards() && IsNotShowdown()) {
+			if (TableState()->Player(i)->HasKnownCards() && IsNotShowdown()) {
 				_userchair = i;
 				write_log(Preferences()->debug_symbolengine(),
 					"[CSymbolEngineUserchair] CalculateUserChair() Setting userchair to %d\n",

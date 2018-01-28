@@ -31,7 +31,7 @@
 #include "CScraper.h"
 #include "CSharedMem.h"
 #include "CTableMapLoader.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "CTablePositioner.h"
 #include "CVersionInfo.h"
 #include "DialogScraperOutput.h"
@@ -256,8 +256,8 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   if (p_sharedmem == NULL) return false;
   if (p_tablemap == NULL) return false;
   if (p_tablemap_loader == NULL) return false;
-  if (p_table_state == NULL) return false;
   if (p_table_positioner == NULL) return false;
+  if (TableState() == NULL) return false;
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Connect(..)\n");
   ASSERT(_autoconnector_mutex->m_hObject != NULL); 
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Locking autoconnector-mutex\n");
@@ -298,7 +298,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			p_scraper->CreateBitmaps();
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Scraper-bitmaps created\n");
       // Clear scraper fields
-			p_table_state->Reset();
+			TableState()->Reset();
       p_casino_interface->Reset();
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Table state cleared\n");
       // Reset symbols
@@ -361,7 +361,7 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	// Delete bitmaps
 	p_scraper->DeleteBitmaps();
   // Clear scraper fields
-	p_table_state->Reset();
+	TableState()->Reset();
   p_casino_interface->Reset();
 	// Reset symbols
 	p_engine_container->UpdateOnConnection();

@@ -21,7 +21,7 @@
 #include "CSymbolEngineUserchair.h"
 
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CHandHistoryShowdown *p_handhistory_showdown = NULL;
 
@@ -59,7 +59,7 @@ bool AnyOpponentsCardsVisible() {
       // Not an opponent
       continue;
     }
-    if (p_table_state->Player(i)->HasKnownCards()) {
+    if (TableState()->Player(i)->HasKnownCards()) {
       return true;
     }
   }

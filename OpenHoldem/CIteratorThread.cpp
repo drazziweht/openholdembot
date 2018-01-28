@@ -29,7 +29,7 @@
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEnginePrwin.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "CValidator.h"
 #include "inlines/eval.h"
 
@@ -405,14 +405,14 @@ void CIteratorThread::InitIteratorLoop() {
 	// setup masks
   AssertRange(userchair, 0, kMaxChairNumber);
 	for (int i=0; i<NumberOfCardsPerPlayer(); i++) {
-    Card *card = p_table_state->User()->hole_cards(i);
+    Card *card = TableState()->User()->hole_cards(i);
     if (card->IsKnownCard()) {
       CardMask_SET(_plCards, card->GetValue());
 			_nplCards++;
 		}
 	}
 	for (int i=0; i<kNumberOfCommunityCards; i++) {
-    Card *card = p_table_state->CommonCards(i);
+    Card *card = TableState()->CommonCards(i);
     if (card->IsKnownCard()) {
       CardMask_SET(_comCards, card->GetValue());
 			_ncomCards++;

@@ -26,7 +26,7 @@
 #include "CSymbolEngineIsRush.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CSymbolEngineTime.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CHeartbeatDelay::CHeartbeatDelay() {
 }
@@ -59,7 +59,7 @@ double CHeartbeatDelay::SleepingFactor() {
     return 1.0;
   }	else if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed()) {
     return SleepingFactorNotSeated();
-  } else if (p_table_state->User()->HasKnownCards()) {
+  } else if (TableState()->User()->HasKnownCards()) {
     // We hold cards -- the CRITICAL case
     // Handle it early in case of any bad information or bad logic
     // that might mix things up
@@ -127,7 +127,7 @@ double CHeartbeatDelay::SleepingFactorPlayingNotMyTurn() {
     else {
       return 2.0;
     }
-  } else if ((p_table_state->User()->_bet.GetValue() > 0) && (p_engine_container->symbol_engine_checks_bets_folds()->nopponentschecking() >= 1)) {
+  } else if ((TableState()->User()->_bet.GetValue() > 0) && (p_engine_container->symbol_engine_checks_bets_folds()->nopponentschecking() >= 1)) {
     // At least one opponent has to decide about raise / call / fold
     // Slow down a little bit.
     return (1 + 0.5 * p_engine_container->symbol_engine_checks_bets_folds()->nopponentschecking());

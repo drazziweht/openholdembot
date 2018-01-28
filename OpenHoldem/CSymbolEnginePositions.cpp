@@ -22,7 +22,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEnginePositions::CSymbolEnginePositions()
@@ -81,7 +81,7 @@ void CSymbolEnginePositions::CalculateNChairsDealtLeftRight() {
 		  i<=DEALER_CHAIR+p_tablemap->nchairs();
 		  i++) {
 		int next_chair = i%p_tablemap->nchairs();
-		double p_bet = p_table_state->Player(next_chair)->_bet.GetValue();
+		double p_bet = TableState()->Player(next_chair)->_bet.GetValue();
 
 		if (next_chair == p_engine_container->symbol_engine_userchair()->userchair())	{
 			found_userchair = true;

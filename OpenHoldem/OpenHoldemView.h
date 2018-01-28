@@ -15,7 +15,7 @@
 #define INC_OPENHOLDEMVIEW_H
 
 #include "OpenHoldemDoc.h"
-#include "Card.h"
+#include "..\DLLs\Tablestate_DLL\Card.h"
 
 #define DISPLAY_UPDATE_TIMER	111
 

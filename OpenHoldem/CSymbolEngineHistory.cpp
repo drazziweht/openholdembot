@@ -120,7 +120,7 @@ void CSymbolEngineHistory::UpdateOnHeartbeat() {
   // river-card already painted, but bets of the turn still visible.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=217&t=20825
   // Try to avoid such situations!
-  if (!p_table_state->User()->HasAnyCards()) {
+  if (!TableState()->User()->HasAnyCards()) {
     CalculateHistory();
     return;
   }
@@ -226,7 +226,7 @@ void CSymbolEngineHistory::CalculateHistory() {
 		// if the user is still playing.
 		// (http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=10929)		
 		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits(), i)) 	{
-			double current_players_bet = p_table_state->Player(i)->_bet.GetValue();
+			double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 			maxbet = MAX(maxbet, current_players_bet);
 		}
 	}
@@ -322,8 +322,8 @@ bool CSymbolEngineHistory::DidAct() {
   // including another extra fail-safe for unknown big-blind
   if ((BETROUND == kBetroundPreflop)
       && p_engine_container->symbol_engine_userchair()->userchair_confirmed()
-      && ((p_table_state->User()->_bet.GetValue() < p_engine_container->symbol_engine_tablelimits()->bblind())
-        || (p_table_state->User()->_bet.GetValue() == 0))) {
+      && ((TableState()->User()->_bet.GetValue() < p_engine_container->symbol_engine_tablelimits()->bblind())
+        || (TableState()->User()->_bet.GetValue() == 0))) {
     return false;
   }
   // Otherwise: return "normal" value, depending on didbetsize, didrais, ...
@@ -343,7 +343,7 @@ bool CSymbolEngineHistory::DidAct(int betround) {
   // Considering my bet, in case the user acts manually
   // or we cinnect in the middle of a hand.
   // Ignoring limped pots preflop
-  double currentbet = p_table_state->User()->_bet.GetValue();
+  double currentbet = TableState()->User()->_bet.GetValue();
   if (currentbet > p_engine_container->symbol_engine_tablelimits()->bblind()) {
     return true;
   }

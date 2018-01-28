@@ -24,7 +24,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CHandHistoryDealPhase *p_handhistory_deal_phase = NULL;
@@ -80,7 +80,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
   int last_chair  = p_engine_container->symbol_engine_dealerchair()->dealerchair();
   int first_chair = (last_chair + 1) % p_tablemap->nchairs();
   for (int i=first_chair; i<=last_chair; ++i) {
-    double currentbet = p_table_state->Player(i)->_bet.GetValue();
+    double currentbet = TableState()->Player(i)->_bet.GetValue();
     if (currentbet <= 0) {
       // Not having to post, not posting or not participating at all
       continue;

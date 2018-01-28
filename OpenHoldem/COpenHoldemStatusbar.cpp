@@ -26,7 +26,7 @@
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "resource.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -68,7 +68,7 @@ void COpenHoldemStatusbar::GetWindowRect(RECT *statusbar_position) {
 }
 
 void COpenHoldemStatusbar::OnUpdateStatusbar() {
-  if (p_table_state->User()->HasKnownCards()){
+  if (TableState()->User()->HasKnownCards()){
     // Format data for display
     // Handrank
     _status_handrank.Format("%i/169", _handrank);

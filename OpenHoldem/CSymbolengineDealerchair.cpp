@@ -18,7 +18,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineTableLimits.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineDealerchair::CSymbolEngineDealerchair() {
@@ -59,7 +59,7 @@ void CSymbolEngineDealerchair::UpdateOnHeartbeat() {
 	write_log(Preferences()->debug_symbolengine(), "nchairs: %d\n", 
 		p_tablemap->nchairs());
 	for (int i=0; i<p_tablemap->nchairs(); i++)	{
-		if (p_table_state->Player(i)->dealer())	{
+		if (TableState()->Player(i)->dealer())	{
 			write_log(Preferences()->debug_symbolengine(), "Setting dealerchair to %d\n", i);
 			_dealerchair = i;					
 			break;
@@ -79,7 +79,7 @@ void CSymbolEngineDealerchair::UpdateOnHeartbeat() {
 
 int CSymbolEngineDealerchair::SmallBlindChair() {
   for (int i = 0; i < p_tablemap->nchairs(); i++) {
-    if (p_table_state->Player(i)->_bet.GetValue() == p_engine_container->symbol_engine_tablelimits()->sblind()) {
+    if (TableState()->Player(i)->_bet.GetValue() == p_engine_container->symbol_engine_tablelimits()->sblind()) {
       return i;
     }
   }
@@ -90,7 +90,7 @@ int CSymbolEngineDealerchair::RightHandActiveChair(int chair) {
   for (int i = (p_tablemap->nchairs() - 1); i >= 0; --i) {
     int next_chair = chair + i;
     next_chair %= p_tablemap->nchairs();
-    if (p_table_state->Player(next_chair)->active()) {
+    if (TableState()->Player(next_chair)->active()) {
       return next_chair;
     }
   }

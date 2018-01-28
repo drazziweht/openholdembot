@@ -20,7 +20,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineIsTournament.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CSymbolEngineGameType	*p_symbol_engine_gametype = NULL;
 
@@ -53,7 +53,7 @@ void CSymbolEngineGameType::UpdateOnMyTurn() {
 }
 
 void CSymbolEngineGameType::UpdateOnHeartbeat() {
-  int scraped_limit = p_table_state->_s_limit_info.limit();
+  int scraped_limit = TableState()->_s_limit_info.limit();
   switch (scraped_limit) {
     case kGametypeNL:
     case kGametypePL:

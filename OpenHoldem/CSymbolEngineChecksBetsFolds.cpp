@@ -27,7 +27,7 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
 
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
@@ -84,9 +84,9 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 	_nopponentschecking = 0;
   assert(p_tablemap->nchairs() <= kMaxNumberOfPlayers);
 	for (int i=0; i<p_tablemap->nchairs(); i++)	{
-		double current_players_bet = p_table_state->Player(i)->_bet.GetValue();
+		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 		if (current_players_bet < RaisersBet()
-        && p_table_state->Player(i)->HasAnyCards())	{
+        && TableState()->Player(i)->HasAnyCards())	{
 			_nplayerscallshort++;
 		}
 		if (i == p_engine_container->symbol_engine_userchair()->userchair()) {
@@ -99,10 +99,10 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 		}
 		// Players might have been betting, but folded, so no else for the if
 		if ((p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits() & (1<<(i)))
-        && !p_table_state->Player(i)->HasAnyCards())	{
+        && !TableState()->Player(i)->HasAnyCards())	{
 			_nopponentsfolded++;					
 		}
-		if (p_table_state->Player(i)->HasAnyCards() 
+		if (TableState()->Player(i)->HasAnyCards() 
 			  && current_players_bet == 0) {
 			_nopponentschecking++;
 		}
@@ -120,8 +120,8 @@ double CSymbolEngineChecksBetsFolds::RaisersBet() {
 	// So we don't have to know the raisers chair for that.
 	double result = 0;
 	for (int i=0; i<p_tablemap->nchairs(); i++)	{
-		double current_players_bet = p_table_state->Player(i)->_bet.GetValue();
-		if (current_players_bet > result && p_table_state->Player(i)->HasAnyCards()) 	{
+		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
+		if (current_players_bet > result && TableState()->Player(i)->HasAnyCards()) 	{
 			result = current_players_bet;
 		}
 	}
@@ -132,7 +132,7 @@ void CSymbolEngineChecksBetsFolds::CalculateFoldBits() {
 	// foldbits (very late, as they depend on the dealt symbols)
 	int new_foldbits = 0;
 	for (int i=0; i<p_tablemap->nchairs(); i++)	{
-		if (!p_table_state->Player(i)->HasAnyCards()) {
+		if (!TableState()->Player(i)->HasAnyCards()) {
 			new_foldbits |= k_exponents[i];
 		}
 	}

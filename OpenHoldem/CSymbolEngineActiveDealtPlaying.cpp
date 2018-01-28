@@ -24,7 +24,7 @@
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineActiveDealtPlaying::CSymbolEngineActiveDealtPlaying()
@@ -76,7 +76,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateActiveBits()
 	_playersactivebits  = 0;
 	for (int i=0; i<kMaxNumberOfPlayers; i++)
 	{
-		if (p_table_state->Player(i)->active())
+		if (TableState()->Player(i)->active())
 		{
 			_playersactivebits |= (1<<i);			
 		}
@@ -86,7 +86,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateActiveBits()
 void CSymbolEngineActiveDealtPlaying::CalculatePlayingBits() {
 	_playersplayingbits = 0;
 	for (int i=0; i<kMaxNumberOfPlayers; ++i)	{
-    if (p_table_state->Player(i)->HasAnyCards()) {
+    if (TableState()->Player(i)->HasAnyCards()) {
 			_playersplayingbits |= (1<<i);			
 		}
 	}
@@ -95,7 +95,7 @@ void CSymbolEngineActiveDealtPlaying::CalculatePlayingBits() {
 void CSymbolEngineActiveDealtPlaying::CalculateSeatedBits() {
 	_playersseatedbits = 0;
 	for (int i=0; i<kMaxNumberOfPlayers; i++)	{
-		if (p_table_state->Player(i)->seated())	{
+		if (TableState()->Player(i)->seated())	{
 			_playersseatedbits |= 1<<i;			
 		}
 	}
@@ -106,7 +106,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateAllinBits() {
   _playersallinbits = 0;
   // First: simply check for all players with no balance
   for (int i = 0; i<kMaxNumberOfPlayers; i++) {
-    if (p_table_state->Player(i)->IsAllin()) {
+    if (TableState()->Player(i)->IsAllin()) {
       _playersallinbits |= 1 << i;
     }
   }
@@ -128,7 +128,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
     // Players with cards are always "dealt",
     // independent of the rest of following complicated logic,
     // which might fail, especially in case of GIGO.
-    if (p_table_state->Player(chair_to_consider)->HasAnyCards()) {
+    if (TableState()->Player(chair_to_consider)->HasAnyCards()) {
       this_player_got_dealt = true;
     }
 		// First we search the blinds only, 
@@ -136,7 +136,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
 		// We don't consider players who are only "active",
 		// i.e. players who sat out but came back.
 		if ((number_of_blind_posters_found < kUsualNumberOfBlindPosters) && ! big_blind_found) {
-			double bet = p_table_state->Player(chair_to_consider)->_bet.GetValue();
+			double bet = TableState()->Player(chair_to_consider)->_bet.GetValue();
 			if (bet > 0) {
         write_log(Preferences()->debug_symbolengine(),
           "[CSymbolEngineActiveDealtPlaying] CalculateDealtBits() chair %i is a blind poster\n",
@@ -159,7 +159,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
 		// We do so, until we reach somebody who has cards.
 		// After this player we look for cards only,
 		// because there can be no quick folds after him.
-		else if (p_table_state->Player(chair_to_consider)->HasAnyCards()) {
+		else if (TableState()->Player(chair_to_consider)->HasAnyCards()) {
       // Player with cards found
       write_log(Preferences()->debug_symbolengine(),
         "[CSymbolEngineActiveDealtPlaying] CalculateDealtBits() chair %i holds cards, therefore dealt\n",
@@ -171,7 +171,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
       if (first_non_blind_with_cards_found == false) {
         // Not yet anybody with cards outside the blinds found
         // Consider active players as dealt with fast folds.
-			  if (p_table_state->Player(chair_to_consider)->active()) {
+			  if (TableState()->Player(chair_to_consider)->active()) {
           write_log(Preferences()->debug_symbolengine(),
             "[CSymbolEngineActiveDealtPlaying] CalculateDealtBits() chair %i is active after the blinds, probably dealt and fast fold\n",
             chair_to_consider);

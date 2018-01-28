@@ -24,7 +24,7 @@
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
 #include "CTableMapLoader.h"
-#include "CTableState.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CProblemSolver::CProblemSolver()
@@ -64,7 +64,7 @@ bool CProblemSolver::AutoPlayerDidActAtLeastOnce()
 
 bool CProblemSolver::NoCardsVisible()
 {
-	return (!p_table_state->User()->HasKnownCards());
+	return (!TableState()->User()->HasKnownCards());
 }
 
 bool CProblemSolver::NotEnoughButtonsVisible() {
