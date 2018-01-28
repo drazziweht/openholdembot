@@ -15,6 +15,8 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "Card.h"
 #include "..\..\pokereval\include\poker_defs.h"
 #include "..\..\pokereval\include\inlines\eval.h"

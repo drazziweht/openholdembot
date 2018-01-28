@@ -13,6 +13,8 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "SLimitInfo.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 

@@ -17,6 +17,8 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "CScrapedMoney.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 

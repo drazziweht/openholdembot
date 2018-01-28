@@ -44,8 +44,6 @@
 #include "CSymbolEngineTableLimits.h"
 #include "CTableMaploader.h"
 #include "CTablePositioner.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "CTitleEvaluator.h"
 #include "CValidator.h"
 #include "CVersionInfo.h"
@@ -63,9 +61,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWatchdog\n");
   assert(!p_watchdog);
   p_watchdog = new CWatchdog;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTableTitle\n");
-  assert(!p_table_title);
-  p_table_title = new CTableTitle;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CStringMatch\n");
   assert(!p_string_match);
   p_string_match = new CStringMatch;
@@ -266,8 +261,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_autoplayer_trace)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 24\n");
   DELETE_AND_CLEAR(p_string_match)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 26\n");
-  DELETE_AND_CLEAR(p_table_title)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 28\n");
   DELETE_AND_CLEAR(p_watchdog)
   // Session counter at the very end,

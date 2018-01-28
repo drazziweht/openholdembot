@@ -12,13 +12,13 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "TableState.h"
 
 /*!!!!!!!#include "CEngineContainer.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineActiveDealtPlaying.h"*/
-
-CTableState *p_table_state = NULL;
 
 CTableState::CTableState() {
   Reset();

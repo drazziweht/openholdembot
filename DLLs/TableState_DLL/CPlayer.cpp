@@ -11,6 +11,8 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "CPlayer.h"
 /*!!!!!!!#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"

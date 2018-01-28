@@ -17,6 +17,8 @@
 //
 //******************************************************************************
 
+#define TABLESTATE_DLL_EXPORTS
+
 #include "CTableTitle.h"
 
 #ifdef OPENHOLDEM_PROGRAM

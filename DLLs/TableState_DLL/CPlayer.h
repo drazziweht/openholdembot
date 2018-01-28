@@ -16,9 +16,10 @@
 
 #include "Card.h"
 #include "CScrapedMoney.h"
+#include "LibDef.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
-class CPlayer {
+class TABLESTATE_DLL_API CPlayer {
  public:
   CPlayer();
   ~CPlayer();

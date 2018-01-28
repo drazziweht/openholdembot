@@ -17,8 +17,9 @@
 #define INC_SLIMITINFO_H
 
 #include "CScrapedMoney.h"
+#include "LibDef.h"
 
-class CLimitInfo {
+class TABLESTATE_DLL_API CLimitInfo {
   friend class CTitleEvaluator;
  public:
   CLimitInfo();

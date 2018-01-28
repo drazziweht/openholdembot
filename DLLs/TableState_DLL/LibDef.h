@@ -8,24 +8,12 @@
 //
 //******************************************************************************
 //
-// Purpose: class for bets, balances and pots,
-//  which also handles proprocessing of special num,ber formats, ...
+// Purpose: single import/export macro for all header-files
 //
 //******************************************************************************
 
-#include "afxwin.h"
-#include "Libdef.h"
-
-class TABLESTATE_DLL_API CScrapedMoney {
- public:
-  CScrapedMoney();
-  ~CScrapedMoney();
- public:
-  // returns true if the scraped value is a number and non-negative
-  bool SetValue(CString scraped_value);
-  bool SetValue(double new_value);
-  void Reset();
-  double GetValue() { return _value; }
- private:
-  double _value;
-};
+#ifdef TABLESTATE_DLL_EXPORTS
+#define TABLESTATE_DLL_API __declspec(dllexport)
+#else
+#define TABLESTATE_DLL_API __declspec(dllimport)
+#endif

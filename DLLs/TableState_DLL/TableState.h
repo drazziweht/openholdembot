@@ -13,17 +13,12 @@
 //
 //******************************************************************************
 
-#ifdef TABLESTATE_DLL_EXPORTS
-#define TABLESTATE_DLL_API __declspec(dllexport)
-#else
-#define TABLESTATE_DLL_API __declspec(dllimport)
-#endif
-
 #include "Card.h"
 #include "CPlayer.h"
 #include "CScrapedMoney.h"
 #include "..\..\OpenHoldem\CSpaceOptimizedGlobalObject.h"
 #include "CTableTitle.h"
+#include "LibDef.h"
 #include "SLimitInfo.h"
 
 // One fake-entry for the case of unknown user-chair
@@ -32,7 +27,7 @@
 const int kNumberOfPlayerEntries = kMaxNumberOfPlayers + 1;
 const int kFakeEntryForUnknownUserchair = kMaxNumberOfPlayers;
 
-class CTableState {
+class TABLESTATE_DLL_API CTableState {
 public:
   CTableState();
   ~CTableState();
@@ -66,4 +61,3 @@ private:
 private:
   CTableTitle _table_title;
 };
-

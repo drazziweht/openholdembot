@@ -19,8 +19,9 @@
 #define INC_CARD_H
 
 #include <afxwin.h>
+#include "Libdef.h"
 
-class Card {
+class TABLESTATE_DLL_API Card {
  public:
   Card();
   ~Card();
