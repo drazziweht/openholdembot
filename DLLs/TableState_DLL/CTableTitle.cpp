@@ -26,7 +26,6 @@
 #endif
 #include "..\StringFunctions_DLL\string_functions.h"
 
-CTableTitle *p_table_title = NULL;
 int CTableTitle::_ohreplay_framenumber;
 
 CTableTitle::CTableTitle() {

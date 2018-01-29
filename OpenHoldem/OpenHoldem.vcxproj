@@ -239,6 +239,7 @@
     <ClCompile Include="CParseTreeTerminalNodeIdentifier.cpp" />
     <ClCompile Include="CParseTreeTerminalNodeNumber.cpp" />
     <ClCompile Include="CParseTreeTerminalNodeUserVariable.cpp" />
+    <ClCompile Include="CPokerTrackerLookUp.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="crc32hash.cpp" />
     <ClCompile Include="CSelftestParserEvaluator.cpp" />

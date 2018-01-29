@@ -153,7 +153,7 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
 
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// Scrape window
-  p_table_title->UpdateTitle();
+  TableState()->TableTitle()->UpdateTitle();
   write_log(Preferences()->debug_heartbeat(), "[HeartBeatThread] Calling DoScrape.\n");
   p_lazyscraper->DoScrape();
   // We must not check if the scrape of the table changed, because:

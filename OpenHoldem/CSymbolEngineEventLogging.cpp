@@ -50,7 +50,7 @@ void CSymbolEngineEventLogging::UpdateOnHandreset() {
     "HAND RESET\n"
     "==============================================\n",
     p_version_info->GetVersionInfo(), 
-    p_table_title->Title());
+    TableState()->TableTitle()->Title());
 }
 
 void CSymbolEngineEventLogging::UpdateOnNewRound()

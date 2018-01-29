@@ -19,6 +19,7 @@
 #include "CFunctionCollection.h"
 
 #include "../CTablemap/CTablemap.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "MainFrm.h"
 
@@ -52,7 +53,7 @@ CString COpenHoldemTitle::FullTitle() {
   write_log(Preferences()->debug_alltherest(), "[COpenHoldemTitle] location Johnny_6\n");
 	if (p_autoconnector->IsConnectedToAnything())	{
 		full_title.Format("%s | %s | %s", p_function_collection->FormulaName(),
-			p_tablemap->sitename(), p_table_title->Title());
+			p_tablemap->sitename(), TableState()->TableTitle()->Title());
 	}	else {
 		full_title.Format("%s", p_function_collection->FormulaName());
 	}

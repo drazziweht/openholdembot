@@ -38,6 +38,7 @@
 #include "..\CTransform\CTransform.h"
 #include "CWhiteInfoBox.h"
 #include "OpenHoldem.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
@@ -55,7 +56,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   assert(p_formula_parser != NULL);
   assert(p_sessioncounter != NULL);
   assert(p_tablemap != NULL);
-  assert(p_table_title != NULL);
+  assert(TableState()->TableTitle() != NULL);
   assert(p_white_info_box != NULL);
   // Objects that are part of the GUI which runs in its own thread.
   // They might or might not yet be initialized.
@@ -132,7 +133,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     *result = p_tablemap->ispopup();
   } else if ((memcmp(name, "title$", 6) == 0) && (strlen(name) >= 7)) {
     CString substring = CString(name).Mid(6);
-    *result = p_table_title->ContainsSubstring(substring);
+    *result = TableState()->TableTitle()->ContainsSubstring(substring);
   } else if ((memcmp(name, kEmptyExpression_False_Zero_WhenOthersFoldForce, strlen(kEmptyExpression_False_Zero_WhenOthersFoldForce))==0) 
       && (strlen(name)==strlen(kEmptyExpression_False_Zero_WhenOthersFoldForce))) {
     *result = kUndefinedZero;

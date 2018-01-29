@@ -53,6 +53,4 @@ class TABLESTATE_DLL_API CTableTitle /*!!!!!!!: public CSpaceOptimizedGlobalObje
   static int _ohreplay_framenumber;
 };
 
-extern CTableTitle *p_table_title;
-
 #endif INC_CTABLETITLE_H

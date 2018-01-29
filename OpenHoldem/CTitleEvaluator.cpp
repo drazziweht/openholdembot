@@ -77,7 +77,7 @@ CString CTitleEvaluator::ExtractHandnumFromString(CString t) {
 
 #ifdef OPENHOLDEM_PROGRAM
 void CTitleEvaluator::EvaluateTitleText() {
-  CString titletext = p_table_title->PreprocessedTitle();
+  CString titletext = TableState()->TableTitle()->PreprocessedTitle();
   CString title_format = p_tablemap->GetTMSymbol("ttlimits");
   ProcessTitle(titletext, title_format);
   // Now try alternative ttlimitsX

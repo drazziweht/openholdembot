@@ -80,5 +80,5 @@ const int CPokerTrackerLookup::GetSiteId()
 		"[PokerTrackerLookup] ERROR: unsupported sitename and unsupported network.\n");
 	write_log(Preferences()->debug_pokertracker(), 
 		"[PokerTrackerLookup] Probably wrong data in tablemap.\n");
-	return -1;
+	return kUndefined;
 }

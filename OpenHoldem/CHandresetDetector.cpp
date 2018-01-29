@@ -360,8 +360,8 @@ void CHandresetDetector::GetNewSymbolValues() {
   for (int i=0; i<p_tablemap->nchairs(); ++i) {
     _balance[i] = TableState()->Player(i)->_balance.GetValue();
   }
-  assert(p_table_title != NULL);
-  _ohreplay_framenumber = p_table_title->OHReplayFrameNumber();
+  assert(TableState()->TableTitle() != NULL);
+  _ohreplay_framenumber = TableState()->TableTitle()->OHReplayFrameNumber();
 }
 
 void CHandresetDetector::StoreOldValuesForComparisonOnNextHeartbeat() {
