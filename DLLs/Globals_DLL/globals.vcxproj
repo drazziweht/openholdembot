@@ -11,9 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <None Include="globals.def" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="globals.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -72,11 +69,10 @@
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)globals.dll</OutputFile>
-      <ModuleDefinitionFile>globals.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;$(OutDir)Preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)Preferences.lib;$(OutDir)TableState.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -90,13 +86,12 @@
     </ClCompile>
     <Link>
       <OutputFile>$(OutDir)globals.dll</OutputFile>
-      <ModuleDefinitionFile>globals.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;$(OutDir)Preferences.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)Preferences.lib;$(OutDir)TableState.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

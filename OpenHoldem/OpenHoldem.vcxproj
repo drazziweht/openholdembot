@@ -211,6 +211,7 @@
     <ClCompile Include="AllinAdjustment.cpp" />
     <ClCompile Include="BetpotCalculations.cpp" />
     <ClCompile Include="CAllinSlider.cpp" />
+    <ClCompile Include="CardFunctions.cpp" />
     <ClCompile Include="CAutoplayerButton.cpp" />
     <ClCompile Include="CBetsizeInputBox.cpp" />
     <ClCompile Include="CBlindGuesser.cpp" />

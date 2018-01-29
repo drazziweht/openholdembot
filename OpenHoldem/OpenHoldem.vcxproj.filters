@@ -191,6 +191,7 @@
     <ClCompile Include="COHScriptObject.cpp" />
     <ClCompile Include="CSymbolEngineFormulaSwitching.cpp" />
     <ClCompile Include="CPokerTrackerLookUp.cpp" />
+    <ClCompile Include="CardFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AllinAdjustment.h" />
