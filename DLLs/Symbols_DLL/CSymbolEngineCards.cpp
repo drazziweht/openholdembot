@@ -13,23 +13,21 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineCards.h"
-
 #include <assert.h>
-#include "CBetroundCalculator.h"
+///#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-
-#include "CScraper.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
-#include "..\Tablestate_DLL\TableState.h"
 #include "inlines/eval.h"
-#include "..\CTransform\CTransform.h"
-
-
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\..\pokereval\include\poker_defs.h"
+///#include "..\CTransform\CTransform.h"
 
 CSymbolEngineCards::CSymbolEngineCards() {
 	// The values of some symbol-engines depend on other engines.

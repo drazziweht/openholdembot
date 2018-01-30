@@ -12,12 +12,9 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineChairs.h"
-
-#include "CBetroundCalculator.h"
+///#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineChecksBetsFolds.h"
 #include "CSymbolEngineHistory.h"
@@ -25,8 +22,8 @@
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\Tablestate_DLL\TableState.h"
-#include "..\CTablemap\CTablemap.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 
 enum {
@@ -65,7 +62,6 @@ void CSymbolEngineChairs::InitOnStartup() {
 }
 
 void CSymbolEngineChairs::UpdateOnConnection() {
-  _nchairs = p_tablemap->nchairs();
   UpdateOnHandreset();
 }
 
@@ -145,7 +141,7 @@ int CSymbolEngineChairs::UTGChair() {
 
 int CSymbolEngineChairs::SmallStackChair() {
   int result = kUndefined;
-  int nchairs = p_tablemap->nchairs();
+  int nchairs = 10;/// p_tablemap->nchairs();
   int userchair = p_engine_container->symbol_engine_userchair()->userchair();
   // Init with huge number that we will never see in practice
   double smallest_stack = 999999999999;
@@ -168,7 +164,7 @@ int CSymbolEngineChairs::SmallStackChair() {
 
 int CSymbolEngineChairs::BigStackChair() {
   int result = kUndefined;
-  int nchairs = p_tablemap->nchairs();
+  int nchairs = 10; /// p_tablemap->nchairs();
   int userchair = p_engine_container->symbol_engine_userchair()->userchair();
   double biggest_stack = 0.0;
   for (int i = 0; i < nchairs; ++i) {
@@ -220,7 +216,7 @@ bool CSymbolEngineChairs::MissingSmallBlind() {
   if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersseated() < 2) {
     return false;
   }
-  if (p_betround_calculator->betround() > kBetroundPreflop) {
+  if (false/*#p_betround_calculator->betround() > kBetroundPreflop*/) {
     // Gets initialized at our first action preflop
     return _missing_smallblind;
   }

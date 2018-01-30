@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   which are of special importance and get handled by other symbol-engines.
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINECHAIRS_H
-#define INC_CSYMBOLENGINECHAIRS_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -55,4 +53,3 @@ class CSymbolEngineChairs: public CVirtualSymbolEngine {
   bool _missing_smallblind_calculated;
 };
 
-#endif INC_CSYMBOLENGINECHAIRS_H

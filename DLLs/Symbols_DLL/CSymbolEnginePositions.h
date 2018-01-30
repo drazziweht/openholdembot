@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,7 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEPOSITIONS_H
-#define INC_CSYMBOLENGINEPOSITIONS_H
-
 #include "CVirtualSymbolEngine.h"
-#include "..\CTransform\CTransform.h"
 
 class CSymbolEnginePositions: public CVirtualSymbolEngine
 {
@@ -55,5 +52,3 @@ private:
 	int _dealposition;
 	int _callposition;
 };
-
-#endif INC_CSYMBOLENGINEPOSITIONS_H

@@ -17,7 +17,6 @@
 #include "CVirtualSymbolEngine.h"
 #include "CBetroundCalculator.h"
 
-
 class CSymbolEngineChecksBetsFolds: public CVirtualSymbolEngine {
  public:
 	CSymbolEngineChecksBetsFolds();

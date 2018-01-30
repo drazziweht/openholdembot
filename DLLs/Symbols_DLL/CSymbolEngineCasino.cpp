@@ -12,9 +12,7 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineCasino.h"
-
 #include <assert.h>
 #include <process.h>
 #include <float.h>

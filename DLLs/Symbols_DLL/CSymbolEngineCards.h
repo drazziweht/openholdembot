@@ -17,6 +17,7 @@
 #define INC_CSYMBOLENGINECARDS_H
 
 #include "CVirtualSymbolEngine.h"
+#include "..\..\pokereval\include\poker_defs.h"
 
 class CSymbolEngineCards: public CVirtualSymbolEngine {
 public:
