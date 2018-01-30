@@ -16,8 +16,8 @@
 
 #include "CBetroundCalculator.h"
 
-#include "CScraper.h"
-#include "CStringMatch.h"
+
+
 #include "..\Tablestate_DLL\TableState.h"
 
 

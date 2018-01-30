@@ -17,8 +17,8 @@
 #include "CEngineContainer.h"
 #include "CHandresetDetector.h"
 
-#include "CScraper.h"
-#include "CStringMatch.h"
+
+
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineChipAmounts.h"
 

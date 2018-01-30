@@ -18,7 +18,7 @@
 #include "CAutoconnector.h"
 #include "CAutoplayerTrace.h"
 #include "CHandresetDetector.h"
-#include "CScraper.h"
+
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"

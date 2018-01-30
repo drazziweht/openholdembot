@@ -30,9 +30,9 @@
 #include "CHandresetDetector.h"
 #include "CIteratorThread.h"
 #include "CPokerTrackerThread.h"
-#include "CScraper.h"
+
 #include "CSessionCounter.h"
-#include "CStringMatch.h"
+
 #include "CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\CTransform\CTransform.h"

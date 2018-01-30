@@ -7,11 +7,7 @@
 //
 //******************************************************************************
 //
-// Purpose:
-//
-//******************************************************************************
-//
-// nopponentstruelyraising counts all people who voluntarily bet more than needed,
+// Purpose: nopponentstruelyraising counts all people who voluntarily bet more than needed,
 // especially:
 //  * all raisers
 //  * the first voluntary better postflop
@@ -37,14 +33,10 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineRaisers.h"
-
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CScraper.h"
-#include "CStringMatch.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineChipAmounts.h"
@@ -55,9 +47,9 @@
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
-#include "..\Preferences_DLL\Preferences.h"
-
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 
@@ -167,7 +159,7 @@ int CSymbolEngineRaisers::LastPossibleActor() {
     result = p_engine_container->symbol_engine_dealerchair()->dealerchair();
   }
   int first_possible_actor = FirstPossibleActor();
-  int nchairs = p_tablemap->nchairs();
+  int nchairs = 10;/// p_tablemap->nchairs();
   int chairs_inspected = result - first_possible_actor;
   if (result < first_possible_actor) {
     // Make sure tat our simple for-loops don't terminate too early
@@ -180,7 +172,7 @@ int CSymbolEngineRaisers::LastPossibleActor() {
 double CSymbolEngineRaisers::MinimumStartingBetCurrentOrbit(bool searching_for_raisers) {
   if (p_engine_container->symbol_engine_history()->DidAct()) {
     int last_known_actor = ChairInFrontOfFirstPossibleActor();
-    int nchairs = p_tablemap->nchairs();
+    int nchairs = 10;/// p_tablemap->nchairs();
     AssertRange(last_known_actor, 0, (nchairs - 1));
     return TableState()->Player(last_known_actor)->_bet.GetValue();
   }
@@ -228,7 +220,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
   write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineRaisers] Searching for raisers from chair %i to %i with a bet higher than %.2f\n",
 		first_possible_raiser, last_possible_raiser, highest_bet); 
 	for (int i=first_possible_raiser; i<=last_possible_raiser; ++i) {
-		int chair = i % p_tablemap->nchairs();
+    int chair = i % 10;/// p_tablemap->nchairs();
 		double current_players_bet = TableState()->Player(chair)->_bet.GetValue();
     write_log(Preferences()->debug_symbolengine(), 
       "[CSymbolEngineRaisers] chair %d bet %.2f\n",

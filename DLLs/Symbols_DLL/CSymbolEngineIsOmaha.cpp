@@ -16,7 +16,7 @@
 
 #include <assert.h>
 #include "CEngineContainer.h"
-///#include "CScraper.h"
+///
 #include "..\..\CTablemap\CTablemap.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"

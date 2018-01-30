@@ -21,7 +21,7 @@
 #include "CFunctionCollection.h"
 #include "CIteratorThread.h"
 
-#include "CScraper.h"  
+  
 #include "CStableFramesCounter.h"
 #include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"

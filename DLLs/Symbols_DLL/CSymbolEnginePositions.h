@@ -8,7 +8,7 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dealposition, betposition and some other position symbols
 //
 //******************************************************************************
 
@@ -34,11 +34,11 @@ public:
 public:
 	int nchairsdealtright()		{ return _nchairsdealtright;	}
 	int nchairsdealtleft()		{ return _nchairsdealtleft;		}
-	int betpositionrais()		{ return _betpositionrais;		}
+	int betpositionrais()		  { return _betpositionrais;		}
 	int dealpositionrais()		{ return _dealpositionrais;		}
-	int betposition()			{ return _betposition;			}
-	int dealposition()			{ return _dealposition;			}
-	int callposition()			{ return _callposition;			}
+	int betposition()			    { return _betposition;		  	}
+	int dealposition()		  	{ return _dealposition;		  	}
+	int callposition()			  { return _callposition;		  	}
 private:
 	void CalculateNChairsDealtLeftRight();
 	void CalculatePositionForTheRaiser();

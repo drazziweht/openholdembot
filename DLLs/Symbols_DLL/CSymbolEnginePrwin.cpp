@@ -20,7 +20,7 @@
 #include "CFunctionCollection.h"
 #include "CIteratorThread.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolenginePokerval.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"

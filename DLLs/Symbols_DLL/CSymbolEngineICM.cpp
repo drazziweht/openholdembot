@@ -28,7 +28,7 @@
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CSymbolEngineActiveDealtPlaying.h"

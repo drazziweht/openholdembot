@@ -15,7 +15,7 @@
 #include "CBetroundCalculator.h"
 
 
-#include "CScraper.h"
+
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"

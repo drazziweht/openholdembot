@@ -19,7 +19,7 @@
 #include "CEngineContainer.h"
 #include "CHandresetDetector.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineCasino.h"

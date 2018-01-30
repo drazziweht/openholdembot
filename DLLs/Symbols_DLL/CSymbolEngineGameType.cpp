@@ -18,7 +18,7 @@
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineIsTournament.h"
 #include "..\Tablestate_DLL\TableState.h"
 

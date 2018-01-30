@@ -20,7 +20,7 @@
 #include "CEngineContainer.h"
 
 
-#include "CScraper.h"
+
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEngineUserchair.h"

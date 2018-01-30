@@ -17,7 +17,7 @@
 #include <assert.h>
 #include "CEngineContainer.h"
 #include "COpenHoldemStatusbar.h"
-#include "CScraper.h"
+
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"

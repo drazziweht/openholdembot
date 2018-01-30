@@ -20,7 +20,7 @@
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineIsTournament.h"

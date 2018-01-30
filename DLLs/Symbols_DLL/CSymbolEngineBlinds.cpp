@@ -16,7 +16,7 @@
 
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "CScraper.h"
+
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEnginePositions.h"

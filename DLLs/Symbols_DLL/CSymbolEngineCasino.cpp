@@ -22,9 +22,9 @@
 #include "inlines/eval.h"
 #include "Chair$Symbols.h"
 
-#include "CScraper.h"
+
 #include "CSessionCounter.h"
-#include "CStringMatch.h"
+
 #include "..\CTablemap\CTablemap.h"
 #include "..\CTransform\CTransform.h"
 

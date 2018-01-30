@@ -17,7 +17,7 @@
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 
-#include "CScraper.h"
+
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"

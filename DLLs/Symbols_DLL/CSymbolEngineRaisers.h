@@ -7,11 +7,7 @@
 //
 //******************************************************************************
 //
-// Purpose:
-//
-//******************************************************************************
-//
-// nopponentstruelyraising counts all people who voluntarily bet more than needed,
+// Purpose: nopponentstruelyraising counts all people who voluntarily bet more than needed,
 // especially:
 //  * all raisers
 //  * the first voluntary better postflop
@@ -37,13 +33,12 @@
 //
 //******************************************************************************
 
-
 #ifndef INC_CSYMBOLENGINERAISERS_H
 #define INC_CSYMBOLENGINERAISERS_H
 
 #include "CVirtualSymbolEngine.h"
 #include "CBetroundCalculator.h"
-
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineRaisers: public CVirtualSymbolEngine {
  friend class CSymbolEngineCallers;

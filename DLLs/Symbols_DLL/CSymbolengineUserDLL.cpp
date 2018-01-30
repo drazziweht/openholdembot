@@ -19,7 +19,7 @@
 #include "CIteratorThread.h"
 #include "COcclusionCheck.h"
 #include "COpenHoldemTitle.h"
-#include "CScraper.h"
+
 #include "CSymbolengineVersus.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"

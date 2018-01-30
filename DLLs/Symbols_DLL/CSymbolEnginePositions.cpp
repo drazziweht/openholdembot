@@ -7,24 +7,21 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dealposition, betposition and some other position symbols
 //
 //******************************************************************************
-
 
 #include "CSymbolEnginePositions.h"
 
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "CScraper.h"
-#include "CStringMatch.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 CSymbolEnginePositions::CSymbolEnginePositions()
 {

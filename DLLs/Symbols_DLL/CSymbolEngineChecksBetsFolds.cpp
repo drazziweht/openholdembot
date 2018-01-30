@@ -17,8 +17,8 @@
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CScraper.h"
-#include "CStringMatch.h"
+
+
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineChipAmounts.h"
