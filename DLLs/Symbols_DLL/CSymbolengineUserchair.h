@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,10 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEUSERCHAIR_H
-#define INC_CSYMBOLENGINEUSERCHAIR_H
-
 #include "CVirtualSymbolEngine.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineUserchair: public CVirtualSymbolEngine
 {
@@ -43,5 +42,3 @@ private:
 private:
 	int _userchair;
 };
-
-#endif INC_CSYMBOLENGINEUSERCHAIR_H

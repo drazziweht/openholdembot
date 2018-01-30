@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,16 +8,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: active / dealt / playing players
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEACTIVEDEALTPLAYING_H
-#define INC_CSYMBOLENGINEACTIVEDEALTPLAYING_H
-
 #include "CVirtualSymbolEngine.h"
 #include "CSymbolEngineUserchair.h"
-
 
 class CSymbolEngineActiveDealtPlaying: public CVirtualSymbolEngine {
  public:
@@ -80,5 +77,3 @@ private:
   int _playersallinbits;
   int _maxnplayersdealt;
 };
-
-#endif INC_CSYMBOLENGINEACTIVEDEALTPLAYING_H

@@ -7,25 +7,21 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: active / dealt / playing players
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
-
 #include <assert.h>
-#include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-
-#include "CScraper.h"
-#include "CStringMatch.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
-#include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineActiveDealtPlaying::CSymbolEngineActiveDealtPlaying()
 {
