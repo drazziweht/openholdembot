@@ -15,14 +15,15 @@
 //
 //*******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineMultiplexer.h"
-
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+///#include "CFormulaParser.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\StringFunctions_DLL\string_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 const int kNumberOfSupportedPostfixes = 29;
 // If you extend the list below please don't forget to update FastExitOnLastCharacter()
@@ -131,7 +132,7 @@ CString CSymbolEngineMultiplexer::MultiplexedSymbolName(CString name) {
   p_engine_container->EvaluateSymbol(postfix, &evaluated_postfix, false);
   if (evaluated_postfix == kUndefined) {
     // Valid postfix, but invalid (negative) value
-	  if (p_formula_parser->IsParsing()) {
+	  if (false/*!!!!!!!p_formula_parser->IsParsing()*/) {
       // Some (chair) values are not available,
       // but we want to continue to verify the entire multiplexer-symbol.
       // Continue with chair 0

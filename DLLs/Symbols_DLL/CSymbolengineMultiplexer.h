@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -14,9 +15,6 @@
 //   before other symbol engines try to handle this query.
 //
 //*******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEMULTIPLEXER_H
-#define INC_CSYMBOLENGINEMULTIPLEXER_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -45,5 +43,3 @@ class CSymbolEngineMultiplexer: public CVirtualSymbolEngine {
   // Not inline, because it is recursive
   CString MultiplexedSymbolName(CString name);
 };
-
-#endif INC_CSYMBOLENGINEMULTIPLEXER_H

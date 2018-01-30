@@ -7,12 +7,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: storing/recalling OH-script memory-symbols
+//   and OpenPPL user-variables
 //
 //******************************************************************************
-
-#ifndef INC_C_SYMBOLENGINEMEMORYSYMBOLS_H
-#define INC_C_SYMBOLENGINEMEMORYSYMBOLS_H
 
 #include <map>
 #include "CVirtualSymbolEngine.h"
@@ -53,5 +51,3 @@ class CSymbolEngineMemorySymbols: public CVirtualSymbolEngine {
  private:
   std::map<CString, double> _memory_symbols;
 };
-
-#endif INC_C_SYMBOLENGINEMEMORYSYMBOLS_H

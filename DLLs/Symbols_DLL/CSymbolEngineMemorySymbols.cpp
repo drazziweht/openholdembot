@@ -7,11 +7,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: storing/recalling OH-script memory-symbols
+//   and OpenPPL user-variables
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineMemorySymbols.h"
 
 #include "CParseErrors.h"

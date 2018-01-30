@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 #include "CVirtualSymbolEngine.h"
 
 class CSymbolEngineActiveDealtPlaying;
@@ -61,7 +61,7 @@ class CSymbolEngineVariousDataLookup;
 class CSymbolEngineVersus;
 class CSymbolEngineICM;
 
-class CEngineContainer : public CSpaceOptimizedGlobalObject {
+class CEngineContainer/* !!!!!!!: public CSpaceOptimizedGlobalObject*/ {
  public:
   CEngineContainer();
   ~CEngineContainer();
