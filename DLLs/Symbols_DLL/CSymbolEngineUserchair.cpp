@@ -7,20 +7,17 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting the userchair
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineUserchair.h"
-
-#include "CBetroundCalculator.h"
-#include "CCasinoInterface.h"
-
-#include "CScraper.h"
-#include "CStringMatch.h"
+///#include "CBetroundCalculator.h"
+///#include "CCasinoInterface.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 CSymbolEngineUserchair::CSymbolEngineUserchair() {
 	// The values of some symbol-engines depend on other engines.
@@ -54,15 +51,15 @@ void CSymbolEngineUserchair::UpdateOnMyTurn()
 {}
 
 void CSymbolEngineUserchair::UpdateOnHeartbeat() {
-	if (!userchair_confirmed() || (p_casino_interface->IsMyTurn())) {
+	if (!userchair_confirmed() /*!!!!!!!|| (p_casino_interface->IsMyTurn())*/) {
 		CalculateUserChair();
 	}
 }
 
 bool CSymbolEngineUserchair::IsNotShowdown() {
-  int num_buttons_enabled = p_casino_interface->NumberOfVisibleAutoplayerButtons();
+  int num_buttons_enabled = 2;/// p_casino_interface->NumberOfVisibleAutoplayerButtons();
   if (num_buttons_enabled >= k_min_buttons_needed_for_my_turn) return true;
-  if (p_betround_calculator->betround() < kBetroundRiver) return true;
+  ///if (p_betround_calculator->betround() < kBetroundRiver) return true;
   return false;
 }
 
@@ -73,7 +70,7 @@ void CSymbolEngineUserchair::CalculateUserChair() {
 	}	else {
 		// Either not confirmed or no known cards when it is my turn
 		// Looking for known cards and new chair
-		for (int i=0; i<p_tablemap->nchairs(); i++)
+		for (int i=0; 10 /*#i<p_tablemap->nchairs()*/; i++)
 		{
 			if (TableState()->Player(i)->HasKnownCards() && IsNotShowdown()) {
 				_userchair = i;

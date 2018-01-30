@@ -11,7 +11,6 @@
 //
 //***************************************************************************** 
 
-
 #include "CSymbolEngineTableStats.h"
 
 #include "CBetroundCalculator.h"
