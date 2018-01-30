@@ -14,14 +14,14 @@
 //
 //*******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineFormulaSwitching.h"
 #include <io.h>
 #include "CFormulaParser.h"
 #include "CFunctionCollection.h"
-#include "..\DLLs\Debug_DLL\debug.h"
-#include "..\DLLs\Files_DLL\Files.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Files_DLL\Files.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineFormulaSwitching::CSymbolEngineFormulaSwitching() {
 	// The values of some symbol-engines depend on other engines.

@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineIsRush.h"
 
 #include "CEngineContainer.h"
@@ -21,7 +21,7 @@
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CSymbolEngineTime.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 // Maximum average time between last action and handreset

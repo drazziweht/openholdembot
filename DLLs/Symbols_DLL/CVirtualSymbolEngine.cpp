@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CVirtualSymbolEngine.h"
 
 #include "CEngineContainer.h"
@@ -19,7 +19,7 @@
 #include "CFormulaParser.h"
 #include "CMemoryPool.h"
 #include "CSymbolEngineIsOmaha.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CVirtualSymbolEngine::CVirtualSymbolEngine()
 {}

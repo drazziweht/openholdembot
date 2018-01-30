@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEnginePrwin.h"
 
 #include <assert.h>
@@ -23,7 +23,8 @@
 #include "CScraper.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolenginePokerval.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CSymbolEnginePrwin::CSymbolEnginePrwin() {
 	// The values of some symbol-engines depend on other engines.
@@ -142,15 +143,15 @@ void CSymbolEnginePrwin::CalculateNhands() {
 			}
 		}
 	}
-  ///AssertRange(_nhandshi, 0, nhands());
-	///AssertRange(_nhandsti, 0, nhands());
-	///AssertRange(_nhandslo, 0, nhands());
+  AssertRange(_nhandshi, 0, nhands());
+	AssertRange(_nhandsti, 0, nhands());
+	AssertRange(_nhandslo, 0, nhands());
 	assert((_nhandshi + _nhandsti + _nhandslo) == nhands());
   _prwinnow = pow(((double)_nhandslo/nhands()), _nopponents_for_prwin);
 	_prlosnow = 1 - pow((((double)_nhandslo + _nhandsti)/nhands()), _nopponents_for_prwin);
 
-	///AssertRange(_prwinnow, 0, 1);
-	///AssertRange(_prlosnow, 0, 1);
+	AssertRange(_prwinnow, 0, 1);
+	AssertRange(_prlosnow, 0, 1);
 }
 
 void CSymbolEnginePrwin::CalculateNOpponents() {

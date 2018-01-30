@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineAutoplayer.h"
 
 #include "CAutoconnector.h"
@@ -26,7 +26,7 @@
 #include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 

@@ -13,7 +13,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineCards.h"
 
 #include <assert.h>
@@ -24,7 +24,8 @@
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 #include "inlines/eval.h"
 #include "..\CTransform\CTransform.h"
 
@@ -576,10 +577,10 @@ void CSymbolEngineCards::CalcUnknownCards()
 		}
 	}
 	write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] nouts: %i\n", _nouts);
-	///AssertRange(_ncardsknown,   0, kNumberOfCardsPerDeck);
-	///AssertRange(_ncardsunknown, 0, kNumberOfCardsPerDeck);
-	///AssertRange(_nouts,         0, kNumberOfCardsPerDeck);
-	///AssertRange(_ncardsbetter,  0, kNumberOfCardsPerDeck);
+	AssertRange(_ncardsknown,   0, kNumberOfCardsPerDeck);
+	AssertRange(_ncardsunknown, 0, kNumberOfCardsPerDeck);
+	AssertRange(_nouts,         0, kNumberOfCardsPerDeck);
+	AssertRange(_ncardsbetter,  0, kNumberOfCardsPerDeck);
 }
 
 bool CSymbolEngineCards::IsHand(const char *name) {

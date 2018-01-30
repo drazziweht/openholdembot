@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEnginePositions.h"
 
 #include <assert.h>
@@ -22,7 +22,8 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 CSymbolEnginePositions::CSymbolEnginePositions()
@@ -93,8 +94,8 @@ void CSymbolEnginePositions::CalculateNChairsDealtLeftRight() {
 			}
 		}
 	}
-	///AssertRange(_nchairsdealtright, 0, (kMaxNumberOfPlayers - 1));
-	///AssertRange(_nchairsdealtleft,  0, (kMaxNumberOfPlayers - 1));
+	AssertRange(_nchairsdealtright, 0, (kMaxNumberOfPlayers - 1));
+	AssertRange(_nchairsdealtleft,  0, (kMaxNumberOfPlayers - 1));
 }
 
 void CSymbolEnginePositions::CalculatePositionForTheRaiser() {
@@ -116,8 +117,8 @@ void CSymbolEnginePositions::CalculatePositionForTheRaiser() {
       break;
     }
 	}
-	///AssertRange(_betpositionrais,  kUndefined, kMaxNumberOfPlayers);
-	///AssertRange(_dealpositionrais, kUndefined, kMaxNumberOfPlayers);
+	AssertRange(_betpositionrais,  kUndefined, kMaxNumberOfPlayers);
+	AssertRange(_dealpositionrais, kUndefined, kMaxNumberOfPlayers);
 }
 
 void CSymbolEnginePositions::CalculatePositionsForTheUserchair() {
@@ -157,9 +158,9 @@ void CSymbolEnginePositions::CalculatePositionsForTheUserchair() {
     _callposition = offset % nplayers;
   }
 
-	///AssertRange(_betposition,  kUndefined, kMaxNumberOfPlayers);
-	///AssertRange(_dealposition, kUndefined, kMaxNumberOfPlayers);
-	///AssertRange(_callposition, kUndefined, kMaxNumberOfPlayers);
+	AssertRange(_betposition,  kUndefined, kMaxNumberOfPlayers);
+	AssertRange(_dealposition, kUndefined, kMaxNumberOfPlayers);
+	AssertRange(_callposition, kUndefined, kMaxNumberOfPlayers);
 }
 
 bool CSymbolEnginePositions::EvaluateSymbol(const CString name, double *result, bool log /* = false */)

@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineEventLogging.h"
 
 #include "CAutoconnector.h"
@@ -21,8 +21,8 @@
 #include "CScraper.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\CTableTitle.h"
 #include "CVersionInfo.h"
 
 CSymbolEngineEventLogging::CSymbolEngineEventLogging()

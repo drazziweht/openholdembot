@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineVariousDataLookup.h"
 
 #include <assert.h>
@@ -38,9 +38,9 @@
 #include "..\CTransform\CTransform.h"
 #include "CWhiteInfoBox.h"
 #include "OpenHoldem.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\CTableTitle.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineVariousDataLookup *p_symbol_engine_various_data_lookup = NULL;
 

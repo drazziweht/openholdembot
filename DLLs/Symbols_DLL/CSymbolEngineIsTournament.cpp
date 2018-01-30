@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineIsTournament.h"
 
 #include <assert.h>
@@ -29,9 +29,9 @@
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 const double k_lowest_bigblind_ever_seen_in_tournament           = 10.0;
 const double k_large_bigblind_probably_later_table_in_tournament = 500.0;

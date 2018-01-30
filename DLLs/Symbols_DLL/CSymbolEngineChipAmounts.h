@@ -18,7 +18,7 @@
 #include "assert.h"
 #include "CSymbolEngineUserChair.h"
 #include "CSymbolEngineTableLimits.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 class CSymbolEngineChipAmounts: public CVirtualSymbolEngine

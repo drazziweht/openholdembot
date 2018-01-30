@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineHistory.h"
 
 #include "CBetroundCalculator.h"
@@ -23,7 +23,7 @@
 #include "CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
 #include "FloatingPoint_Comparisions.h"
-
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 
 const char* const k_hist_sym_strings[k_hist_sym_count] = {
   // CHIP AMOUNTS (21)
@@ -135,7 +135,7 @@ void CSymbolEngineHistory::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineHistory::UpdateAfterAutoplayerAction(int autoplayer_action_code) {
-	///AssertRange(autoplayer_action_code, k_autoplayer_function_beep,
+	AssertRange(autoplayer_action_code, k_autoplayer_function_beep,
 		k_autoplayer_function_fold);
 	// Nothing to do of the "action" was "beep".
 	if (autoplayer_action_code == k_autoplayer_function_beep) {

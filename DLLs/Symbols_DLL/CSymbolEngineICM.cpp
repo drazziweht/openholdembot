@@ -23,7 +23,7 @@
 	  ICM assumes that P(i,n|j,1) = (P(i,n-1) in a game where j has been removed)
 */
 
-#include "stdafx.h"
+
 #include "CSymbolEngineICM.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
@@ -37,10 +37,10 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEnginePokerAction.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineICM::CSymbolEngineICM() {
   // The values of some symbol-engines depend on other engines.

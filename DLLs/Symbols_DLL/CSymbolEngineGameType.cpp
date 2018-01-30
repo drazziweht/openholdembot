@@ -11,7 +11,7 @@
 //
 //****************************************************************************** 
 
-#include "stdafx.h"
+
 #include "CSymbolEngineGameType.h"
 
 #include <assert.h>
@@ -20,7 +20,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineIsTournament.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CSymbolEngineGameType	*p_symbol_engine_gametype = NULL;
 

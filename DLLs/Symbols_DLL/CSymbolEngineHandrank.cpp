@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineHandrank.h"
 
 #include <assert.h>
@@ -21,7 +21,7 @@
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 int handrank_table_2652[kMaxNumberOfPlayers][kNumberOfStartingHands] =

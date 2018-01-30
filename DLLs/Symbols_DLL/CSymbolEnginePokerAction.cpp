@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEnginePokerAction.h"
 
 #include "CBetroundCalculator.h"
@@ -22,7 +22,7 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineRaisers.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 CSymbolEnginePokerAction::CSymbolEnginePokerAction() {
   // The values of some symbol-engines depend on other engines.

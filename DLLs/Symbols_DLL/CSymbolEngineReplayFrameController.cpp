@@ -13,7 +13,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineReplayFrameController.h"
 
 #include <assert.h>
@@ -26,7 +26,7 @@
 #include "CReplayFrame.h"
 #include "CStableFramesCounter.h"
 #include "CSymbolEngineAutoplayer.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 #include "CSymbolEngineCasino.h"
 

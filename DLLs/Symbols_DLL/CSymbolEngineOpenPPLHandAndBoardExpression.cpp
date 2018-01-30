@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineOpenPPLHandAndBoardExpression.h"
 
 #include "CardFunctions.h"
@@ -22,8 +22,8 @@
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 const int prime_coded_card_ranks[k_rank_ace+1] = {
 	1,	// rank = 0, unused, exists due to C++-definition

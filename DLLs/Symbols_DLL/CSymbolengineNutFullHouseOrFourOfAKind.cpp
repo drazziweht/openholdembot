@@ -13,18 +13,19 @@
 //
 //*******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolengineNutFullhouseOrFourOfAKind.h"
 
 #include "inlines/eval.h"
-#include "..\DLLs\Tablestate_DLL\Card.h"
+#include "..\Tablestate_DLL\Card.h"
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 
@@ -135,7 +136,7 @@ void CSymbolEngineNutFullhouseOrFourOfAKind::CalculateNutFullhouseOrFourOfAKind(
   int n_player_cards = 0;
   int n_board_cards = 0;
   // setup masks
-  ///AssertRange(userchair, 0, kMaxChairNumber);
+  AssertRange(userchair, 0, kMaxChairNumber);
   for (int i = 0; i < NumberOfCardsPerPlayer(); i++) {
     Card *card = TableState()->User()->hole_cards(i);
     if (card->IsKnownCard()) {

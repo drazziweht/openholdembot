@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEnginePokerTracker.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 
@@ -28,8 +28,9 @@
 #include "CSymbolEngineIsRush.h"
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEnginePokerTracker::CSymbolEnginePokerTracker()
 {
@@ -217,7 +218,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *resul
     *result = kUndefined;
     return true;
   }
-	///AssertRange(chair, kFirstChair, kLastChair);
+	AssertRange(chair, kFirstChair, kLastChair);
 	*result = PT_DLL_GetStat(name, chair); 
 	return true;
 }

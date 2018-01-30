@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineCasino.h"
 
 #include <assert.h>
@@ -31,7 +31,7 @@
 #include "..\CTransform\CTransform.h"
 
 #include "OpenHoldem.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineCasino	*p_symbol_engine_casino = NULL;
 

@@ -17,7 +17,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineTableLimits.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineDealerchair::CSymbolEngineDealerchair() {

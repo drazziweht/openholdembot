@@ -16,6 +16,7 @@
 
 #include "CSymbolEngineDebug.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 
 CSymbolEngineDebug::CSymbolEngineDebug() {
@@ -51,7 +52,7 @@ void CSymbolEngineDebug::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineDebug::SetValue(int index, double value) {
-  ///AssertRange(index, 0, kLastDebugIndex);
+  AssertRange(index, 0, kLastDebugIndex);
   _debug_values[index] = value;
 }
 
@@ -67,7 +68,7 @@ bool CSymbolEngineDebug::EvaluateSymbol(const CString name, double *result, bool
   }
   // debug0..debug9
   int index = RightDigitCharacterToNumber(name);
-  ///AssertRange(index, 0, kLastDebugIndex);
+  AssertRange(index, 0, kLastDebugIndex);
   *result = _debug_values[index];
   return true;
 }

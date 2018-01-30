@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineBlinds.h"
 
 #include <assert.h>
@@ -22,7 +22,7 @@
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineBlinds::CSymbolEngineBlinds()

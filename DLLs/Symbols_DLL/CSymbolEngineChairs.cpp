@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineChairs.h"
 
 #include "CBetroundCalculator.h"
@@ -25,9 +25,9 @@
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 #include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 enum {
   // offset from the dealer, counter-clockwise

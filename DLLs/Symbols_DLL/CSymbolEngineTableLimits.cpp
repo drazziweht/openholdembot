@@ -11,7 +11,7 @@
 //
 //****************************************************************************** 
 
-#include "stdafx.h"
+
 #include "CSymbolEngineTableLimits.h"
 
 #include <assert.h>
@@ -24,10 +24,10 @@
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineIsTournament.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 #include "FloatingPoint_Comparisions.h"
 #include "Median.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 CSymbolEngineTableLimits::CSymbolEngineTableLimits() {
 	// The values of some symbol-engines depend on other engines.

@@ -15,7 +15,7 @@
 #define INC_CSymbolEngineMTTInfo_H
 
 #include "CVirtualSymbolEngine.h"
-#include "..\DLLs\Tablestate_DLL\CScrapedMoney.h"
+#include "..\Tablestate_DLL\CScrapedMoney.h"
 
 class CSymbolEngineMTTInfo: public CVirtualSymbolEngine {
  public:

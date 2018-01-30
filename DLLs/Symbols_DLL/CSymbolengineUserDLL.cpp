@@ -11,7 +11,7 @@
 //
 //*******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineUserDLL.h"
 
 #include "CEngineContainer.h"
@@ -23,9 +23,9 @@
 #include "COpenHoldemTitle.h"
 #include "CScraper.h"
 #include "CSymbolengineVersus.h"
-#include "..\DLLs\TableState_DLL\CTableTitle.h"
-#include "..\DLLs\TableState_DLL\TableState.h"
-#include "..\DLLs\User_DLL\user.h"
+#include "..\TableState_DLL\CTableTitle.h"
+#include "..\TableState_DLL\TableState.h"
+#include "..\User_DLL\user.h"
 
 CSymbolEngineUserDLL *p_symbol_engine_formula_loading = NULL;
 

@@ -12,6 +12,7 @@
 //******************************************************************************
 
 #include "CSymbolEngineRandom.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineRandom::CSymbolEngineRandom() {
@@ -55,7 +56,7 @@ void CSymbolEngineRandom::UpdateOnHeartbeat() {
 
 double CSymbolEngineRandom::Random_0_1() {
 	double result = ((double) rand() / (double) RAND_MAX);
-	///AssertRange(result, 0, 1);
+	AssertRange(result, 0, 1);
 	return result;
 }
 

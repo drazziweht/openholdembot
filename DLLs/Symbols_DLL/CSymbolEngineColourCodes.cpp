@@ -11,14 +11,14 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineColourCodes.h"
 
 #include "CBetroundCalculator.h"
 
 #include "CScraper.h"
 #include "CStringMatch.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 
 CSymbolEngineColourCodes::CSymbolEngineColourCodes() {

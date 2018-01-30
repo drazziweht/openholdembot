@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineChipAmounts.h"
 
 #include "CBetroundCalculator.h"
@@ -19,7 +19,7 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Tablestate_DLL\TableState.h"
 #include "FloatingPoint_Comparisions.h"
 
 

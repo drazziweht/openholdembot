@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSymbolEngineChecksBetsFolds.h"
 
 #include <assert.h>
@@ -26,10 +26,10 @@
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 CSymbolEngineChecksBetsFolds::CSymbolEngineChecksBetsFolds() {
 	// The values of some symbol-engines depend on other engines.
@@ -107,12 +107,12 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 			_nopponentschecking++;
 		}
 	}
-	///AssertRange(_nplayerscallshort,  0, kMaxNumberOfOpponentsAtFullRingTable);
+	AssertRange(_nplayerscallshort,  0, kMaxNumberOfOpponentsAtFullRingTable);
 	// Using kMaxNumberOfPlayers instead of kMaxNumberOfOpponentsAtFullRingTable below,
 	// as it might be that the user is not seated or user-chair not recognized
-	///AssertRange(_nopponentsbetting,  0, kMaxNumberOfPlayers);
-	///AssertRange(_nopponentsfolded,   0, kMaxNumberOfPlayers);
-	///AssertRange(_nopponentschecking, 0, kMaxNumberOfPlayers);
+	AssertRange(_nopponentsbetting,  0, kMaxNumberOfPlayers);
+	AssertRange(_nopponentsfolded,   0, kMaxNumberOfPlayers);
+	AssertRange(_nopponentschecking, 0, kMaxNumberOfPlayers);
 }
 
 double CSymbolEngineChecksBetsFolds::RaisersBet() {

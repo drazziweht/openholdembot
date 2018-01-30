@@ -11,14 +11,10 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineCallers.h"
-
 #include <assert.h>
-#include "CBetroundCalculator.h"
+///#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CScraper.h"
-#include "CStringMatch.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineChipAmounts.h"
@@ -28,10 +24,9 @@
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
-
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 
 // Some symbols are only well-defined if it is my turn
 #define RETURN_UNDEFINED_VALUE_IF_NOT_MY_TURN { if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) *result = kUndefined; }
@@ -208,8 +203,8 @@ void CSymbolEngineCallers::CalculateCallers() {
     int new_callbits = _callbits[BETROUND] | k_exponents[chair];
     _callbits[BETROUND] = new_callbits;
 	}
-	///AssertRange(_callbits[BETROUND], 0, k_bits_all_ten_players_1_111_111_111);
-  ///AssertRange(_nopponentscalling,   0, kMaxNumberOfPlayers);
+	AssertRange(_callbits[BETROUND], 0, k_bits_all_ten_players_1_111_111_111);
+  AssertRange(_nopponentscalling,   0, kMaxNumberOfPlayers);
 }
 
 bool CSymbolEngineCallers::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {
