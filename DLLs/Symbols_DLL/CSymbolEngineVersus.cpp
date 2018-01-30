@@ -12,9 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineVersus.h"
-
 #include <io.h>
 #include <fcntl.h>
 #include "CardFunctions.h"
@@ -23,11 +21,9 @@
 #include "inlines/eval.h"
 #include "CFunctionCollection.h"
 #include "CParseErrors.h"
-
-#include "CScraper.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 #include "COHScriptList.h"
 
 const int kNTotal = 1712304;

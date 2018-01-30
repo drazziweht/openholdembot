@@ -12,9 +12,9 @@
 //
 //*******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineConstants.h"
-
+#include "..\..\pokereval\include\poker_defs.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineConstants::CSymbolEngineConstants() {
 	// The values of some symbol-engines depend on other engines.

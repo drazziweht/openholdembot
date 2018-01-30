@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,8 +12,6 @@
 //   like ace, ten, preflop, diamonds.
 //
 //*******************************************************************************
-
-#pragma once
 
 #include "CVirtualSymbolEngine.h"
 
@@ -34,5 +33,3 @@ class CSymbolEngineConstants: public CVirtualSymbolEngine {
 	CString SymbolsProvided();;
  public:
 };
-
-
