@@ -1,3 +1,4 @@
+#pragma obce
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,15 +8,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: random numbers for OH-script and OpenPPL
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINERANDOM_H
-#define INC_CSYMBOLENGINERANDOM_H
-
 #include "CVirtualSymbolEngine.h"
-#include "..\CTransform\CTransform.h"
 
 class CSymbolEngineRandom: public CVirtualSymbolEngine {
  public:
@@ -46,5 +43,3 @@ class CSymbolEngineRandom: public CVirtualSymbolEngine {
 	double _randomheartbeat;
 	double _randomround;
 };
-
-#endif INC_CSYMBOLENGINERANDOM_H

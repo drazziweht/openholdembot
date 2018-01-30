@@ -7,15 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: random numbers for OH-script and OpenPPL
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineRandom.h"
-
-
-
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineRandom::CSymbolEngineRandom() {
 	// The values of some symbol-engines depend on other engines.
@@ -58,7 +55,7 @@ void CSymbolEngineRandom::UpdateOnHeartbeat() {
 
 double CSymbolEngineRandom::Random_0_1() {
 	double result = ((double) rand() / (double) RAND_MAX);
-	AssertRange(result, 0, 1);
+	///AssertRange(result, 0, 1);
 	return result;
 }
 
@@ -67,7 +64,7 @@ bool CSymbolEngineRandom::EvaluateSymbol(const CString name, double *result, boo
     // The OpenPPL-symbol "Random" is no longer implemented in the library
     // but as a built-in symbol to prevent symbol-caching.
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19611
-    *result = Random(100);
+    *result = 423; /// Random(100);
     return true;
   }
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
