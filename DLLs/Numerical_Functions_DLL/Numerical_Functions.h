@@ -10,23 +10,24 @@
 //
 // Purpose: Numerical functions for OpenHoldem
 //
+// For more exported numerical functions see the header-files
+//   * FloatingPoint_Comparisions.h
+//   * Median.h
+//
 //******************************************************************************
 
-#ifdef NUMERICAL_FUNCTIONS_DLL_EXPORTS
-#define NUMERICAL_FUNCTIONS_DLL_API extern "C" __declspec(dllexport)
-#else
-#define NUMERICAL_FUNCTIONS_DLL_API extern "C" __declspec(dllimport)
-#endif
+#define NUMERICAL_FUNCTIONS_DLL_EXPORTS
 
 #include <afxwin.h>
+#include "LibDef.h"
 
 // Deals with floating points, ints, hex and binary
-double StringToNumber(CString number);
+NUMERICAL_FUNCTIONS_DLL_API double StringToNumber(CString number);
 
 // Turns an integer into a hex-char 0..9, A..F
 // Works up to 35: 0..9, A..Z
 // Used for indexing more than 10 autoplayer buttons
-char HexadecimalChar(int i);
+NUMERICAL_FUNCTIONS_DLL_API char HexadecimalChar(int i);
 
 inline void SwapDoubles(double *first, double *second) {
   double temp = *first;
@@ -67,7 +68,7 @@ inline bool IsBitSet(int bit_vector, int n_th_bit) {
   return ((bit_vector >> n_th_bit) & 1);
 }
 
-int	bitcount(unsigned bit_vector);
+NUMERICAL_FUNCTIONS_DLL_API int	bitcount(unsigned bit_vector);
 
 inline void AdaptValueToMinMaxRange(double *value, double min, double max) {
   if (*value < min) {
@@ -79,8 +80,8 @@ inline void AdaptValueToMinMaxRange(double *value, double min, double max) {
 }
 
 // returns a random number in the range 0..n-1
-int Random(int n);
+NUMERICAL_FUNCTIONS_DLL_API int Random(int n);
 
 // Rounds value to N units
 // Default unit is 1.0 (integer)
-double Rounding(double value, double unit = 1.0);
+NUMERICAL_FUNCTIONS_DLL_API double Rounding(double value, double unit = 1.0);

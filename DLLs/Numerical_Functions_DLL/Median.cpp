@@ -3,7 +3,7 @@
  * This code in public domain.
  */
 
-#include "stdafx.h"
+
 #include "Median.h"
 
 
