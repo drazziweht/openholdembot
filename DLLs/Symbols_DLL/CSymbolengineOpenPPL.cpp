@@ -13,18 +13,12 @@
 //
 //***************************************************************************** 
 
-#include "stdafx.h"
 #include "CSymbolEngineOpenPPL.h"
-
+#include <assert.h>
 #include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-
-#include "CScraper.h"
-#include "CStringMatch.h"
 #include "CSymbolEngineOpenPPLUserVariables.h"
 #include "CSymbolEngineVariousDataLookup.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 const char* kOpenPPLUpdateOnHandReset =
   "UpdateMemorySymbolsOnHandReset";
@@ -51,7 +45,7 @@ CSymbolEngineOpenPPL::~CSymbolEngineOpenPPL() {
 }
 
 void CSymbolEngineOpenPPL::CheckExistenceOfOpenPPLFunction(CString function) {
-  if (!p_function_collection->Exists(function)) {
+  if (false/*!!!!!!!p_function_collection->Exists(function)*/) {
     CString message;
     message.Format("Can't find initialization-function\n"
       "%s\n"
@@ -73,15 +67,15 @@ void CSymbolEngineOpenPPL::UpdateOnConnection() {
 }
 
 void CSymbolEngineOpenPPL::UpdateOnHandreset() {
-  p_function_collection->Evaluate(
+  /*!!!!!!!p_function_collection->Evaluate(
     kOpenPPLUpdateOnHandReset,
-    kAlwaysLogOpenPPLInitialization);
+    kAlwaysLogOpenPPLInitialization);*/
 }
 
 void CSymbolEngineOpenPPL::UpdateOnNewRound() {
-  p_function_collection->Evaluate(
+  /*!!!!!!!p_function_collection->Evaluate(
     kOpenPPLUpdateOnNewRound,
-    kAlwaysLogOpenPPLInitialization);
+    kAlwaysLogOpenPPLInitialization);*/
 }
 
 void CSymbolEngineOpenPPL::UpdateOnMyTurn() {
@@ -99,9 +93,9 @@ void CSymbolEngineOpenPPL::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineOpenPPL::UpdateAfterAutoplayerAction(int autoplayer_action_code) {
-  p_function_collection->Evaluate(
+  /*!!!!!!!p_function_collection->Evaluate(
     kOpenPPLUpdateMemorySymbolsAfterAutoplayerAction,
-    kAlwaysLogOpenPPLInitialization);
+    kAlwaysLogOpenPPLInitialization);*/
 }
 
 bool CSymbolEngineOpenPPL::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {

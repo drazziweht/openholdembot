@@ -1,4 +1,5 @@
-	//***************************************************************************** 
+#pragma once
+//***************************************************************************** 
 //
 // This file is part of the OpenHoldem project
 //    Source code:           https://github.com/OpenHoldem/openholdembot/
@@ -12,9 +13,6 @@
 //   All OpenPPL-symbols are functions that get handled by the function-collection.
 //
 //***************************************************************************** 
-
-#ifndef INC_CSYMBOLENGINE_OPENPPL_HANDSTRENGTH_H
-#define INC_CSYMBOLENGINE_OPENPPL_HANDSTRENGTH_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -41,5 +39,3 @@ class CSymbolEngineOpenPPL: public CVirtualSymbolEngine
  private:
   void CheckExistenceOfOpenPPLFunction(CString function);
 };
-
-#endif INC_CSYMBOLENGINE_OPENPPL_HANDSTRENGTH_H
