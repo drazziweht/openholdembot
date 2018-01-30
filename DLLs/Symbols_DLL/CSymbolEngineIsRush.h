@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   depending on the time since our last action on handreset.
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEISRUSH_H
-#define INC_CSYMBOLENGINEISRUSH_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -39,5 +37,3 @@ class CSymbolEngineIsRush: public CVirtualSymbolEngine {
   double sum_of_handreset_durations;
   int handresets;
 };
-
-#endif INC_CSYMBOLENGINEUSERCHAIR_H

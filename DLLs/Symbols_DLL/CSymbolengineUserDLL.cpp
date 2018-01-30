@@ -11,9 +11,7 @@
 //
 //*******************************************************************************
 
-
 #include "CSymbolEngineUserDLL.h"
-
 #include "CEngineContainer.h"
 #include "CFormulaParser.h"
 #include "CFunctionCollection.h"

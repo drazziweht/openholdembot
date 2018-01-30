@@ -12,17 +12,15 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineIsRush.h"
-
 #include "CEngineContainer.h"
-
-#include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineIsTournament.h"
 #include "CSymbolEngineTime.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 // Maximum average time between last action and handreset
 // if the game should be considered rush / zoom.

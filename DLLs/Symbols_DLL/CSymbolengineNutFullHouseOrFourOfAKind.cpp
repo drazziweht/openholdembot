@@ -13,21 +13,16 @@
 //
 //*******************************************************************************
 
-
 #include "CSymbolengineNutFullhouseOrFourOfAKind.h"
-
 #include "inlines/eval.h"
-#include "..\Tablestate_DLL\Card.h"
-#include "CBetroundCalculator.h"
+///#include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Tablestate_DLL\Card.h"
 #include "..\Tablestate_DLL\TableState.h"
-
-
 
 CSymbolEngineNutFullhouseOrFourOfAKind::CSymbolEngineNutFullhouseOrFourOfAKind() {
   // The values of some symbol-engines depend on other engines.

@@ -14,6 +14,7 @@
 
 #include "CVirtualSymbolEngine.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 
 class CSymbolEngineActiveDealtPlaying: public CVirtualSymbolEngine {
  public:
