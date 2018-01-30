@@ -49,22 +49,22 @@ CPlayer *CTableState::User() {
     return &_players[kFakeEntryForUnknownUserchair];
   }*/
   int userchair = 1; //!!!!!!!= p_engine_container->symbol_engine_userchair()->userchair();
-  //!!!!!!!AssertRange(userchair, 0, kLastChair);
+  //!!!!!!!///AssertRange(userchair, 0, kLastChair);
   return &_players[userchair];
 }
 
 CPlayer *CTableState::Player(int chair) {
-  //!!!!!!!AssertRange(chair, 0, kLastChair);
+  //!!!!!!!///AssertRange(chair, 0, kLastChair);
   return &_players[chair];
 }
 
 double CTableState::Pot(int sidepot_index) {
-  //!!!!!!!AssertRange(sidepot_index, 0, kLastPot);
+  //!!!!!!!///AssertRange(sidepot_index, 0, kLastPot);
   return  _pot[sidepot_index].GetValue();
 }
 
 bool CTableState::set_pot(int sidepot_index, CString new_value) {
-  //!!!!!!!AssertRange(sidepot_index, 0, kLastPot);
+  //!!!!!!!///AssertRange(sidepot_index, 0, kLastPot);
   return _pot[sidepot_index].SetValue(new_value);
 }
 
@@ -75,7 +75,7 @@ void CTableState::ResetPots() {
 }
 
 Card *CTableState::CommonCards(int common_card_index) {
-  //!!!!!!!AssertRange(common_card_index, 0, kIndexOfLastCommunityCard);
+  //!!!!!!!///AssertRange(common_card_index, 0, kIndexOfLastCommunityCard);
   return &_common_cards[common_card_index];
 }
 

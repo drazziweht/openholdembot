@@ -178,7 +178,7 @@ double CSymbolEngineRaisers::MinimumStartingBetCurrentOrbit(bool searching_for_r
   if (p_engine_container->symbol_engine_history()->DidAct()) {
     int last_known_actor = ChairInFrontOfFirstPossibleActor();
     int nchairs = p_tablemap->nchairs();
-    AssertRange(last_known_actor, 0, (nchairs - 1));
+    ///AssertRange(last_known_actor, 0, (nchairs - 1));
     return TableState()->Player(last_known_actor)->_bet.GetValue();
   }
   // Not yet acted: 0 bb (postflop) or 1 bb (preflop) for the first orbit
@@ -266,7 +266,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
     if (_firstraiser_chair == kUndefined) {
       _firstraiser_chair = chair;
     }
-    AssertRange(_raischair, kUndefined, kLastChair);
+    ///AssertRange(_raischair, kUndefined, kLastChair);
     _lastraised[BETROUND] = _raischair;
     // We have to be very careful
     // if we accumulate info based on dozens of unstable frames
@@ -291,7 +291,7 @@ void CSymbolEngineRaisers::CalculateRaisers() {
 }
 
 int CSymbolEngineRaisers::raisbits(int betround) {
-  AssertRange(betround, kBetroundPreflop, kBetroundRiver);
+  ///AssertRange(betround, kBetroundPreflop, kBetroundRiver);
   if (betround == BETROUND) {
     // Compute the result based on known good data and temp data
     // (potentially unstable, but best what we have)
@@ -308,7 +308,7 @@ int CSymbolEngineRaisers::raisbits(int betround) {
 }
 
 int CSymbolEngineRaisers::LastRaised(const int round) {
-  AssertRange(round, kBetroundPreflop, kBetroundRiver);
+  ///AssertRange(round, kBetroundPreflop, kBetroundRiver);
   return _lastraised[round];
 }
 

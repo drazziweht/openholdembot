@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: time symbols for OH-script and OpenPPL
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINETIME_H
-#define INC_CSYMBOLENGINETIME_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -50,5 +48,3 @@ class CSymbolEngineTime: public CVirtualSymbolEngine {
  private:
   bool _last_heartbeat_was_my_turn;
 };
-
-#endif INC_CSYMBOLENGINETIME_H

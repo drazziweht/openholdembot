@@ -576,10 +576,10 @@ void CSymbolEngineCards::CalcUnknownCards()
 		}
 	}
 	write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] nouts: %i\n", _nouts);
-	AssertRange(_ncardsknown,   0, kNumberOfCardsPerDeck);
-	AssertRange(_ncardsunknown, 0, kNumberOfCardsPerDeck);
-	AssertRange(_nouts,         0, kNumberOfCardsPerDeck);
-	AssertRange(_ncardsbetter,  0, kNumberOfCardsPerDeck);
+	///AssertRange(_ncardsknown,   0, kNumberOfCardsPerDeck);
+	///AssertRange(_ncardsunknown, 0, kNumberOfCardsPerDeck);
+	///AssertRange(_nouts,         0, kNumberOfCardsPerDeck);
+	///AssertRange(_ncardsbetter,  0, kNumberOfCardsPerDeck);
 }
 
 bool CSymbolEngineCards::IsHand(const char *name) {

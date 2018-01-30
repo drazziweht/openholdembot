@@ -7,17 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: time symbols for OH-script and OpenPPL
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CSymbolEngineTime.h"
-
-#include "CCasinoInterface.h"
+#include <assert.h>
 #include "CEngineContainer.h"
 #include "CSymbolengineDebug.h"
-
 
 CSymbolEngineTime::CSymbolEngineTime() {
   // The values of some symbol-engines depend on other engines.
@@ -65,10 +62,10 @@ void CSymbolEngineTime::UpdateOnHeartbeat() {
   //   b) because they were laggy in the debug-tab (flexible heartbeat)
   //   c) because we want them to be available all the time
   //      and normal calculations stop on disconnection.
-  assert(p_casino_interface != nullptr);
+  /*!!!!!!!assert(p_casino_interface != nullptr);
   if (!p_casino_interface->IsMyTurn()) {
     _last_heartbeat_was_my_turn = false;
-  }
+  }*/
   // Not setting anything to true here.
   // We do this in UpdateOnMyTurn() after the calculations
 }	
@@ -91,7 +88,7 @@ double CSymbolEngineTime::elapsedhand() {
   time_t t_now_time;
   time(&t_now_time);
   double result = t_now_time - _elapsedhandhold;
-  AssertRange(result, 0, elapsed());
+  ///AssertRange(result, 0, elapsed());
   return result;
 }
 
@@ -100,7 +97,7 @@ double CSymbolEngineTime::elapsedauto() {
   time_t t_now_time;
   time(&t_now_time);
   double result = t_now_time - _elapsedautohold;
-  AssertRange(result, 0, elapsed());
+  ///AssertRange(result, 0, elapsed());
   return result;
 }
 
@@ -116,7 +113,7 @@ double CSymbolEngineTime::elapsedtoday() {
   s_midnight_time.tm_sec = 0;
   time_t t_midnight_time = mktime(&s_midnight_time);
   double result = t_now_time - t_midnight_time;
-  AssertRange(result, 0, (24 * 3600));
+  ///AssertRange(result, 0, (24 * 3600));
   return result;
 }
 
@@ -125,7 +122,7 @@ double CSymbolEngineTime::elapsedmyturn() {
   time(&t_now_time);
   double result = t_now_time - _elapsedmyturnhold;
   p_engine_container->symbol_engine_debug()->SetValue(0, result);
-  AssertRange(result, 0, elapsed());
+  ///AssertRange(result, 0, elapsed());
   return result;
 }
 

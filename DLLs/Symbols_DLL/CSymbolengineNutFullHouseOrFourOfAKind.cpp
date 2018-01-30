@@ -135,7 +135,7 @@ void CSymbolEngineNutFullhouseOrFourOfAKind::CalculateNutFullhouseOrFourOfAKind(
   int n_player_cards = 0;
   int n_board_cards = 0;
   // setup masks
-  AssertRange(userchair, 0, kMaxChairNumber);
+  ///AssertRange(userchair, 0, kMaxChairNumber);
   for (int i = 0; i < NumberOfCardsPerPlayer(); i++) {
     Card *card = TableState()->User()->hole_cards(i);
     if (card->IsKnownCard()) {

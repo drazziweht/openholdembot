@@ -217,7 +217,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *resul
     *result = kUndefined;
     return true;
   }
-	AssertRange(chair, kFirstChair, kLastChair);
+	///AssertRange(chair, kFirstChair, kLastChair);
 	*result = PT_DLL_GetStat(name, chair); 
 	return true;
 }

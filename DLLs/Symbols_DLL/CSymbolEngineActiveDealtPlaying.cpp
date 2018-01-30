@@ -99,7 +99,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateSeatedBits() {
 			_playersseatedbits |= 1<<i;			
 		}
 	}
-	AssertRange(_playersseatedbits, 0, k_bits_all_ten_players_1_111_111_111);
+	///AssertRange(_playersseatedbits, 0, k_bits_all_ten_players_1_111_111_111);
 }
 
 void CSymbolEngineActiveDealtPlaying::CalculateAllinBits() {
@@ -110,7 +110,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateAllinBits() {
       _playersallinbits |= 1 << i;
     }
   }
-  AssertRange(_playersseatedbits, 0, k_bits_all_ten_players_1_111_111_111);
+  ///AssertRange(_playersseatedbits, 0, k_bits_all_ten_players_1_111_111_111);
 }
 
 int CSymbolEngineActiveDealtPlaying::userchairbit() { 
@@ -181,7 +181,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
 		}
 		if (this_player_got_dealt) {
 			_playersdealtbits |= 1 << chair_to_consider;
-			AssertRange(_playersdealtbits, 0, k_bits_all_ten_players_1_111_111_111);
+			///AssertRange(_playersdealtbits, 0, k_bits_all_ten_players_1_111_111_111);
 		}
 	}
   write_log(Preferences()->debug_symbolengine(),

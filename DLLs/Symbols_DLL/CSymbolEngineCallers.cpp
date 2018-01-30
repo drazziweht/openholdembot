@@ -208,8 +208,8 @@ void CSymbolEngineCallers::CalculateCallers() {
     int new_callbits = _callbits[BETROUND] | k_exponents[chair];
     _callbits[BETROUND] = new_callbits;
 	}
-	AssertRange(_callbits[BETROUND], 0, k_bits_all_ten_players_1_111_111_111);
-  AssertRange(_nopponentscalling,   0, kMaxNumberOfPlayers);
+	///AssertRange(_callbits[BETROUND], 0, k_bits_all_ten_players_1_111_111_111);
+  ///AssertRange(_nopponentscalling,   0, kMaxNumberOfPlayers);
 }
 
 bool CSymbolEngineCallers::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {

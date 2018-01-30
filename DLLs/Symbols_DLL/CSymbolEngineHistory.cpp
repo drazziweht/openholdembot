@@ -135,7 +135,7 @@ void CSymbolEngineHistory::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineHistory::UpdateAfterAutoplayerAction(int autoplayer_action_code) {
-	AssertRange(autoplayer_action_code, k_autoplayer_function_beep,
+	///AssertRange(autoplayer_action_code, k_autoplayer_function_beep,
 		k_autoplayer_function_fold);
 	// Nothing to do of the "action" was "beep".
 	if (autoplayer_action_code == k_autoplayer_function_beep) {
