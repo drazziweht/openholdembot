@@ -21,6 +21,8 @@
 #include "CFunctionCollection.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Files_DLL\Files.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineFormulaSwitching::CSymbolEngineFormulaSwitching() {

@@ -41,6 +41,9 @@
 #include "CSymbolEngineRandom.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 
 // We can't evaluate ini-functions if no formula is loaded.
 // This was no problem on startup, but caused crashes

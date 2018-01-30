@@ -24,9 +24,12 @@
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
-#include "..\Tablestate_DLL\TableState.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 // Some symbols are only well-defined if it is my turn
 #define RETURN_UNDEFINED_VALUE_IF_NOT_MY_TURN { if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) *result = kUndefined; }

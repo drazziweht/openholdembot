@@ -18,8 +18,9 @@
 #include "CEngineContainer.h"
 ///#include "CScraper.h"
 #include "..\..\CTablemap\CTablemap.h"
+#include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
-#include "..\Debug_DLL\debug.h
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 

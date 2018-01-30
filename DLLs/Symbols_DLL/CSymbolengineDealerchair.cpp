@@ -17,6 +17,9 @@
 
 #include "CScraper.h"
 #include "CSymbolEngineTableLimits.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 
 

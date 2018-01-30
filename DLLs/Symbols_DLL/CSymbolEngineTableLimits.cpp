@@ -27,6 +27,9 @@
 #include "..\Tablestate_DLL\TableState.h"
 #include "FloatingPoint_Comparisions.h"
 #include "Median.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 
 CSymbolEngineTableLimits::CSymbolEngineTableLimits() {
