@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,8 +13,6 @@
 //   proved to be way to complicated and error-prone.
 //
 //*******************************************************************************
-
-#pragma once
 
 #include "CVirtualSymbolEngine.h"
 #include <map>

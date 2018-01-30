@@ -7,19 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Providing info like payed places, remaining players in a MTT
 //
 //******************************************************************************
-
 
 #include "CSymbolEngineMTTInfo.h"
 
 #include "CBetroundCalculator.h"
-
-
-
 #include "..\Tablestate_DLL\TableState.h"
-
 
 CSymbolEngineMTTInfo::CSymbolEngineMTTInfo() {
 	// The values of some symbol-engines depend on other engines.
@@ -82,10 +77,11 @@ bool CSymbolEngineMTTInfo::EvaluateSymbol(const CString name, double *result, bo
 
 // If any of these are true then we are connected to a MTT
 bool CSymbolEngineMTTInfo::ConnectedToMTT() {
-  return (_mtt_number_entrants.GetValue() > p_tablemap->nchairs()
-	  || _mtt_players_remaining.GetValue() > p_tablemap->nchairs()
-	  || _mtt_paid_places.GetValue() > p_tablemap->nchairs()
-	  || _mtt_my_rank.GetValue() > p_tablemap->nchairs());
+  int nchairs = 10;//#p_tablemap->nchairs() = 10;///#p_tablemap->nchairs()
+  return (_mtt_number_entrants.GetValue() > nchairs
+    || _mtt_players_remaining.GetValue() > nchairs
+	  || _mtt_paid_places.GetValue() > nchairs
+	  || _mtt_my_rank.GetValue() > nchairs);
 }
 
 // If any of these are true then we are connected to a MTT or SNG

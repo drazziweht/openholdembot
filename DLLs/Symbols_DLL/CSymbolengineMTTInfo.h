@@ -7,12 +7,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Providing info like payed places, remaining players in a MTT
 //
 //******************************************************************************
-
-#ifndef INC_CSymbolEngineMTTInfo_H
-#define INC_CSymbolEngineMTTInfo_H
 
 #include "CVirtualSymbolEngine.h"
 #include "..\Tablestate_DLL\CScrapedMoney.h"
@@ -53,5 +50,3 @@ class CSymbolEngineMTTInfo: public CVirtualSymbolEngine {
   CScrapedMoney _mtt_average_stack;
   CScrapedMoney _mtt_smallest_stack;
 };
-
-#endif INC_CSymbolEngineMTTInfo_H
