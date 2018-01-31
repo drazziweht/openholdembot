@@ -63,7 +63,7 @@ void CSymbolEngineCallers::InitOnStartup() {
 }
 
 void CSymbolEngineCallers::UpdateOnConnection() {
-  _nchairs = p_tablemap->nchairs();
+  _nchairs = nchairs();
 	UpdateOnHandreset();
 }
 

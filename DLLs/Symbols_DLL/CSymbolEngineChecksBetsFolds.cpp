@@ -83,8 +83,8 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 	_nopponentsbetting  = 0;
 	_nopponentsfolded   = 0;
 	_nopponentschecking = 0;
-  assert(p_tablemap->nchairs() <= kMaxNumberOfPlayers);
-	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
+  assert(nchairs() <= kMaxNumberOfPlayers);
+	for (int i=0; i<nchairs(); i++)	{
 		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 		if (current_players_bet < RaisersBet()
         && TableState()->Player(i)->HasAnyCards())	{
@@ -120,7 +120,7 @@ double CSymbolEngineChecksBetsFolds::RaisersBet() {
 	// The raisers bet is simply the largest bet at the table.
 	// So we don't have to know the raisers chair for that.
 	double result = 0;
-	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 		if (current_players_bet > result && TableState()->Player(i)->HasAnyCards()) 	{
 			result = current_players_bet;
@@ -132,7 +132,7 @@ double CSymbolEngineChecksBetsFolds::RaisersBet() {
 void CSymbolEngineChecksBetsFolds::CalculateFoldBits() {
 	// foldbits (very late, as they depend on the dealt symbols)
 	int new_foldbits = 0;
-	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		if (!TableState()->Player(i)->HasAnyCards()) {
 			new_foldbits |= k_exponents[i];
 		}

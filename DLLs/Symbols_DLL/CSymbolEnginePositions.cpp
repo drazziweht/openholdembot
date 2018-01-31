@@ -76,9 +76,9 @@ void CSymbolEnginePositions::CalculateNChairsDealtLeftRight() {
 
 	bool found_userchair = false;
 	for (int i=DEALER_CHAIR+1; 
-		  i<=DEALER_CHAIR+p_tablemap->nchairs();
+		  i<=DEALER_CHAIR+nchairs();
 		  i++) {
-		int next_chair = i%p_tablemap->nchairs();
+		int next_chair = i%nchairs();
 		double p_bet = TableState()->Player(next_chair)->_bet.GetValue();
 
 		if (next_chair == p_engine_container->symbol_engine_userchair()->userchair())	{
@@ -100,9 +100,9 @@ void CSymbolEnginePositions::CalculatePositionForTheRaiser() {
 	_dealpositionrais = 0;
 
 	for (int i=DEALER_CHAIR+1; 
-		  i<=(DEALER_CHAIR+p_tablemap->nchairs());
+		  i<=(DEALER_CHAIR+nchairs());
 		  i++) {
-		int next_chair = i%p_tablemap->nchairs();
+		int next_chair = i%nchairs();
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=20746
 		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair)) {
 			_betpositionrais++;
@@ -124,9 +124,9 @@ void CSymbolEnginePositions::CalculatePositionsForTheUserchair() {
 	_callposition = 0;
 
 	for (int i=DEALER_CHAIR+1; 
-		  i<=DEALER_CHAIR+p_tablemap->nchairs();
+		  i<=DEALER_CHAIR+nchairs();
 		  i++) {
-		int next_chair = i%p_tablemap->nchairs();
+		int next_chair = i%nchairs();
 		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair))	{
 			_betposition++;
 		}
@@ -140,8 +140,8 @@ void CSymbolEnginePositions::CalculatePositionsForTheUserchair() {
 	}
 
 	int raischair = p_engine_container->symbol_engine_raisers()->raischair();
-	for (int i=raischair+1; i<=raischair+p_tablemap->nchairs(); i++) 	{
-		int next_chair = i%p_tablemap->nchairs();
+	for (int i=raischair+1; i<=raischair+nchairs(); i++) 	{
+		int next_chair = i%nchairs();
 		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt(), next_chair)) 	{
 			_callposition++;
 		}

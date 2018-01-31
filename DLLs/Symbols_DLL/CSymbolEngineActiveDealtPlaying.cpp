@@ -119,8 +119,8 @@ void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {
 	bool big_blind_found = false;
 	bool first_non_blind_with_cards_found = false;
 
-	for (int i=0; i<p_tablemap->nchairs(); i++) {
-		int chair_to_consider = (DEALER_CHAIR + i + 1) % p_tablemap->nchairs();
+	for (int i=0; i<nchairs(); i++) {
+		int chair_to_consider = (DEALER_CHAIR + i + 1) % nchairs();
 		bool this_player_got_dealt = false;
     // Players with cards are always "dealt",
     // independent of the rest of following complicated logic,

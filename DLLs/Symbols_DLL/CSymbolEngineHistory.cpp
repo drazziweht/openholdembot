@@ -222,7 +222,7 @@ void CSymbolEngineHistory::CalculateHistory() {
 			p_engine_container->symbol_engine_active_dealt_playing()->nplayersplaying();
 	}
   double maxbet = 0.0;
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		// Be careful: in some cases it might be that name user folds,
 		// but "Fold" gets displayed where formerly his bet got displayed.
 		// This may lead to ugly mis-scrapes, that's why he have to check

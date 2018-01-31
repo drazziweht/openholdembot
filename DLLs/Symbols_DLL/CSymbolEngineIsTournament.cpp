@@ -203,7 +203,7 @@ bool CSymbolEngineIsTournament::BetsAndBalancesAreTournamentLike() {
   // This condition does unfortunatelly only work for the first and final table in an MTT,
   // not necessarily for other late tables (fractional bets, uneven sums).
   double sum_of_all_chips = 0.0;
-  for (int i=0; i<p_tablemap->nchairs(); i++) {
+  for (int i=0; i<nchairs(); i++) {
 	  if (TableState()->Player(i)->active()==true) {
 	    sum_of_all_chips += TableState()->Player(i)->_balance.GetValue();
 		  sum_of_all_chips += TableState()->Player(i)->_bet.GetValue();}
@@ -237,7 +237,7 @@ bool CSymbolEngineIsTournament::AntesPresent() {
 		return false;
 	}
 	int players_with_antes = 0;
-	for (int i=0; i<p_tablemap->nchairs(); i++) {
+	for (int i=0; i<nchairs(); i++) {
 		double players_bet = TableState()->Player(i)->_bet.GetValue();
 		if ((players_bet > 0) && (players_bet < p_engine_container->symbol_engine_tablelimits()->sblind())) {
 			players_with_antes++;

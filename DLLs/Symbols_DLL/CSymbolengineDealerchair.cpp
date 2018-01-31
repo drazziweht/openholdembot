@@ -59,8 +59,8 @@ void CSymbolEngineDealerchair::UpdateOnMyTurn() {
 
 void CSymbolEngineDealerchair::UpdateOnHeartbeat() {
 	write_log(Preferences()->debug_symbolengine(), "nchairs: %d\n", 
-		p_tablemap->nchairs());
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+		nchairs());
+	for (int i=0; i<nchairs(); i++)	{
 		if (TableState()->Player(i)->dealer())	{
 			write_log(Preferences()->debug_symbolengine(), "Setting dealerchair to %d\n", i);
 			_dealerchair = i;					
@@ -80,7 +80,7 @@ void CSymbolEngineDealerchair::UpdateOnHeartbeat() {
 }
 
 int CSymbolEngineDealerchair::SmallBlindChair() {
-  for (int i = 0; i < p_tablemap->nchairs(); i++) {
+  for (int i = 0; i < nchairs(); i++) {
     if (TableState()->Player(i)->_bet.GetValue() == p_engine_container->symbol_engine_tablelimits()->sblind()) {
       return i;
     }
@@ -89,9 +89,9 @@ int CSymbolEngineDealerchair::SmallBlindChair() {
 }
 
 int CSymbolEngineDealerchair::RightHandActiveChair(int chair) {
-  for (int i = (p_tablemap->nchairs() - 1); i >= 0; --i) {
+  for (int i = (nchairs() - 1); i >= 0; --i) {
     int next_chair = chair + i;
-    next_chair %= p_tablemap->nchairs();
+    next_chair %= nchairs();
     if (TableState()->Player(next_chair)->active()) {
       return next_chair;
     }

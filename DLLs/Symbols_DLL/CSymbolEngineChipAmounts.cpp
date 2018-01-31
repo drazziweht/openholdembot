@@ -7,24 +7,21 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: calculating bets and balances, amount to call, ...
 //
-//******************************************************************************
-
+//*****************************************************************************
 
 #include "CSymbolEngineChipAmounts.h"
-
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-
-
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\FloatingPoint_Comparisions.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 #include "..\Tablestate_DLL\TableState.h"
-#include "FloatingPoint_Comparisions.h"
-
 
 CSymbolEngineChipAmounts::CSymbolEngineChipAmounts() {
 	// The values of some symbol-engines depend on other engines.
@@ -103,24 +100,24 @@ void CSymbolEngineChipAmounts::SetBalanceAtStartOfSessionConditionally() {
 
 void CSymbolEngineChipAmounts::CalculateStacks() {
 	// simple bubble sort for 10 stack values
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		if (TableState()->Player(i)->HasAnyCards()) 	{
       _stack[i] = TableState()->Player(i)->_balance.GetValue();
 		}	else {
 			_stack[i] = 0;
 		}
 	}
-	for (int i=0; i<p_tablemap->nchairs()-1; i++)	{
-		for (int j=i+1; j<p_tablemap->nchairs(); j++)	{
+	for (int i=0; i<nchairs()-1; i++)	{
+		for (int j=i+1; j<nchairs(); j++)	{
 			if (_stack[i] < _stack[j]) {
 				SwapDoubles(&_stack[i], &_stack[j]);
 			}
 		}
 	}
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		assert(_stack[i] >= 0);									
 	}
-	for (int i=p_tablemap->nchairs(); i<kMaxNumberOfPlayers; i++)	{
+	for (int i=nchairs(); i<kMaxNumberOfPlayers; i++)	{
 		_stack[i] = 0;
 	}
 }
@@ -129,16 +126,16 @@ void CSymbolEngineChipAmounts::CalculatePots() {
 	_pot = 0;
 	_potplayer = 0;
 	_potcommon = 0;
-	for (int i=0; i<p_tablemap->nchairs(); i++) {
+	for (int i=0; i<nchairs(); i++) {
     assert(TableState()->Player(i)->_bet.GetValue() >= 0.0);
 		_potplayer += TableState()->Player(i)->_bet.GetValue();	
 	}
   assert(_potplayer >= 0.0);
 	// pot, potcommon, based on value of potmethod
-	if (p_tablemap->potmethod() == 2)	{
+	if (/*#p_tablemap->potmethod()*/2 == 2)	{
 		_pot = TableState()->Pot(0);
 		_potcommon = _pot - _potplayer;
-	}	else if(p_tablemap->potmethod() == 3) {
+	}	else if(/*#p_tablemap->potmethod()*/2 == 3) {
     // Special pots at Bodog
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=9331
 		_pot = TableState()->Pot(0);
@@ -181,7 +178,7 @@ void CSymbolEngineChipAmounts::CalculateAmountsToCallToRaise() {
     _call = balance;
   }
 	next_largest_bet = 0;
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<nchairs(); i++)	{
 		if (TableState()->Player(i)->_bet.GetValue() != largest_bet 
 			  && TableState()->Player(i)->_bet.GetValue() > next_largest_bet) 	{
 			next_largest_bet = TableState()->Player(i)->_bet.GetValue();
@@ -217,7 +214,7 @@ void CSymbolEngineChipAmounts::CalculateBetsToCallToRaise() {
 
 double CSymbolEngineChipAmounts::Largestbet() {
 	double largest_bet = 0.0;
-	for (int i=0; i<p_tablemap->nchairs(); ++i)	{
+	for (int i=0; i<nchairs(); ++i)	{
     if ((p_betround_calculator->betround() == kBetroundPreflop)
         && (TableState()->Player(i)->PostingBothBlinds())) {
       // Does not count as largest bet

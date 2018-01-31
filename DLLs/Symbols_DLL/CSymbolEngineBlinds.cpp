@@ -113,9 +113,9 @@ void CSymbolEngineBlinds::CalculateBlinds()
 			_playersblindbits = k_exponents[p_engine_container->symbol_engine_userchair()->userchair()];
 		}
 
-		for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+p_tablemap->nchairs(); i++)
+		for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+nchairs(); i++)
 		{
-			int chair = i%p_tablemap->nchairs();
+			int chair = i%nchairs();
 			double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 			// search SB
@@ -139,9 +139,9 @@ void CSymbolEngineBlinds::CalculateBlinds()
 		// Restrictions : 3 or less players were dealt or last bb is active
 		if (sbchair == kUndefined && (p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits() < 3 || (bbchair == p_engine_container->symbol_engine_userchair()->userchair() && p_engine_container->symbol_engine_positions()->nchairsdealtright() == 1)))
 		{
-			for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+p_tablemap->nchairs(); i++)
+			for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+nchairs(); i++)
 			{
-				int chair = i%p_tablemap->nchairs();
+				int chair = i%nchairs();
 				double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 				// 1st caller/raiser after dealer is sb

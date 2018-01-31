@@ -234,3 +234,7 @@ private:
 };
 
 extern CEngineContainer *p_engine_container;
+
+
+//!!!!!!! TEMP
+int nchairs() { return 10; }

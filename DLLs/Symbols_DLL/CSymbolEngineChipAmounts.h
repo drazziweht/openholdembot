@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,19 +8,15 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: calculating bets and balances, amount to call, ...
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINECHIPAMOUNTS_H
-#define INC_CSYMBOLENGINECHIPAMOUNTS_H
 
 #include "CVirtualSymbolEngine.h"
 #include "assert.h"
 #include "CSymbolEngineUserChair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 class CSymbolEngineChipAmounts: public CVirtualSymbolEngine
 {
@@ -39,15 +36,15 @@ public:
 	bool EvaluateSymbol(const CString name, double *result, bool log = false);
   CString SymbolsProvided();
 public:
-	double maxbalance()					{ return _maxbalance; }
-	double balanceatstartofsession()	{ return _balanceatstartofsession; }
+	double maxbalance()              { return _maxbalance; }
+	double balanceatstartofsession() { return _balanceatstartofsession; }
 public:
 	double stack(int nth_best) {
 		assert(nth_best >= 0);
 		assert(nth_best < kMaxNumberOfPlayers);
 		return _stack[nth_best];
 	}
-
+public:
 	double stacks_at_hand_start(const int chair) { 
 		assert((chair >= 0) || (chair == kUndefined));
 		assert(chair < kMaxNumberOfPlayers);
@@ -105,5 +102,3 @@ public:
 	double _ncallbets;
 	double _nraisbets;
 };
-
-#endif INC_CSYMBOLENGINECHIPAMOUNTS_H
