@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDebugTab.cpp" />
     <ClCompile Include="CFormulaFileSplitter.cpp" />
     <ClCompile Include="CFormulaParser.cpp" />
     <ClCompile Include="CFunction.cpp" />
@@ -35,6 +36,7 @@
     <ClCompile Include="TokenizerConstants.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CDebugTab.h" />
     <ClInclude Include="CFormulaFileSplitter.h" />
     <ClInclude Include="CFormulaParser.h" />
     <ClInclude Include="CFunction.h" />

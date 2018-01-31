@@ -11,17 +11,18 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CTokenizer.h"
 
 #include "assert.h"
-#include "CardFunctions.h"
-#include "CDebugTab.h"
+//#include "CardFunctions.h"
+//#include "CDebugTab.h"
 #include "CFormulaparser.h"
 #include "COHScriptObject.h"
 #include "CParseErrors.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "TokenizerConstants.h"
 
@@ -67,7 +68,7 @@ void CTokenizer::SetInputBufferByDebugTab(const char* expression_to_be_parsed, i
   // because SetInputBuffer() sets it also!
   line_relative = line;
   assert(p_debug_tab != NULL);
-  _currently_tokenized_function_or_list = p_debug_tab;
+  //!!!!!!!_currently_tokenized_function_or_list = p_debug_tab;
 }
 
 void CTokenizer::SetInputBuffer(const char* next_formula_to_be_parsed) {
