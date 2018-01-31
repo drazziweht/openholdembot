@@ -15,9 +15,9 @@
 
 #include "CSymbolEngineEventLogging.h"
 
-#include "CAutoconnector.h"
+/*#include "CAutoconnector.h"
 #include "CAutoplayerTrace.h"
-#include "CHandresetDetector.h"
+#include "CHandresetDetector.h"*/
 
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineUserchair.h"
@@ -26,7 +26,7 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\Tablestate_DLL\CTableTitle.h"
-#include "CVersionInfo.h"
+///#include "CVersionInfo.h"
 
 CSymbolEngineEventLogging::CSymbolEngineEventLogging()
 {}
