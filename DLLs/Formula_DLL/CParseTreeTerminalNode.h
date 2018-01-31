@@ -7,23 +7,23 @@
 //
 //******************************************************************************
 //
-// Purpose: Adapting symbol names when importing Shanky PPL,
-//   also caring about proper cases, because Shanky PPL is case-insensitive.
+// Purpose:
 //
 //******************************************************************************
 
-#pragma once
+#ifndef INC_CPARSETREETERMINALNODE_H
+#define INC_CPARSETREETERMINALNODE_H
 
-#include <map>
+#include "CParsetreeNode.h"
 
-class CShankySymbolNameTranslator {
+class CParseTreeTerminalNode: public CParseTreeNode {
+  friend class CFormulaParser;
+  friend class CParseTreeRotator;
  public:
-  CShankySymbolNameTranslator();
-  ~CShankySymbolNameTranslator();
- public:
-  CString Translate(CString symbol);
- private:
-  void InitSymbolTable();
- private:
-  std::map<CString, CString> _shanky_symbol_table;
+  CParseTreeTerminalNode(int relative_line_number);
+  virtual ~CParseTreeTerminalNode();
 };
+
+typedef CParseTreeTerminalNode *TPParseTreeTerminalNode;
+
+#endif INC_CPARSETREETERMINALNODE_H

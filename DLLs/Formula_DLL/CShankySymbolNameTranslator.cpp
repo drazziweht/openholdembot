@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+#include <afxwin.h>
 #include "CShankySymbolNameTranslator.h"
 
 CShankySymbolNameTranslator::CShankySymbolNameTranslator() {
