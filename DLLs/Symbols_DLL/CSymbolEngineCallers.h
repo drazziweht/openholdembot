@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,16 +8,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting callers
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINECALLERS_H
-#define INC_CSYMBOLENGINECALLERS_H
-
 #include "CVirtualSymbolEngine.h"
 #include "CBetroundCalculator.h"
-
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineCallers: public CVirtualSymbolEngine {
  public:
@@ -62,5 +60,3 @@ class CSymbolEngineCallers: public CVirtualSymbolEngine {
   int _allinbits_previous_orbit;
   int _nchairs;
 };
-
-#endif INC_CSYMBOLENGINECALLERS_H
