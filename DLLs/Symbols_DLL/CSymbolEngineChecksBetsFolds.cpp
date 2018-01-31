@@ -7,18 +7,17 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting players who are
+//   * "checking" (not yet betting, Winholdem definition)
+//   * netting
+//   * folding
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineChecksBetsFolds.h"
-
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-
-
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineChipAmounts.h"
@@ -26,10 +25,12 @@
 #include "CSymbolEngineHistory.h"
 #include "CSymbolEngineTableLimits.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
-#include "..\Tablestate_DLL\TableState.h"
-
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Tablestate_DLL\CPlayer.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineChecksBetsFolds::CSymbolEngineChecksBetsFolds() {
 	// The values of some symbol-engines depend on other engines.
@@ -83,7 +84,7 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 	_nopponentsfolded   = 0;
 	_nopponentschecking = 0;
   assert(p_tablemap->nchairs() <= kMaxNumberOfPlayers);
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
 		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 		if (current_players_bet < RaisersBet()
         && TableState()->Player(i)->HasAnyCards())	{
@@ -119,7 +120,7 @@ double CSymbolEngineChecksBetsFolds::RaisersBet() {
 	// The raisers bet is simply the largest bet at the table.
 	// So we don't have to know the raisers chair for that.
 	double result = 0;
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
 		double current_players_bet = TableState()->Player(i)->_bet.GetValue();
 		if (current_players_bet > result && TableState()->Player(i)->HasAnyCards()) 	{
 			result = current_players_bet;
@@ -131,7 +132,7 @@ double CSymbolEngineChecksBetsFolds::RaisersBet() {
 void CSymbolEngineChecksBetsFolds::CalculateFoldBits() {
 	// foldbits (very late, as they depend on the dealt symbols)
 	int new_foldbits = 0;
-	for (int i=0; i<p_tablemap->nchairs(); i++)	{
+	for (int i=0; i<10/*#p_tablemap->nchairs()*/; i++)	{
 		if (!TableState()->Player(i)->HasAnyCards()) {
 			new_foldbits |= k_exponents[i];
 		}

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,15 +8,16 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting players who are
+//   * "checking" (not yet betting, Winholdem definition)
+//   * netting
+//   * folding
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINECHECKSBETSFOLDS_H
-#define INC_CSYMBOLENGINECHECKSBETSFOLDS_H
-
 #include "CVirtualSymbolEngine.h"
 #include "CBetroundCalculator.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineChecksBetsFolds: public CVirtualSymbolEngine {
  public:
@@ -62,5 +64,3 @@ class CSymbolEngineChecksBetsFolds: public CVirtualSymbolEngine {
 	// Index 0 is unused.
 	int _foldbits[kNumberOfBetrounds + 1];
 };
-
-#endif INC_CSYMBOLENGINECHECKSBETSFOLDS_H
