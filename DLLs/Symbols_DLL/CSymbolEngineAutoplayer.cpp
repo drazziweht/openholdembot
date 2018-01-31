@@ -11,18 +11,14 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineAutoplayer.h"
-
-#include "CAutoconnector.h"
+/*#include "CAutoconnector.h"
 #include "CAutoplayerFunctions.h"
-#include "CCasinoInterface.h"
+#include "CCasinoInterface.h"*/
 #include "CEngineContainer.h"
-#include "CFunctionCollection.h"
+/*#include "CFunctionCollection.h"
 #include "CIteratorThread.h"
-
-  
-#include "CStableFramesCounter.h"
+#include "CStableFramesCounter.h"*/
 #include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"

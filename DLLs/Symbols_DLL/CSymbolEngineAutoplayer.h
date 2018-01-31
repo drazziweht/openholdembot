@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,12 +12,10 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEAUTOPLAYER_H
-#define INC_CSYMBOLENGINEAUTOPLAYER_H
-
+#include <assert.h>
 #include "CVirtualSymbolEngine.h"
-#include "assert.h"
 #include "CSymbolEngineTableLimits.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineAutoplayer: public CVirtualSymbolEngine {
  public:
@@ -59,5 +58,3 @@ class CSymbolEngineAutoplayer: public CVirtualSymbolEngine {
  private:
 	bool _last_myturnbits;
 };
-
-#endif INC_CSYMBOLENGINEAUTOPLAYER_H

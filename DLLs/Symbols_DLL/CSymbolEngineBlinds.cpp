@@ -7,23 +7,20 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting blind posters
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineBlinds.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
-
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEnginePositions.h"
 #include "CSymbolEngineUserchair.h"
 #include "CSymbolEngineTableLimits.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 CSymbolEngineBlinds::CSymbolEngineBlinds()
 {

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,17 +8,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: detecting blind posters
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEBLINDS_H
-#define INC_CSYMBOLENGINEBLINDS_H
-
 #include "CVirtualSymbolEngine.h"
-
 #include "CSymbolengineUserChair.h"
-
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 
 class CSymbolEngineBlinds: public CVirtualSymbolEngine
 {
@@ -37,11 +34,11 @@ public:
 	void UpdateOnHeartbeat();
 public:
 	// Public accessors
-	int bblindbits()			{ return _bblindbits; }
+	int bblindbits()       { return _bblindbits; }
   int opponentsblindbits();
-	int playersblindbits()	{ return _playersblindbits; }
-	int nplayersblind()		{ return bitcount(_playersblindbits); }
-	int nopponentsblind()	{ return bitcount(opponentsblindbits()); }
+	int playersblindbits() { return _playersblindbits; }
+	int nplayersblind()    { return bitcount(_playersblindbits); }
+	int nopponentsblind()  { return bitcount(opponentsblindbits()); }
 private:
 	bool BlindsAreUnknown();
 	void CalculateBlinds();
@@ -49,5 +46,3 @@ private:
 	int _playersblindbits;
 	int _bblindbits;
 };
-
-#endif INC_CSYMBOLENGINEBLINDS_H
