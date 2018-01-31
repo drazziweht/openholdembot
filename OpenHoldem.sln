@@ -52,6 +52,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Preferences", "DLLs\Prefere
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Formula", "DLLs\Formula_DLL\Formula.vcxproj", "{158AD006-556E-476C-9D7E-DEF7FC88EE2B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "memory_management", "DLLs\MemoryManagement_DLL\memory_management.vcxproj", "{1633C380-B48D-4B71-AC84-0731272187A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,6 +279,16 @@ Global
 		{158AD006-556E-476C-9D7E-DEF7FC88EE2B}.Release|Any CPU.ActiveCfg = Release|Win32
 		{158AD006-556E-476C-9D7E-DEF7FC88EE2B}.Release|Win32.ActiveCfg = Release|Win32
 		{158AD006-556E-476C-9D7E-DEF7FC88EE2B}.Release|Win32.Build.0 = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Debug|Win32.Build.0 = Debug|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release - Optimized|Any CPU.ActiveCfg = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release - Optimized|Any CPU.Build.0 = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release - Optimized|Win32.ActiveCfg = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release - Optimized|Win32.Build.0 = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release|Any CPU.ActiveCfg = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release|Win32.ActiveCfg = Release|Win32
+		{1633C380-B48D-4B71-AC84-0731272187A5}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

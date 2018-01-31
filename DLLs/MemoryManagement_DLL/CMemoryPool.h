@@ -17,11 +17,12 @@
 
 #include <afxtempl.h>
 #include <map>
+#include "LibDef.h"
 
-void CreateMemoryPools();
-void DeleteAllMemoryPools();
+MEMORY_MANAGEMENT_DLL_API void CreateMemoryPools();
+MEMORY_MANAGEMENT_DLL_API void DeleteAllMemoryPools();
 
-class CMemoryPool {
+MEMORY_MANAGEMENT_DLL_API class CMemoryPool {
  public:
   CMemoryPool();
   ~CMemoryPool();
@@ -51,4 +52,4 @@ extern CMemoryPool *p_memory_pool_global;
 // Selects either p_memory_pool_library_logic or p_memory_pool_user_logic
 // p_memory_pool_library_logic stays till the very end
 // p_memory_pool_user_logic will be thrown away when we load a new formula
-CMemoryPool *PMemoryPoolParser();
+MEMORY_MANAGEMENT_DLL_API CMemoryPool *PMemoryPoolParser(bool for_read_only_openppl_library_and_default_bot);

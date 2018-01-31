@@ -11,56 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CDebugTab.cpp" />
-    <ClCompile Include="CFormulaFileSplitter.cpp" />
-    <ClCompile Include="CFormulaParser.cpp" />
-    <ClCompile Include="CFunction.cpp" />
-    <ClCompile Include="CFunctionCollection.cpp" />
-    <ClCompile Include="COHScriptList.cpp" />
-    <ClCompile Include="COHScriptObject.cpp" />
-    <ClCompile Include="CParseErrors.cpp" />
-    <ClCompile Include="CParseTreeNode.cpp" />
-    <ClCompile Include="CParseTreeOperatorNode.cpp" />
-    <ClCompile Include="CParseTreeRotator.cpp" />
-    <ClCompile Include="CParseTreeTerminalNode.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeBetsizeAction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeEndOfFunction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeFixedAction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeIdentifier.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeNumber.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeUserVariable.cpp" />
-    <ClCompile Include="CShankySymbolNameTranslator.cpp" />
-    <ClCompile Include="CTokenizer.cpp" />
-    <ClCompile Include="Formula.cpp" />
-    <ClCompile Include="TokenizerConstants.cpp" />
+    <ClCompile Include="CMemoryPool.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CDebugTab.h" />
-    <ClInclude Include="CFormulaFileSplitter.h" />
-    <ClInclude Include="CFormulaParser.h" />
-    <ClInclude Include="CFunction.h" />
-    <ClInclude Include="CFunctionCollection.h" />
-    <ClInclude Include="COHScriptList.h" />
-    <ClInclude Include="COHScriptObject.h" />
-    <ClInclude Include="CParseErrors.h" />
-    <ClInclude Include="CParserSymbolTable.h" />
-    <ClInclude Include="CParseTreeNode.h" />
-    <ClInclude Include="CParseTreeOperatorNode.h" />
-    <ClInclude Include="CParseTreeRotator.h" />
-    <ClInclude Include="CParseTreeTerminalNode.h" />
-    <ClInclude Include="CParseTreeTerminalNodeBetsizeAction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeEndOfFunction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeFixedAction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeIdentifier.h" />
-    <ClInclude Include="CParseTreeTerminalNodeNumber.h" />
-    <ClInclude Include="CParseTreeTerminalNodeUserVariable.h" />
-    <ClInclude Include="CShankySymbolNameTranslator.h" />
-    <ClInclude Include="CTokenizer.h" />
-    <ClInclude Include="Formula.h" />
-    <ClInclude Include="TokenizerConstants.h" />
+    <ClInclude Include="CMemoryPool.h" />
+    <ClInclude Include="CSpaceOptimizedGlobalObject.h" />
+    <ClInclude Include="LibDef.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{158AD006-556E-476C-9D7E-DEF7FC88EE2B}</ProjectGuid>
+    <ProjectGuid>{1633C380-B48D-4B71-AC84-0731272187A5}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -111,11 +70,11 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)formula.dll</OutputFile>
+      <OutputFile>$(OutDir)memory_management.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,13 +87,13 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)formula.dll</OutputFile>
+      <OutputFile>$(OutDir)memory_management.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

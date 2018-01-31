@@ -22,11 +22,12 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
-#include "CMemoryPool.h"
+#define MEMORY_MANAGEMENT_DLL_EXPORTS
 
-#include "CFormulaParser.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "CMemoryPool.h"
+#include <assert.h>
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CMemoryPool *p_memory_pool_tablemaps = NULL;
 CMemoryPool *p_memory_pool_scraper = NULL;
@@ -137,9 +138,9 @@ void CMemoryPool::AlignNextMemoryBlock() {
   }
 }
 
-CMemoryPool *PMemoryPoolParser() {
+CMemoryPool *PMemoryPoolParser(bool for_read_only_openppl_library_and_default_bot) {
   assert(p_formula_parser != NULL);
-  if (p_formula_parser->IsParsingReadOnlyFunctionLibrary()) {
+  if (for_read_only_openppl_library_and_default_bot) {
     assert(p_memory_pool_library_logic != NULL);
     return p_memory_pool_library_logic;
   }

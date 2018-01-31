@@ -232,14 +232,6 @@
     <ClCompile Include="CMemoryPool.cpp" />
     <ClCompile Include="CMyMutex.cpp" />
     <ClCompile Include="COcclusionCheck.cpp" />
-    <ClCompile Include="CParseTreeOperatorNode.cpp" />
-    <ClCompile Include="CParseTreeTerminalNode.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeEndOfFunction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeFixedAction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeBetsizeAction.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeIdentifier.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeNumber.cpp" />
-    <ClCompile Include="CParseTreeTerminalNodeUserVariable.cpp" />
     <ClCompile Include="CPokerTrackerLookUp.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="crc32hash.cpp" />
@@ -387,14 +379,6 @@
     <ClCompile Include="CStringMatch.cpp" />
     <ClCompile Include="NumericalFunctions.cpp" />
     <ClCompile Include="WebSafeColours.cpp" />
-    <ClCompile Include="CFormulaFileSplitter.cpp" />
-    <ClCompile Include="CFormulaParser.cpp" />
-    <ClCompile Include="CParseErrors.cpp" />
-    <ClCompile Include="CParserSymbolTable.cpp" />
-    <ClCompile Include="CParseTreeNode.cpp" />
-    <ClCompile Include="CParseTreeRotator.cpp" />
-    <ClCompile Include="CTokenizer.cpp" />
-    <ClCompile Include="TokenizerConstants.cpp" />
     <ClCompile Include="..\CTablemap\CTablemap.cpp">
       <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
@@ -407,10 +391,7 @@
     <ClCompile Include="CTablemapCompletenessChecker.cpp" />
     <ClCompile Include="CAutoplayerTrace.cpp" />
     <ClCompile Include="CDebugTab.cpp" />
-    <ClCompile Include="CFunction.cpp" />
     <ClCompile Include="CFunctionCollection.cpp" />
-    <ClCompile Include="COHScriptList.cpp" />
-    <ClCompile Include="COHScriptObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StringFunctionsDLL\string_functions.cpp" />
@@ -509,14 +490,6 @@
     <ClInclude Include="CMemoryPool.h" />
     <ClInclude Include="CMyMutex.h" />
     <ClInclude Include="COcclusionCheck.h" />
-    <ClInclude Include="CParseTreeOperatorNode.h" />
-    <ClInclude Include="CParseTreeTerminalNode.h" />
-    <ClInclude Include="CParseTreeTerminalNodeEndOfFunction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeFixedAction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeBetsizeAction.h" />
-    <ClInclude Include="CParseTreeTerminalNodeIdentifier.h" />
-    <ClInclude Include="CParseTreeTerminalNodeNumber.h" />
-    <ClInclude Include="CParseTreeTerminalNodeuserVariable.h" />
     <ClInclude Include="CPopupHandler.h" />
     <ClInclude Include="crc32hash.h" />
     <ClInclude Include="CSelftestParserEvaluator.h" />
@@ -695,20 +668,9 @@
     <ClInclude Include="FloatingPoint_Comparisions.h" />
     <ClInclude Include="NumericalFunctions.h" />
     <ClInclude Include="WebSafeColours.h" />
-    <ClInclude Include="CFormulaFileSplitter.h" />
-    <ClInclude Include="CFormulaParser.h" />
-    <ClInclude Include="CParseErrors.h" />
-    <ClInclude Include="CParserSymbolTable.h" />
-    <ClInclude Include="CParseTreeNode.h" />
-    <ClInclude Include="CParseTreeRotator.h" />
-    <ClInclude Include="CTokenizer.h" />
-    <ClInclude Include="TokenizerConstants.h" />
     <ClInclude Include="CAutoplayerTrace.h" />
     <ClInclude Include="CDebugTab.h" />
-    <ClInclude Include="CFunction.h" />
     <ClInclude Include="CFunctionCollection.h" />
-    <ClInclude Include="COHScriptList.h" />
-    <ClInclude Include="COHScriptObject.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenHoldem.rc" />
