@@ -48,18 +48,18 @@ bool CProblemSolver::NotConnected()
 
 bool CProblemSolver::UserChairUnknown()
 {
-	return (p_engine_container->symbol_engine_userchair()->userchair_confirmed() == false);
+	return (EngineContainer()->symbol_engine_userchair()->userchair_confirmed() == false);
 }
 
 bool CProblemSolver::NoOpponents()
 {
-	return (p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying() == 0);
+	return (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying() == 0);
 }
 
 bool CProblemSolver::AutoPlayerDidActAtLeastOnce()
 {
 	// We compare the time since connection to the time since last action.
-	return (p_engine_container->symbol_engine_time()->elapsed() != p_engine_container->symbol_engine_time()->elapsedauto());
+	return (EngineContainer()->symbol_engine_time()->elapsed() != EngineContainer()->symbol_engine_time()->elapsedauto());
 }
 
 bool CProblemSolver::NoCardsVisible()

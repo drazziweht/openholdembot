@@ -173,7 +173,7 @@ void CFlagsToolbar::OnClickedFlags() {
 	SetFlag(17, _tool_bar.GetToolBarCtrl().IsButtonChecked(ID_NUMBER17));
 	SetFlag(18, _tool_bar.GetToolBarCtrl().IsButtonChecked(ID_NUMBER18));
 	SetFlag(19, _tool_bar.GetToolBarCtrl().IsButtonChecked(ID_NUMBER19));
-	// No longer calling p_engine_container->EvaluateAll();
+	// No longer calling EngineContainer()->EvaluateAll();
   // It might cause unexpected side-effects,
   // if we evaluate multiple times during one heartbeat.
   // The effect of this button-click will have to wait

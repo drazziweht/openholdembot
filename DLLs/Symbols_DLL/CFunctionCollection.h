@@ -12,17 +12,19 @@
 //
 //******************************************************************************
 
-#include <afxwin.h>
-#include "COHScriptObject.h"
 #include <map>
-///#include "CVirtualSymbolEngine.h"
+///#include "COHScriptObject.h"
+#include "CVirtualSymbolEngine.h"
+#include "..\Formula_DLL\CDebugTab.h"
 #include "..\..\Shared\CCritSec\CCritSec.h"
+
+class COHScriptObject;
 
 // We make the collection a symbol-engine because of 
 // * reset-functions 
 // * Evaluate()-function,
 // * SymbolsProvided() for syntax-highlighting
-class CFunctionCollection /*: #public CVirtualSymbolEngine */{
+class CFunctionCollection: public CVirtualSymbolEngine {
   friend class CAutoplayerFunctions;
   friend class CBetsizeInputBox;
   friend class CCasinoInterface;
@@ -88,6 +90,8 @@ class CFunctionCollection /*: #public CVirtualSymbolEngine */{
  public:
   CString FormulaName()     { return _formula_name; }
   CString FormulaPath()     { return _path; }
+ public:
+  CDebugTab* DebugTab() { return &_debug_tab;  }
  protected:
   void SetFormulaName(CString formula_name)	{ _formula_name = formula_name; }
   void SetPath(CString path)	  { _path = path; }
@@ -107,6 +111,8 @@ class CFunctionCollection /*: #public CVirtualSymbolEngine */{
   CString _formula_name;
   CString _path;
   bool _openPPL_library_loaded;
+ private:
+  CDebugTab _debug_tab;
  private:
   std::map<CString, COHScriptObject*>::iterator enumerator_it;
   CCritSec m_critsec;

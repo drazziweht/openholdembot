@@ -322,7 +322,7 @@ void CMainFrame::OnScraperOutput() {
 }
 
 void CMainFrame::OnViewShootreplayframe() {
-	p_engine_container->symbol_engine_replayframe_controller()->ShootReplayFrameIfNotYetDone();
+	EngineContainer()->symbol_engine_replayframe_controller()->ShootReplayFrameIfNotYetDone();
 }
 
 void CMainFrame::OnManualMode() {

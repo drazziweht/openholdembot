@@ -7,7 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: parsing the text of formula-objects and constructing their parse-tree,
+//   dealing with
+//     * OH-script
+//     * OpenPPL
+//     * hand-lists
+//     * expressions of the debug-tab:
 //
 //******************************************************************************
 

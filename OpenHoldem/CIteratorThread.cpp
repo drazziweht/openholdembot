@@ -139,7 +139,7 @@ void CIteratorThread::RestartPrWinComputations() {
 
 void CIteratorThread::StartPrWinComputationsIfNeeded() {		
 	assert(p_iterator_thread != NULL);
-	if (p_engine_container->symbol_engine_autoplayer()->IsFirstHeartbeatOfMyTurn())	{
+	if (EngineContainer()->symbol_engine_autoplayer()->IsFirstHeartbeatOfMyTurn())	{
     write_log(Preferences()->debug_prwin(), "[PrWinThread] IteratorThread paused. Going to restart.\n");
     assert(IteratorThreadWorking() == false);
     RestartPrWinComputations();
@@ -152,7 +152,7 @@ void CIteratorThread::AdjustPrwinVariablesIfNecessary() {
 	// Cut off from IteratorThreadFunction
 	// Also moved outside of the loop.
 	// Correct the protection aganst low f$willplay/f$wontplay - Matrix 2008-12-22
-  _nopponents = p_engine_container->symbol_engine_prwin()->nopponents_for_prwin();
+  _nopponents = EngineContainer()->symbol_engine_prwin()->nopponents_for_prwin();
 	if (_willplay && (_willplay < 2 * _nopponents + 1))
 	{
 		write_log(Preferences()->debug_prwin(), "[PrWinThread] Adjusting willplay (too low)\n");
@@ -198,7 +198,7 @@ UINT CIteratorThread::IteratorThreadFunction(LPVOID pParam) {
 	  // At this point, the iterator thread starts working on a new hand
     _iterations_calculated = 1;  // Set to 1 so it's clear the thread is busy
     _prwin = _prlos = _prtie = 0;
-    if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) {
+    if (!EngineContainer()->symbol_engine_autoplayer()->ismyturn()) {
       // Not my turn;
       // Nothing to simulate
       write_log(Preferences()->debug_prwin(), "[PrWinThread] Waiting (Not my turn).\n");
@@ -208,7 +208,7 @@ UINT CIteratorThread::IteratorThreadFunction(LPVOID pParam) {
       // No longer anything to do
       continue;
     }
-    _nopponents = p_engine_container->symbol_engine_prwin()->nopponents_for_prwin();
+    _nopponents = EngineContainer()->symbol_engine_prwin()->nopponents_for_prwin();
     if (_nopponents <= 0) {
       // Wait until _nopponents is valid
       write_log(Preferences()->debug_prwin(), "[PrWinThread] Waiting (_nopponents invalid).\n");
@@ -259,7 +259,7 @@ UINT CIteratorThread::IteratorThreadFunction(LPVOID pParam) {
 		  CardMask_OR(evalCards, pParent->_plCards, pParent->_comCards);
 		  CardMask_OR(evalCards, evalCards, addlcomCards);
 		  pl_hv = Hand_EVAL_N(evalCards, 7);
-		  pl_pokval = p_engine_container->symbol_engine_pokerval()->CalculatePokerval(pl_hv, 7, &dummy, CARD_NOCARD, CARD_NOCARD);//??
+		  pl_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(pl_hv, 7, &dummy, CARD_NOCARD, CARD_NOCARD);//??
       // Scan through opponents' handvals/pokervals
 		  // - if we find one better than ours, then we are done, increment los
 		  // - for win/tie, we need to wait until we scan them all
@@ -271,7 +271,7 @@ UINT CIteratorThread::IteratorThreadFunction(LPVOID pParam) {
 			  CardMask_SET(opp_evalCards, ocard[i*2]);
 			  CardMask_SET(opp_evalCards, ocard[(i*2)+1]);
 			  opp_hv = Hand_EVAL_N(opp_evalCards, 7);
-			  opp_pokval = p_engine_container->symbol_engine_pokerval()->CalculatePokerval(opp_hv, 7, &dummy, CARD_NOCARD, CARD_NOCARD);
+			  opp_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(opp_hv, 7, &dummy, CARD_NOCARD, CARD_NOCARD);
 				write_log(Preferences()->debug_prwin(), "[PrWinThread] PlayerPV: %i OppPV: %i\n",
 				pl_pokval, opp_pokval);
 			  if (opp_pokval > pl_pokval) {
@@ -366,8 +366,8 @@ void CIteratorThread::CalculateTotalWeights()
 {
 	if (!UseEnhancedPrWin()) return;
 
-	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
-	int playersplayingbits = p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits();
+	int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
+	int playersplayingbits = EngineContainer()->symbol_engine_active_dealt_playing()->playersplayingbits();
 
 	for(int eachChair=0; eachChair < kMaxNumberOfPlayers; eachChair++) //calculate total weights for all playing opponents
 	{
@@ -399,7 +399,7 @@ void CIteratorThread::InitIteratorLoop() {
 	// Counters
 	_win = _tie = _los = 0;
 
-  int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+  int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
   if (userchair == kUndefined) return;
 
 	// setup masks
@@ -701,8 +701,8 @@ int CIteratorThread::EnhancedDealingAlgorithm() {
 	write_log(Preferences()->debug_prwin(), "[PrWinThread] Using ZeeZooLaa's enhanced prwin.\n");
 	unsigned int	card = 0, deadHandsCounter = 0;
 	int k = 0; //k is used as an index into ocard[]
-	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
-	int playersplayingbits = p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits();
+	int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
+	int playersplayingbits = EngineContainer()->symbol_engine_active_dealt_playing()->playersplayingbits();
 	int chairWeight;
 	bool deadHands[k_number_of_pocketcard_combinations_without_order];
 

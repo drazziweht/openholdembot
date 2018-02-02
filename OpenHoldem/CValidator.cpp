@@ -38,7 +38,7 @@ void CValidator::SetEnabledManually(bool Enabled) {
 
 void CValidator::Validate() {
   assert(p_engine_container != nullptr);
-  if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) {
+  if (!EngineContainer()->symbol_engine_autoplayer()->ismyturn()) {
     // Validate only if it is my turn.
     //   * because then we have stable frames
     //   * because then it matters most
@@ -48,15 +48,15 @@ void CValidator::Validate() {
 		  // Manually enabled via toolbar?
 		  || (_enabled_manually)) {
     bool success = ValidateGamestate(Preferences()->validator_use_heuristic_rules(),
-      p_engine_container->symbol_engine_istournament()->istournament(),
-      p_engine_container->symbol_engine_versus()->VersusBinLoaded());
+      EngineContainer()->symbol_engine_istournament()->istournament(),
+      EngineContainer()->symbol_engine_versus()->VersusBinLoaded());
     if (success) {
       return;
     }
   }
   // Failed consistence-checks
   if (Preferences()->validator_shoot_replayframe_on_error()) {
-    p_engine_container->symbol_engine_replayframe_controller()->ShootReplayFrameIfNotYetDone();
+    EngineContainer()->symbol_engine_replayframe_controller()->ShootReplayFrameIfNotYetDone();
   }
   if (Preferences()->validator_stop_on_error()) {
     assert(p_autoplayer != nullptr);

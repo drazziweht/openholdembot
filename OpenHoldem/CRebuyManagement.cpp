@@ -73,7 +73,7 @@ bool CRebuyManagement::NoCards(){
 	if (!Preferences()->rebuy_condition_no_cards()) {
 		return true;
 	}
-	int UserChair = p_engine_container->symbol_engine_userchair()->userchair();
+	int UserChair = EngineContainer()->symbol_engine_userchair()->userchair();
 	if ((UserChair < 0) || (UserChair > 9)) {
 		// "No cards", but not even seated.
 		// We should never get into that situation,
@@ -143,10 +143,10 @@ void CRebuyManagement::ExecuteRebuyScript() {
 		Casino = "Undefined";
 	}
 	HWND WindowHandleOfThePokerTable = p_autoconnector->attached_hwnd();
-	double SmallBlind = p_engine_container->symbol_engine_tablelimits()->sblind();
-	double BigBlind = p_engine_container->symbol_engine_tablelimits()->bblind();
-	double BigBet = p_engine_container->symbol_engine_tablelimits()->bigbet();
-	int UserChair = p_engine_container->symbol_engine_userchair()->userchair();
+	double SmallBlind = EngineContainer()->symbol_engine_tablelimits()->sblind();
+	double BigBlind = EngineContainer()->symbol_engine_tablelimits()->bblind();
+	double BigBet = EngineContainer()->symbol_engine_tablelimits()->bigbet();
+	int UserChair = EngineContainer()->symbol_engine_userchair()->userchair();
 	double Balance = TableState()->User()->_balance.GetValue();
 	double TargetAmount = FunctionCollection()->Evaluate(k_standard_function_names[k_hopper_function_rebuy]);
 	CString RebuyScript = Preferences()->rebuy_script();

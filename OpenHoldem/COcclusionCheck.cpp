@@ -34,7 +34,7 @@ COcclusionCheck::~COcclusionCheck()
 
 bool COcclusionCheck::UserChairKnown()
 {
-	if (p_engine_container->symbol_engine_userchair()->userchair_confirmed())
+	if (EngineContainer()->symbol_engine_userchair()->userchair_confirmed())
 	{
 		return true;
 	}
@@ -47,7 +47,7 @@ bool COcclusionCheck::UserChairKnown()
 
 bool COcclusionCheck::UserBalanceNonZero()
 {
-	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+	int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
 	if (UserChairKnown() 
 		&& (TableState()->User()->_balance.GetValue() > 0))
 	{
@@ -61,7 +61,7 @@ bool COcclusionCheck::UserBalanceNonZero()
 }
 
 bool COcclusionCheck::UserNameKnown() {	
-	int Userchair = p_engine_container->symbol_engine_userchair()->userchair();
+	int Userchair = EngineContainer()->symbol_engine_userchair()->userchair();
 	if ((Userchair < 0) || (Userchair > 9))	{
 		write_log(Preferences()->debug_occlusionchecker(), "[COcclusionCheck] UserNameKnown: false; chair out of range\n");
 		return false;
@@ -75,7 +75,7 @@ bool COcclusionCheck::UserNameKnown() {
 
 bool COcclusionCheck::AnyOpponentNameKnown()
 {
-	int Userchair = p_engine_container->symbol_engine_userchair()->userchair();
+	int Userchair = EngineContainer()->symbol_engine_userchair()->userchair();
 	for (int i=0; i<=9; i++)
 	{
     if ((i != Userchair) && (TableState()->Player(i)->name() != ""))
@@ -89,7 +89,7 @@ bool COcclusionCheck::AnyOpponentNameKnown()
 
 bool COcclusionCheck::AnyApponentBalanceNonZero()
 {
-	int Userchair = p_engine_container->symbol_engine_userchair()->userchair();
+	int Userchair = EngineContainer()->symbol_engine_userchair()->userchair();
 	for (int i=0; i<=9; i++)
 	{
 		if ((i != Userchair) && (TableState()->Player(i)->_balance.GetValue() > 0))

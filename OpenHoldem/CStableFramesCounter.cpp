@@ -61,7 +61,7 @@ void CStableFramesCounter::SaveCurrentState() {
 	/* 
 		Saves the current state for future reference
 	*/
-  _myturnbitslast = p_engine_container->symbol_engine_autoplayer()->myturnbits();
+  _myturnbitslast = EngineContainer()->symbol_engine_autoplayer()->myturnbits();
   for (int i=0; i<kNumberOfCommunityCards; i++) {
     _card_common_last[i] = TableState()->CommonCards(i)->GetValue();
   }
@@ -97,7 +97,7 @@ int CStableFramesCounter::UpdateNumberOfStableFrames() {
 	// - playerbalances
 	// - button states
 	bool same_scrape = true;
-  if (_myturnbitslast != p_engine_container->symbol_engine_autoplayer()->myturnbits()) {
+  if (_myturnbitslast != EngineContainer()->symbol_engine_autoplayer()->myturnbits()) {
 		same_scrape = false;
   }
 	for (int i=0; i<kNumberOfCommunityCards; i++) {

@@ -281,7 +281,7 @@ void CDlgFormulaScintilla::UpdateScintillaKeywords(CScintillaWnd *pWnd) {
   m_SearchEdit.GetWindowText(filter);
   if (filter.IsEmpty()) {
     assert(p_engine_container != NULL);
-    keywords = p_engine_container->SymbolsProvided();
+    keywords = EngineContainer()->SymbolsProvided();
 	pWnd->SendMessage(SCI_SETKEYWORDS, 0, (LPARAM) keywords.GetString());
   } else {
 	pWnd->SendMessage(SCI_SETKEYWORDS, 0, (LPARAM) "");
@@ -291,7 +291,7 @@ void CDlgFormulaScintilla::UpdateScintillaKeywords(CScintillaWnd *pWnd) {
 }
 
 void CDlgFormulaScintilla::UpdateAllScintillaKeywords() {
-  CString keywords = p_engine_container->SymbolsProvided();
+  CString keywords = EngineContainer()->SymbolsProvided();
   for (int iScint=0; iScint<m_ScinArray.GetSize(); iScint++) {
     m_ScinArray[iScint]._pWnd->SendMessage(SCI_SETKEYWORDS, 0, (LPARAM) keywords.GetString());
     m_ScinArray[iScint]._pWnd->Refresh();
@@ -1542,7 +1542,7 @@ void CDlgFormulaScintilla::StopAutoButton()
 void CDlgFormulaScintilla::UpdateDebugAuto(void) {
   FunctionCollection()->ClearCache();
   assert(p_debug_tab != NULL);
-  CString result = p_debug_tab->EvaluateAll();
+  CString result = FunctionCollection()->DebugTab()->EvaluateAll();
   m_pActiveScinCtrl->SendMessage(SCI_SETMODEVENTMASK, 0, 0);
   m_pActiveScinCtrl->SendMessage(SCI_SETTEXT,0,(LPARAM)result.GetString());
   m_pActiveScinCtrl->SendMessage(SCI_EMPTYUNDOBUFFER);
@@ -1599,7 +1599,7 @@ void CDlgFormulaScintilla::OnBnClickedApply() {
   }
   pDoc->SetModifiedFlag(true);
   // Re-calc symbols
-  p_engine_container->EvaluateAll(); // ??? disabled while parsing
+  EngineContainer()->EvaluateAll(); // ??? disabled while parsing
   m_dirty = false;
   HandleEnables(true);
 }

@@ -11,23 +11,20 @@
 //
 //******************************************************************************
 
-
 #include "CFunctionCollection.h"
 
-#include "CAutoplayerTrace.h"
-#include "CDebugTab.h"
+///#include "CAutoplayerTrace.h"
+///#include "CDebugTab.h"
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
-#include "CFunction.h"
-#include "CParseErrors.h"
-#include "CParserSymbolTable.h"
+///#include "CFormulaParser.h"
+
+///#include "CFunction.h"
+///#include "CParseErrors.h"
+///#include "CParserSymbolTable.h"
 
 #include "CSelftestParserEvaluator.h"
-#include "..\Debug_DLL\debug.h"
-#include "..\Globals_DLL\globals.h"
-#include "..\Preferences_DLL\Preferences.h"
-#include "..\WindowFunctions_DLL\window_functions.h"
-#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
+
+#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CFunctionCollection *p_function_collection = NULL;
 
@@ -143,7 +140,7 @@ void CFunctionCollection::Add(COHScriptObject *new_function) {
     // (to avoid deletion)
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19616
     assert(p_debug_tab != NULL);
-    p_debug_tab->SetText(new_function->function_text());
+    FunctionCollection()->DebugTab()->SetText(new_function->function_text());
     delete new_function;
     return;
   }
@@ -209,7 +206,7 @@ void CFunctionCollection::VerifyExistence(CString name) {
   // Second case: multiplexed function or OpenPPL-symbol
   double dummy_result;
   // !!!!! false result on unknown symbol
-  if (p_engine_container->EvaluateSymbol(name, &dummy_result)) {
+  if (EngineContainer()->EvaluateSymbol(name, &dummy_result)) {
     write_log(Preferences()->debug_formula(),
       "[CFunctionCollection] VerifyExistence: symbol exists in engine container\n");
     return;
@@ -666,7 +663,7 @@ bool CFunctionCollection::ParseAll() {
   // Finally parse the debug-tab,
   // that is no longer in the collection.
   assert(p_debug_tab != NULL);
-  p_debug_tab->Parse();
+  FunctionCollection()->DebugTab()->Parse();
   return true;
 }
 

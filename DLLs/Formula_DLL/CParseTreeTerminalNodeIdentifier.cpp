@@ -90,7 +90,7 @@ double CParseTreeTerminalNodeIdentifier::EvaluateIdentifier(CString name, bool l
 	// EvaluateSymbol cares about ALL symbols, 
 	// including DLL and PokerTracker.
 	double result;
-	p_engine_container->EvaluateSymbol(name, &result, log);
+	EngineContainer()->EvaluateSymbol(name, &result, log);
 	return result;
 }
 

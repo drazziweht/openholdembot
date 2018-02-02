@@ -130,7 +130,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   }
   int betround = p_betround_calculator->betround();
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] ...ending DoBetsize, 'didbetsize' now: %d\n",
-    p_engine_container->symbol_engine_history()->didswag(betround));
+    EngineContainer()->symbol_engine_history()->didswag(betround));
   return (!lost_focus); 
 }
 

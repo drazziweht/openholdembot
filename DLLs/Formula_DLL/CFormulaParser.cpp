@@ -7,20 +7,20 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: parsing the text of formula-objects and constructing their parse-tree,
+//   dealing with
+//     * OH-script
+//     * OpenPPL
+//     * hand-lists
+//     * expressions of the debug-tab
 //
 //******************************************************************************
 
-
 #include "CFormulaParser.h"
-
 #include <assert.h>
 #include <io.h>
 #include "CDebugTab.h"
-#include "CEngineContainer.h"
 #include "CFunction.h"
-#include "CFunctionCollection.h"
-#include "MemoryLogging.h"
 #include "COHScriptList.h"
 #include "COHScriptObject.h"
 #include "CParseErrors.h"
@@ -35,18 +35,20 @@
 #include "CParseTreeTerminalNodeIdentifier.h"
 #include "CParseTreeTerminalNodeNumber.h"
 #include "CParseTreeTerminalNodeUserVariable.h"
-
-#include "CSymbolEngineOpenPPL.h"
-#include "CValidator.h"
-#include "CWatchdog.h"
-#include "MemoryLogging.h"
+///#include "CValidator.h"
+///#include "CWatchdog.h"
+#include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Files_DLL\Files.h"
+#include "..\Formula_DLL\CDebugTab.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CSymbolengineOpenPPL.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
-
-#include "TokenizerConstants.h"
 
 #ifdef _DEBUG
 #undef DEBUG_PARSER
@@ -91,7 +93,6 @@ void CFormulaParser::InitNewParse() {
   COHScriptObject* _currently_parsed_function_or_list = NULL;
 }
 
-
 void CFormulaParser::LoadDefaultBot() {
   LoadOptionalFunctionLibrary(DefaultLogicDirectory() + "DefaultBot.ohf");
   LoadOptionalFunctionLibrary(DefaultLogicDirectory() + "Gecko_NL_6Max_FR_BSS.ohf");
@@ -132,7 +133,7 @@ void CFormulaParser::ParseDefaultLibraries() {
   LoadOptionalFunctionLibrary(CustomLibraryPath());
   LoadDefaultBot();
   // Check again after the custom library
-  p_engine_container->symbol_engine_open_ppl()->VerifyExistenceOfOpenPPLInitializationInLibrary();
+  EngineContainer()->symbol_engine_open_ppl()->VerifyExistenceOfOpenPPLInitializationInLibrary();
   FunctionCollection()->ParseAll(); 
   _is_parsing_read_only_function_library = false;
   LeaveParserCode();
@@ -273,8 +274,8 @@ void CFormulaParser::ParseFormula(COHScriptObject* function_or_list_to_be_parsed
   // Unfortunatelly parsing some bot-loghic like the legendary
   // 20 MB Flopzilla code takes a bit longer than other instances
   // watchdog expects, that's why the parser regularly has to shout "ALIVE!"
-  assert(p_watchdog != NULL);
-  p_watchdog->MarkThisInstanceAsAlive();
+  ///assert(p_watchdog != NULL);
+  ///p_watchdog->MarkThisInstanceAsAlive();
   _function_name = function_or_list_to_be_parsed->name();
   _tokenizer.SetInputFunction(function_or_list_to_be_parsed);
   // No longer any check for end of file or end of function here.
@@ -1034,7 +1035,7 @@ void CFormulaParser::ParseDebugTab(CString function_text) {
   EnterParserCode();
   assert(p_debug_tab != NULL);
   _is_parsing_debug_tab = true;
-  p_debug_tab->Clear();
+  FunctionCollection()->DebugTab()->Clear();
   CString next_line;
   // Split lines
   int line_number = 0;
@@ -1055,7 +1056,7 @@ void CFormulaParser::ParseDebugTab(CString function_text) {
     _parse_tree_rotator.Rotate(expression, &expression);
     // Add line and expression to debug-tab
     assert(p_debug_tab != NULL);
-    p_debug_tab->AddExpression(expression_text, expression);
+    FunctionCollection()->DebugTab()->AddExpression(expression_text, expression);
   }
   _is_parsing_debug_tab = false;
   LeaveParserCode();

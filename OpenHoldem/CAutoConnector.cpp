@@ -302,7 +302,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
       p_casino_interface->Reset();
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Table state cleared\n");
       // Reset symbols
-			p_engine_container->UpdateOnConnection();
+			EngineContainer()->UpdateOnConnection();
       write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] UpdateOnConnection executed (during connection)\n");
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Going to continue with scraper output and scraper DLL\n");
       // Reset "ScraperOutput" dialog, if it is live
@@ -349,7 +349,7 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	ASSERT(_autoconnector_mutex->m_hObject != NULL); 
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Locking autoconnector-mutex\n");
   _autoconnector_mutex->Lock(INFINITE); 
-	p_engine_container->UpdateOnDisconnection();
+	EngineContainer()->UpdateOnDisconnection();
 	// Clear "attached" info
 	set_attached_hwnd(NULL);
 	// Unattach OH.
@@ -364,7 +364,7 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	TableState()->Reset();
   p_casino_interface->Reset();
 	// Reset symbols
-	p_engine_container->UpdateOnConnection();
+	EngineContainer()->UpdateOnConnection();
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] UpdateOnConnection executed (disconnection)\n");
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Going to continue with window title\n");
 	// Change window title

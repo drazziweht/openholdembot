@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="CBetroundCalculator.cpp" />
     <ClCompile Include="CEngineContainer.cpp" />
+    <ClCompile Include="CFunctionCollection.cpp" />
     <ClCompile Include="CSymbolEngine - EmptyStub.cpp" />
     <ClCompile Include="CSymbolEngineActiveDealtPlaying.cpp" />
     <ClCompile Include="CSymbolEngineAutoplayer.cpp" />
@@ -66,6 +67,7 @@
   <ItemGroup>
     <ClInclude Include="CBetroundCalculator.h" />
     <ClInclude Include="CEngineContainer.h" />
+    <ClInclude Include="CFunctionCollection.h" />
     <ClInclude Include="CSymbolengine - EmptyStub.h" />
     <ClInclude Include="CSymbolEngineActiveDealtPlaying.h" />
     <ClInclude Include="CSymbolEngineAutoplayer.h" />

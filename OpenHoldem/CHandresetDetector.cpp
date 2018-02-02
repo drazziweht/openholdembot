@@ -97,8 +97,8 @@ void CHandresetDetector::CalculateIsHandreset() {
   int number_of_methods_firing = bitcount(total_methods_firing);
   write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Number of methods firing last 3 heartbeat2: %i\n",
     number_of_methods_firing);
-  if ((p_engine_container->symbol_engine_time()->elapsedhand() < kMinimumtimeBetweenTwoHeartbeats) 
-      && (p_engine_container->symbol_engine_time()->elapsed() > kMinimumtimeBetweenTwoHeartbeats)) {
+  if ((EngineContainer()->symbol_engine_time()->elapsedhand() < kMinimumtimeBetweenTwoHeartbeats) 
+      && (EngineContainer()->symbol_engine_time()->elapsed() > kMinimumtimeBetweenTwoHeartbeats)) {
     // Prevent multiple fast hearbeats due to lagging casino
     // and too many handreset-events on multiple heartbeats
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=19938
@@ -294,7 +294,7 @@ bool CHandresetDetector::IsHandresetByDisappearingShowdownCards() {
 }
 
 bool CHandresetDetector::IsHandresetByButtonsAfterFold() {
-  bool ishandreset = (p_engine_container->symbol_engine_history()->DidFoldThisHand()
+  bool ishandreset = (EngineContainer()->symbol_engine_history()->DidFoldThisHand()
     && _buttons_visible && !_last_buttons_visible);
   write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Handreset by autoplayer-buttons after fold: %s\n",
     Bool2CString(ishandreset));
@@ -313,14 +313,14 @@ bool CHandresetDetector::SmallBlindExists() {
 }
 
 void CHandresetDetector::UpdateHandsPlayedOnHandreset() {
-  if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed()) {
+  if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed()) {
     // We want to update the handsplayed-counter only when the user
     // is at least seated, not on connection and similar events.
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=214&t=20753
     return;
   }
   ++_hands_played;
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nopponentsdealt() == 1) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsdealt() == 1) {
     // Last hand (data not yet reset) was headsup
     ++_hands_played_headsup;
   }
@@ -330,9 +330,9 @@ void CHandresetDetector::UpdateHandsPlayedOnHandreset() {
 }
 
 void CHandresetDetector::GetNewSymbolValues() {
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-	if (IsValidDealerChair(p_engine_container->symbol_engine_dealerchair()->dealerchair()))	{
-		dealerchair = p_engine_container->symbol_engine_dealerchair()->dealerchair();	
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+	if (IsValidDealerChair(EngineContainer()->symbol_engine_dealerchair()->dealerchair()))	{
+		dealerchair = EngineContainer()->symbol_engine_dealerchair()->dealerchair();	
 		write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Setting new dealerchair to [%i]\n", dealerchair);
 	}
 	if (IsValidHandNumber(TableState()->_s_limit_info.handnumber()))	{
@@ -341,12 +341,12 @@ void CHandresetDetector::GetNewSymbolValues() {
 	}	else {
 		write_log(Preferences()->debug_handreset_detector(), "[CHandresetDetector] Setting handnumber to [%s] was skipped. Reason: [digits number not in range]\n", handnumber);
 	}
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
-	int userchair = p_engine_container->symbol_engine_userchair()->userchair();
-  _potsize = p_engine_container->symbol_engine_chip_amounts()->pot();
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
+	int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
+  _potsize = EngineContainer()->symbol_engine_chip_amounts()->pot();
   _community_cards = TableState()->NumberOfCommunityCards();
-  _nopponentsplaying = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying();
-  _bblind = p_engine_container->symbol_engine_tablelimits()->bblind();
+  _nopponentsplaying = EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying();
+  _bblind = EngineContainer()->symbol_engine_tablelimits()->bblind();
   _showdown_cards_visible = TableState()->ShowdownCardsVisible();
   _antes_visible = TableState()->AntesVisible();
   _buttons_visible = p_casino_interface->IsMyTurn();
@@ -386,7 +386,7 @@ void CHandresetDetector::StoreOldValuesForComparisonOnNextHeartbeat() {
 }
 
 void CHandresetDetector::OnNewHeartbeat() {
-	if (p_engine_container->symbol_engine_dealerchair() == NULL) {
+	if (EngineContainer()->symbol_engine_dealerchair() == NULL) {
 		// Very early initialization phase
 		return;
 	}

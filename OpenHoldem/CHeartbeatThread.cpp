@@ -160,7 +160,7 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
   //   * some symbol-engines must be evaluated no matter what
   //   * we might need to act (sitout, ...) on empty/non-changing tables
   //   * auto-player needs stable frames too
-	p_engine_container->EvaluateAll();
+	EngineContainer()->EvaluateAll();
 	// Reply-frames no longer here in the heartbeat.
   // we have a "ReplayFrameController for that.
   LeaveCriticalSection(&pParent->cs_update_in_progress);
@@ -180,8 +180,8 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
 	// Autoplayer
 	write_log(Preferences()->debug_heartbeat(), "[HeartBeatThread] autoplayer_engaged(): %s\n", 
 		Bool2CString(p_autoplayer->autoplayer_engaged()));
-	write_log(Preferences()->debug_heartbeat(), "[HeartBeatThread] p_engine_container->symbol_engine_userchair()->userchair()_confirmed(): %s\n", 
-		Bool2CString(p_engine_container->symbol_engine_userchair()->userchair_confirmed()));
+	write_log(Preferences()->debug_heartbeat(), "[HeartBeatThread] EngineContainer()->symbol_engine_userchair()->userchair()_confirmed(): %s\n", 
+		Bool2CString(EngineContainer()->symbol_engine_userchair()->userchair_confirmed()));
 	// If autoplayer is engaged, we know our chair, and the DLL hasn't told us to wait, then go do it!
 	if (p_autoplayer->autoplayer_engaged()) {
 		write_log(Preferences()->debug_heartbeat(), "[HeartBeatThread] Calling DoAutoplayer.\n");

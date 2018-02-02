@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,14 +12,11 @@
 //
 //******************************************************************************
 
-#ifndef INC_CPARSERSYMBOLTABLE_H
-#define INC_CPARSERSYMBOLTABLE_H
-
 #include <afxwin.h>
 #include <map>
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-class CParserSymbolTable : public CSpaceOptimizedGlobalObject {
+class CParserSymbolTable /*: public CSpaceOptimizedGlobalObject */{
  public:
   CParserSymbolTable();
   ~CParserSymbolTable();
@@ -32,5 +30,3 @@ class CParserSymbolTable : public CSpaceOptimizedGlobalObject {
 };
 
 extern CParserSymbolTable *p_parser_symbol_table;
-
-#endif INC_CPARSERSYMBOLTABLE_H

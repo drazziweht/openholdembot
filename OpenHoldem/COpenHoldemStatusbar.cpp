@@ -75,7 +75,7 @@ void COpenHoldemStatusbar::OnUpdateStatusbar() {
     // PrWin: percentages instead of probabilities
     _status_prwin.Format("PrWin %3.1f/%3.1f/%3.1f",
       100 * _prwin, 100 * _prtie, 100 * _prlos);
-  } else if (p_engine_container->symbol_engine_time()->elapsedauto() > 5) {
+  } else if (EngineContainer()->symbol_engine_time()->elapsedauto() > 5) {
     // Reset display 5 seconds after last action
     SetPrWin(0, 0, 0);
     SetHandrank(0);
@@ -93,12 +93,12 @@ void COpenHoldemStatusbar::OnUpdateStatusbar() {
 }
 
 CString COpenHoldemStatusbar::LastAction() {
-  if (p_engine_container->symbol_engine_userchair() == NULL)	{
+  if (EngineContainer()->symbol_engine_userchair() == NULL)	{
 		// Very early phase of initialization
 		// Can't continue here.
 		return "Not playing";
 	}
-	if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed()) 	{
+	if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed()) 	{
 		return "Not playing";
 	}
   // Return the last saved action.
