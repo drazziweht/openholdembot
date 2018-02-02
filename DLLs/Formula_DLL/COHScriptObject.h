@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose: virtual base-class for CFunction and COHList
+// Purpose: base-rclass of functions and hand-lists in the parse-tree
 //
 //******************************************************************************
-
-#ifndef INC_COHSCRIPTOBJECT_H
-#define INC_COHSCRIPTOBJECT_H
 
 #include <afxwin.h>
 ///#include "CSpaceOptimizedFormulaObject.h"
@@ -104,5 +102,3 @@ class COHScriptObject/*#: public CSpaceOptimizedFormulaObject*/ {
   bool _is_read_only;
   bool _modified_since_last_parse;
 };
-
-#endif INC_COHSCRIPTOBJECT_H

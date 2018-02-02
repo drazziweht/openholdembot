@@ -15,7 +15,6 @@
     <ClCompile Include="CFormulaFileSplitter.cpp" />
     <ClCompile Include="CFormulaParser.cpp" />
     <ClCompile Include="CFunction.cpp" />
-    <ClCompile Include="CFunctionCollection.cpp" />
     <ClCompile Include="COHScriptList.cpp" />
     <ClCompile Include="COHScriptObject.cpp" />
     <ClCompile Include="CParseErrors.cpp" />
@@ -39,7 +38,6 @@
     <ClInclude Include="CFormulaFileSplitter.h" />
     <ClInclude Include="CFormulaParser.h" />
     <ClInclude Include="CFunction.h" />
-    <ClInclude Include="CFunctionCollection.h" />
     <ClInclude Include="COHScriptList.h" />
     <ClInclude Include="COHScriptObject.h" />
     <ClInclude Include="CParseErrors.h" />

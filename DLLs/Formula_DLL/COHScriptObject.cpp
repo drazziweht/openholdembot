@@ -7,15 +7,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: base-rclass of functions and hand-lists in the parse-tree
 //
 //******************************************************************************
 
-
 #include "COHScriptObject.h"
-
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 COHScriptObject::COHScriptObject() {
