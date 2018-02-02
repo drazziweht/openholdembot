@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: parse-tree node representing RaiseBy- and RaiseTo-actions
 //
 //******************************************************************************
-
-#ifndef INC_CPARSETREETERMINALNODEBETSIZEACTION_H
-#define INC_CPARSETREETERMINALNODEBETSIZEACTION_H
 
 #include <afxwin.h>
 #include "CParseTreeNode.h"
@@ -38,5 +36,3 @@ class CParseTreeTerminalNodeBetsizeAction: public CParseTreeNode {
 };
 
 typedef CParseTreeTerminalNodeBetsizeAction *TPParseTreeTerminalNodeBetsizeAction;
-
-#endif INC_CPARSETREETERMINALNODEBETSIZEACTION_H

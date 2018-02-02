@@ -10,10 +10,8 @@
 // Purpose:
 //
 //******************************************************************************
-
  
 #include "CParseTreeTerminalNodeNumber.h"
-
 #include <math.h>
 #include "CAutoplayerTrace.h"
 #include "CEngineContainer.h"
@@ -88,4 +86,3 @@ CString CParseTreeTerminalNodeNumber::Serialize() {
     return "";
   }
 }
-

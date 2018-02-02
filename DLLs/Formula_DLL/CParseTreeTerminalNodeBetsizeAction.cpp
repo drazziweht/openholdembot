@@ -7,36 +7,24 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: parse-tree node representing RaiseBy- and RaiseTo-actions
 //
 //******************************************************************************
 
  
 #include "CParseTreeTerminalNodeBetsizeAction.h"
-
 #include <math.h>
-#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
 #include "CFunction.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
 #include "CParserSymbolTable.h"
 #include "CParseTreeTerminalNode.h"
 #include "CParseTreeTerminalNodeIdentifier.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
+#include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
-
 #include "..\StringFunctions_DLL\string_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
-#include "TokenizerConstants.h"
 
 CParseTreeTerminalNodeBetsizeAction::CParseTreeTerminalNodeBetsizeAction(int relative_line_number) : 
     CParseTreeNode(relative_line_number)  {

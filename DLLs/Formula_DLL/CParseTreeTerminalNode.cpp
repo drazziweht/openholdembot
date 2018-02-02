@@ -7,29 +7,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: base class for numbers, identifiers ... of the parse-tree
 //
 //******************************************************************************
 
- 
 #include "CParseTreeTerminalNode.h"
-
-#include <math.h>
-#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
-#include "CParserSymbolTable.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
-
-#include "..\WindowFunctions_DLL\window_functions.h"
-#include "..\StringFunctions_DLL\string_functions.h"
-#include "TokenizerConstants.h"
 
 CParseTreeTerminalNode::CParseTreeTerminalNode(int relative_line_number) : 
     CParseTreeNode(relative_line_number) {

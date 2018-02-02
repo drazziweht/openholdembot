@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: base class for numbers, identifiers ... of the parse-tree
 //
 //******************************************************************************
-
-#ifndef INC_CPARSETREETERMINALNODE_H
-#define INC_CPARSETREETERMINALNODE_H
 
 #include "CParsetreeNode.h"
 
@@ -25,5 +23,3 @@ class CParseTreeTerminalNode: public CParseTreeNode {
 };
 
 typedef CParseTreeTerminalNode *TPParseTreeTerminalNode;
-
-#endif INC_CPARSETREETERMINALNODE_H

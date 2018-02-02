@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: analyzing the input-stream of characters for higher-level
+//   tokens like numbers, identifiers and operators
 //
 //******************************************************************************
-
-#ifndef INC_CTOKENIZER_H
-#define INC_CTOKENIZER_H
 
 #include <afxwin.h>
 #include "atlstr.h"
@@ -79,5 +78,3 @@ class CTokenizer {
 	// Gets set as side-effect by IsTokenOpenPPLKeyword()
 	int  _OpenPPL_token_ID;
 };
-
-#endif INC_CTOKENIZER_H
