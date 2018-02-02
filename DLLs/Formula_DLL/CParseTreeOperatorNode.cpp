@@ -10,10 +10,8 @@
 // Purpose:
 //
 //******************************************************************************
-
  
 #include "CParseTreeOperatorNode.h"
-
 #include <math.h>
 #include "CAutoplayerTrace.h"
 #include "CEngineContainer.h"
@@ -23,7 +21,6 @@
 #include "CParserSymbolTable.h"
 #include "CParseTreeTerminalNode.h"
 #include "CParseTreeTerminalNodeIdentifier.h"
-
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineMemorySymbols.h"
 #include "CSymbolEngineOpenPPLUserVariables.h"

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: creating error-messages for the parser,
+//   adding source-location and contect to the message.
 //
 //******************************************************************************
-
-#ifndef INC_CPARSEERRORS_H
-#define INC_CPARSEERRORS_H
 
 #include <afxwin.h>
 
@@ -37,5 +36,3 @@ class CParseErrors {
   static bool _is_error;
   static CString _last_error_message;
 };
-
-#endif INC_CPARSEERRORS_H

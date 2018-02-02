@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -35,9 +36,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_CPARSETREEROTATOR_H
-#define INC_CPARSETREEROTATOR_H
-
 #include "CParseTreeNode.h"
 
 class CFunction;
@@ -64,6 +62,3 @@ class CParseTreeRotator {
 private:
   void VerifyCorrectRotation(TPParseTreeNode parse_tree_node);
 };
-
-
-#endif INC_CPARSETREEROTATOR_H

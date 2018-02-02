@@ -18,6 +18,7 @@
     <ClCompile Include="COHScriptList.cpp" />
     <ClCompile Include="COHScriptObject.cpp" />
     <ClCompile Include="CParseErrors.cpp" />
+    <ClCompile Include="CParserSymbolTable.cpp" />
     <ClCompile Include="CParseTreeNode.cpp" />
     <ClCompile Include="CParseTreeOperatorNode.cpp" />
     <ClCompile Include="CParseTreeRotator.cpp" />

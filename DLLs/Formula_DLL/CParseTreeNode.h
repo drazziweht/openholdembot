@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -13,9 +14,6 @@
 //******************************************************************************
 
 #include <afxwin.h>
-
-#ifndef INC_CPARSETREENODE_H
-#define INC_CPARSETREENODE_H
 
 class CParseTreeNode;
 
@@ -80,5 +78,3 @@ class CParseTreeNode {
   // Line number relative to current function
   int _relative_line_number;
 };
-
-#endif INC_CPARSETREENODE_H

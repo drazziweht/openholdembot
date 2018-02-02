@@ -8,7 +8,8 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: symbol-table for the parser,
+//   remembering function definitions and usages.
 //
 //******************************************************************************
 
@@ -28,5 +29,3 @@ class CParserSymbolTable /*: public CSpaceOptimizedGlobalObject */{
   std::map<CString, bool> _known_symbols;
   std::map<CString, bool> _used_functions;
 };
-
-extern CParserSymbolTable *p_parser_symbol_table;

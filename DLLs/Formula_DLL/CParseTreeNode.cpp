@@ -15,7 +15,7 @@
 #include "CParseTreeNode.h"
 
 #include "CFunction.h"
-#include "CMemoryPool.h"
+///#include "CMemoryPool.h"
 #include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"

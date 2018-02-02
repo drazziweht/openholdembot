@@ -7,18 +7,18 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: symbol-table for the parser,
+//   remembering function definitions and usages.
 //
 //******************************************************************************
 
 #include "CParserSymbolTable.h"
-
 #include "CFunction.h"
-#include "CFunctionCollection.h"
-#include "CEngineContainer.h"
+///#include "CEngineContainer.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 
 CParserSymbolTable *p_parser_symbol_table = NULL;
@@ -83,7 +83,7 @@ void CParserSymbolTable::VerifySymbol(CString name) {
     // a) this is faster
     // b) this avoids dupplicate error-messages if the function
     //    cibtaibs invalid symbols
-    if (p_function_collection->Exists(name)) {
+    if (FunctionCollection()->Exists(name)) {
       _known_symbols[name] = true;
       return;
     }

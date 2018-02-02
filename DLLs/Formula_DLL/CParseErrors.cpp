@@ -7,13 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: creating error-messages for the parser,
+//   adding source-location and contect to the message.
 //
 //******************************************************************************
 
-
 #include "CParseErrors.h"
-
 #include "CFormulaParser.h"
 #include "CTokenizer.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
