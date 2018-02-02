@@ -178,7 +178,7 @@ bool CAutoplayer::AnyPrimaryFormulaTrue() {
   // Some auto-player-functions MUST exist. If not then they get auto-generated.
   // Missing all autoplayer-functions would be a bug that leads to time-outs.
   assert(p_function_collection != NULL);
-  assert(p_function_collection->Exists(k_standard_function_names[k_autoplayer_function_fold]));
+  assert(FunctionCollection()->Exists(k_standard_function_names[k_autoplayer_function_fold]));
 	for (int i=k_autoplayer_function_beep; i<=k_autoplayer_function_fold; ++i)
 	{
 		double function_result = p_autoplayer_functions->GetAutoplayerFunctionValue(i);
@@ -238,7 +238,7 @@ bool CAutoplayer::ExecutePrimaryFormulasIfNecessary() {
 		return false;
 	}
 	PrepareActionSequence();
-	if (p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_allin))	{
+	if (FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_allin))	{
 		if (DoAllin()) {
 			return true;
 		}
@@ -259,14 +259,14 @@ bool CAutoplayer::ExecuteRaiseCallCheckFold() {
   // Some auto-player-functions MUST exist. If not then they get auto-generated.
   // Missing all autoplayer-functions would be a bug that leads to time-outs.
   assert(p_function_collection != NULL);
-  assert(p_function_collection->Exists(k_standard_function_names[k_autoplayer_function_fold]));
+  assert(FunctionCollection()->Exists(k_standard_function_names[k_autoplayer_function_fold]));
 	for (int i=k_autoplayer_function_raise; i<=k_autoplayer_function_fold; i++)	{
     if ((i == k_autoplayer_function_check) && p_engine_container->symbol_engine_chip_amounts()->call() > 0) {
       write_log(k_always_log_errors, 
         "[AutoPlayer] WARNING! Can't execute f$check because there is a bet to call\n");
       continue;
     }
-		if (p_function_collection->Evaluate(k_standard_function_names[i])) 	{
+		if (FunctionCollection()->Evaluate(k_standard_function_names[i])) 	{
 			if (p_casino_interface->LogicalAutoplayerButton(i)->Click()) 			{				
         p_engine_container->UpdateAfterAutoplayerAction(i);
         p_autoplayer_trace->Print(ActionConstantNames(i), kAlwaysLogAutoplayerFunctions);
@@ -279,7 +279,7 @@ bool CAutoplayer::ExecuteRaiseCallCheckFold() {
 
 bool CAutoplayer::ExecuteBeep() {
 	write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] ExecuteBeep (if f$beep is true)\n");
-	if (p_function_collection->Evaluate(k_standard_function_names[k_autoplayer_function_beep]))	{
+	if (FunctionCollection()->Evaluate(k_standard_function_names[k_autoplayer_function_beep]))	{
 		// Pitch standard: 440 Hz, 1/2 second
 		// http://en.wikipedia.org/wiki/A440_%28pitch_standard%29
 		Beep(440, 500);
@@ -374,7 +374,7 @@ void CAutoplayer::EngageAutoplayer(bool to_be_enabled_or_not) {
 
 	if (to_be_enabled_or_not) 
 	{
-		if (!p_function_collection->BotLogicCorrectlyParsed())
+		if (!FunctionCollection()->BotLogicCorrectlyParsed())
 		{
 			// Invalid formula
 			// Can't autoplay
@@ -395,14 +395,14 @@ void CAutoplayer::EngageAutoplayer(bool to_be_enabled_or_not) {
 #undef ENT
 
 bool CAutoplayer::DoChat(void) {
-	assert(p_function_collection->EvaluateAutoplayerFunction(k_standard_function_chat) != 0);
+	assert(FunctionCollection()->EvaluateAutoplayerFunction(k_standard_function_chat) != 0);
 	if (!IsChatAllowed())	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] No chat, because chat turned off.\n");
 		return false;
 	}
 	// Converting the result of the $chat-function to a string.
 	// Will be ignored, if we already have an unhandled chat message.
-	RegisterChatMessage(p_function_collection->EvaluateAutoplayerFunction(k_standard_function_chat));
+	RegisterChatMessage(FunctionCollection()->EvaluateAutoplayerFunction(k_standard_function_chat));
 	if (_the_chat_message == NULL) {
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] No chat, because wrong chat code. Please read: ""Available chat messages"" .\n");
 		return false ;
@@ -498,7 +498,7 @@ AutoPlayerCleanupAndFinalization:
 }
 
 bool CAutoplayer::DoBetsize() { 
-  double betsize = p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_betsize);
+  double betsize = FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_betsize);
 	if (betsize > 0) 	{
     if (!_already_executing_allin_adjustment) {
       // We have to prevent a potential endless loop here>
@@ -528,7 +528,7 @@ bool CAutoplayer::DoBetsize() {
 }
 
 bool CAutoplayer::DoPrefold(void) {
-	assert(p_function_collection->EvaluateAutoplayerFunction(k_standard_function_prefold) != 0);
+	assert(FunctionCollection()->EvaluateAutoplayerFunction(k_standard_function_prefold) != 0);
 	if (!TableState()->User()->HasKnownCards()) {
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Prefold skipped. No known cards.\n");
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Smells like a bad f$prefold-function.\n");

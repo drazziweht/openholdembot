@@ -42,7 +42,7 @@ CParseTreeTerminalNodeEndOfFunction::CParseTreeTerminalNodeEndOfFunction(int rel
     default_function.SetAt(7, toupper(default_function.GetAt(7)));
     write_log(Preferences()->debug_parser(), "[CParseTreeTerminalNodeEndOfFunction] %s\n",
       default_function);
-    if (p_function_collection->Exists(default_function)) {
+    if (FunctionCollection()->Exists(default_function)) {
       _terminal_name = default_function;
       write_log(Preferences()->debug_parser(), 
         "[CParseTreeTerminalNodeEndOfFunction] Default bot-logic referenced.\n");

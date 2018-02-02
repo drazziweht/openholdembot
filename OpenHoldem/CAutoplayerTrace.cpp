@@ -182,7 +182,7 @@ CString CAutoplayerTrace::BestAction() {
         // e.g. "f$betsize = 201.47"
         CString best_action;
         best_action.Format("%s = %.2f", k_standard_function_names[i],
-          p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_betsize));
+          FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_betsize));
         return best_action;
       }
       else {
@@ -228,11 +228,11 @@ void CAutoplayerTrace::LogBasicInfo(const char *action_taken) {
   CString fcra_seen = p_engine_container->symbol_engine_autoplayer()->GetFCKRAString();
   // fcra formula status
   fcra_formula_status.Format("%s%s%s%s%s",
-	p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_fold)  ? "F" : ".",
-	p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_call)  ? "C" : ".",
-	p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_check) ? "K" : ".",
-	p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_raise) ? "R" : ".",
-	p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_allin) ? "A" : ".");
+	FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_fold)  ? "F" : ".",
+	FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_call)  ? "C" : ".",
+	FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_check) ? "K" : ".",
+	FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_raise) ? "R" : ".",
+	FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_allin) ? "A" : ".");
   // More verbose summary in the log
   // The old WinHoldem format was a complete mess
   write_log_separator(k_always_log_basic_information, "Basic Info");
@@ -250,7 +250,7 @@ void CAutoplayerTrace::LogBasicInfo(const char *action_taken) {
   write_log(k_always_log_basic_information, "  Pot:           %9.2f\n", p_engine_container->symbol_engine_chip_amounts()->pot());
   write_log(k_always_log_basic_information, "  Big blind:     %9.2f\n", p_engine_container->symbol_engine_tablelimits()->bblind());
   write_log(k_always_log_basic_information, "  Big bet (FL):  %9.2f\n", p_engine_container->symbol_engine_tablelimits()->bigbet());
-  write_log(k_always_log_basic_information, "  f$betsize:     %9.2f\n", p_function_collection->EvaluateAutoplayerFunction(k_autoplayer_function_betsize));
+  write_log(k_always_log_basic_information, "  f$betsize:     %9.2f\n", FunctionCollection()->EvaluateAutoplayerFunction(k_autoplayer_function_betsize));
   write_log(k_always_log_basic_information, "  Formulas:      %s\n",    fcra_formula_status.GetString());
   write_log(k_always_log_basic_information, "  Buttons:       %s\n",    fcra_seen.GetString());
   // !! "Best action" is undefined if the executed action

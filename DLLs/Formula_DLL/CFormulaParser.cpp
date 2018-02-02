@@ -101,13 +101,13 @@ void CFormulaParser::ParseFormulaFileWithUserDefinedBotLogic(CArchive& formula_f
   EnterParserCode();
   write_log(Preferences()->debug_parser(),
     "[CFormulaParser] ParseFormulaFileWithUserDefinedBotLogic()\n");
-  p_function_collection->SetEmptyDefaultBot();
-  p_function_collection->SetFormulaName(FilenameWithoutPathAndExtension(
+  FunctionCollection()->SetEmptyDefaultBot();
+  FunctionCollection()->SetFormulaName(FilenameWithoutPathAndExtension(
     formula_file.GetFile()->GetFilePath()));
   LoadArchive(formula_file);
-  p_function_collection->ParseAll();
+  FunctionCollection()->ParseAll();
   LeaveParserCode();
-  p_function_collection->Evaluate(k_standard_function_names[k_init_on_startup],
+  FunctionCollection()->Evaluate(k_standard_function_names[k_init_on_startup],
     Preferences()->log_ini_functions());
 }
 
@@ -118,7 +118,7 @@ void CFormulaParser::ParseDefaultLibraries() {
   // Parsing order does not matters; some early parts 
   // need stuff of later parts, but we check completeness
   // once at the very end.
-  p_function_collection->SetOpenPPLLibraryLoaded(false);
+  FunctionCollection()->SetOpenPPLLibraryLoaded(false);
   for (int i = 0; i < kNumberOfOpenPPLLibraries; ++i) {
     CString library_path;
     assert(kOpenPPLLibraries[i] != "");
@@ -128,12 +128,12 @@ void CFormulaParser::ParseDefaultLibraries() {
     LoadOptionalFunctionLibrary(library_path);
   }
   // Check once at the end of the modular OpenPPL-library
-  p_function_collection->SetOpenPPLLibraryLoaded(true);
+  FunctionCollection()->SetOpenPPLLibraryLoaded(true);
   LoadOptionalFunctionLibrary(CustomLibraryPath());
   LoadDefaultBot();
   // Check again after the custom library
   p_engine_container->symbol_engine_open_ppl()->VerifyExistenceOfOpenPPLInitializationInLibrary();
-  p_function_collection->ParseAll(); 
+  FunctionCollection()->ParseAll(); 
   _is_parsing_read_only_function_library = false;
   LeaveParserCode();
 }
@@ -171,7 +171,7 @@ void CFormulaParser::LoadArchive(CArchive& formula_file) {
 
 // !!!To be moved to CFunction
 bool CFormulaParser::VerifyFunctionNamingConventions(CString name) {
-  if (p_function_collection->OpenPPLLibraryLoaded()) {
+  if (FunctionCollection()->OpenPPLLibraryLoaded()) {
     // User-defined bot-logic
     // Must be a f$-symbol or a list
     if (name.Left(2) == "f$") return true;
@@ -337,13 +337,13 @@ void CFormulaParser::ParseFormula(COHScriptObject* function_or_list_to_be_parsed
   assert(function_or_list_to_be_parsed != NULL);
   //!!!!!assert(function_or_list_to_be_parsed->IsFunction());
   ((CFunction*)function_or_list_to_be_parsed)->SetParseTree(function_body);
-  //p_function_collection->Add((COHScriptObject*)p_new_function);
-  assert(p_function_collection->Exists(_function_name));
+  //FunctionCollection()->Add((COHScriptObject*)p_new_function);
+  assert(FunctionCollection()->Exists(_function_name));
   // Care about operator precendence
   _parse_tree_rotator.Rotate((CFunction*)function_or_list_to_be_parsed);
 #ifdef DEBUG_PARSER
   p_new_function->Serialize(); 
-  p_function_collection->LookUp(_function_name)->Dump();
+  FunctionCollection()->LookUp(_function_name)->Dump();
 #endif
   LeaveParserCode();
 }

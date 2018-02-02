@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,15 +8,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Data-structure for the expressions and results of the debug-tab
+//   of the formula editor.
 //
 //******************************************************************************
 
-#ifndef INC_CDEBUGTAB_H
-#define INC_CDEBUGTAB_H
-
 #include "COHScriptObject.h"
 #include "CParseTreeNode.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 const int kMaxSizeOfDebugTab = 50;
 
@@ -40,8 +40,3 @@ class CDebugTab: public COHScriptObject{
   void AddExpression(CString expression_text, TPParseTreeNode expression);
   int _number_of_expressions;
 };
-
-extern CDebugTab *p_debug_tab;
-
-#endif INC_CDEBUGTAB_H
-

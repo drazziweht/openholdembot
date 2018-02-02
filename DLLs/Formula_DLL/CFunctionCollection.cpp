@@ -305,15 +305,15 @@ void CFunctionCollection::SetEmptyDefaultBot() {
 void CFunctionCollection::ExecuteSelftest() {
   write_log(Preferences()->debug_formula(), 
     "[CFunctionCollection] Executing self-test\n");
-  /*!!!!!if (p_function_collection->Exists(kSelftestName)) {
+  /*!!!!!if (FunctionCollection()->Exists(kSelftestName)) {
     //
     return;
   }*/
   CFunction *p_function = new CFunction(kSelftestName, kSelftestFunction);
   // The parser assunes that every function to ber parsed
   // exists in the collection
-  p_function_collection->Add(p_function);
-  assert(p_function_collection->Exists(kSelftestName));
+  FunctionCollection()->Add(p_function);
+  assert(FunctionCollection()->Exists(kSelftestName));
   p_function->SetAsReadOnlyLibraryFunction();
   p_function->Parse();
   CSelftestParserEvaluator selftest;
@@ -321,7 +321,7 @@ void CFunctionCollection::ExecuteSelftest() {
   /*!!!!!!!// The function should stay in the collection until the very end
   // and then should get released together with the OpenPPL-symbols.
   // As VLD indicates that this DONOWORKS we delete it here.*/
-  p_function_collection->Delete(kSelftestName);
+  FunctionCollection()->Delete(kSelftestName);
 }
 
 void CFunctionCollection::CheckForDefaultFormulaEntries() {
@@ -579,7 +579,7 @@ bool CFunctionCollection::Rename(CString from_name, CString to_name) {
   CSLock lock(m_critsec);
   COHScriptObject *object_to_rename = LookUp(from_name);
   if (object_to_rename == NULL) return false;
-  if (p_function_collection->LookUp(to_name) != NULL) {
+  if (FunctionCollection()->LookUp(to_name) != NULL) {
     MessageBox_Interactive("Cannot rename to a function/list that already exists", "Error", 0);
     return false;
   }
@@ -650,7 +650,7 @@ bool CFunctionCollection::ParseAll() {
     "[CFunctionCollection] ParseAll()\n");
   // Adding empty standard-functions
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=16230
-  p_function_collection->CheckForDefaultFormulaEntries();
+  FunctionCollection()->CheckForDefaultFormulaEntries();
   CSLock lock(m_critsec);
   assert(p_formula_parser != NULL);
   p_parser_symbol_table->Clear();

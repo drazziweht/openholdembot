@@ -144,7 +144,7 @@ bool CParseTreeTerminalNodeIdentifier::EvaluatesToBinaryNumber() {
   }
   else if (IsBinaryIdentifier()) return true;
   else if ((_node_type == kTokenIdentifier)
-      && p_function_collection->EvaluatesToBinaryNumber(_terminal_name)) {
+      && FunctionCollection()->EvaluatesToBinaryNumber(_terminal_name)) {
     return true;
   }
   // Nothing binary

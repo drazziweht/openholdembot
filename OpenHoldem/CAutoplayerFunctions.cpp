@@ -38,26 +38,26 @@ CAutoplayerFunctions::CAutoplayerFunctions() {
 double CAutoplayerFunctions::GetAutoplayerFunctionValue(const int function_code) {
 	assert(function_code >= 0);
 	assert(function_code < k_number_of_standard_functions);
-  return p_function_collection->Evaluate(k_standard_function_names[function_code]);
+  return FunctionCollection()->Evaluate(k_standard_function_names[function_code]);
 }
 
 void CAutoplayerFunctions::CalcPrimaryFormulas() {
   write_log(Preferences()->debug_formula(), "[CAutoplayerFunctions] CalcPrimaryFormulas()\n");
   assert(p_engine_container->symbol_engine_autoplayer()->isfinalanswer());
-  if (p_function_collection->IsOpenPPLProfile()) {
+  if (FunctionCollection()->IsOpenPPLProfile()) {
     CalcPrimaryFormulasOpenPPL();
     CalculateOpenPPLBackupActions();
     return;
   }
   // Otherwiese: OH-script
-  assert(!p_function_collection->IsOpenPPLProfile());
+  assert(!FunctionCollection()->IsOpenPPLProfile());
   CalcPrimaryFormulasOHScript();
 }
 
 void CAutoplayerFunctions::CalcPrimaryFormulasOHScript() {
   write_log(Preferences()->debug_formula(), "[CAutoplayerFunctions] CalcPrimaryFormulasOHScript()\n");
 	for (int i=k_autoplayer_function_beep; i<=k_autoplayer_function_fold; i++) {
-		double result = p_function_collection->Evaluate(k_standard_function_names[i], kAlwaysLogAutoplayerFunctions);
+		double result = FunctionCollection()->Evaluate(k_standard_function_names[i], kAlwaysLogAutoplayerFunctions);
 		write_log(Preferences()->debug_formula(), "[CAutoplayerFunctions] Primary formulas; %s: %f\n", 
 			k_standard_function_names[i], result);
 	}
@@ -72,7 +72,7 @@ void CAutoplayerFunctions::CalcPrimaryFormulasOpenPPL() {
       "[CAutoplayerFunctions] Betround out of range. Can't calculate OpenPPL-decision\n");
     return;
   }
-  double decision = p_function_collection->Evaluate(k_OpenPPL_function_names[betround], 
+  double decision = FunctionCollection()->Evaluate(k_OpenPPL_function_names[betround], 
     kAlwaysLogAutoplayerFunctions);
   write_log(Preferences()->debug_formula(), 
     "[CAutoplayerFunctions] Decision (non-translated) = %.2f\n", decision);
@@ -131,14 +131,14 @@ void CAutoplayerFunctions::CheckIfDecisionMatchesElementaryAction(int decision, 
     default:
       assert (kThisMustNotHappen);
   }
-  double open_ppl_action_code = p_function_collection->Evaluate(action_name);
+  double open_ppl_action_code = FunctionCollection()->Evaluate(action_name);
   write_log(Preferences()->debug_symbolengine_open_ppl(),
     "[CAutoplayerFunctions] Checking if decision %.3f matches action %s (%.3f)\n",
     decision, action_name, open_ppl_action_code);
   if (decision == open_ppl_action_code) {
     write_log(Preferences()->debug_symbolengine_open_ppl(),
     "[CAutoplayerFunctions] Decision matches action\n");
-    p_function_collection->SetAutoplayerFunctionValue(action, true);
+    FunctionCollection()->SetAutoplayerFunctionValue(action, true);
   }
 }
 
@@ -151,11 +151,11 @@ void CAutoplayerFunctions::TranslateOpenPPLDecisionToAutoplayerFunctions(double 
     // OpenHoldem uses f$betsize in dollars
     assert(p_engine_container->symbol_engine_tablelimits() != NULL);
     double betsize = decision * p_engine_container->symbol_engine_tablelimits()->bblind();
-    p_function_collection->SetAutoplayerFunctionValue(k_autoplayer_function_betsize, 
+    FunctionCollection()->SetAutoplayerFunctionValue(k_autoplayer_function_betsize, 
       betsize);
   } else if (IsPercentagePotsizeBet(decision)) {
     double betsize = BetSizeForPercentagedPotsizeBet(decision);
-    p_function_collection->SetAutoplayerFunctionValue(k_autoplayer_function_betsize, 
+    FunctionCollection()->SetAutoplayerFunctionValue(k_autoplayer_function_betsize, 
       betsize);
   } else if (decision < -1000) {
     // Large negative values: action constants
@@ -167,14 +167,14 @@ void CAutoplayerFunctions::TranslateOpenPPLDecisionToAutoplayerFunctions(double 
     assert(decision == kUndefinedZero);
     write_log(Preferences()->debug_symbolengine_open_ppl(),
       "[CAutoplayerFunctions] OpenPPL-decision undefined. Defaulting to check/fold.\n");
-    p_function_collection->SetAutoplayerFunctionValue(k_autoplayer_function_check, true);
-    p_function_collection->SetAutoplayerFunctionValue(k_autoplayer_function_fold, true);
+    FunctionCollection()->SetAutoplayerFunctionValue(k_autoplayer_function_check, true);
+    FunctionCollection()->SetAutoplayerFunctionValue(k_autoplayer_function_fold, true);
   }
 }
 
 void CAutoplayerFunctions::CalculateSingleOpenPPLBackupAction(
     int potential_action, int potential_backup) {
-  double action_value = p_function_collection->EvaluateAutoplayerFunction(
+  double action_value = FunctionCollection()->EvaluateAutoplayerFunction(
     potential_action);
   write_log(Preferences()->debug_formula(), 
     "[CAutoplayerFunctions] %s -> %.3f\n",
@@ -185,7 +185,7 @@ void CAutoplayerFunctions::CalculateSingleOpenPPLBackupAction(
       "[CAutoplayerFunctions] Backup action added: %s -> %s\n",
       k_standard_function_names[potential_action], 
       k_standard_function_names[potential_backup]);
-    p_function_collection->SetAutoplayerFunctionValue(
+    FunctionCollection()->SetAutoplayerFunctionValue(
       potential_backup, true);
   }
 }
@@ -212,12 +212,12 @@ void CAutoplayerFunctions::CalculateOpenPPLBackupActions() {
   // Beep is a stand-alone action
   // No backup, can't be combined with pother actions
   // (contrary to f$beep in OH-script).
-  if (p_function_collection->EvaluateAutoplayerFunction(
+  if (FunctionCollection()->EvaluateAutoplayerFunction(
       k_autoplayer_function_beep)) {
     // Turn check/fold off
-    p_function_collection->SetAutoplayerFunctionValue(
+    FunctionCollection()->SetAutoplayerFunctionValue(
       k_autoplayer_function_check, false);
-    p_function_collection->SetAutoplayerFunctionValue(
+    FunctionCollection()->SetAutoplayerFunctionValue(
       k_autoplayer_function_fold, false);
     return;
   }
@@ -288,7 +288,7 @@ void CAutoplayerFunctions::CalcSecondaryFormulas(void) {
   // Not considering k_standard_function_shoot_replay_frame here,
   // as this function gets handled by CSymbolEngineReplayFrameController
 	for (int i=k_hopper_function_sitin; i<= k_standard_function_allin_on_betsize_balance_ratio; ++i) {
-    double result = p_function_collection->Evaluate(k_standard_function_names[i], Preferences()->log_hopper_functions());
+    double result = FunctionCollection()->Evaluate(k_standard_function_names[i], Preferences()->log_hopper_functions());
 		write_log(Preferences()->debug_formula(), "[CAutoplayerFunctions] Secondary formulas; %s: %f\n", 
 			  k_standard_function_names[i], result);
 	}

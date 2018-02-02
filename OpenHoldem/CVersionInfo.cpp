@@ -48,7 +48,7 @@ CString CVersionInfo::GetVersionInfo()
     "  Tablemap [%s]\n",
     VERSION_TEXT,
     _openholdem_MD5,
-    p_function_collection->FormulaName(),
+    FunctionCollection()->FormulaName(),
     p_tablemap->filename());
 	return version_info;
 }

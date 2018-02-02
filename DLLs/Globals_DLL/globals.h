@@ -21,8 +21,10 @@
 #define GLOBALS_DLL_API __declspec(dllimport)
 #endif
 
+class CFunctionCollection;
 class CPreferences;
 class CTableState;
+GLOBALS_DLL_API CFunctionCollection* FunctionCollection();
 GLOBALS_DLL_API void InitGlobals();
 GLOBALS_DLL_API CPreferences* Preferences();
 GLOBALS_DLL_API CTableState* TableState();

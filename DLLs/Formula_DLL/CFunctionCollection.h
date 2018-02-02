@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,19 +12,17 @@
 //
 //******************************************************************************
 
-#ifndef INC_CFUNCTIONCOLLECTION_H
-#define INC_CFUNCTIONCOLLECTION_H
-
 #include <afxwin.h>
 #include "COHScriptObject.h"
-///#include "CVirtualSymbolEngine.h"
 #include <map>
+///#include "CVirtualSymbolEngine.h"
+#include "..\..\Shared\CCritSec\CCritSec.h"
 
 // We make the collection a symbol-engine because of 
 // * reset-functions 
 // * Evaluate()-function,
 // * SymbolsProvided() for syntax-highlighting
-class CFunctionCollection: /*#public CVirtualSymbolEngine */{
+class CFunctionCollection /*: #public CVirtualSymbolEngine */{
   friend class CAutoplayerFunctions;
   friend class CBetsizeInputBox;
   friend class CCasinoInterface;
@@ -112,7 +111,3 @@ class CFunctionCollection: /*#public CVirtualSymbolEngine */{
   std::map<CString, COHScriptObject*>::iterator enumerator_it;
   CCritSec m_critsec;
 };
-
-extern CFunctionCollection *p_function_collection;
-
-#endif INC_CFUNCTIONCOLLECTION_H

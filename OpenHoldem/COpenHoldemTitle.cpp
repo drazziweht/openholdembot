@@ -52,10 +52,10 @@ CString COpenHoldemTitle::FullTitle() {
   CString full_title;
   write_log(Preferences()->debug_alltherest(), "[COpenHoldemTitle] location Johnny_6\n");
 	if (p_autoconnector->IsConnectedToAnything())	{
-		full_title.Format("%s | %s | %s", p_function_collection->FormulaName(),
+		full_title.Format("%s | %s | %s", FunctionCollection()->FormulaName(),
 			p_tablemap->sitename(), TableState()->TableTitle()->Title());
 	}	else {
-		full_title.Format("%s", p_function_collection->FormulaName());
+		full_title.Format("%s", FunctionCollection()->FormulaName());
 	}
 	return full_title;
 }

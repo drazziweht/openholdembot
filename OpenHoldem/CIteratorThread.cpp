@@ -382,7 +382,7 @@ void CIteratorThread::CalculateTotalWeights()
 }
 
 void CIteratorThread::InitNumberOfIterations() {
-	_iterations_required = p_function_collection->Evaluate(
+	_iterations_required = FunctionCollection()->Evaluate(
 		k_standard_function_names[k_prwin_number_of_iterations], Preferences()->log_prwin_functions());
 }
 
@@ -420,10 +420,10 @@ void CIteratorThread::InitIteratorLoop() {
 	}
 
 	//Weighted prwin only for nopponents <=13
-  _topclip = p_function_collection->Evaluate("f$prwin_topclip", Preferences()->log_prwin_functions());
-  _mustplay = p_function_collection->Evaluate("f$prwin_mustplay", Preferences()->log_prwin_functions());
-	_willplay = p_function_collection->Evaluate("f$prwin_willplay", Preferences()->log_prwin_functions());
-	_wontplay = p_function_collection->Evaluate("f$prwin_wontplay", Preferences()->log_prwin_functions());
+  _topclip = FunctionCollection()->Evaluate("f$prwin_topclip", Preferences()->log_prwin_functions());
+  _mustplay = FunctionCollection()->Evaluate("f$prwin_mustplay", Preferences()->log_prwin_functions());
+	_willplay = FunctionCollection()->Evaluate("f$prwin_willplay", Preferences()->log_prwin_functions());
+	_wontplay = FunctionCollection()->Evaluate("f$prwin_wontplay", Preferences()->log_prwin_functions());
 	// Call prw1326 callback if needed
 	if (_prw1326.useme==1326 
 		  && _prw1326.usecallback==1326 

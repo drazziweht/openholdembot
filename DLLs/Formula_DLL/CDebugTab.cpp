@@ -7,17 +7,18 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Data-structure for the expressions and results of the debug-tab
+//   of the formula editor.
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CDebugTab.h"
-
 #include "CFormulaParser.h"
-
-
-CDebugTab *p_debug_tab = NULL; 
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\MemoryManagement_DLL\CMemoryPool.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // These arrays are global, 
 // because -- when private members --

@@ -19,6 +19,7 @@
 #include "COHScriptObject.h"
 #include "COHScriptList.h"
 #include "CParseErrors.h"
+#include "..\Globals_DLL\globals.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
@@ -61,7 +62,7 @@ void CFormulaFileSplitter::SplitFile(CArchive &formula_file) {
     return;
   }
   while (next_function_or_list != NULL) {
-    p_function_collection->Add(next_function_or_list);
+    FunctionCollection()->Add(next_function_or_list);
     next_function_or_list = GetNextObject(formula_file);
   }
 }
