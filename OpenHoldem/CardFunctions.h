@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CARDFUNCTIONS_H
-#define INC_CARDFUNCTIONS_H
 
 // Supporting macros
 #define HIGH_NIBBLE(c)	(((c)>>4)&0x0F)
@@ -81,5 +79,3 @@ inline int CardRankCharacterToCardRank(char rank) {
 }
 
 inline int OpenHoldemRankToStdDeckLibraryRank(int rank)	{ return (rank - 2); }
-
-#endif INC_CARDFUNCTIONS_H
