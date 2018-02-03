@@ -18,7 +18,7 @@
 
 #include "crc32hash.h"
 #include "CSessionCounter.h"
-#include "CSymbolEngineRandom.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineRandom.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 #define ENT CSLock lock(m_critsec);

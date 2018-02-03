@@ -18,10 +18,10 @@
 #include "CAutoplayerTrace.h"
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-#include "CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 
 #include "SwagAdjustment.h"
-#include "CSymbolEngineHistory.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineHistory.h"
 #include "..\CTablemap\CTablemap.h"
 #include "OpenHoldem.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"

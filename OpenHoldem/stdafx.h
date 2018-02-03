@@ -148,11 +148,11 @@
 
 // Important project headers
 #include "CValidator.h"
-#include "FloatingPoint_Comparisions.h"
-#include "NumericalFunctions.h"
 #include "..\DLLs\Debug_DLL\debug.h"
 #include "..\DLLs\Files_DLL\files.h"
 #include "..\DLLs\Globals_DLL\globals.h"
+#include "..\DLLs\Numerical_Functions_DLL\FloatingPoint_Comparisions.h"
+#include "..\DLLs\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "..\Shared\CCritSec\CCritSec.h"

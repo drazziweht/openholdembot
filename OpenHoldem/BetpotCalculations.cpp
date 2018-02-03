@@ -16,8 +16,8 @@
 
 #include "CEngineContainer.h"
 
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 double BetPotFactor(int betpot_action_code) {

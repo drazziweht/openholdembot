@@ -29,9 +29,9 @@
 #include "COpenHoldemTitle.h"
 
 #include "CScraper.h"
-#include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
 #include "CTableMapLoader.h"
 #include "CTablepointChecker.h"

@@ -20,12 +20,12 @@
 #include "CHandresetDetector.h"
 
 #include "CSessionCounter.h"
-#include "CSymbolEngineActiveDealtPlaying.h"
-#include "CSymbolEngineCasino.h"
-#include "CSymbolEngineChecksBetsFolds.h"
-#include "CSymbolEngineIsRush.h"
-#include "CSymbolEngineIsTournament.h"
-#include "CSymbolEngineTime.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChecksBetsFolds.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsRush.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 CHeartbeatDelay::CHeartbeatDelay() {

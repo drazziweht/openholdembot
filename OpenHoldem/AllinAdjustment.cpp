@@ -12,21 +12,18 @@
 //******************************************************************************
 
 #include "stdafx.h"
-#include "AllinAdjustment.h"
-
 #include <assert.h>
+#include "AllinAdjustment.h"
 #include "BetpotCalculations.h"
-#include "CFunctionCollection.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolengineGameType.h"
-#include "CSymbolEngineIsTournament.h"
-#include "CSymbolEngineUserchair.h"
-#include "CSymbolEngineTableLimits.h"
+#include "SwagAdjustment.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "..\..\CTablemap\CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
-
-#include "SwagAdjustment.h"
 
 bool ChangeBetsizeToAllin(double amount_to_raise_to) {
   assert(amount_to_raise_to >= 0.0);

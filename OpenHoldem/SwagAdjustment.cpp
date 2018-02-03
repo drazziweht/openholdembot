@@ -17,18 +17,18 @@
 #include <assert.h>
 #include "BetpotCalculations.h"
 #include "CEngineContainer.h"
-#include "CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolengineGameType.h"
-#include "CSymbolEngineIsTournament.h"
-#include "CSymbolEngineUserchair.h"
-#include "CSymbolEngineTableLimits.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "..\..\CTablemap\CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 
-#include "CSymbolEngineCasino.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
 
 double MinimumBetsizeDueToPreviousRaise() {
 	double minimums_swag_amount = (EngineContainer()->symbol_engine_chip_amounts()->call() 

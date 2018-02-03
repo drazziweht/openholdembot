@@ -20,8 +20,8 @@
 #include "CEngineContainer.h"
 
 #include "CScraper.h"
-#include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineIsOmaha.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsOmaha.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 

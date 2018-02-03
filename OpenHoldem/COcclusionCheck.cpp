@@ -19,7 +19,7 @@
 #include "CEngineContainer.h"
 
 #include "CSCraper.h"
-#include "CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
 

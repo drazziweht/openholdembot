@@ -41,7 +41,7 @@
 #include "CSharedMem.h"
 #include "CStableFramesCounter.h"
 #include "CStringMatch.h"
-#include "CSymbolEngineTableLimits.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "CTableMaploader.h"
 #include "CTablePositioner.h"
 #include "CTitleEvaluator.h"

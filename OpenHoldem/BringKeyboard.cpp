@@ -17,8 +17,8 @@
 #include "CAutoConnector.h"
 #include "CEngineContainer.h"
 
-#include "CSymbolEngineCasino.h"
-#include "CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "MainFrm.h"
 #include "OpenHoldem.h"
 #include "CMyMutex.h"

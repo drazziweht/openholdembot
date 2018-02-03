@@ -16,7 +16,7 @@
 
 #include <assert.h>
 #include "CAutoConnector.h"
-#include "CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 
 #include "../CTablemap/CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"

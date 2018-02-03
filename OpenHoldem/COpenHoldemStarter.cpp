@@ -19,7 +19,7 @@
 
 #include "CSharedMem.h"
 #include "CSessionCounter.h"
-#include "CSymbolEngineTime.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 #include "OpenHoldem.h"
 
 // For connection and popup handling

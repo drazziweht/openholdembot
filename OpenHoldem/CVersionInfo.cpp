@@ -20,7 +20,7 @@
 #include "CVersionInfo.h"
 
 #include <assert.h>
-#include "CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "..\CTablemap\CTablemap.h"
 #include "MD5_Checksum.h"
 

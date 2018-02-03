@@ -17,12 +17,12 @@
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-#include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineOpenPPL.h"
-#include "CSymbolEngineTableLimits.h"
-#include "CSymbolEngineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineOpenPPL.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 
 
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"

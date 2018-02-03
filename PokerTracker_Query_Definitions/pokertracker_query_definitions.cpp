@@ -44,7 +44,7 @@
 
 #include <atlstr.h>
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
-#include "..\OpenHoldem\NumericalFunctions.h"
+#include "..\DLLs\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "PokerTracker_Queries_Version_4.h"
 
 POKERTRACKER_DLL_API int PT_DLL_GetNumberOfStats() {

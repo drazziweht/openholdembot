@@ -16,10 +16,10 @@
 
 #include "CEngineContainer.h"
 #include "CHandresetDetector.h"
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineGameType.h"
-#include "CSymbolengineTableLimits.h"
-#include "CSymbolengineUserchair.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 

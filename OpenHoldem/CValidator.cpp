@@ -17,10 +17,10 @@
 #include "CAutoplayer.h"
 #include "CEngineContainer.h"
 
-#include "CSymbolEngineAutoplayer.h"
-#include "CSymbolEngineIsTournament.h"
-#include "CSymbolEngineReplayFrameController.h"
-#include "CSymbolEngineVersus.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineReplayFrameController.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineVersus.h"
 #include "..\DLLs\GamestateValidation_DLL\GamestateValidation.h"
 
 CValidator *p_validator = NULL;

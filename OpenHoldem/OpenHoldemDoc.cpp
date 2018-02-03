@@ -17,7 +17,7 @@
 #include "stdafx.h"
 #include "CAutoplayer.h"
 #include "CFormulaParser.h"
-#include "CFunctionCollection.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "COpenHoldemHopperCommunication.h"
 #include "COpenHoldemTitle.h"
 
