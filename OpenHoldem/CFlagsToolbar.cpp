@@ -16,7 +16,7 @@
 
 #include <afxwin.h>
 #include "CAutoplayer.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "MyCtoolbar.h"
 
 

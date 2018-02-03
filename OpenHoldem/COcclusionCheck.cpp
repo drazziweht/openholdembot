@@ -16,7 +16,7 @@
 #include "stdafx.h"
 #include "COcclusionCheck.h"
 
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 #include "CSCraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"

@@ -16,7 +16,7 @@
 
 #include <assert.h>
 #include "CBetroundCalculator.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"

@@ -14,7 +14,7 @@
 #include "StdAfx.h"
 #include "CReplayFrame.h"
 
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CHeartbeatThread.h"
 
 #include "CScraper.h"

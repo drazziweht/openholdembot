@@ -15,7 +15,7 @@
 #include "COpenHoldemStarter.h"
 
 #include "CAutoConnector.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 #include "CSharedMem.h"
 #include "CSessionCounter.h"

@@ -16,7 +16,7 @@
 
 #include "CAutoplayerFunctions.h"
 #include "CBetroundCalculator.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "CHandresetDetector.h"
 #include "COHScriptObject.h"

@@ -14,7 +14,7 @@
 #include "stdafx.h"
 #include "CCasinoInterface.h"
 
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\CTableMap\CTableMapAccess.h"
 #include "CAutoConnector.h"

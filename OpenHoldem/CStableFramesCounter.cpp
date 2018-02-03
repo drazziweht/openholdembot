@@ -17,7 +17,7 @@
 #include "stdafx.h"
 #include "CStableFramesCounter.h"
 
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 #include "CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"

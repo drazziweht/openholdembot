@@ -16,7 +16,7 @@
 #include <time.h>
 #include "CAutoconnector.h"
 #include "CAutoplayerFunctions.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "CHandresetDetector.h"
 #include "COcclusionCheck.h"

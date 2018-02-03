@@ -23,7 +23,7 @@
 #include "CAutoplayer.h"
 #include "CAutoplayerTrace.h"
 #include "CDebugTab.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CFlagsToolbar.h"
 #include "CFunction.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"

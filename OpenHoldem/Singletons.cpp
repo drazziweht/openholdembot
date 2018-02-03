@@ -21,7 +21,7 @@
 #include "CAutoplayerTrace.h"
 #include "CConfigurationCheck.h"
 #include "CDebugTab.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CFileSystemMonitor.h"
 #include "CFormulaParser.h"
 #include "CHandresetDetector.h"

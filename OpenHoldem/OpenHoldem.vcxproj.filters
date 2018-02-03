@@ -156,7 +156,6 @@
     <ClCompile Include="CIteratorThread.cpp" />
     <ClCompile Include="PrWinHandranges.cpp" />
     <ClCompile Include="CReplayFrame.cpp" />
-    <ClCompile Include="Bitmaps.cpp" />
     <ClCompile Include="CLazyScraper.cpp" />
     <ClCompile Include="CScraper.cpp" />
     <ClCompile Include="CStringHashtableTemplate.cpp" />
@@ -361,7 +360,6 @@
     <ClInclude Include="CIteratorThread.h" />
     <ClInclude Include="PrWinHandranges.h" />
     <ClInclude Include="CReplayFrame.h" />
-    <ClInclude Include="Bitmaps.h" />
     <ClInclude Include="CScraper.h" />
     <ClInclude Include="..\CTablemap\CTablemap.h" />
     <ClInclude Include="..\CTablemap\CTableMapAccess.h" />

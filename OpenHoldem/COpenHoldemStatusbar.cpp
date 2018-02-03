@@ -16,7 +16,7 @@
 
 #include "CAutoplayerFunctions.h"
 #include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "CIteratorThread.h"
 #include "CScraper.h"

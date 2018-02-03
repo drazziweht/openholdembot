@@ -20,7 +20,7 @@
 #include "CAutoplayerFunctions.h"
 #include "CBetroundCalculator.h"
 #include "CHeartbeatDelay.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CIteratorThread.h"
 #include "CLazyScraper.h"
 #include "COpenHoldemHopperCommunication.h"

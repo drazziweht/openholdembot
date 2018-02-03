@@ -17,7 +17,7 @@
 
 #include <assert.h>
 #include "CCasinoInterface.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 #include "CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"

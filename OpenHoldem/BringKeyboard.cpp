@@ -7,16 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: enabling keyboard support if we play at a Bring-stealth-setup.
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "BringKeyBoard.h"
-
 #include "CAutoConnector.h"
-#include "CEngineContainer.h"
-
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "MainFrm.h"

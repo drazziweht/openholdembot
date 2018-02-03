@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,13 +8,8 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: enabling keyboard support if we play at a Bring-stealth-setup.
 //
 //******************************************************************************
 
-#ifndef INC_BRING_KEYBOARD_H
-#define INC_BRING_KEYBOARD_H
-
 void CheckBringKeyboard();
-
-#endif // INC_BRING_KEYBOARD_H

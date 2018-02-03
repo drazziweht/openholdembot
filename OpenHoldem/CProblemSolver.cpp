@@ -17,7 +17,7 @@
 #include "CAutoConnector.h"
 #include "CCasinoInterface.h"
 #include "CConfigurationCheck.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEnginePokerval.h"

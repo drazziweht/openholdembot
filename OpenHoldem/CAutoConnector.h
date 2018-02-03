@@ -16,9 +16,9 @@
 #define INC_CAUTOCONNECTOR_H
 
 #include "..\CTablemap\CTablemap.h"
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-class CAutoConnector: public CSpaceOptimizedGlobalObject {
+class CAutoConnector /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CAutoConnector();
 	~CAutoConnector();

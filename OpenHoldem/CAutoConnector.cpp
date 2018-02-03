@@ -21,7 +21,7 @@
 #include "..\CTransform\CTransform.h"
 #include "CAutoplayer.h"
 #include "CCasinoInterface.h"
-#include "CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CFlagsToolbar.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
