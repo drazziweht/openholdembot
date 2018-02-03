@@ -7,18 +7,18 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: interface to the flags toolbar with buttons 0..19
+//   The flags-toolbar provides an easy method to configure the
+//   botlogic via the OpenHoldem GUI during development..
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CFlagsToolbar.h"
-
 #include <afxwin.h>
 #include "CAutoplayer.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "MyCtoolbar.h"
-
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
 CFlagsToolbar *p_flags_toolbar = NULL;
 
@@ -112,7 +112,6 @@ long int CFlagsToolbar::GetFlagBits()
 	}
 	return flag_bits;
 }
-
 
 void CFlagsToolbar::SetFlag(int flag_number, bool new_value)
 {

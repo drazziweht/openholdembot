@@ -12,11 +12,8 @@
 //******************************************************************************
 
 #include "stdafx.h"
-
 #include "CConfigurationCheck.h"
-
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-
 
 CConfigurationCheck *p_configurationcheck = 0;
 

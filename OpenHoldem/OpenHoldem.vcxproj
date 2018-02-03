@@ -319,7 +319,6 @@
     <ClCompile Include="VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
-    <ClCompile Include="CEngineContainer.cpp" />
     <ClCompile Include="Chair$Symbols.cpp" />
     <ClCompile Include="UnknownSymbols.cpp" />
     <ClCompile Include="CSymbolEngineActiveDealtPlaying.cpp" />
@@ -385,8 +384,6 @@
     <ClCompile Include="..\CTablemap\CTablemapAccess.cpp" />
     <ClCompile Include="CTablemapCompletenessChecker.cpp" />
     <ClCompile Include="CAutoplayerTrace.cpp" />
-    <ClCompile Include="CDebugTab.cpp" />
-    <ClCompile Include="CFunctionCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StringFunctionsDLL\string_functions.cpp" />
@@ -514,7 +511,6 @@
     <ClInclude Include="..\CTransform\pdiff\RGBAImage.h" />
     <ClInclude Include="..\CTransform\hash\stdint.h" />
     <ClInclude Include="..\StructsDefines\structs_defines.h" />
-    <ClInclude Include="CEngineContainer.h" />
     <ClInclude Include="Chair$Symbols.h" />
     <ClInclude Include="CVirtualSymbolEngine.h" />
     <ClInclude Include="UnknownSymbols.h" />
@@ -584,7 +580,6 @@
     <ClInclude Include="COpenHoldemHopperCommunication.h" />
     <ClInclude Include="CSessionCounter.h" />
     <ClInclude Include="CSharedMem.h" />
-    <ClInclude Include="..\CCritSec\CCritSec.h" />
     <ClInclude Include="CPokerTrackerLookUp.h" />
     <ClInclude Include="CPokerTrackerThread.h" />
     <ClInclude Include="BringKeyboard.h" />
@@ -616,8 +611,6 @@
     <ClInclude Include="NumericalFunctions.h" />
     <ClInclude Include="WebSafeColours.h" />
     <ClInclude Include="CAutoplayerTrace.h" />
-    <ClInclude Include="CDebugTab.h" />
-    <ClInclude Include="CFunctionCollection.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenHoldem.rc" />

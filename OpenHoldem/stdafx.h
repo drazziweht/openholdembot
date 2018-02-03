@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,16 +8,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
-//
-//******************************************************************************
-
-#ifndef INC_STDAFX_H
-#define INC_STDAFX_H
-
-// stdafx.h : include file for standard system include files,
+// Purpose: stdafx.h : include file for standard system include files,
 // or project specific include files that are used frequently,
 // but are changed infrequently
+//
+//******************************************************************************
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1
@@ -161,5 +157,3 @@
 
 // To avoid some race-conditions
 #define WAIT_FOR_CONDITION(condition) { while (!(condition)) { Sleep(250); } }
-
-#endif //INC_STDAFX_H

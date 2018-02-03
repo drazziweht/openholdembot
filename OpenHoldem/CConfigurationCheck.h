@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CCONFIGURATIONCHECK_H
-#define INC_CCONFIGURATIONCHECK_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -36,5 +34,3 @@ class CConfigurationCheck /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CConfigurationCheck *p_configurationcheck;
-
-#endif // INC_CCONFIGURATIONCHECK_H

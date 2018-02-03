@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: interface to the flags toolbar with buttons 0..19
+//   The flags-toolbar provides an easy method to configure the
+//   botlogic via the OpenHoldem GUI during development..
 //
 //******************************************************************************
-
-#ifndef INC_CFLAGSTOOLBAR_H
-#define INC_CFLAGSTOOLBAR_H
 
 #include "MyCtoolbar.h"
 
@@ -53,5 +53,3 @@ class CFlagsToolbar: public CWnd {
 };
 
 extern CFlagsToolbar *p_flags_toolbar;
-
-#endif INC_CFLAGSTOOLBAR_H

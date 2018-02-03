@@ -19,8 +19,6 @@
 
 #include "StdAfx.h"
 #include "CFileSystemMonitor.h"
-
-
 #include "OpenHoldem.h"
 #include "Shlwapi.h"
 
