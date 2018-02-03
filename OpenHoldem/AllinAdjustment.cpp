@@ -7,7 +7,8 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: adjusting betsizes to alin if they are nearly our complete balance,
+//  depending on f$allin_on_betsize_balance_ratio
 //
 //******************************************************************************
 

@@ -7,15 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: calculating betsizes for betpot-actions,
+//   mainly for backup-actions if we have to enter the bet textually.
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "BetpotCalculations.h"
-
-#include "CEngineContainer.h"
-
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"

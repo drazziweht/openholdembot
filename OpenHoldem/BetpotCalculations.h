@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,13 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: calculating betsizes for betpot-actions,
+//   mainly for backup-actions if we have to enter the bet textually.
 //
 //******************************************************************************
 
-#ifndef INC_BETPOTCALCULATIONS_H
-#define INC_BETPOTCALCULATIONS_H
-
 double BetsizeForBetpot(int betpot_action_code);
-
-#endif INC_BETPOTCALCULATIONS_H

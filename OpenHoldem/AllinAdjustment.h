@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,14 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: adjusting betsizes to alin if they are nearly our complete balance,
+//  depending on f$allin_on_betsize_balance_ratio
 //
 //******************************************************************************
 
-#ifndef INC_ALLINADJUSTMENT_H
-#define INC_ALLINADJUSTMENT_H
-
 bool ChangeBetsizeToAllin(double amount_to_raise_to);
 bool ChangeBetPotActionToAllin(int betpot_action_code);
-
-#endif // INC_ALLINADJUSTMENT_H
