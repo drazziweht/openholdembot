@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CWhiteInfoBox : public CSpaceOptimizedGlobalObject {
  public:

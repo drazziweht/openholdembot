@@ -14,31 +14,29 @@
 
 #include "stdafx.h"
 #include "CAutoConnector.h"
-
 #include <afxwin.h>
-#include "..\CTablemap\CTablemap.h"
-#include "..\CTablemap\CTablemapAccess.h"
-#include "..\CTransform\CTransform.h"
 #include "CAutoplayer.h"
 #include "CCasinoInterface.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CFlagsToolbar.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
 #include "COpenHoldemTitle.h"
-#include "CPokerTrackerThread.h"
 #include "CPopupHandler.h"
-#include "CScraper.h"
 #include "CSharedMem.h"
 #include "CTableMapLoader.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "CTablePositioner.h"
 #include "CVersionInfo.h"
 #include "DialogScraperOutput.h"
-
 #include "MainFrm.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "OpenHoldem.h"
+#include "..\CTablemap\CTablemap.h"
+#include "..\CTablemap\CTablemapAccess.h"
+#include "..\CTransform\CTransform.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CPokerTrackerThread.h"
+#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CAutoConnector *p_autoconnector = NULL;
 CArray <STableList, STableList> g_tlist; 

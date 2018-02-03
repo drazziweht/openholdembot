@@ -14,7 +14,7 @@
 #ifndef _INC_CSTABLEFRAMESCOUNTER_H
 #define _INC_CSTABLEFRAMESCOUNTER_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CStableFramesCounter : public CSpaceOptimizedGlobalObject {
  public:

@@ -15,7 +15,7 @@
 #define __LIB_CREBUYMANAGEMENT_H
 
 #include <time.h>
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CRebuyManagement : public CSpaceOptimizedGlobalObject
 {

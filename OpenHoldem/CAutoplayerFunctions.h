@@ -14,7 +14,7 @@
 #ifndef INC_CAUTOPLAYER_FUNCTIONS
 #define INC_CAUTOPLAYER_FUNCTIONS
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CAutoplayerFunctions : public CSpaceOptimizedGlobalObject {
  public:

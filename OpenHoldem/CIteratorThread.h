@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_CITERATORTHREAD_H
-#define INC_CITERATORTHREAD_H
-
 #include "inlines/eval.h"
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 extern sprw1326	_prw1326;	// prwin 1326 data structure Matrix 2008-04-29
 
@@ -74,7 +72,3 @@ class CIteratorThread /*!!!!!: public CSpaceOptimizedGlobalObject */{
  private:
   static double _prwin, _prtie, _prlos;
 };
-
-extern CIteratorThread *p_iterator_thread;
-
-#endif //INC_CITERATORTHREAD_H

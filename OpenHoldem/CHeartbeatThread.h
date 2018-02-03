@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,12 +12,9 @@
 //
 //******************************************************************************
 
-#ifndef INC_CHEARTBEATTHREAD_H
-#define INC_CHEARTBEATTHREAD_H
-
 #include "CHeartbeatDelay.h"
 #include "COpenHoldemStarter.h"
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 #include "CWatchdog.h"
 
 class CHeartbeatThread /*: public CSpaceOptimizedGlobalObject */{
@@ -51,5 +49,3 @@ class CHeartbeatThread /*: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CHeartbeatThread *p_heartbeat_thread;
-
-#endif //INC_CHEARTBEATTHREAD_H

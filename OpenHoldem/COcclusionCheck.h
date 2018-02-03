@@ -14,7 +14,7 @@
 #ifndef __LIB_COCCLUSIONCHECK_H
 #define __LIB_COCCLUSIONCHECK_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class COcclusionCheck: public CSpaceOptimizedGlobalObject {
 public:

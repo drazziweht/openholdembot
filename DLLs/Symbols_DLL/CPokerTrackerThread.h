@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,13 +12,9 @@
 //
 //******************************************************************************
 
-#ifndef INC_CPOKERTRACKERTHREAD_H
-#define INC_CPOKERTRACKERTHREAD_H
-
 #include "libpq-fe.h"
 #include <map>
-#include "CSpaceOptimizedGlobalObject.h"
-
+///#include "CSpaceOptimizedGlobalObject.h"
 
 const int k_advanced_stat_update_every    =    5;
 const int k_min_hands_for_slower_updates  = 1000;
@@ -35,7 +32,7 @@ struct SPlayerData
 
 extern SPlayerData _player_data[kMaxNumberOfPlayers];
 
-class CPokerTrackerThread : public CSpaceOptimizedGlobalObject
+class CPokerTrackerThread /*#: public CSpaceOptimizedGlobalObject*/
 {
 	friend class CSymbolEnginePokerTracker;
 public:
@@ -90,5 +87,3 @@ private:
 };
 
 extern CPokerTrackerThread *p_pokertracker_thread;
-
-#endif //INC_CPOKERTRACKERTHREAD_H

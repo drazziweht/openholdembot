@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CSessionCounter {
  public:

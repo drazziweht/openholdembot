@@ -18,11 +18,9 @@
 
 #include <stdint.h>
 #include "../CTablemap/CTablemap.h"
-#include "CSpaceOptimizedGlobalObject.h"
+//#include "CSpaceOptimizedGlobalObject.h"
 
-
-
-class CScraper : public CSpaceOptimizedGlobalObject {
+class CScraper /*#: public CSpaceOptimizedGlobalObject */{
   friend class CLazyScraper;
   friend class CAutoConnector;
  public:

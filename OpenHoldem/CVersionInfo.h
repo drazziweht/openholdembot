@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -16,13 +17,9 @@
 //
 //******************************************************************************
 
-#ifndef INC_CVERSIONINFO_H
-#define INC_CVERSIONINFO_H
+///#include "CSpaceOptimizedGlobalObject.h"
 
-#include "CSpaceOptimizedGlobalObject.h"
-
-class CVersionInfo : public CSpaceOptimizedGlobalObject
-{
+class CVersionInfo /*#: public CSpaceOptimizedGlobalObject*/{
 public:
 	CVersionInfo();
 	~CVersionInfo();
@@ -33,5 +30,3 @@ private:
 };
 
 extern CVersionInfo *p_version_info;
-
-#endif INC_CVERSIONINFO_H

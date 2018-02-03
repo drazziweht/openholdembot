@@ -7,14 +7,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose:  
+//   * loading all tablemaps and extract connection-data for the auto-connector
+//   * checking if a map matches
 //
 //******************************************************************************
 
-#ifndef INC_CTABLEMAPLOADER_H
-#define INC_CTABLEMAPLOADER_H
-
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 #include "..\CTablemap\CTablemap.h"
 
 // This function has to be global and can't be part of the class,
@@ -22,7 +21,7 @@
 // BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) 
 bool Check_TM_Against_Single_Window(int MapIndex, HWND h);
 
-class CTableMapLoader : public CSpaceOptimizedGlobalObject {
+class CTableMapLoader /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CTableMapLoader();
 	~CTableMapLoader();
@@ -57,5 +56,3 @@ typedef struct {
 extern std::map<int, t_tablemap_connection_data> tablemap_connection_data;
 
 extern CTableMapLoader *p_tablemap_loader;
-
-#endif // INC_CTABLEMAPLOADER_H

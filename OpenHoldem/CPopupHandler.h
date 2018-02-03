@@ -7,16 +7,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: closing undesired popup-windows that might occlude the table
 //
 //******************************************************************************
 
-#ifndef INC_CPOPUPHANDLER_H
-#define INC_CPOPUPHANDLER_H
+///#include "CSpaceOptimizedGlobalObject.h"
 
-#include "CSpaceOptimizedGlobalObject.h"
-
-class CPopupHandler : public CSpaceOptimizedGlobalObject
+class CPopupHandler /*#: public CSpaceOptimizedGlobalObject */
 {
 public:
 	CPopupHandler();
@@ -38,5 +35,3 @@ private:
 };
 
 extern CPopupHandler *p_popup_handler;
-
-#endif

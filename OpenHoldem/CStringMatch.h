@@ -14,7 +14,7 @@
 #ifndef INC_CSTRINGMATCH_H
 #define INC_CSTRINGMATCH_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CStringMatch : public CSpaceOptimizedGlobalObject {
  public:

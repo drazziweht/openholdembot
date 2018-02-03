@@ -11,9 +11,9 @@
 //
 //******************************************************************************
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-class COpenHoldemTitle : public CSpaceOptimizedGlobalObject
+class COpenHoldemTitle /*#: public CSpaceOptimizedGlobalObject*/
 {
 public:
 	COpenHoldemTitle();

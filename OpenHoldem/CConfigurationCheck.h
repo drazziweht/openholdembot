@@ -14,7 +14,7 @@
 #ifndef INC_CCONFIGURATIONCHECK_H
 #define INC_CCONFIGURATIONCHECK_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
 class CConfigurationCheck : public CSpaceOptimizedGlobalObject {
  public:
