@@ -7,13 +7,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: autoplayer-logic for OpenHoldem
 //
 //******************************************************************************
-
-#ifndef INC_CAUTOPLAYER_H
-#define INC_CAUTOPLAYER_H
-
 
 #include "MainFrm.h"
 #include "../CTablemap/CTablemap.h"
@@ -71,6 +67,3 @@ private:
 };
 
 extern CAutoplayer *p_autoplayer;
-
-
-#endif //INC_CAUTOPLAYER_H

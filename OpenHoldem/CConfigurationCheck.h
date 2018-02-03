@@ -16,7 +16,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CConfigurationCheck : public CSpaceOptimizedGlobalObject {
+class CConfigurationCheck /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CConfigurationCheck();
 	~CConfigurationCheck();

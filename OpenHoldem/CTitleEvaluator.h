@@ -18,7 +18,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CTitleEvaluator : public CSpaceOptimizedGlobalObject {
+class CTitleEvaluator /*#: public CSpaceOptimizedGlobalObject */{
   friend class CDlgEditSymbols;
  public:
   CTitleEvaluator();

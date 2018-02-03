@@ -7,13 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: autoplayer-logic for OpenHoldem
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "CAutoplayer.h"
-
 #include <complex>
 #include "AllinAdjustment.h"
 #include "BetpotCalculations.h"
@@ -22,27 +21,26 @@
 #include "CAutoconnector.h"
 #include "CAutoplayerFunctions.h"
 #include "CCasinoInterface.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CFlagsToolbar.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
-
+#include "CMyMutex.h"
 #include "CRebuyManagement.h"
 #include "CReplayFrame.h"
-#include "CScraper.h"
 #include "CStableFramesCounter.h"
+#include "MainFrm.h"
+#include "OpenHoldem.h"
+#include "PokerChat.hpp"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineHistory.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "MainFrm.h"
-#include "OpenHoldem.h"
-#include "PokerChat.hpp"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
-#include "CMyMutex.h"
 
 CAutoplayer	*p_autoplayer = NULL;
 

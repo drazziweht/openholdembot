@@ -17,7 +17,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CHandresetDetector : public CSpaceOptimizedGlobalObject {
+class CHandresetDetector /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CHandresetDetector();
 	~CHandresetDetector();

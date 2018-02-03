@@ -15,7 +15,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CWhiteInfoBox : public CSpaceOptimizedGlobalObject {
+class CWhiteInfoBox /*#: public CSpaceOptimizedGlobalObject*/ {
  public:
   CWhiteInfoBox();
   ~CWhiteInfoBox();

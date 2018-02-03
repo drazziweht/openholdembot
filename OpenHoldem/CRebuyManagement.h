@@ -17,7 +17,7 @@
 #include <time.h>
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CRebuyManagement : public CSpaceOptimizedGlobalObject
+class CRebuyManagement /*#: public CSpaceOptimizedGlobalObject*/
 {
 public:
 	CRebuyManagement();

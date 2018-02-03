@@ -16,7 +16,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CAutoplayerFunctions : public CSpaceOptimizedGlobalObject {
+class CAutoplayerFunctions /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CAutoplayerFunctions();
  public:

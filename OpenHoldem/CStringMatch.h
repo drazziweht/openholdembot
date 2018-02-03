@@ -16,7 +16,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class CStringMatch : public CSpaceOptimizedGlobalObject {
+class CStringMatch /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	// public functions
 	CStringMatch();

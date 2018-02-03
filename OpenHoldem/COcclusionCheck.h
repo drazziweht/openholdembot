@@ -16,7 +16,7 @@
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
-class COcclusionCheck: public CSpaceOptimizedGlobalObject {
+class COcclusionCheck/*#: public CSpaceOptimizedGlobalObject */{
 public:
 	COcclusionCheck();
 	~COcclusionCheck();
