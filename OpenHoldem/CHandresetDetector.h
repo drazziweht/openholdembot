@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   requireing N seen handresetmethods within 3 heartbeats
 //
 //******************************************************************************
-
-#ifndef INC_CHANDRESETDETECTOR_H
-#define INC_CHANDRESETDETECTOR_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -99,5 +97,3 @@ class CHandresetDetector /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CHandresetDetector *p_handreset_detector;
-
-#endif INC_CHANDRESETDETECTOR_H

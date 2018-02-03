@@ -27,7 +27,7 @@
 #include "CHandresetDetector.h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
-#include "CLazyScraper.h"
+#include "..\DLLs\Scraper_DLL\CLazyScraper.h"
 #include "CMemoryPool.h"
 #include "COcclusioncheck.h"
 #include "COpenHoldemTitle.h"

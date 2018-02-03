@@ -14,9 +14,9 @@
 #ifndef INC_CLAZYSCRAPER_H
 #define INC_CLAZYSCRAPER_H
 
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-class CLazyScraper : public CSpaceOptimizedGlobalObject {
+class CLazyScraper /*#: public CSpaceOptimizedGlobalObject */{
  public:
 	CLazyScraper();
 	~CLazyScraper();

@@ -13,36 +13,33 @@
 
 #include "stdafx.h"
 #include "CHeartbeatThread.h"
-
 #include <process.h>
 #include "CAutoconnector.h"
 #include "CAutoplayer.h"
 #include "CAutoplayerFunctions.h"
-#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "CHeartbeatDelay.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CIteratorThread.h"
-#include "CLazyScraper.h"
 #include "COpenHoldemHopperCommunication.h"
 #include "COpenHoldemStarter.h"
 #include "COpenHoldemStatusbar.h"
 #include "COpenHoldemTitle.h"
-
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-#include "..\CTablemap\CTablemap.h"
 #include "CTableMapLoader.h"
 #include "CTablepointChecker.h"
-#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "CTablePositioner.h"
 #include "CValidator.h"
 #include "DialogScraperOutput.h"
 #include "MainFrm.h"
 #include "MemoryLogging.h"
-
 #include "OpenHoldem.h"
+#include "..\DLLs\Scraper_DLL\CLazyScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
+#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\CTablemap\CTablemap.h"
+#include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 
 CHeartbeatThread	 *p_heartbeat_thread = NULL;
 CRITICAL_SECTION	 CHeartbeatThread::cs_update_in_progress;

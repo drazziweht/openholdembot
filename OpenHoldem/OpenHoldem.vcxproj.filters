@@ -9,11 +9,6 @@
     <ClCompile Include="CCasinoHotkey.cpp" />
     <ClCompile Include="CFileSystemMonitor.cpp" />
     <ClCompile Include="CFlagsToolbar.cpp" />
-    <ClCompile Include="CHandHistoryAction.cpp" />
-    <ClCompile Include="CHandHistoryDealPhase.cpp" />
-    <ClCompile Include="CHandHistoryShowdown.cpp" />
-    <ClCompile Include="CHandHistoryUncontested.cpp" />
-    <ClCompile Include="CHandHistoryWriter.cpp" />
     <ClCompile Include="CHandresetDetector.cpp" />
     <ClCompile Include="CHeartbeatDelay.cpp" />
     <ClCompile Include="CHeartbeatThread.cpp" />
@@ -104,7 +99,6 @@
     <ClCompile Include="VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
-    <ClCompile Include="Chair$Symbols.cpp" />
     <ClCompile Include="UnknownSymbols.cpp" />
     <ClCompile Include="CSymbolEngineActiveDealtPlaying.cpp" />
     <ClCompile Include="CSymbolEngineAutoplayer.cpp" />
@@ -175,12 +169,6 @@
     <ClInclude Include="CCasinoHotkey.h" />
     <ClInclude Include="CFileSystemMonitor.h" />
     <ClInclude Include="CFlagsToolbar.h" />
-    <ClInclude Include="CGrammar.h" />
-    <ClInclude Include="CHandHistoryAction.h" />
-    <ClInclude Include="CHandHistoryDealPhase.h" />
-    <ClInclude Include="CHandHistoryShowdown.h" />
-    <ClInclude Include="CHandHistoryUncontested.h" />
-    <ClInclude Include="CHandHistoryWriter.h" />
     <ClInclude Include="CHandresetDetector.h" />
     <ClInclude Include="CHeartbeatDelay.h" />
     <ClInclude Include="CHeartbeatThread.h" />
@@ -264,7 +252,6 @@
     <ClInclude Include="..\CTransform\pdiff\RGBAImage.h" />
     <ClInclude Include="..\CTransform\hash\stdint.h" />
     <ClInclude Include="..\StructsDefines\structs_defines.h" />
-    <ClInclude Include="Chair$Symbols.h" />
     <ClInclude Include="CVirtualSymbolEngine.h" />
     <ClInclude Include="UnknownSymbols.h" />
     <ClInclude Include="CSymbolEngineActiveDealtPlaying.h" />
@@ -387,7 +374,5 @@
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenHoldem Release Notes.txt" />
     <None Include="..\##_OpenPPL_Release_Directory_##\OpenPPL Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenScrape Release Notes.txt" />
-    <None Include="..\Checklist_Release.txt" />
-    <None Include="..\Checklist_Release_OpenPPL.txt" />
   </ItemGroup>
 </Project>

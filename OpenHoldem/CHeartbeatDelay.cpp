@@ -13,13 +13,11 @@
 
 #include "stdafx.h"
 #include "CHeartbeatDelay.h"
-
 #include "CAutoconnector.h"
 #include "CCasinoInterface.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CHandresetDetector.h"
-
 #include "CSessionCounter.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChecksBetsFolds.h"

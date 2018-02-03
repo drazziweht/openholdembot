@@ -17,8 +17,8 @@
 
 #include <assert.h>
 #include "CCasinoInterface.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
 #include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
@@ -31,8 +31,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "..\CTablemap\CTablemap.h"
-
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 CHandresetDetector *p_handreset_detector = NULL;
 
