@@ -34,7 +34,7 @@
 
 #include "CProblemSolver.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineReplayFrameController.h"
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CSessionCounter.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"

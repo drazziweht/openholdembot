@@ -36,7 +36,7 @@
 #include "CPopupHandler.h"
 
 #include "CRebuyManagement.h"
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "CStableFramesCounter.h"

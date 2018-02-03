@@ -17,7 +17,7 @@
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CHeartbeatThread.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CSessionCounter.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"

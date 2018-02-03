@@ -15,14 +15,14 @@
 #include "CAutoplayerTrace.h"
 
 #include "CAutoplayerFunctions.h"
-#include "CBetroundCalculator.h"
+#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "CHandresetDetector.h"
 #include "COHScriptObject.h"
 #include "CopenHoldemStatusbar.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineHandrank.h"

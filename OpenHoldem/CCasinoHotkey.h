@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_CCasinoHotkey_H
-#define INC_CCasinoHotkey_H
-
-
-
 class CCasinoHotkey {
  public:
 	CCasinoHotkey();
@@ -28,5 +24,3 @@ class CCasinoHotkey {
  private:
   CString _name;
 }; 
-
-#endif // INC_CCasinoHotkey_H

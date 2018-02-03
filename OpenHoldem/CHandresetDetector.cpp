@@ -19,7 +19,7 @@
 #include "CCasinoInterface.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineDealerchair.h"

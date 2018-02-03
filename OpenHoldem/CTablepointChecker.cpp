@@ -17,7 +17,7 @@
 
 #include "CAutoConnector.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CTableMapLoader.h"
 #include "..\CTransform\CTransform.h"
 

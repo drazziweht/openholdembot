@@ -19,7 +19,7 @@
 
 #ifdef OPENHOLDEM_PROGRAM
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #endif 

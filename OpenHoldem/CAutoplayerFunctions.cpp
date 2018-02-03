@@ -15,7 +15,8 @@
 #include "CAutoplayerFunctions.h"
 
 #include <assert.h>
-#include "CBetroundCalculator.h"
+#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
@@ -23,9 +24,6 @@
 #include "..\DLLs\Symbols_DLL\CSymbolEngineOpenPPL.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-
-
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 // TODO make it a symbol-engine?
 // Call it!

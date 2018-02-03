@@ -19,7 +19,7 @@
 
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineIsOmaha.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"

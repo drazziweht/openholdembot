@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,7 @@
 //
 //******************************************************************************
 
-#ifndef INC_CAUTOPLAYERBUTTON_H
-#define INC_CAUTOPLAYERBUTTON_H
-
 #include "CCasinoHotkey.h"
-
 
 class CAutoplayerButton {
   friend class CScraper;
@@ -79,5 +76,3 @@ class CAutoplayerButton {
   CString _technical_name;
   int _button_type;
 };
-
-#endif // INC_CAUTOPLAYERBUTTON_H

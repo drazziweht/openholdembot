@@ -7,23 +7,21 @@
 //
 //******************************************************************************
 //
-// Purpose: 
+// Purpose: interface to the casinos input-box for betsizing
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CBetsizeInputBox.h"
-
 #include "CAutoConnector.h"
 #include "CAutoplayerTrace.h"
 #include "CCasinoInterface.h"
+#include "SwagAdjustment.h"
+#include "OpenHoldem.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-
-#include "SwagAdjustment.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineHistory.h"
 #include "..\CTablemap\CTablemap.h"
-#include "OpenHoldem.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CBetsizeInputBox::CBetsizeInputBox() {

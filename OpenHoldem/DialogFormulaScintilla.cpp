@@ -30,7 +30,7 @@
 #include "CHeartbeatThread.h"
 #include "COHScriptList.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineIniFunctions.h"
 #include "DialogHandList.h"

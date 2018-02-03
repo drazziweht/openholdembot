@@ -6,8 +6,6 @@
     <ClCompile Include="CAllinSlider.cpp" />
     <ClCompile Include="CAutoplayerButton.cpp" />
     <ClCompile Include="CBetsizeInputBox.cpp" />
-    <ClCompile Include="CBlindGuesser.cpp" />
-    <ClCompile Include="CBlindLevels.cpp" />
     <ClCompile Include="CCasinoHotkey.cpp" />
     <ClCompile Include="CFileSystemMonitor.cpp" />
     <ClCompile Include="CFlagsToolbar.cpp" />
@@ -106,7 +104,6 @@
     <ClCompile Include="VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
-    <ClCompile Include="CBetroundCalculator.cpp" />
     <ClCompile Include="CEngineContainer.cpp" />
     <ClCompile Include="Chair$Symbols.cpp" />
     <ClCompile Include="UnknownSymbols.cpp" />
@@ -178,8 +175,6 @@
     <ClInclude Include="CAllinSlider.h" />
     <ClInclude Include="CAutoplayerButton.h" />
     <ClInclude Include="CBetsizeInputBox.h" />
-    <ClInclude Include="CBlindGuesser.h" />
-    <ClInclude Include="CBlindLevels.h" />
     <ClInclude Include="CCasinoHotkey.h" />
     <ClInclude Include="CFileSystemMonitor.h" />
     <ClInclude Include="CFlagsToolbar.h" />
@@ -272,7 +267,6 @@
     <ClInclude Include="..\CTransform\pdiff\RGBAImage.h" />
     <ClInclude Include="..\CTransform\hash\stdint.h" />
     <ClInclude Include="..\StructsDefines\structs_defines.h" />
-    <ClInclude Include="CBetroundCalculator.h" />
     <ClInclude Include="CEngineContainer.h" />
     <ClInclude Include="Chair$Symbols.h" />
     <ClInclude Include="CVirtualSymbolEngine.h" />

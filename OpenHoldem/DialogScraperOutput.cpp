@@ -17,7 +17,7 @@
 #include "CFlagsToolbar.h"
 #include "CHeartbeatThread.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\CTransform\CTransform.h"
 #include "MainFrm.h"
 #include "OpenHoldem.h"

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose: 
+// Purpose: interface to the casinos input-box for betsizing
 //
 //******************************************************************************
-
-#ifndef INC_CBETSIZEINPUTBOX_H
-#define INC_CBETSIZEINPUTBOX_H
 
 class CBetsizeInputBox {
   friend class CAllinSlider;
@@ -39,5 +37,3 @@ class CBetsizeInputBox {
   RECT _i3_edit_region;
   POINT p_null;
 };
-
-#endif INC_CBETSIZEINPUTBOX_H

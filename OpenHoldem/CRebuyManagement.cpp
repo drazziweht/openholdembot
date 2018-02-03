@@ -22,7 +22,7 @@
 #include "COcclusionCheck.h"
 
 #include "CRebuyManagement.h"
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"

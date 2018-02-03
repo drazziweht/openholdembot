@@ -18,7 +18,7 @@
 #include "CAutoconnector.h"
 #include "CAutoplayer.h"
 #include "CAutoplayerFunctions.h"
-#include "CBetroundCalculator.h"
+#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "CHeartbeatDelay.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CIteratorThread.h"
@@ -28,7 +28,7 @@
 #include "COpenHoldemStatusbar.h"
 #include "COpenHoldemTitle.h"
 
-#include "CScraper.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
