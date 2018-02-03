@@ -18,10 +18,9 @@
 #include "CAutoplayerButton.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoHotkey.h"
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-
-class CCasinoInterface: public CSpaceOptimizedGlobalObject {
+class CCasinoInterface /*: public CSpaceOptimizedGlobalObject */{
   friend class CAllinSlider;
   friend class CAutoplayer;
   friend class CScraper;

@@ -7,20 +7,19 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: using the slider for allin-actions 
+//   (2nd option after RaiseMax-button)
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CAllinSlider.h"
-
 #include "CAutoConnector.h"
 #include "CAutoplayerTrace.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoInterface.h"
-
-#include "../CTablemap/CTablemap.h"
 #include "OpenHoldem.h"
+#include "../CTablemap/CTablemap.h"
 
 CAllinSlider::CAllinSlider() {
   ResetHandlePosition();

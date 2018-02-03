@@ -15,9 +15,9 @@
 #define INC_CAUTOPLAYER_TRACE_H
 
 #include <map>
-#include "CSpaceOptimizedGlobalObject.h"
+///#include "CSpaceOptimizedGlobalObject.h"
 
-class CAutoplayerTrace : public CSpaceOptimizedGlobalObject {
+class CAutoplayerTrace /*#: public CSpaceOptimizedGlobalObject */{
  public:
    CAutoplayerTrace();
    ~CAutoplayerTrace();

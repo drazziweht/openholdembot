@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: using the slider for allin-actions 
+//   (2nd option after RaiseMax-button)
 //
 //******************************************************************************
-
-#ifndef INC_CALLINSLIDER_H
-#define INC_CALLINSLIDER_H
 
 class CAllinSlider {
  public:
@@ -29,5 +28,3 @@ class CAllinSlider {
   RECT _i3_slider;
   RECT _i3_handle;
 };
-
-#endif INC_CALLINSLIDER_H
