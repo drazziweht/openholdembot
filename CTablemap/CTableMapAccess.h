@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //*******************************************************************************
-
-#ifndef INC_CTABLEMAPACCESS_H
-#define INC_CTABLEMAPACCESS_H
 
 #include <windows.h>
 #include "CTablemap.h"
@@ -39,5 +37,3 @@ class CTablemapAccess {
 };
 
 extern CTablemapAccess *p_tablemap_access;
-
-#endif // INC_CTABLEMAPACCESS_H

@@ -15,7 +15,6 @@
 
 #include "stdafx.h"
 #include "CWatchdog.h"
-
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 

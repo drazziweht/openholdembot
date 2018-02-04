@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,9 +13,6 @@
 //   formerly CScraper::ScrapeLimits()
 //
 //******************************************************************************
-
-#ifndef INC_CTITLEEVALUATOR_H
-#define INC_CTITLEEVALUATOR_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -49,4 +47,3 @@ class CTitleEvaluator /*#: public CSpaceOptimizedGlobalObject */{
 
 extern CTitleEvaluator *p_title_evaluator;
 
-#endif INC_CTITLEEVALUATOR_H

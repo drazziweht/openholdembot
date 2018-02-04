@@ -14,11 +14,9 @@
 
 #include "stdafx.h"
 #include "CTablepointChecker.h"
-
 #include "CAutoConnector.h"
-
-#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CTableMapLoader.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\CTransform\CTransform.h"
 
 int CTablepointChecker::_number_of_mismatches_the_last_N_heartbeats = 0;

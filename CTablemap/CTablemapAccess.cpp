@@ -11,12 +11,9 @@
 //
 //*******************************************************************************
 
-
 #include "stdafx.h"
 #include "CTableMapAccess.h"
-
 #include "..\CTablemap\CTablemap.h"
-
 
 CTablemapAccess *p_tablemap_access = NULL;
 
@@ -143,4 +140,3 @@ unsigned int CTablemapAccess::GetClientSize(CString size_name, dim dimension)
 	// 0 is the default formerly used by the auto-connector
 	return 0;
 }
-

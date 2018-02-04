@@ -13,10 +13,8 @@
 
 #include "StdAfx.h"
 #include "CValidator.h"
-
 #include "CAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineReplayFrameController.h"

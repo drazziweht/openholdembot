@@ -7,13 +7,12 @@
 // 
 //******************************************************************************
 //
-// Purpose: 
+// Purpose: Verifying that a tablemap is complete and usable
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CTablemapCompletenessChecker.h"
-
 #include "CSessionCounter.h"
 #include "../CTablemap/CTablemap.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,8 +13,6 @@
 //   * because the OpenHoldem starter needs the number of running processes
 //
 //******************************************************************************
-
-#pragma once
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 

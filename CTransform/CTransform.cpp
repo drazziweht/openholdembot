@@ -13,10 +13,9 @@
 
 #include "StdAfx.h"
 #include "CTransform.h"
-
 #include <Math.h>
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
-#include "..\OpenHoldem\NumericalFunctions.h"
+#include "..\DLLs\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "..\OpenHoldem\WebSafeColours.h"

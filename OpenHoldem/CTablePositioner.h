@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: positioning tables at the screen. either tiled or cascaded
 //
 //******************************************************************************
-
-#ifndef INC_TABLE_POSITIONER_H
-#define INC_TABLE_POSITIONER_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -36,5 +34,3 @@ class CTablePositioner /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CTablePositioner *p_table_positioner;
-
-#endif // INC_TABLE_POSITIONER_H

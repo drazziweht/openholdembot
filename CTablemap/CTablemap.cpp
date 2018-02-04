@@ -13,7 +13,6 @@
 
 #include "StdAfx.h"
 #include "CTablemap.h"
-
 #include <assert.h>
 #include <Math.h>
 #include "../CTransform/CTransform.h"

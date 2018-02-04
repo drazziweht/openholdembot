@@ -7,22 +7,19 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: positioning tables at the screen. either tiled or cascaded
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "CTablePositioner.h"
-
 #include "CAutoConnector.h"
-
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
-#include "../CTablemap/CTableMapAccess.h"
-
 #include "WinDef.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 #include "Winuser.h"
+#include "../CTablemap/CTableMapAccess.h"
+#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CTablePositioner *p_table_positioner = NULL;
 

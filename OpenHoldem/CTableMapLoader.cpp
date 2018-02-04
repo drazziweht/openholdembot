@@ -7,22 +7,22 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose:  
+//   * loading all tablemaps and extract connection-data for the auto-connector
+//   * checking if a map matches
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "CTableMaploader.h"
-
 #include "CAutoConnector.h"
 #include "CFileSystemMonitor.h"
-
 #include "CTablemapCompletenessChecker.h"
 #include "CTablePointChecker.h"
+#include "OpenHoldem.h"
 #include "..\CTablemap\CTablemapAccess.h"
 #include "..\DLLs\Files_DLL\Files.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "OpenHoldem.h"
 
 CTableMapLoader *p_tablemap_loader = NULL;
 

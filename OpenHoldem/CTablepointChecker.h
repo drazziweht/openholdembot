@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,9 +13,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_TABLEPOINTCHECKER_H
-#define INC_TABLEPOINTCHECKER_H
-
 const int kMaxToleratedHeartbeatsWithMismatchingTablepointsBeforeDisconnect = 10;
 
 class CTablepointChecker {
@@ -28,5 +26,3 @@ class CTablepointChecker {
  private:
   static int _number_of_mismatches_the_last_N_heartbeats;
 };
-
-#endif // INC_TABLEPOINTCHECKER_H

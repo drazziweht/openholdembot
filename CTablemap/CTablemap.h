@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //*******************************************************************************
-
-#ifndef INC_CTABLEMAP_H
-#define INC_CTABLEMAP_H
 
 #include <atlstr.h>
 #include <map>
@@ -217,5 +215,3 @@ class CTablemap {
 };
 
 extern CTablemap *p_tablemap;
-
-#endif //INC_CTABLEMAP_H

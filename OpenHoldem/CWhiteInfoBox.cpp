@@ -13,9 +13,8 @@
 
 #include "stdafx.h"
 #include "CWhiteInfoBox.h"
-
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CHandresetDetector.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"

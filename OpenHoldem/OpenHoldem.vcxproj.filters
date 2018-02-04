@@ -78,7 +78,6 @@
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
     <ClCompile Include="UnknownSymbols.cpp" />
-    <ClCompile Include="CVirtualSymbolEngine.cpp" />
     <ClCompile Include="CConfigurationCheck.cpp" />
     <ClCompile Include="CProblemSolver.cpp" />
     <ClCompile Include="CVersionInfo.cpp" />
@@ -176,7 +175,6 @@
     <ClInclude Include="..\CTransform\pdiff\RGBAImage.h" />
     <ClInclude Include="..\CTransform\hash\stdint.h" />
     <ClInclude Include="..\StructsDefines\structs_defines.h" />
-    <ClInclude Include="CVirtualSymbolEngine.h" />
     <ClInclude Include="UnknownSymbols.h" />
     <ClInclude Include="COpenHoldemStatusbar.h" />
     <ClInclude Include="COpenHoldemTitle.h" />

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Verifying that a tablemap is complete and usable
 //
 //******************************************************************************
-
-#ifndef INC_CTABLEMAPCOMPLETENESSCHECKER_H 
-#define INC_CTABLEMAPCOMPLETENESSCHECKER_H 
 
 class CTablemapCompletenessChecker {
  public:
@@ -44,5 +42,3 @@ class CTablemapCompletenessChecker {
 };
 
 extern CTablemapCompletenessChecker *p_tablemap_versionchecker;
-
-#endif // INC_CTABLEMAPCOMPLETENESSCHECKER_H 

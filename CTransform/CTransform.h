@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //*******************************************************************************
-
-#ifndef INC_CTRANSFORM_H
-#define INC_CTRANSFORM_H
 
 #include <stdint.h>
 #include "hash/lookup3.h"
@@ -79,5 +77,3 @@ class CTransform
 								  const double tolerance);
 	int CalcHammingDistance(const unsigned int x, const unsigned int y);
 };
-
-#endif //INC_CTRANSFORM_H
