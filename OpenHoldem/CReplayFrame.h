@@ -7,7 +7,8 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: shooting replay-frames ("screenshots") for OHReplay
+//   to analysze the session later and reproduce problems.
 //
 //******************************************************************************
 

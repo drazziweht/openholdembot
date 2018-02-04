@@ -12,13 +12,13 @@
 //******************************************************************************
 
 #include "stdafx.h"
-#include "CopenHoldemStatusbar.h"
-
+#include "COpenHoldemStatusbar.h"
 #include "CAutoplayerFunctions.h"
 #include "CAutoplayerTrace.h"
+#include "CIteratorThread.h"
+#include "resource.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "CIteratorThread.h"
 #include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineHandrank.h"
@@ -27,7 +27,6 @@
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "resource.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
 COpenHoldemStatusbar *p_openholdem_statusbar = NULL;

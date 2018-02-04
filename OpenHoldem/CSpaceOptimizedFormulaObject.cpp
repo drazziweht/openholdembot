@@ -14,16 +14,15 @@
 
 #include "stdafx.h"
 #include "CSpaceOptimizedFormulaObject.h"
-
 #include <assert.h>
-#include "CMemoryPool.h"
-
+///#include "..\DLLs\MemoryManagement_DLL\CMemoryPool.h"
 
 // Custom memory-allocation to avoid always getting
 // a 4KB-block when we create a little object
 void* CSpaceOptimizedFormulaObject::operator new(size_t size) {
-  assert(PMemoryPoolParser() != NULL);
-  write_log(Preferences()->debug_memory_usage(), "[CParseTreeNode] Allocating %i bytes\n", size);
-  return PMemoryPoolParser()->Allocate(size);
+  ///assert(PMemoryPoolParser() != NULL);
+  ///write_log(Preferences()->debug_memory_usage(), "[CParseTreeNode] Allocating %i bytes\n", size);
+  return malloc(size);
+  ///return PMemoryPoolParser()->Allocate(size);
 }
 

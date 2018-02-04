@@ -11,9 +11,6 @@
 //
 //******************************************************************************
 
-#ifndef __LIB_CREBUYMANAGEMENT_H
-#define __LIB_CREBUYMANAGEMENT_H
-
 #include <time.h>
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -52,5 +49,3 @@ private:
 };
 
 extern CRebuyManagement *p_rebuymanagement;
-
-#endif	

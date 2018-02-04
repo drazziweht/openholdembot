@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_OPENHOLDEM_STATUSBAR_H
-#define INC_OPENHOLDEM_STATUSBAR_H
 
 class COpenHoldemStatusbar {
  public:
@@ -45,5 +43,3 @@ class COpenHoldemStatusbar {
 };
 
 extern COpenHoldemStatusbar *p_openholdem_statusbar;
-
-#endif // INC_STATUSBAR_H

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose: Heuristic occlusion-check for rebuy.
 //
 //******************************************************************************
-
-#ifndef __LIB_COCCLUSIONCHECK_H
-#define __LIB_COCCLUSIONCHECK_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -31,5 +29,3 @@ private:
 };
 
 extern COcclusionCheck *p_occlusioncheck;
-
-#endif // __LIB_COCCLUSIONCHECK_H

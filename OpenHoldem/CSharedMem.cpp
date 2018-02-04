@@ -14,8 +14,6 @@
 
 #include "stdafx.h"
 #include "CSharedMem.h"
-
-
 #include "crc32hash.h"
 #include "CSessionCounter.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineRandom.h"

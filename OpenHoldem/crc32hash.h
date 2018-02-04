@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -23,7 +24,6 @@
 //******************************************************************************
 
 unsigned int crc32(unsigned char const *p);
-
 
 /* Usage example:
 

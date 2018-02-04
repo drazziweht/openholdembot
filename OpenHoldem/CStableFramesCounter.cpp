@@ -7,7 +7,8 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: counting the number of scraped frames with identical information
+//   in order to detect ongoing casino animations and act only on stable input.
 //
 //******************************************************************************
 

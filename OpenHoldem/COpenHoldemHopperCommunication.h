@@ -46,4 +46,6 @@ protected:
 
 extern COpenHoldemHopperCommunication *p_openholdem_hopper_communication;
 
+
+
 #endif INC_COPENHOLDEMHOPPERCOMMUNICATION_H

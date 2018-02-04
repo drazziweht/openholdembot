@@ -13,14 +13,12 @@
 
 #include "stdafx.h"
 #include "COpenHoldemStarter.h"
-
 #include "CAutoConnector.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
 #include "CSharedMem.h"
 #include "CSessionCounter.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 #include "OpenHoldem.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
+#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 
 // For connection and popup handling
 const int kMinNumberOfUnoccupiedBotsNeeded =   1;

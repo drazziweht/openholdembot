@@ -7,18 +7,18 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: shooting replay-frames ("screenshots") for OHReplay
+//   to analysze the session later and reproduce problems.
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "CReplayFrame.h"
-
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "CHeartbeatThread.h"
-
-#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "CSessionCounter.h"
+#include "OpenHoldem.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
+#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineDealerchair.h"
@@ -27,7 +27,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "OpenHoldem.h"
 
 //  Sanity check: enough disk-space for a replay frame?
 //	We assume, 10 MB are enough

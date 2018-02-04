@@ -13,7 +13,6 @@
 
 #include "stdafx.h"
 #include "COpenHoldemTitle.h"
-
 #include <assert.h>
 #include "CAutoConnector.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"

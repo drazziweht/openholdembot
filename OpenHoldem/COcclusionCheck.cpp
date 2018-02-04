@@ -7,11 +7,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Heuristic occlusion-check for rebuy.
 //
 //******************************************************************************
-
-// Heuristic occlusion-check for rebuy.
 
 #include "stdafx.h"
 #include "COcclusionCheck.h"

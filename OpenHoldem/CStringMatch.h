@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CSTRINGMATCH_H
-#define INC_CSTRINGMATCH_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -31,5 +29,3 @@ class CStringMatch /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CStringMatch *p_string_match;
-
-#endif // INC_CSTRINGMATCH_H

@@ -19,8 +19,6 @@
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs8.h"
 
-
-
 // CDlgSAPrefs8 dialog
 
 IMPLEMENT_DYNAMIC(CDlgSAPrefs8, CDialog)

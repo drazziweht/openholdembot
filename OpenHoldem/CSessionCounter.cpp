@@ -7,13 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: providing an unique session-IF for each instance of OpenHoldem
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CSessionCounter.h"
-
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 // Global instantiation of CSessionCounter class
@@ -52,4 +51,3 @@ CSessionCounter::~CSessionCounter()
 	// Release the mutex for our _session_id
 	CloseHandle(hMutex);
 }
-

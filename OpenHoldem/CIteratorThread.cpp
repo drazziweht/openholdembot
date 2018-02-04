@@ -13,14 +13,16 @@
 
 #include "stdafx.h"
 #include "CIteratorThread.h"
-
 #include <process.h>
+#include "COpenHoldemStatusbar.h"
+#include "CValidator.h"
+#include "mtrand.h"
+#include "PrWinHandranges.h"
+#include "inlines/eval.h"
+#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "COpenHoldemStatusbar.h"
-
-#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineBlinds.h"
@@ -30,12 +32,6 @@
 #include "..\DLLs\Symbols_DLL\CSymbolEnginePokerval.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEnginePrwin.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "CValidator.h"
-#include "inlines/eval.h"
-
-
-#include "PrWinHandranges.h"
-#include "mtrand.h"
 
 CIteratorThread	*p_iterator_thread = NULL;
 HANDLE CIteratorThread::_m_stop_thread; //!!

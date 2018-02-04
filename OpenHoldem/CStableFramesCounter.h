@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: counting the number of scraped frames with identical information
+//   in order to detect ongoing casino animations and act only on stable input.
 //
 //******************************************************************************
-
-#ifndef _INC_CSTABLEFRAMESCOUNTER_H
-#define _INC_CSTABLEFRAMESCOUNTER_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -46,5 +45,3 @@ class CStableFramesCounter /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern CStableFramesCounter *p_stableframescounter;
-
-#endif // _INC_CSTABLEFRAMESCOUNTER_H

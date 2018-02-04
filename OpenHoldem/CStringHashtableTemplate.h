@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose: To be used with CMap-hashtables and CStrings as keys
 //
 //******************************************************************************
-
-#ifndef INC_CSTRINGHASHTABLETEMPLATE_H
-#define INC_CSTRINGHASHTABLETEMPLATE_H
 
 // CString hashtable below by Sam NG
 // http://www.codeproject.com/Articles/13458/CMap-How-to
@@ -29,4 +27,3 @@ BOOL AFXAPI CompareElements<LPCString, LPCString>
 
 // End of CString hashtable by Sam NG
 
-#endif INC_CSTRINGHASHTABLETEMPLATE_H

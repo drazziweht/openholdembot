@@ -7,13 +7,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Wrapper around CMutex objects to provide for automatic
+//   acquire and release of the mutex.
 //
 //******************************************************************************
 
 #include "StdAfx.h"
 #include "CMyMutex.h"
-
 
 CMyMutex::CMyMutex() : _mutex(false, Preferences()->mutex_name()) {
   // We want a long timeout to let OHs instances act in FIFO order.
@@ -28,7 +28,6 @@ CMyMutex::CMyMutex() : _mutex(false, Preferences()->mutex_name()) {
 	  _locked = FALSE;
   }
 }
-
 
 CMyMutex::~CMyMutex(void) {
 	if (_locked == TRUE) {   

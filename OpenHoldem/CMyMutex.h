@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,15 +8,10 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Wrapper around CMutex objects to provide for automatic
+//   acquire and release of the mutex.
 //
 //******************************************************************************
-
-#ifndef INC_MYMUTEX_H
-#define INC_MYMUTEX_H
-
-// Wrapper around CMutex objects to provide for automatic
-// acquire and release of the mutex.
 
 class CMyMutex: public CMutex {
  public:
@@ -26,5 +22,3 @@ class CMyMutex: public CMutex {
 	CMutex _mutex;
 	bool _locked;
 };
-
-#endif INC_MYMUTEX_H

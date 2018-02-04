@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: guiding new users getting startex
 //
 //******************************************************************************
-
-#ifndef INC_CPROBLEMSOLVER_H
-#define INC_CPROBLEMSOLVER_H
 
 class CProblemSolver
 {
@@ -30,5 +28,3 @@ private:
 	bool NoCardsVisible();
 	bool NotEnoughButtonsVisible();
 };
-
-#endif

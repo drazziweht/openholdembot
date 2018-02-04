@@ -7,14 +7,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: closing undesired popup-windows that might occlude the table
 //
 //******************************************************************************
 
 #include "stdafx.h"
 #include "CPopupHandler.h"
-
-
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
