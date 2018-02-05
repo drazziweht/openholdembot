@@ -15,6 +15,29 @@
 #include "inlines/eval.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
 
+//prwin 1326 chair structure    Matrix 2008-04-29
+struct sprw1326_chair {
+  int			level;			// indicates significance level for 'always consider'
+  int			limit;			// max index into significance array - used for computational efficiency
+  int			ignore;			// if non-zero no weighting will be applied to this chair
+  int			rankhi[k_number_of_pocketcard_combinations_without_order];	// hi card number in pocket cards
+  int			ranklo[k_number_of_pocketcard_combinations_without_order];	// lo card number in pocket cards
+  int			weight[k_number_of_pocketcard_combinations_without_order];	// the significance value for this hand
+  double		scratch;		// for future reference
+};
+
+//prwin 1326 structure			Matrix 2008-04-29
+struct sprw1326
+{
+  int			useme;				// unless set to 1326 the normal OH prwin will be used
+  int			preflop;			// unless set to 1326 the normal OH prwin will be used pre-flop
+  int			usecallback;		// unless set to 1326 the callback function will not be invoked
+  double(*prw_callback)(); // if enabled will be invoked before the prwin calculation pass
+  double	scratch;			// for future reference
+  sprw1326_chair	vanilla_chair;	// will be precalculated by OH at startup - convenience values
+  sprw1326_chair  chair[kMaxNumberOfPlayers];  // structures for each chair
+};
+
 extern sprw1326	_prw1326;	// prwin 1326 data structure Matrix 2008-04-29
 
 class CIteratorThread /*!!!!!: public CSpaceOptimizedGlobalObject */{
