@@ -39,6 +39,15 @@
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
 CAutoConnector *p_autoconnector = NULL;
+
+struct STableList {
+  HWND		hwnd;
+  int     tablemap_index;
+  RECT    attached_rect;
+  RECT    crect;
+  CString title;
+};
+
 CArray <STableList, STableList> g_tlist; 
 
 CAutoConnector::CAutoConnector() {

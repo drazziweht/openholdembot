@@ -14,10 +14,14 @@
 
 #pragma once
 #include "afxwin.h"
-
 #include "HScrollListBox.h"
 
 // CDlgSelectTable dialog
+
+struct STableList {
+  HWND		hwnd;
+  int     tablemap_index;
+};
 
 class CDlgSelectTable : public CDialog
 {

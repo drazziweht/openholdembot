@@ -16,6 +16,7 @@
 //
 #pragma once
 #include "OpenScrapeDoc.h"
+#include "DialogSelectTable.h"
 
 #define		BLINKER_TIMER				1
 
