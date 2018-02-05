@@ -7,18 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: doalog for the name of a new formula
 //
 //******************************************************************************
 
-// NewDialog.cpp : implementation file
-//
-
-#include "stdafx.h"
-#include "OpenHoldem.h"
 #include "DialogNew.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "VerifyFunctionAndListNames.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
+#include "..\Shared\VerifyFunctionAndListNames.h"
 
 // CDlgNew dialog
 
@@ -48,7 +44,6 @@ END_MESSAGE_MAP()
 BOOL CDlgNew::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-
 	if (is_function == false) 
 	{
 		m_NewName.SetWindowText("list");
@@ -61,15 +56,13 @@ BOOL CDlgNew::OnInitDialog()
 		m_Desc.SetWindowText("New UDF name:");
 		::SetWindowText(m_hWnd, "New UDF");
 	}
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 void CDlgNew::OnBnClickedOk() 
 {
 	char str[MAX_WINDOW_TITLE] = {0};
-
-    m_NewName.GetWindowText(CSnewname);
+  m_NewName.GetWindowText(CSnewname);
 	strcpy_s(str, MAX_WINDOW_TITLE, CSnewname.GetString());
     if (is_function) {
       if (!VerifyFunctionName(str)) return;
@@ -83,4 +76,3 @@ void CDlgNew::OnBnClickedCancel()
 {
 	OnCancel();
 }
-

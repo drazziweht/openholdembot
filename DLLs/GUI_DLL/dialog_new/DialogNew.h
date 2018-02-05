@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,31 +8,24 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: doalog for the name of a new formula
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGNEW_H
-#define INC_DIALOGNEW_H
-
-// CDlgNew dialog
+#include <afxwin.h>
+#include "..\..\..\OpenHoldem\resource.h"
 
 class CDlgNew : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgNew)
-
 public:
 	CDlgNew(CWnd* pParent = NULL);   // standard constructor
 	virtual ~CDlgNew();
-
 // Dialog Data
 	enum { IDD = IDD_NEW };
-
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-
 	DECLARE_MESSAGE_MAP()
-
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
@@ -41,5 +35,3 @@ public:
 	virtual BOOL OnInitDialog();
 	CStatic m_Desc;
 };
-
-#endif //INC_DIALOGNEW_H

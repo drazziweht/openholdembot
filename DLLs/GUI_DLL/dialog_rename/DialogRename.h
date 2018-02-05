@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,33 +8,24 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dialog for renaming functions and hand-lists
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGRENAME_H
-#define INC_DIALOGRENAME_H
-
-// CDlgRename dialog
-
-#include "resource.h"
+#include <afxwin.h>
+#include "..\..\..\OpenHoldem\resource.h"
 
 class CDlgRename : public CDialog
 {
 	DECLARE_DYNAMIC(CDlgRename)
-
 public:
 	CDlgRename(CWnd* pParent = NULL);   // standard constructor
 	virtual ~CDlgRename();
-
 // Dialog Data
 	enum { IDD = IDD_RENAME };
-
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
-
 	DECLARE_MESSAGE_MAP()
-
 public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
@@ -43,6 +35,3 @@ public:
 	CString CSnewname;
 	virtual BOOL OnInitDialog();
 };
-
-
-#endif //INC_DIALOGRENAME_H

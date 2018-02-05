@@ -1,3 +1,4 @@
+#pragma once 
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,14 +8,12 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: single import/export macro for all header-files
 //
 //******************************************************************************
 
-#ifndef INC_VERIFY_FUNCTION_AND_LIST_NAMES_H
-#define INC_VERIFY_FUNCTION_AND_LIST_NAMES_H
-
-bool VerifyFunctionName(CString name);
-bool VerifyListName(CString name);
-
-#endif INC_VERIFY_FUNCTION_AND_LIST_NAMES_H
+#ifdef GUI_DLL_EXPORTS
+#define GUI_DLL_API extern "C" __declspec(dllexport)
+#else
+#define GUI_DLL_API extern "C" __declspec(dllimport)
+#endif

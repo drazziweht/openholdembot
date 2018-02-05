@@ -7,15 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: verifying naming conventions of functions and handlists,
+//   either newly created or renamed
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "VerifyFunctionAndListNames.h"
-
-#include "COHScriptObject.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\..\Formula_DLL\COHScriptObject.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 
 bool VerifyFunctionName(CString name) {
   if (!COHScriptObject::IsFunction(name)) {

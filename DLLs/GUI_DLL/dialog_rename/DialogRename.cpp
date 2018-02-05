@@ -7,20 +7,15 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dialog for renaming functions and hand-lists
 //
 //******************************************************************************
 
-// RenameDialog.cpp : implementation file
-//
-
-#include "stdafx.h"
 #include "DialogRename.h"
-
-#include "COHScriptObject.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-#include "OpenHoldem.h"
-#include "VerifyFunctionAndListNames.h"
+#include "..\..\Formula_DLL\COHScriptObject.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
+#include "..\Shared\VerifyFunctionAndListNames.h"
 
 // CDlgRename dialog
 
@@ -50,26 +45,22 @@ END_MESSAGE_MAP()
 BOOL CDlgRename::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-
 	m_OldName.SetWindowText(CSoldname);
 	m_NewName.SetWindowText(CSoldname);
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 }
 
 void CDlgRename::OnBnClickedOk() 
 {
 	char oldstr[MAX_WINDOW_TITLE] = {0}, newstr[MAX_WINDOW_TITLE] = {0};
-
 	m_NewName.GetWindowText(CSnewname);
 	strcpy_s(oldstr, MAX_WINDOW_TITLE, CSoldname.GetString());
 	strcpy_s(newstr, MAX_WINDOW_TITLE, CSnewname.GetString());
-
-    if (COHScriptObject::IsFunction(oldstr)) {
-      if (!VerifyFunctionName(newstr)) return;
-    } else {
-      if (!VerifyListName(newstr)) return;
-    }
+  if (COHScriptObject::IsFunction(oldstr)) {
+    if (!VerifyFunctionName(newstr)) return;
+  } else {
+    if (!VerifyListName(newstr)) return;
+  }
 	OnOK();
 }
 
@@ -77,4 +68,3 @@ void CDlgRename::OnBnClickedCancel()
 {
 	OnCancel();
 }
-
