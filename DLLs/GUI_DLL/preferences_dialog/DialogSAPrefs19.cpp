@@ -11,15 +11,10 @@
 //
 //******************************************************************************
 
-// CDlgSAPrefs19.cpp : implementation file
-//
-
-#include "stdafx.h"
 #include "DialogSAPrefs19.h"
-
 #include "SAPrefsSubDlg.h"
-
-
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 
 // CDlgSAPrefs19 dialog
 

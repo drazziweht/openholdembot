@@ -11,16 +11,12 @@
 //
 //******************************************************************************
 
-// DialogSAPrefs10.cpp : implementation file
-//
-
-#include "stdafx.h"
 #include "DialogSAPrefs11.h"
-
 #include <limits.h>
 #include "SAPrefsSubDlg.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 
 #define MAX_MAX_LOG 1000000
 

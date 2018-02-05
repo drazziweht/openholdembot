@@ -13,16 +13,12 @@
 
 // DialogSAPrefs2.cpp : implementation file
 //
-
-#include "stdafx.h"
-
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs2.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
-
-
-// CDlgSAPrefs2 dialog
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 IMPLEMENT_DYNAMIC(CDlgSAPrefs2, CSAPrefsSubDlg)
 

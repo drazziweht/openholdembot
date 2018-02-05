@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,16 +8,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dialog that displays scraped data and its evaluation
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSCRAPEROUTPUT_H
-#define INC_DIALOGSCRAPEROUTPUT_H
-
-#include "..\CTablemap\CTablemap.h"
-#include "SizerBar.h"
-#include "Resource.h"
+#include "..\Shared\WinMgr\SizerBar.h"
+#include "..\..\..\CTablemap\CTablemap.h"
+#include "..\..\..\OpenHoldem\resource.h"
 
 // CDlgScraperOutput dialog
 class CDlgScraperOutput : public CDialog {
@@ -37,9 +35,7 @@ class CDlgScraperOutput : public CDialog {
 	virtual BOOL DestroyWindow();
 	void UpdateDisplay();
 	void Reset();
-
 	enum { IDD = IDD_SCRAPER_OUTPUT };
-
  protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	virtual void PostNcDestroy();
@@ -47,13 +43,11 @@ class CDlgScraperOutput : public CDialog {
 	afx_msg void OnCbnSelchangeZoom();
 	afx_msg void OnPaint();
 	void DoBitblt(HBITMAP bitmap, RMapCI r_iter);
-
 	CListBox		m_RegionList;
 	CStatic			m_ScraperBitmap;
 	CComboBox		m_Zoom;
 	CEdit			m_ScraperResult;
 	bool			in_startup;
-
 	DECLARE_MESSAGE_MAP()
  private:
 	void AddListboxItems();
@@ -61,5 +55,3 @@ class CDlgScraperOutput : public CDialog {
 
 
 extern CDlgScraperOutput	*m_ScraperOutputDlg;
-
-#endif //INC_DIALOGSCRAPEROUTPUT_H

@@ -7,16 +7,13 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dialog to select starting hands for a handlist
 //
 //******************************************************************************
 
-// DialogHandList.cpp : implementation file
-//
-
-#include "stdafx.h"
 #include "DialogHandList.h"
-
+#include "..\..\Formula_DLL\COHScriptList.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // CDlgHandList dialog
 CDlgHandList::CDlgHandList(CWnd* pParent /*=NULL*/)
@@ -218,16 +215,13 @@ END_MESSAGE_MAP()
 BOOL CDlgHandList::OnInitDialog()
 {
 	CDialog::OnInitDialog();
-
 	CString		s = "";
-
 	// Set title and static text control
   assert(p_list != NULL);
 	s.Format("Hand List Editor - %s", p_list->name());
 	SetWindowText(s.GetString());
 	s.Format("Hand list: %s", p_list->name());
 	m_HandList_Name.SetWindowText(s.GetString());
-
 	// Set checked/unchecked status of each box
   assert(p_list != NULL);
 	for (int i=2; i<=k_rank_ace; i++) {
@@ -236,7 +230,6 @@ BOOL CDlgHandList::OnInitDialog()
     }
 	}
 	OnCheckClick(0);
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// EXCEPTION: OCX Property Pages should return FALSE
 }
@@ -319,4 +312,3 @@ void CDlgHandList::OnBnClickedClear()
 	}
 	OnCheckClick(0);
 }
-

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,12 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSAPREFS12_H
-#define INC_DIALOGSAPREFS12_H
-
-#include "resource.h"
+#include "..\..\..\OpenHoldem\resource.h"
 #include "afxwin.h"
-
 #include "SAPrefsDialog.h"
 
 // CDlgSAPrefs12 dialog
@@ -39,5 +36,3 @@ protected:
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();   
 };
-
-#endif

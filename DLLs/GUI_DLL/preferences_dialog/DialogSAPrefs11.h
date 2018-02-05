@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,10 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSAPREFS11_H
-#define INC_DIALOGSAPREFS11_H
-
-#include "resource.h"
+#include <afxcmn.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "afxwin.h"
 
 #include "SAPrefsDialog.h"
@@ -50,6 +49,3 @@ protected:
 public:
 	afx_msg void OnCbnSelchangeDebuglevelPt();
 };
-
-
-#endif //INC_DIALOGSAPREFS11_H

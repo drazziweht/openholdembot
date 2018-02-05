@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,10 +12,8 @@
 //
 //******************************************************************************
 
-#pragma once
-
-#include "resource.h"
-
+#include <afxcmn.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsDialog.h"
 
 // CDlgSAPrefs16 dialog

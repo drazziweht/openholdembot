@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSAPREFS4_H
-#define INC_DIALOGSAPREFS4_H
-
-#include "resource.h"
-
+#include <afxcmn.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsDialog.h"
 
 // CDlgSAPrefs4 dialog
@@ -46,6 +44,3 @@ protected:
 public:
 	afx_msg void OnDeltaposScrapedelaySpin(NMHDR *pNMHDR, LRESULT *pResult);
 };
-
-
-#endif //INC_DIALOGSAPREFS4_H

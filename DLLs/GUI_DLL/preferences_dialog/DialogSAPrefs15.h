@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "resource.h"
+#include "..\..\..\OpenHoldem\resource.h"
 #include "afxwin.h"
 #include "SAPrefsDialog.h"
 

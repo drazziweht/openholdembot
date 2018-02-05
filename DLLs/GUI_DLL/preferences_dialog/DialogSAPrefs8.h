@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSAPREFS8_H
-#define INC_DIALOGSAPREFS8_H
-
-#include "resource.h"
-
+#include <afxcmn.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsDialog.h"
 
 // CDlgSAPrefs8 dialog
@@ -42,6 +40,3 @@ public:
 	CEdit m_MaxFrames;
 	CSpinButtonCtrl m_MaxFramesSpin;
 };
-
-
-#endif //INC_DIALOGSAPREFS8_H

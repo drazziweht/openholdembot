@@ -11,14 +11,10 @@
 //
 //******************************************************************************
 
-// DialogSAPrefs1.cpp : implementation file
-//
-
-#include "stdafx.h"
-
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs17.h"
-
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 
 // CDlgSAPrefs17 dialog
 

@@ -11,13 +11,11 @@
 //
 //******************************************************************************
 
-// CDlgSAPrefs15.cpp : implementation file
-
-#include "stdafx.h"
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs15.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 
 // CDlgSAPrefs15 dialog
 IMPLEMENT_DYNAMIC(CDlgSAPrefs15, CDialog)

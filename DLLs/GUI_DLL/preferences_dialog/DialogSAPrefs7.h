@@ -14,7 +14,7 @@
 #ifndef INC_DIALOGSAPREFS7_H
 #define INC_DIALOGSAPREFS7_H
 
-#include "resource.h"
+#include "..\..\..\OpenHoldem\resource.h"
 #include "afxwin.h"
 
 #include "SAPrefsDialog.h"

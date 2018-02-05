@@ -11,16 +11,11 @@
 //
 //******************************************************************************
 
-// DialogSAPrefs13.cpp : implementation file
-//
-
-#include "stdafx.h"
-
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs13.h"
 #include "COpenHoldemTitle.h"
-
-
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 
 // CDlgSAPrefs13 dialog
 

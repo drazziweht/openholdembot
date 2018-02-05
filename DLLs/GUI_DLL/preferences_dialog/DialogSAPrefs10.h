@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGSAPREFS10_H
-#define INC_DIALOGSAPREFS10_H
-
-#include "resource.h"
-
+#include <afxcmn.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsDialog.h"
 
 // DialogSAPrefs10 dialog
@@ -44,6 +42,3 @@ private:
 protected:
 	virtual void OnOK();
 };
-
-
-#endif //INC_DIALOGSAPREFS10_H

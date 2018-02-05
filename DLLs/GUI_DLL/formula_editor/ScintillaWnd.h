@@ -9,8 +9,9 @@
 #ifndef __SCINTILLAWND_H__
 #define __SCINTILLAWND_H__
 
-#include "../scintilla/include/Scintilla.h"
-#include "../scintilla/include/SciLexer.h"
+#include <afxwin.h>
+#include "../Shared/scintilla/include/Scintilla.h"
+#include "../Shared/scintilla/include/SciLexer.h"
 
 ////////////////////////////////////
 // @class CScintillaWnd | Class of a GCL Scintilla syntax coloring edit control for MFC

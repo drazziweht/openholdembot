@@ -11,18 +11,17 @@
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGFORMULASCINTILLA_H
-#define INC_DIALOGFORMULASCINTILLA_H
-
-#include "resource.h"
+#include <afxcmn.h>
+#include <afxdlgs.h>
+#include <afxext.h>
+#include "..\..\..\OpenHoldem\resource.h"
 #include "ScintillaWnd.h"
-#include "WinMgr.h"
-#include "SizerBar.h"
+#include "..\Shared\winmgr\WinMgr.h"
+#include "..\Shared\winmgr\SizerBar.h"
 
 // CDlgFormulaScintilla dialog
 #define	MENU_UPDATE_TIMER		1
 #define	DEBUG_UPDATE_TIMER		2
-
 #define	EDIT_NEW				0
 #define	EDIT_RENAME				1
 #define	EDIT_DELETE				2
@@ -43,10 +42,8 @@
 //separator						17
 #define	EDIT_SETTINGS			19
 #define	EDIT_HANDLIST			20
-
 #define DEBUG_FDEBUG_LOGGING	0
 #define DEBUG_FDEBUG_MYTURN		1
-
 #define SCE_C_DEFAULT 0
 #define SCE_C_COMMENT 1
 #define SCE_C_COMMENTLINE 2
@@ -247,5 +244,3 @@ class CDlgFormulaScintilla : public CDialog {
 };
 
 extern CDlgFormulaScintilla	*m_formulaScintillaDlg;
-
-#endif //INC_DIALOGFORMULASCINTILLA_H

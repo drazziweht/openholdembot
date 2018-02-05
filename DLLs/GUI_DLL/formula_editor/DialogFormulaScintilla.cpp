@@ -16,33 +16,33 @@
 
 // menu options, menu edit commands
 
-#include "stdafx.h"
+
 #include "DialogFormulaScintilla.h"
 
 #include <io.h>
 #include "CAutoplayer.h"
 #include "CAutoplayerTrace.h"
 #include "CDebugTab.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
+#include "..\..\Symbols_DLL\CEngineContainer.h"
 #include "CFlagsToolbar.h"
 #include "CFunction.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
+#include "..\..\Symbols_DLL\CFunctionCollection.h"
 #include "CHeartbeatThread.h"
 #include "COHScriptList.h"
 
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineIniFunctions.h"
+#include "..\..\Scraper_DLL\CScraper.h"
+#include "..\..\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\..\Symbols_DLL\CSymbolEngineIniFunctions.h"
 #include "DialogHandList.h"
 #include "DialogNew.h"
 #include "DialogRename.h"
 #include "MainFrm.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 #include "OpenHoldem.h"
 #include "OpenHoldemDoc.h"
 #include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
-#include "../scintilla/include/SciLexer.h"
-#include "../scintilla/include/Scintilla.h"
+#include "../Shared/scintilla/include/SciLexer.h"
+#include "../Shared/scintilla/include/Scintilla.h"
 #include "WinMgr.h"
 
 

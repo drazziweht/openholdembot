@@ -30,6 +30,9 @@
 // SAPrefsSubDlg.h: interface for the CSAPrefsSubDlg class.
 //
 //////////////////////////////////////////////////////////////////////
+
+#include <afxwin.h>
+
 class CSAPrefsSubDlg : public CDialog  
 {
 public:

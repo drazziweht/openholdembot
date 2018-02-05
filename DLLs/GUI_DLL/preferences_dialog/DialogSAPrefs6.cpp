@@ -11,19 +11,14 @@
 //
 //******************************************************************************
 
-// DialogSAPrefs6.cpp : implementation file
-//
-
-#include "stdafx.h"
-
 #include "CPokerTrackerThread.h"
-
 #include "DialogSAPrefs6.h"
 #include "OpenHoldem.h"
 #include "MainFrm.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 #include "SAPrefsSubDlg.h"
-
+#include "..\..\Globals_DLL\globals.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 
 // CDlgSAPrefs6 dialog
 

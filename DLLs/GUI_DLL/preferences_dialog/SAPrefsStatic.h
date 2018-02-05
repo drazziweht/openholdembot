@@ -1,19 +1,4 @@
-//******************************************************************************
-//
-// This file is part of the OpenHoldem project
-//    Source code:           https://github.com/OpenHoldem/openholdembot/
-//    Forums:                http://www.maxinmontreal.com/forums/index.php
-//    Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
-//
-//******************************************************************************
-//
-// Purpose:
-//
-//******************************************************************************
-
-#ifndef AFX_PREFSSTATIC_H__1B15B006_9152_11D3_A10C_00500402F30B__INCLUDED_
-#define AFX_PREFSSTATIC_H__1B15B006_9152_11D3_A10C_00500402F30B__INCLUDED_
-
+#pragma once
 /*********************************************************************
 
    Copyright (C) 2002 Smaller Animals Software, Inc.
@@ -40,11 +25,8 @@
    smallest@smalleranimals.com
 
 **********************************************************************/
-// PrefsStatic.h : header file
-//
 
-/////////////////////////////////////////////////////////////////////////////
-// CPrefsStatic window
+#include <afxwin.h>
 
 class CSAPrefsStatic : public CStatic
 {
@@ -97,5 +79,3 @@ protected:
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PREFSSTATIC_H__1B15B006_9152_11D3_A10C_00500402F30B__INCLUDED_)

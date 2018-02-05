@@ -30,8 +30,8 @@
 // SAPrefsStatic.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "resource.h"
+
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsStatic.h"
 
 #ifdef _DEBUG

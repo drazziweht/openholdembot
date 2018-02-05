@@ -7,20 +7,19 @@
 //
 //******************************************************************************
 //
-// Purpose: DialogScraperOutput.cpp : implementation file
+// Purpose: dialog that displays scraped data and its evaluation
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "DialogScraperOutput.h"
 
-#include "CFlagsToolbar.h"
-#include "CHeartbeatThread.h"
+///#include "CFlagsToolbar.h"
+///#include "CHeartbeatThread.h"
 
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\CTransform\CTransform.h"
-#include "MainFrm.h"
-#include "OpenHoldem.h"
+#include "..\..\Scraper_DLL\CScraper.h"
+#include "..\..\..\CTransform\CTransform.h"
+///#include "MainFrm.h"
+///#include "OpenHoldem.h"
 
 
 // CDlgScraperOutput dialog
@@ -104,7 +103,7 @@ BOOL CDlgScraperOutput::OnInitDialog() {
 	// Set dialog icon
 	HICON hIcon = LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_ICON1));
 	this->SetIcon(hIcon, FALSE);
-	m_Zoom.SetCurSel(Preferences()->scraper_zoom());
+	///m_Zoom.SetCurSel(Preferences()->scraper_zoom()); default!?
 	m_Zoom.GetWindowRect(&rect);
 	m_Zoom.SetWindowPos(NULL, 0, 0, rect.right-rect.left, 9999, SWP_NOMOVE);
 
@@ -126,10 +125,9 @@ BOOL CDlgScraperOutput::DestroyWindow() {
 
 	// Save settings to registry
 	GetWindowPlacement(&wp);
-  Preferences()->SetValue(k_prefs_scraper_zoom, m_Zoom.GetCurSel());
+  ///Preferences()->SetValue(k_prefs_scraper_zoom, m_Zoom.GetCurSel());
 	// Uncheck scraper output button on main toolbar
-	p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
-
+	///p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
 	return CDialog::DestroyWindow();
 }
 
@@ -167,10 +165,10 @@ void CDlgScraperOutput::UpdateDisplay() {
 
 	if (in_startup) return;
   // Only do this if we are not in the middle of a scraper/symbol update
-	if (TryEnterCriticalSection(&p_heartbeat_thread->cs_update_in_progress)) 	{
+	/*#if (TryEnterCriticalSection(&p_heartbeat_thread->cs_update_in_progress)) 	*/{
 		if (m_RegionList.GetCurSel() == kUndefined) {
 			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
-			LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+			///LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
 			return;
 		}
 
@@ -182,7 +180,7 @@ void CDlgScraperOutput::UpdateDisplay() {
     }	else {
 			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
     }
-		LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+		///LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
 	}
 }
 
@@ -269,7 +267,7 @@ void CDlgScraperOutput::DoBitblt(HBITMAP bitmap, RMapCI r_iter) {
 
 void CDlgScraperOutput::OnCancel() {
 	// Uncheck scraper output button on main toolbar
-	p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
+	///p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
   CDialog::OnCancel();
 }
 

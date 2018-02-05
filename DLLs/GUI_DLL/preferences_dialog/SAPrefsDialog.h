@@ -1,19 +1,4 @@
-//******************************************************************************
-//
-// This file is part of the OpenHoldem project
-//    Source code:           https://github.com/OpenHoldem/openholdembot/
-//    Forums:                http://www.maxinmontreal.com/forums/index.php
-//    Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
-//
-//******************************************************************************
-//
-// Purpose:
-//
-//******************************************************************************
-
-#ifndef AFX_PREFSDIALOG_H__1B15B002_9152_11D3_A10C_00500402F30B__INCLUDED_
-#define AFX_PREFSDIALOG_H__1B15B002_9152_11D3_A10C_00500402F30B__INCLUDED_
-
+#pragma once
 /*********************************************************************
 
    Copyright (C) 2002 Smaller Animals Software, Inc.
@@ -43,10 +28,11 @@
 // PrefsDialog.h : header file
 //
 
+#include <afxtempl.h>
+#include <afxcmn.h>
 #include "SAPrefsStatic.h"
 #include "SAPrefsSubDlg.h"
-
-#include <afxtempl.h>
+#include "..\..\..\OpenHoldem\resource.h"
 
 class pageStruct
 {
@@ -112,16 +98,12 @@ public:
 
 // Implementation
 protected:
-   
-   bool EndOK();
-
-   // if you don't like this, you can replace it with a static
-   CSAPrefsStatic	   m_captionBar;
+  bool EndOK();
+  // if you don't like this, you can replace it with a static
+  CSAPrefsStatic	   m_captionBar;
 	CTreeCtrl		  m_pageTree;
-
-   // check to see if this dlg has already been added to the tree
-   HTREEITEM FindHTREEItemForDlg(CSAPrefsSubDlg *pParent);
-
+  // check to see if this dlg has already been added to the tree
+  HTREEITEM FindHTREEItemForDlg(CSAPrefsSubDlg *pParent);
 	// Generated message map functions
 	//{{AFX_MSG(CSAPrefsDialog)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
@@ -136,24 +118,17 @@ protected:
 	afx_msg LRESULT OnChangePage(WPARAM w, LPARAM l);
 	afx_msg LRESULT OnSetFocusWnd(WPARAM w, LPARAM l);
 	DECLARE_MESSAGE_MAP()
-
-   CPtrArray   m_pages;
-   int		 m_iCurPage;
-   CRect	   m_frameRect;
-   CString	 m_csTitle, m_csConstantText;
-
-   bool m_bValidateBeforeChangingPage;
-
+  CPtrArray   m_pages;
+  int		 m_iCurPage;
+  CRect	   m_frameRect;
+  CString	 m_csTitle, m_csConstantText;
+  bool m_bValidateBeforeChangingPage;
 	CSAPrefsSubDlg	*m_pStartPage;
-
-   // store info about *pDlgs that have been added to 
-   // the tree - used for quick lookup of parent nodes
-   // DWORDs are used because HTREEITEMs can't be... blame Microsoft
-   CMap< CSAPrefsSubDlg *, CSAPrefsSubDlg *, UINT_PTR, UINT_PTR&  > m_dlgMap;
-
+  // store info about *pDlgs that have been added to 
+  // the tree - used for quick lookup of parent nodes
+  // DWORDs are used because HTREEITEMs can't be... blame Microsoft
+  CMap< CSAPrefsSubDlg *, CSAPrefsSubDlg *, UINT_PTR, UINT_PTR&  > m_dlgMap;
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
-
-#endif // !defined(AFX_PREFSDIALOG_H__1B15B002_9152_11D3_A10C_00500402F30B__INCLUDED_)

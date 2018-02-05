@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,17 +8,15 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: dialog to select starting hands for a handlist
 //
 //******************************************************************************
 
-#ifndef INC_DIALOGHANDLIST_H
-#define INC_DIALOGHANDLIST_H
+#include <afxwin.h>
+#include "..\..\..\OpenHoldem\resource.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
 
-#include "resource.h"
-#include "COHScriptList.h"
-
-// CDlgHandList dialog
+class COHScriptList;
 
 class CDlgHandList : public CDialog {
   friend class DialogFormulaScintilla;
@@ -25,10 +24,8 @@ public:
 	CDlgHandList(CWnd* pParent = NULL);   // standard constructor
 	virtual ~CDlgHandList();
 	virtual BOOL OnInitDialog();
-
 	enum { IDD = IDD_HANDLIST };
   COHScriptList *p_list;
-
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	afx_msg void OnBnClickedOk();
@@ -37,16 +34,11 @@ protected:
 	afx_msg void OnBnClickedBroadways();
 	afx_msg void OnBnClickedSuited();
 	afx_msg void OnBnClickedClear();
-
 	CStatic m_HandList_Name, m_CommentST;
   // Indices 2..k_rank_ace get used.
   // 0 and 1 exist only for technical reasons; unused.
 	CButton m_Check[k_rank_ace+1][k_rank_ace+1];
-
 private:
 	int nhands;
 	DECLARE_MESSAGE_MAP()
 };
-
-
-#endif //INC_DIALOGHANDLIST_H

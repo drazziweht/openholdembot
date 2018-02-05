@@ -30,8 +30,8 @@
 // SAPrefsDialog.cpp : implementation file
 //
 
-#include "stdafx.h"
-#include "resource.h"
+
+#include "..\..\..\OpenHoldem\resource.h"
 #include "SAPrefsDialog.h"
 
 #ifdef _DEBUG
