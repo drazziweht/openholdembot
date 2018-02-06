@@ -137,9 +137,6 @@ void InstantiateAllSingletons() {
   assert(!p_white_info_box);
   p_white_info_box = new CWhiteInfoBox;
   EngineContainer()->CreateSymbolEngines();
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CRebuyManagement\n");
-  assert(!p_rebuymanagement); 
-  p_rebuymanagement = new CRebuyManagement;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create COcclusionCheck\n");
   assert(!p_occlusioncheck);
   p_occlusioncheck = new COcclusionCheck;
@@ -201,8 +198,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_casino_interface)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting occlusion check\n");
   DELETE_AND_CLEAR(p_occlusioncheck)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting rebuy management\n");
-  DELETE_AND_CLEAR(p_rebuymanagement)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting white info box\n");
   DELETE_AND_CLEAR(p_white_info_box)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting popup handler\n");

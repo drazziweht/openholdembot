@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -47,5 +48,3 @@ private:
 	time_t	RebuyLastTime, CurrentTime;
 	CString	PreviousRebuyHandNumber;
 };
-
-extern CRebuyManagement *p_rebuymanagement;

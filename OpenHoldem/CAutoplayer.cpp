@@ -342,7 +342,7 @@ bool CAutoplayer::ExecuteSecondaryFormulasIfNecessary() {
     && (p_autoplayer_functions->GetAutoplayerFunctionValue(k_hopper_function_rebuy))) {
     // This requires an external script and some time.
     // No further actions here eihter, but immediate return.
-    bool result = p_rebuymanagement->TryToRebuy();
+    bool result = rebuymanagement->TryToRebuy();
     if (result) {
       executed_secondary_function = k_hopper_function_rebuy;
     }

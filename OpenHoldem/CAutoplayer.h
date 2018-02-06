@@ -16,6 +16,8 @@
 #include "../CTablemap/CTableMapAccess.h"
 #include "OpenHoldem.h"
 
+class CRebuyManagement;
+
 class CAutoplayer 
 {
 public:
@@ -56,7 +58,8 @@ private:
 private:
 	// private variables - use public accessors and public mutators to address these
 	bool	_autoplayer_engaged;
-
+private:
+  CRebuyManagement rebuy_management;
 private:
 	POINT	cursor_position;
 	HWND	window_with_focus;
