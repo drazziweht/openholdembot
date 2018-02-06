@@ -23,8 +23,6 @@
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
-CHandHistoryShowdown *p_handhistory_showdown = NULL;
-
 CHandHistoryShowdown::CHandHistoryShowdown() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //
 //******************************************************************************
 
-#ifndef _INC_CHANDHISTORY_H
-#define _INC_CHANDHISTORY_H
- 
 #include <fstream>
 #include "MagicNumbers.h"
 
@@ -103,7 +101,3 @@ private:
 	int bblind;
 	int dealerchair;
 };
-
-extern CHandHistory *p_handhistory;
-
-#endif // _INC_CHANDHISTORY_H

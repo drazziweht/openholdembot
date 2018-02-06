@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -17,9 +18,6 @@
 //   real hand-histories and for the summary in the logs.
 //
 //******************************************************************************
-
-#ifndef INC_CHANDHISTORYWRITER_H
-#define INC_CHANDHISTORYWRITER_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -63,7 +61,3 @@ private:
   CString _handhistory_data[kMaxLines];
   CString _message;
 };
-
-extern CHandHistoryWriter *p_handhistory_writer;
-
-#endif INC_CHANDHISTORYWRITER_H

@@ -15,6 +15,11 @@
 ///#include "CSpaceOptimizedGlobalObject.h"
 #include "CVirtualSymbolEngine.h"
 
+class CHandHistoryDealPhase;
+class CHandHistoryAction;
+class CHandHistoryUncontested;
+class CHandHistoryShowdown;
+class CHandHistoryWriter;
 class CSymbolEngineActiveDealtPlaying;
 class CSymbolEngineAutoplayer;
 class CSymbolEngineBlinds;
@@ -231,6 +236,12 @@ private:
   CSymbolEngineVariousDataLookup *p_symbol_engine_various_data_lookup;
   CSymbolEngineVersus *p_symbol_engine_versus;
   CSymbolEngineICM *p_symbol_engine_icm;
+private:
+  CHandHistoryDealPhase *p_handhistory_deal_phase;
+  CHandHistoryAction *p_handhistory_action;
+  CHandHistoryUncontested *p_handhistory_uncontested;
+  CHandHistoryShowdown *p_handhistory_showdown;
+  CHandHistoryWriter *p_handhistory_writer;
 };
 
 extern CEngineContainer *p_engine_container;

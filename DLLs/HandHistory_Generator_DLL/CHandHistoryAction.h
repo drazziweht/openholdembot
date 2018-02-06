@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -13,9 +14,6 @@
 //   Also used for the new summary in the logs.
 //
 //******************************************************************************
-
-#ifndef INC_CHANDHISTORYACTION_H
-#define INC_CHANDHISTORYACTION_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -37,7 +35,3 @@ class CHandHistoryAction: public CVirtualSymbolEngine {
   CString SymbolsProvided();
  private:
 };
-
-extern CHandHistoryAction *p_handhistory_action;
-
-#endif INC_CHANDHISTORYACTION_H

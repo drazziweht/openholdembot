@@ -27,9 +27,6 @@
 #include "CScraper.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
-
-CHandHistoryWriter *p_handhistory_writer = NULL;
-
 CHandHistoryWriter::CHandHistoryWriter() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
@@ -37,8 +34,8 @@ CHandHistoryWriter::CHandHistoryWriter() {
 	//
 	// This engine collects data from other HH-modules
   // and therefore should be executes after all the rest.
-  assert(p_handhistory_deal_phase != NULL);
-  assert(p_handhistory_uncontested != NULL);
+  ///assert(p_handhistory_deal_phase != NULL);
+  ///assert(p_handhistory_uncontested != NULL);
   _lines_collected = 0;
 }
 

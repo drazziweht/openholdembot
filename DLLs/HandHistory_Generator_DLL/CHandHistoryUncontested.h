@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -13,9 +14,6 @@
 //   Also used for the new summary in the logs.
 //
 //******************************************************************************
-
-#ifndef INC_CHANDHISTORYUNCONTESTED_H
-#define INC_CHANDHISTORYUNCONTESTED_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -39,6 +37,3 @@ class CHandHistoryUncontested: public CVirtualSymbolEngine {
    bool _job_done;
 };
 
-extern CHandHistoryUncontested *p_handhistory_uncontested;
-
-#endif INC_CHANDHISTORYUNCONTESTED_H

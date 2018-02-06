@@ -26,9 +26,6 @@
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
-
-CHandHistoryDealPhase *p_handhistory_deal_phase = NULL;
-
 CHandHistoryDealPhase::CHandHistoryDealPhase() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
@@ -87,7 +84,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
     }
     if (smallblind_seen && bigblind_seen) {
       if (currentbet < p_engine_container->symbol_engine_tablelimits()->sblind()) {
-        p_handhistory_writer->PostsAnte(i);
+        ///p_handhistory_writer->PostsAnte(i);
       }
       // We ignore additional people with a bigblind
       // They are maybe additional blind-posters
@@ -97,7 +94,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
     if (smallblind_seen) {
       assert(!bigblind_seen);
       // Player must be posting the bigblind
-      p_handhistory_writer->PostsBigBlind(i);
+      ///p_handhistory_writer->PostsBigBlind(i);
       bigblind_seen = true;
       continue;
     }
@@ -106,14 +103,14 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
     // Might be also a bigblind with missing small blind
     assert(currentbet > 0);
     if (currentbet <= p_engine_container->symbol_engine_tablelimits()->sblind()) {
-      p_handhistory_writer->PostsSmallBlind(0);
+      ///p_handhistory_writer->PostsSmallBlind(0);
       smallblind_seen = true;
       continue;
     }
     if ((currentbet > p_engine_container->symbol_engine_tablelimits()->sblind()) 
         && (currentbet <= p_engine_container->symbol_engine_tablelimits()->sblind())) {
       // Bigblind and missing smallblind
-      p_handhistory_writer->PostsBigBlind(i);
+      ///p_handhistory_writer->PostsBigBlind(i);
       smallblind_seen = true;
       bigblind_seen = true;
       continue;

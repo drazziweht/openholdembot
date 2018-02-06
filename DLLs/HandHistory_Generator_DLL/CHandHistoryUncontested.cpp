@@ -21,10 +21,6 @@
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
-
-
-CHandHistoryUncontested *p_handhistory_uncontested = NULL;
-
 CHandHistoryUncontested::CHandHistoryUncontested() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
@@ -64,7 +60,7 @@ void CHandHistoryUncontested::UpdateOnHeartbeat() {
       CString message;
       message.Format("Player %s wins the pot uncontested\n",
         TableState()->Player(i)->name());
-      p_handhistory_writer->AddMessage(message);
+      ///p_handhistory_writer->AddMessage(message);
       _job_done = true;
       return;
     }

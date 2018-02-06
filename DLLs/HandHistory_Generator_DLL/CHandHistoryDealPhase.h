@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -13,9 +14,6 @@
 //   Also used for the new summary in the logs.
 //
 //******************************************************************************
-
-#ifndef INC_CHANDHISTORYDEALPHASE_H
-#define INC_CHANDHISTORYDEALPHASE_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -38,7 +36,3 @@ class CHandHistoryDealPhase: public CVirtualSymbolEngine {
  private:
    bool _job_done;
 };
-
-extern CHandHistoryDealPhase *p_handhistory_deal_phase;
-
-#endif INC_CHANDHISTORYDEALPHASE_H
