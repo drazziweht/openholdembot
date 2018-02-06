@@ -1,12 +1,24 @@
-#include "stdafx.h"
-#include "CPokerTrackerLookup.h"
+//******************************************************************************
+//
+// This file is part of the OpenHoldem project
+//    Source code:           https://github.com/OpenHoldem/openholdembot/
+//    Forums:                http://www.maxinmontreal.com/forums/index.php
+//    Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
+//
+//******************************************************************************
+//
+// Purpose: knowing the casino, 
+//   needed for PokerTracker to fetch the correct data from the DB.
+//
+//******************************************************************************
 
+#include "CPokerTrackerSiteID.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\..\CTablemap\CTablemap.h"
 
-#include "..\CTablemap\CTablemap.h"
-
-CPokerTrackerLookup pt_lookup;
-
-CPokerTrackerLookup::CPokerTrackerLookup() {
+CPokerTrackerSiteID::CPokerTrackerSiteID() {
 	_pt4_siteid.clear();
 	// Documentation about PT3 sited_IDs:
 	// http://www.pokertracker.com/forums/viewtopic.php?f=18&t=20169&p=95629
@@ -41,11 +53,11 @@ CPokerTrackerLookup::CPokerTrackerLookup() {
 	_pt4_siteid.insert(std::pair<CString, int> ("peoples", 2800));
 }
 
-CPokerTrackerLookup::~CPokerTrackerLookup() {
+CPokerTrackerSiteID::~CPokerTrackerSiteID() {
   _pt4_siteid.clear();
 }
 
-const int CPokerTrackerLookup::GetSiteId()
+const int CPokerTrackerSiteID::GetSiteId()
 {
 	// Is s$sitename or s$network one of the supported PT sites? 
 	// Return the proper site_id for db queries.

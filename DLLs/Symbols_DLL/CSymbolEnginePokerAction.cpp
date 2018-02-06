@@ -16,7 +16,6 @@
 
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CPokerTrackerLookUp.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineDealerchair.h"
@@ -117,10 +116,7 @@ const int CSymbolEnginePokerAction::PreflopPos() {
 								 sym_dealposition==3 ? 6 : 0):
 		sym_nplayersdealt==2  ? (
 								// reversed blinds - dealer is BB
-								// Even worse code. Looks like a code-clone
-								(pt_lookup.GetSiteId()==11) ?
-								(sym_dealposition==1 ? 1 :
-								sym_dealposition==2 ? 6 : 0 ) :
+                // Code removed as casino-detection was based on stone-old PT2-site-ID
 								// Normal blinds - dealposition==1 is BB
 								(sym_dealposition==1 ? 2 :
 								 sym_dealposition==2 ? 6 : 0)) :0;
@@ -186,11 +182,7 @@ const int CSymbolEnginePokerAction::PreflopRaisPos() {
 								sym_dealpositionrais==3 ? 6 : 0):
 		sym_nplayersdealt==2  ? (
 								// reversed blinds - dealer is BB
-								// !! Bad code. We should get rid of hard-coded constants
-								// !! does also not work with new PT3 constants
-								(pt_lookup.GetSiteId()==11) ?
-								(sym_dealpositionrais==1 ? 1 :
-								sym_dealpositionrais==2 ? 6 : 0 ) :
+                // Code removed as casino-detection was based on stone-old PT2-site-ID
 								// Normal blinds - dealposition==1 is BB
 								(sym_dealpositionrais==1 ? 2 :
 								sym_dealpositionrais==2 ? 6 : 0)) :0;

@@ -19,7 +19,6 @@
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\Shared\CCritSec\CCritSec.h"
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
-#include "..\StructsDefines\structs_defines.h" //!!!!!
 
 ///////////////////////////////
 // structs

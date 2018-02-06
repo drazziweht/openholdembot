@@ -21,7 +21,6 @@
 #include "CEngineContainer.h"
 #include "CLevDistance.h"
 #include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
-#include "CPokerTrackerLookUp.h"
 
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
@@ -389,7 +388,7 @@ double CPokerTrackerThread::UpdateStat(int m_chr, int stat)
 	int sym_elapsed = p_engine_container->symbol_engine_time()->elapsed();
 
 	//No more unnecessary queries when we don't even have a siteid to check
-	int siteid = pt_lookup.GetSiteId();
+	int siteid = pt_site_id.GetSiteId();
 	if (siteid == kUndefined)
 		return kUndefined;
 
@@ -495,7 +494,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 	double			Levenshtein_distance_matching_factor = 0.3;
 
 	//No more unnecessary queries when we don't even have a siteid to check
-	siteid = pt_lookup.GetSiteId();
+	siteid = pt_site_id.GetSiteId();
 	if (siteid == kUndefined)  return false;
 
 	if (!_connected || PQstatus(_pgconn) != CONNECTION_OK)

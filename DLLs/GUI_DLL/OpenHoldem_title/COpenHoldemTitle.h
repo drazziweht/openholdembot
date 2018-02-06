@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,24 +12,22 @@
 //
 //******************************************************************************
 
-#ifndef INC_CPOKERTRACKERLOOKUP_H
-#define INC_CPOKERTRACKERLOOKUP_H
+///#include "CSpaceOptimizedGlobalObject.h"
 
-#include <map>
-
-class CPokerTrackerLookup
+class COpenHoldemTitle /*#: public CSpaceOptimizedGlobalObject*/
 {
 public:
-	// public functions
-	CPokerTrackerLookup();
-	~CPokerTrackerLookup();
-	const int GetSiteId();
-
+	COpenHoldemTitle();
+	~COpenHoldemTitle();
+public:
+	CString GetTitle();
+	void SetUserDefinedOpenHoldemTitle(CString new_title);
+	void UpdateTitle();
 private:
-	// private functions and variables - not available via accessors or mutators
-	std::map<CString, int>	_pt4_siteid;
+	CString FullTitle();			// normal title with table-name, casino and limits
+private:
+	CString user_defined_title;		// defined via hopper-messages
+	CString simple_title;			// executale-name
 };
 
-extern CPokerTrackerLookup pt_lookup;
-
-#endif INC_CPOKERTRACKERLOOKUP_H
+extern COpenHoldemTitle *p_openholdem_title;

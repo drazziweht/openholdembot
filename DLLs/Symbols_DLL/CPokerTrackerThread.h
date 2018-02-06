@@ -15,6 +15,7 @@
 #include "libpq-fe.h"
 #include <map>
 ///#include "CSpaceOptimizedGlobalObject.h"
+#include "CPokerTrackerSiteID.h"
 
 const int k_advanced_stat_update_every    =    5;
 const int k_min_hands_for_slower_updates  = 1000;
@@ -83,7 +84,7 @@ private:
 	HANDLE			_m_wait_thread;
 
 	CWinThread	*_pt_thread;
-
+  CPokerTrackerSiteID _pokertracker_size_ID;
 };
 
 extern CPokerTrackerThread *p_pokertracker_thread;

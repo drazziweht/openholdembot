@@ -153,7 +153,6 @@
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "..\Shared\CCritSec\CCritSec.h"
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
-#include "..\StructsDefines\structs_defines.h"
 
 // To avoid some race-conditions
 #define WAIT_FOR_CONDITION(condition) { while (!(condition)) { Sleep(250); } }
