@@ -24,7 +24,7 @@
 #include "CAutoplayerTrace.h"
 #include "CDebugTab.h"
 #include "..\..\Symbols_DLL\CEngineContainer.h"
-#include "CFlagsToolbar.h"
+#include "GUI()->FlagsToolbar().h"
 #include "CFunction.h"
 #include "..\..\Symbols_DLL\CFunctionCollection.h"
 #include "CHeartbeatThread.h"
@@ -1256,7 +1256,7 @@ BOOL CDlgFormulaScintilla::DestroyWindow()
 	CloseFindReplaceDialog();
 	
 	// Uncheck formula button on main toolbar
-	p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_FORMULA, false);
+	GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_FORMULA, false);
 
 	return CDialog::DestroyWindow();
 }

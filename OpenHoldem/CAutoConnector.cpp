@@ -316,7 +316,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			if (m_ScraperOutputDlg) {
 				m_ScraperOutputDlg->Reset();
 			}
-			p_flags_toolbar->ResetButtonsOnConnect();
+			GUI()->FlagsToolbar()->ResetButtonsOnConnect();
       // The main GUI gets created by another thread.
       // This can be slowed down if there are popups (parse-errors).
       // Handle the race-condition
@@ -360,8 +360,8 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	// Clear "attached" info
 	set_attached_hwnd(NULL);
 	// Unattach OH.
-	p_flags_toolbar->UnattachOHFromPokerWindow();
-	p_flags_toolbar->ResetButtonsOnDisconnect();
+	GUI()->FlagsToolbar()->UnattachOHFromPokerWindow();
+	GUI()->FlagsToolbar()->ResetButtonsOnDisconnect();
 	// Release mutex as soon as possible, after critical work is done
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Unlocking autoconnector-mutex\n");
 	_autoconnector_mutex->Unlock();	
@@ -375,7 +375,7 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] UpdateOnConnection executed (disconnection)\n");
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Going to continue with window title\n");
 	// Change window title
-	p_openholdem_title->UpdateTitle();
+	GUI()->OpenHoldemTitle()->UpdateTitle();
 	// Reset Display 
 	PMainframe()->ResetDisplay();
 	// Reset "ScraperOutput" dialog, if it is live

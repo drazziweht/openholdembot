@@ -21,7 +21,7 @@
 #include "CAutoconnector.h"
 #include "CAutoplayerFunctions.h"
 #include "CCasinoInterface.h"
-#include "CFlagsToolbar.h"
+#include "GUI()->FlagsToolbar().h"
 #include "CHeartbeatThread.h"
 #include "CIteratorThread.h"
 #include "CMyMutex.h"
@@ -368,7 +368,7 @@ void CAutoplayer::EngageAutoplayer(bool to_be_enabled_or_not) {
 	// Set correct button state
 	// We have to be careful, as during initialization the GUI does not yet exist.
 	assert(p_flags_toolbar != NULL);
-	p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_AUTOPLAYER, to_be_enabled_or_not);
+	GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_AUTOPLAYER, to_be_enabled_or_not);
 
 	if (to_be_enabled_or_not) 
 	{
@@ -380,9 +380,9 @@ void CAutoplayer::EngageAutoplayer(bool to_be_enabled_or_not) {
     }
 	}
   if (to_be_enabled_or_not) {
-    p_flags_toolbar->ResetButtonsOnAutoplayerOn();
+    GUI()->FlagsToolbar()->ResetButtonsOnAutoplayerOn();
   } else {
-    p_flags_toolbar->ResetButtonsOnAutoplayerOff();
+    GUI()->FlagsToolbar()->ResetButtonsOnAutoplayerOff();
   }
 	// Set value at the very last to be extra safe
 	// and avoid problems with multiple threads

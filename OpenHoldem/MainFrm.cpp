@@ -160,12 +160,12 @@ CMainFrame::CMainFrame() {
 }
 
 CMainFrame::~CMainFrame() {
-	if (p_flags_toolbar != NULL) {
+	/*#if (p_flags_toolbar != NULL) {
 		delete(p_flags_toolbar);
 	}
   if (p_openholdem_statusbar != NULL) {
     delete p_openholdem_statusbar;
-  }
+  }*/
 }
 
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
@@ -174,9 +174,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct) {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == kUndefined)
 		return -1;
 	// Tool bar
-	p_flags_toolbar = new CFlagsToolbar(this);
+	//guip_flags_toolbar = new CFlagsToolbar(this);
 	// Status bar
-	p_openholdem_statusbar = new COpenHoldemStatusbar(this);
+	///p_openholdem_statusbar = new COpenHoldemStatusbar(this);
 	// Start timer that checks if we should enable buttons
 	SetTimer(ENABLE_BUTTONS_TIMER, 50, 0);
 	// Start timer that updates status bar
@@ -248,7 +248,7 @@ void CMainFrame::OnEditFormula() {
 				  "The Formula Editor has un-applied changes.\n"
 				  "Really exit?", 
 				  "Formula Editor", MB_ICONWARNING|MB_YESNO) == IDNO) {
-				p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_FORMULA, true);
+				GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_FORMULA, true);
 				return;
 			}
 		}
@@ -266,7 +266,7 @@ void CMainFrame::OnEditFormula() {
   m_formulaScintillaDlg = new CDlgFormulaScintilla(this);
 	m_formulaScintillaDlg->Create(CDlgFormulaScintilla::IDD,this);
 	m_formulaScintillaDlg->ShowWindow(SW_SHOW);
-	p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_FORMULA, true);
+	GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_FORMULA, true);
 }
 
 void CMainFrame::OnEditViewLog() {
@@ -317,7 +317,7 @@ void CMainFrame::OnScraperOutput() {
 	write_log(Preferences()->debug_gui(), "[GUI] Scraper output dialog: step 2 finished\n");
 	m_ScraperOutputDlg->ShowWindow(SW_SHOW);
 	write_log(Preferences()->debug_gui(), "[GUI] Scraper output dialog: step 3 finished\n");
-	p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, true);
+	GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, true);
 	write_log(Preferences()->debug_gui(), "[GUI] Scraper output dialog: step 4 (final) finished\n"); 
 }
 
@@ -451,9 +451,9 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
   if (p_flags_toolbar == NULL) {
     return;
   }
-  if (p_openholdem_statusbar == NULL) {
+  /*#if (p_openholdem_statusbar == NULL) {
     return;
-  }
+  }*/
   if (p_autoconnector == NULL) {
     return;
   }
@@ -475,23 +475,23 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
 		if (p_autoconnector->IsConnectedToAnything()) 	{
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer enabling buttons\n");
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_F\n");
-			p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, true);
+			GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, true);
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_G\n");
-      p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_SHOOTFRAME, true);
+      GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_SHOOTFRAME, true);
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_L\n");
 		}	else {
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer disabling buttons\n");
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_H\n");
-			p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, false);
+			GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, false);
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_I\n");
-      p_flags_toolbar->EnableButton(ID_MAIN_TOOLBAR_SHOOTFRAME, false);
+      GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_SHOOTFRAME, false);
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_N\n");
 		}
     write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_O\n");
 	}	else if (nIDEvent == UPDATE_STATUS_BAR_TIMER) {
     write_log(Preferences()->debug_timers(), "[GUI] OnTimer updating statusbar\n");
     write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_P\n");
-		p_openholdem_statusbar->OnUpdateStatusbar();
+		GUI()->OpenholdemStatusbar()->OnUpdateStatusbar();
     write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_Q\n");
 	}
   write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_R\n");
@@ -505,17 +505,17 @@ void CMainFrame::OnAutoplayer() {
 }
 
 void CMainFrame::OnValidator() {
-	if (p_flags_toolbar->IsButtonChecked(ID_MAIN_TOOLBAR_VALIDATOR)) {
-		p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_VALIDATOR, true);
+	if (GUI()->FlagsToolbar()->IsButtonChecked(ID_MAIN_TOOLBAR_VALIDATOR)) {
+		GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_VALIDATOR, true);
 		p_validator->SetEnabledManually(true);
 	}	else {
-		p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_VALIDATOR, false);
+		GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_VALIDATOR, false);
 		p_validator->SetEnabledManually(false);
 	}
 }
 
 void CMainFrame::OnUpdateStatus(CCmdUI *pCmdUI) {
-	p_openholdem_statusbar->OnUpdateStatusbar();
+	GUI()->OpenholdemStatusbar()->OnUpdateStatusbar();
 }
 
 BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) {
@@ -527,7 +527,7 @@ BOOL CMainFrame::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) {
 }
 
 void CMainFrame::OnClickedFlags() {
-	p_flags_toolbar->OnClickedFlags();
+	GUI()->FlagsToolbar()->OnClickedFlags();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -23,7 +23,7 @@
 #include "CAutoplayerTrace.h"
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CFlagsToolbar.h"
+#include "GUI()->FlagsToolbar().h"
 #include "CFormulaParser.h"
 #include "inlines/eval.h"
 #include "Chair$Symbols.h"
@@ -142,25 +142,25 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     *result = kUndefinedZero;
   } else if (memcmp(name, "f", 1) == 0 && strlen(name) == 2) {
     if (p_flags_toolbar != NULL) {
-      *result = p_flags_toolbar->GetFlag(RightDigitCharacterToNumber(name));
+      *result = GUI()->FlagsToolbar()->GetFlag(RightDigitCharacterToNumber(name));
     } else {
       *result = kUndefinedZero;
     }
   } else if (memcmp(name, "f", 1) == 0 && strlen(name) == 3) {
     if (p_flags_toolbar != NULL) {
-      *result = p_flags_toolbar->GetFlag(10 * RightDigitCharacterToNumber(name, 1) + RightDigitCharacterToNumber(name, 0));
+      *result = GUI()->FlagsToolbar()->GetFlag(10 * RightDigitCharacterToNumber(name, 1) + RightDigitCharacterToNumber(name, 0));
     } else {
       *result = kUndefinedZero;
     }
   } else if (memcmp(name, "fmax", 4) == 0 && strlen(name) == 4) {
     if (p_flags_toolbar != NULL) {
-      *result = p_flags_toolbar->GetFlagMax();
+      *result = GUI()->FlagsToolbar()->GetFlagMax();
     } else {
       *result = kUndefinedZero;
     }
   } else if (memcmp(name, "flagbits", 8) == 0 && strlen(name) == 8) {
     if (p_flags_toolbar != NULL) {
-      *result = p_flags_toolbar->GetFlagBits();
+      *result = GUI()->FlagsToolbar()->GetFlagBits();
     } else {
       *result = kUndefinedZero;
     }

@@ -12,6 +12,8 @@
 //
 //******************************************************************************
 
+class CFlagsToolbar;
+class COpenHoldemStatusbar;
 class COpenHoldemTitle;
 
 class CGUI {
@@ -19,6 +21,7 @@ public:
   CGUI();
   ~CGUI();
 public:
+  CFlagsToolbar *FlagsToolbar();
+  COpenHoldemStatusbar *OpenHoldemStatusbar();
   COpenHoldemTitle *OpenHoldemTitle();
-
 };

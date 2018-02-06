@@ -41,5 +41,3 @@ class COpenHoldemStatusbar {
   CString	_status_handrank;
   CString	_status_prwin;
 };
-
-extern COpenHoldemStatusbar *p_openholdem_statusbar;

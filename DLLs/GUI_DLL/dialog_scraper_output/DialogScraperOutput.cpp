@@ -13,7 +13,7 @@
 
 #include "DialogScraperOutput.h"
 
-///#include "CFlagsToolbar.h"
+///#include "GUI()->FlagsToolbar().h"
 ///#include "CHeartbeatThread.h"
 
 #include "..\..\Scraper_DLL\CScraper.h"
@@ -127,7 +127,7 @@ BOOL CDlgScraperOutput::DestroyWindow() {
 	GetWindowPlacement(&wp);
   ///Preferences()->SetValue(k_prefs_scraper_zoom, m_Zoom.GetCurSel());
 	// Uncheck scraper output button on main toolbar
-	///p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
+	///GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
 	return CDialog::DestroyWindow();
 }
 
@@ -267,7 +267,7 @@ void CDlgScraperOutput::DoBitblt(HBITMAP bitmap, RMapCI r_iter) {
 
 void CDlgScraperOutput::OnCancel() {
 	// Uncheck scraper output button on main toolbar
-	///p_flags_toolbar->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
+	///GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
   CDialog::OnCancel();
 }
 

@@ -29,8 +29,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
-COpenHoldemStatusbar *p_openholdem_statusbar = NULL;
-
 COpenHoldemStatusbar::COpenHoldemStatusbar(CWnd *main_window) {
   _main_window = main_window;
   InitStatusbar();

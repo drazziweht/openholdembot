@@ -20,8 +20,6 @@
 #include "MyCtoolbar.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 
-CFlagsToolbar *p_flags_toolbar = NULL;
-
 #define ENT CSLock lock(m_critsec);
 
 BEGIN_MESSAGE_MAP(CFlagsToolbar, CWnd)

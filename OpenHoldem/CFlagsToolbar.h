@@ -51,5 +51,3 @@ class CFlagsToolbar: public CWnd {
 	CFrameWnd  *_parent_window;
 	CCritSec   m_critsec;
 };
-
-extern CFlagsToolbar *p_flags_toolbar;
