@@ -27,7 +27,7 @@ CHandHistoryShowdown::CHandHistoryShowdown() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
   UpdateOnHandreset();
 }
 
@@ -53,7 +53,7 @@ void CHandHistoryShowdown::UpdateOnMyTurn() {
 
 bool AnyOpponentsCardsVisible() {
   for (int i=0; i<p_tablemap->nchairs(); ++i) {
-    if (i == p_engine_container->symbol_engine_userchair()->userchair()) {
+    if (i == EngineContainer()->symbol_engine_userchair()->userchair()) {
       // Not an opponent
       continue;
     }

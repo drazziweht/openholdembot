@@ -81,7 +81,7 @@ void CSymbolEngineDealerchair::UpdateOnHeartbeat() {
 
 int CSymbolEngineDealerchair::SmallBlindChair() {
   for (int i = 0; i < nchairs(); i++) {
-    if (TableState()->Player(i)->_bet.GetValue() == p_engine_container->symbol_engine_tablelimits()->sblind()) {
+    if (TableState()->Player(i)->_bet.GetValue() == EngineContainer()->symbol_engine_tablelimits()->sblind()) {
       return i;
     }
   }
@@ -102,11 +102,11 @@ int CSymbolEngineDealerchair::RightHandActiveChair(int chair) {
 bool CSymbolEngineDealerchair::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
 	if (name == "dealerchair")	{
-		*result = p_engine_container->symbol_engine_dealerchair()->dealerchair();
+		*result = EngineContainer()->symbol_engine_dealerchair()->dealerchair();
 		return true;
 	}
   if (name == "buttonchair") {
-    *result = p_engine_container->symbol_engine_dealerchair()->dealerchair();
+    *result = EngineContainer()->symbol_engine_dealerchair()->dealerchair();
     return true;
   }
 	return false;

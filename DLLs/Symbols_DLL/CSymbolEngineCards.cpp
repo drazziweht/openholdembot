@@ -34,11 +34,11 @@ CSymbolEngineCards::CSymbolEngineCards() {
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
 	//
-	// We use 2 times the function p_engine_container->symbol_engine_pokerval()->CalculatePokerval,
+	// We use 2 times the function EngineContainer()->symbol_engine_pokerval()->CalculatePokerval,
 	// but luckily this does not create name symbol-dependency.
 	// We leave the file ""CSymbolEnginePokerval.h" here out to avoid name circular dependency.
-  assert(p_engine_container->symbol_engine_isomaha() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+  assert(EngineContainer()->symbol_engine_isomaha() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 	// Set up some suit masks
 	CardMaskCreateCMAllCardsOfOfSuit(&heartsCards,   Suit_HEARTS);
 	CardMaskCreateCMAllCardsOfOfSuit(&diamondsCards, Suit_DIAMONDS);
@@ -540,7 +540,7 @@ void CSymbolEngineCards::CalcUnknownCards()
 	_nouts = 0;
 	_ncardsbetter = 0;
 
-	if (p_engine_container->symbol_engine_userchair()->userchair_confirmed())	{
+	if (EngineContainer()->symbol_engine_userchair()->userchair_confirmed())	{
 		write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineCards] userchair confirmed; calculating nouts...\n");
 		// iterate through every unseen card and see what happens to our handvals
 		for (int i=0; i<kNumberOfCardsPerDeck; i++)	{
@@ -561,13 +561,13 @@ void CSymbolEngineCards::CalcUnknownCards()
 
 				if (BETROUND < kBetroundRiver 
 					&& HandVal_HANDTYPE(handval_std_plus1) > HandVal_HANDTYPE(handval_std) 
-					&& p_engine_container->symbol_engine_pokerval()->CalculatePokerval(handval_std_plus1, nstdCards+1, &dummy, CARD_NOCARD, CARD_NOCARD) > p_engine_container->symbol_engine_pokerval()->pokerval()
+					&& EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(handval_std_plus1, nstdCards+1, &dummy, CARD_NOCARD, CARD_NOCARD) > EngineContainer()->symbol_engine_pokerval()->pokerval()
 					&& HandVal_HANDTYPE(handval_std_plus1) > HandVal_HANDTYPE(handval_common_plus1))
 				{
 					_nouts++;										
 				}
 
-				if (p_engine_container->symbol_engine_pokerval()->CalculatePokerval(handval_common_plus1, ncommonCards+1, &dummy, CARD_NOCARD, CARD_NOCARD) > p_engine_container->symbol_engine_pokerval()->pokerval())
+				if (EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(handval_common_plus1, ncommonCards+1, &dummy, CARD_NOCARD, CARD_NOCARD) > EngineContainer()->symbol_engine_pokerval()->pokerval())
 				{
 					_ncardsbetter++;							
 				}
@@ -614,7 +614,7 @@ bool CSymbolEngineCards::IsHand(const char *name) {
 			return false;
 		}
 	}
-  if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed())
+  if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed())
 		return false;
   // sort
 	if (cardrank[1] > cardrank[0]) {
@@ -860,7 +860,7 @@ bool CSymbolEngineCards::EvaluateSymbol(const CString name, double *result, bool
 	}
 	else if (memcmp(name, "ncommoncardsknown", 17)==0 && strlen(name)==17)	
 	{
-		*result = p_engine_container->symbol_engine_cards()->ncommoncardsknown();
+		*result = EngineContainer()->symbol_engine_cards()->ncommoncardsknown();
 		return true;
 	}
   else if (memcmp(name, "nouts", 5)==0 && strlen(name)==5)						

@@ -158,14 +158,14 @@ CSymbolEngineIsTournament::CSymbolEngineIsTournament() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-	assert(p_engine_container->symbol_engine_autoplayer() != NULL);
-	assert(p_engine_container->symbol_engine_casino() != NULL);
-  assert(p_engine_container->symbol_engine_checks_bets_folds() != NULL);
-  assert(p_engine_container->symbol_engine_chip_amounts() != NULL);
-	assert(p_engine_container->symbol_engine_mtt_info() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_time() != NULL);
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+	assert(EngineContainer()->symbol_engine_autoplayer() != NULL);
+	assert(EngineContainer()->symbol_engine_casino() != NULL);
+  assert(EngineContainer()->symbol_engine_checks_bets_folds() != NULL);
+  assert(EngineContainer()->symbol_engine_chip_amounts() != NULL);
+	assert(EngineContainer()->symbol_engine_mtt_info() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_time() != NULL);
 }
 
 CSymbolEngineIsTournament::~CSymbolEngineIsTournament() {
@@ -220,7 +220,7 @@ bool CSymbolEngineIsTournament::BetsAndBalancesAreTournamentLike() {
     // Probably not a tournament.
     return false;
   }
-  if ((int(sum_of_all_chips) % p_engine_container->symbol_engine_active_dealt_playing()->nplayersactive()) != 0)    { 
+  if ((int(sum_of_all_chips) % EngineContainer()->symbol_engine_active_dealt_playing()->nplayersactive()) != 0)    { 
     // Not a multiplicity of the active players.
     // Probably not a tournament.
     return false;
@@ -232,14 +232,14 @@ bool CSymbolEngineIsTournament::AntesPresent() {
 	// Antes are present, if all players are betting 
 	// and at least 3 have a bet smaller than SB 
 	// (remember: this is for the first few hands only).
-	if ((p_engine_container->symbol_engine_checks_bets_folds()->nopponentsbetting() + 1)
-		  < p_engine_container->symbol_engine_active_dealt_playing()->nplayersseated()) {
+	if ((EngineContainer()->symbol_engine_checks_bets_folds()->nopponentsbetting() + 1)
+		  < EngineContainer()->symbol_engine_active_dealt_playing()->nplayersseated()) {
 		return false;
 	}
 	int players_with_antes = 0;
 	for (int i=0; i<nchairs(); i++) {
 		double players_bet = TableState()->Player(i)->_bet.GetValue();
-		if ((players_bet > 0) && (players_bet < p_engine_container->symbol_engine_tablelimits()->sblind())) {
+		if ((players_bet > 0) && (players_bet < EngineContainer()->symbol_engine_tablelimits()->sblind())) {
 			players_with_antes++;
 		}
 	}
@@ -277,7 +277,7 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
     _decision_locked = true;
     return;
   }
-	if (p_engine_container->symbol_engine_mtt_info()->ConnectedToAnyTournament()) {
+	if (EngineContainer()->symbol_engine_mtt_info()->ConnectedToAnyTournament()) {
 		write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] MTT tournament detected\n");
 		_istournament    = true;
 		_decision_locked = true;
@@ -289,14 +289,14 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
 	// since connection, as handsplayed does not reset if we play multiple games.
 	if ((_istournament != kUndefined)
 		  && (p_handreset_detector->hands_played() > 2)
-		  && (p_engine_container->symbol_engine_time()->elapsedauto() < p_engine_container->symbol_engine_time()->elapsed())) {
+		  && (EngineContainer()->symbol_engine_time()->elapsedauto() < EngineContainer()->symbol_engine_time()->elapsed())) {
 		write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Enough hands played; locking current value\n");
 		_decision_locked = true;
 		return;
 	}
   // If we play at DDPoker the game is a tournament,
   // even though it can~t be detected by titlestring.
-  if (p_engine_container->symbol_engine_casino()->ConnectedToDDPoker()) {
+  if (EngineContainer()->symbol_engine_casino()->ConnectedToDDPoker()) {
     write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] DDPoker tournament\n");
     _istournament    = true;
 		_decision_locked = true;
@@ -320,11 +320,11 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
   // Only consider this option if a game is going on (playersplaying)
   // to avoid problems with no blinds during the sit-down-phase 
   // of a tournament.
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersplaying() < 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersplaying() < 2) {
     write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Can't consider the blinds -- too few people playing.\n");
     return;
   }
-  double bigblind = p_engine_container->symbol_engine_tablelimits()->bblind();
+  double bigblind = EngineContainer()->symbol_engine_tablelimits()->bblind();
 	if ((bigblind > 0) && (bigblind < k_lowest_bigblind_ever_seen_in_tournament)) {
 	  write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Blinds \"too low\"; this is a cash-game\n");
 	  _istournament    = false;
@@ -339,7 +339,7 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
   // If it is ManualMode, then we detect it by title-string "tourney".
   // High blinds (default) don~t make it a tournament.
   // Therefore don't continue.
-  if (p_engine_container->symbol_engine_casino()->ConnectedToManualMode()) {
+  if (EngineContainer()->symbol_engine_casino()->ConnectedToManualMode()) {
 		write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] ManualMode, but no tournament identifier\n");
     return;
   }
@@ -388,7 +388,7 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
 bool CSymbolEngineIsTournament::IsMTT() {
   if (!istournament()) return false;
   if (TitleStringContainsIdentifier(kMTTIdentifiers, kNumberOfMTTIdentifiers)) return true;
-  if (p_engine_container->symbol_engine_mtt_info()->ConnectedToMTT()) return true;
+  if (EngineContainer()->symbol_engine_mtt_info()->ConnectedToMTT()) return true;
   return false;
 }
 

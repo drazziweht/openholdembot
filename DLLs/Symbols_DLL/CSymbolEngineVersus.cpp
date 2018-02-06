@@ -36,7 +36,7 @@ CSymbolEngineVersus::CSymbolEngineVersus() {
   // The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_userchair() != NULL);
+  assert(EngineContainer()->symbol_engine_userchair() != NULL);
   // Check versus.bin
   _sopen_s(&_versus_fh, VersusPath(), _O_RDONLY | _O_BINARY, _SH_DENYWR, NULL);
 	if (_versus_fh == kUndefined) {
@@ -136,7 +136,7 @@ bool CSymbolEngineVersus::GetCounts() {
   // Get the lock
 	CSLock lock(m_critsec);
   ClearWinTieLosData();
-	if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed()) return false;
+	if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed()) return false;
 
   if (!TableState()->User()->HasKnownCards()) return false;
 

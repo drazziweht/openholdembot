@@ -122,7 +122,7 @@ double CSymbolEngineTime::elapsedmyturn() {
   time_t t_now_time;
   time(&t_now_time);
   double result = t_now_time - _elapsedmyturnhold;
-  p_engine_container->symbol_engine_debug()->SetValue(0, result);
+  EngineContainer()->symbol_engine_debug()->SetValue(0, result);
   AssertRange(result, 0, elapsed());
   return result;
 }

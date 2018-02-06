@@ -29,9 +29,9 @@ CSymbolEngineActiveDealtPlaying::CSymbolEngineActiveDealtPlaying()
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEngineActiveDealtPlaying::~CSymbolEngineActiveDealtPlaying()
@@ -111,7 +111,7 @@ void CSymbolEngineActiveDealtPlaying::CalculateAllinBits() {
 }
 
 int CSymbolEngineActiveDealtPlaying::userchairbit() { 
-  return 1 << p_engine_container->symbol_engine_userchair()->userchair(); 
+  return 1 << EngineContainer()->symbol_engine_userchair()->userchair(); 
 }
 
 void CSymbolEngineActiveDealtPlaying::CalculateDealtBits() {

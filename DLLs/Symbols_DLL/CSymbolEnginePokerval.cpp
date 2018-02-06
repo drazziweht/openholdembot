@@ -39,9 +39,9 @@ CSymbolEnginePokerval::CSymbolEnginePokerval() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_cards() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_cards() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEnginePokerval::~CSymbolEnginePokerval() {
@@ -322,8 +322,8 @@ void CSymbolEnginePokerval::CalculateRankBits() {
 	_srankbitscommonp = kUndefinedZero;
 	_srankbitspoker	  = kUndefinedZero;
 
-  int tsuit = p_engine_container->symbol_engine_cards()->tsuit();
-  int tsuitcommon = p_engine_container->symbol_engine_cards()->tsuitcommon();
+  int tsuit = EngineContainer()->symbol_engine_cards()->tsuit();
+  int tsuitcommon = EngineContainer()->symbol_engine_cards()->tsuitcommon();
   write_log(Preferences()->debug_symbolengine(), "[CSymbolEnginePokerval] CalculateHandType() tsuit = %i\n", tsuit);
   write_log(Preferences()->debug_symbolengine(), "[CSymbolEnginePokerval] CalculateHandType() tsuitcommon = %i\n", tsuitcommon);
 	

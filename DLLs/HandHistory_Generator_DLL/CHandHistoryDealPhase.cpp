@@ -30,10 +30,10 @@ CHandHistoryDealPhase::CHandHistoryDealPhase() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-  assert(p_engine_container->symbol_engine_chip_amounts() != NULL);
-  assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-  assert(p_engine_container->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_chip_amounts() != NULL);
+  assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+  assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
   // No dependency to CHandHistoryWriter as this modules
   // does not compute any symbols but collects our data.
 }
@@ -65,7 +65,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
     _job_done = true;
     return;
   }
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nopponentsdealt() < 1 ) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsdealt() < 1 ) {
     // Blind-Posting not yet finished
     return;
   }
@@ -74,7 +74,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
   // Searching clockwise for blind posters
   bool smallblind_seen = false;
   bool bigblind_seen   = false;
-  int last_chair  = p_engine_container->symbol_engine_dealerchair()->dealerchair();
+  int last_chair  = EngineContainer()->symbol_engine_dealerchair()->dealerchair();
   int first_chair = (last_chair + 1) % p_tablemap->nchairs();
   for (int i=first_chair; i<=last_chair; ++i) {
     double currentbet = TableState()->Player(i)->_bet.GetValue();
@@ -83,7 +83,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
       continue;
     }
     if (smallblind_seen && bigblind_seen) {
-      if (currentbet < p_engine_container->symbol_engine_tablelimits()->sblind()) {
+      if (currentbet < EngineContainer()->symbol_engine_tablelimits()->sblind()) {
         ///p_handhistory_writer->PostsAnte(i);
       }
       // We ignore additional people with a bigblind
@@ -102,13 +102,13 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
     // Usually a smallblind
     // Might be also a bigblind with missing small blind
     assert(currentbet > 0);
-    if (currentbet <= p_engine_container->symbol_engine_tablelimits()->sblind()) {
+    if (currentbet <= EngineContainer()->symbol_engine_tablelimits()->sblind()) {
       ///p_handhistory_writer->PostsSmallBlind(0);
       smallblind_seen = true;
       continue;
     }
-    if ((currentbet > p_engine_container->symbol_engine_tablelimits()->sblind()) 
-        && (currentbet <= p_engine_container->symbol_engine_tablelimits()->sblind())) {
+    if ((currentbet > EngineContainer()->symbol_engine_tablelimits()->sblind()) 
+        && (currentbet <= EngineContainer()->symbol_engine_tablelimits()->sblind())) {
       // Bigblind and missing smallblind
       ///p_handhistory_writer->PostsBigBlind(i);
       smallblind_seen = true;

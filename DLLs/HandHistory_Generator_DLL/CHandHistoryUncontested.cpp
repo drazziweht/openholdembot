@@ -25,7 +25,7 @@ CHandHistoryUncontested::CHandHistoryUncontested() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
 	_job_done = false;
 }
 
@@ -50,13 +50,13 @@ void CHandHistoryUncontested::UpdateOnMyTurn() {
 
 void CHandHistoryUncontested::UpdateOnHeartbeat() {
   if (_job_done) return;
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) return;
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersactive() != 1) return;
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) return;
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersactive() != 1) return;
   // So here we are:
   // * a game is going on
   // * only 1 player is left, who wins uncontested
   for (int i=0; i<p_tablemap->nchairs(); ++i) {
-    if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersactivebits(), i)) {
+    if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersactivebits(), i)) {
       CString message;
       message.Format("Player %s wins the pot uncontested\n",
         TableState()->Player(i)->name());

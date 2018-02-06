@@ -79,7 +79,7 @@ void CVirtualSymbolEngine::WarnIfSymbolRequiresMyTurn(CString name) {
 }
 
 void CVirtualSymbolEngine::WarnIfSymbolIsHoldemOnly(CString name) {
-  if (p_engine_container->symbol_engine_isomaha()->isomaha()) {
+  if (EngineContainer()->symbol_engine_isomaha()->isomaha()) {
     CString error_message;
     error_message.Format("%s%s%s%s%s%s%s",
       "The symbol \"", name, "\"\n",

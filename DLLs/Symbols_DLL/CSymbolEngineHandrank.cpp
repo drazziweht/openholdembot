@@ -55,8 +55,8 @@ CSymbolEngineHandrank::CSymbolEngineHandrank()
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_prwin() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_prwin() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEngineHandrank::~CSymbolEngineHandrank()
@@ -101,8 +101,8 @@ void CSymbolEngineHandrank::CalculateHandrank() {
     TableState()->User()->hole_cards(0)->GetValue(),
     TableState()->User()->hole_cards(1)->GetValue());
   // !!!! looks wrong
-  // !!!! int _nopponents = p_engine_container->symbol_engine_prwin()->nopponents_for_prwin();
-  int nopponents = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsdealt();
+  // !!!! int _nopponents = EngineContainer()->symbol_engine_prwin()->nopponents_for_prwin();
+  int nopponents = EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsdealt();
   for (int i = 0; i<kNumberOfStartingHands; i++)
   {
     if (strcmp(cardstr, handrank_table_169[nopponents - 1][i]) == 0)

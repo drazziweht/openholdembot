@@ -37,7 +37,7 @@ CSymbolEngineReplayFrameController::CSymbolEngineReplayFrameController() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_autoplayer() != NULL);
+  assert(EngineContainer()->symbol_engine_autoplayer() != NULL);
   _heartbeat_of_last_replay_frame = 0;
 }
 
@@ -61,7 +61,7 @@ void CSymbolEngineReplayFrameController::UpdateOnMyTurn() {
 }
 
 void CSymbolEngineReplayFrameController::UpdateOnHeartbeat() {
-	if(p_engine_container->symbol_engine_casino()->ConnectedToOHReplay()){
+	if(EngineContainer()->symbol_engine_casino()->ConnectedToOHReplay()){
     // No point in shooting frames when connected to OHReplay
     write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] No replay required, as connected to OHReplay\n");
 		return;	

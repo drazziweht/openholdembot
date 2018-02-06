@@ -139,9 +139,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWhiteInfoBox\n");
   assert(!p_white_info_box);
   p_white_info_box = new CWhiteInfoBox;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CEngineContainer\n");
-  assert(!p_engine_container);
-  p_engine_container = new CEngineContainer;
   EngineContainer()->CreateSymbolEngines();
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CRebuyManagement\n");
   assert(!p_rebuymanagement); 
@@ -209,8 +206,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_occlusioncheck)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting rebuy management\n");
   DELETE_AND_CLEAR(p_rebuymanagement)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting engine container\n");
-  DELETE_AND_CLEAR(p_engine_container)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting white info box\n");
   DELETE_AND_CLEAR(p_white_info_box)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting OpenHoldem title\n");

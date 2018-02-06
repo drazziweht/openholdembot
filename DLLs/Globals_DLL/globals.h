@@ -27,6 +27,6 @@ class CPreferences;
 class CTableState;
 GLOBALS_DLL_API CEngineContainer* EngineContainer();
 GLOBALS_DLL_API CFunctionCollection* FunctionCollection();
-GLOBALS_DLL_API void InitGlobals();
 GLOBALS_DLL_API CPreferences* Preferences();
 GLOBALS_DLL_API CTableState* TableState();
+GLOBALS_DLL_API void InitGlobals();

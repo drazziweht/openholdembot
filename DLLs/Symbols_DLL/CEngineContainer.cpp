@@ -77,8 +77,6 @@
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 
-CEngineContainer *p_engine_container = NULL;
-
 CEngineContainer::CEngineContainer() {
   write_log(Preferences()->debug_engine_container(), "[EngineContainer] CEngineContainer()\n");
   write_log(Preferences()->debug_engine_container(), "[EngineContainer] CEngineContainer() finished\n");

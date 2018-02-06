@@ -27,10 +27,10 @@ CSymbolEngineBlinds::CSymbolEngineBlinds()
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-	assert(p_engine_container->symbol_engine_positions() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+	assert(EngineContainer()->symbol_engine_positions() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEngineBlinds::~CSymbolEngineBlinds()
@@ -76,7 +76,7 @@ void CSymbolEngineBlinds::UpdateOnHeartbeat()
 {}
 
 int CSymbolEngineBlinds::opponentsblindbits() { 
-  return _playersblindbits & ~p_engine_container->symbol_engine_userchair()->userchairbit(); 
+  return _playersblindbits & ~EngineContainer()->symbol_engine_userchair()->userchairbit(); 
 }
 
 void CSymbolEngineBlinds::CalculateBlinds()
@@ -85,11 +85,11 @@ void CSymbolEngineBlinds::CalculateBlinds()
 	int bbchair = kUndefined;
 
 	// Heads-Up
-	if (p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits() == 2 && (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() & (1<<DEALER_CHAIR)))
+	if (EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits() == 2 && (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() & (1<<DEALER_CHAIR)))
 	{	
 		int sbchair = DEALER_CHAIR;
-		_bblindbits = p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() ^ k_exponents[sbchair];
-		_playersblindbits = p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt();
+		_bblindbits = EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() ^ k_exponents[sbchair];
+		_playersblindbits = EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt();
 	}
 
 	else
@@ -97,17 +97,17 @@ void CSymbolEngineBlinds::CalculateBlinds()
 		// Is Hero SB or BB ?
 		double my_bet = TableState()->User()->_bet.GetValue();
 
-		if (my_bet <= p_engine_container->symbol_engine_tablelimits()->sblind() && my_bet > 0)
+		if (my_bet <= EngineContainer()->symbol_engine_tablelimits()->sblind() && my_bet > 0)
 		{
-			sbchair = p_engine_container->symbol_engine_userchair()->userchair();
-			_playersblindbits = k_exponents[p_engine_container->symbol_engine_userchair()->userchair()];
+			sbchair = EngineContainer()->symbol_engine_userchair()->userchair();
+			_playersblindbits = k_exponents[EngineContainer()->symbol_engine_userchair()->userchair()];
 		}
 
-		if (my_bet <= p_engine_container->symbol_engine_tablelimits()->bblind() && my_bet > p_engine_container->symbol_engine_tablelimits()->sblind())
+		if (my_bet <= EngineContainer()->symbol_engine_tablelimits()->bblind() && my_bet > EngineContainer()->symbol_engine_tablelimits()->sblind())
 		{
-			bbchair = p_engine_container->symbol_engine_userchair()->userchair();
+			bbchair = EngineContainer()->symbol_engine_userchair()->userchair();
 			_bblindbits = k_exponents[bbchair];
-			_playersblindbits = k_exponents[p_engine_container->symbol_engine_userchair()->userchair()];
+			_playersblindbits = k_exponents[EngineContainer()->symbol_engine_userchair()->userchair()];
 		}
 
 		for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+nchairs(); i++)
@@ -116,13 +116,13 @@ void CSymbolEngineBlinds::CalculateBlinds()
 			double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 			// search SB
-			if (sbchair == kUndefined && p_bet <= p_engine_container->symbol_engine_tablelimits()->sblind() && p_bet > 0) 
+			if (sbchair == kUndefined && p_bet <= EngineContainer()->symbol_engine_tablelimits()->sblind() && p_bet > 0) 
 			{
 				sbchair = chair;
 				_playersblindbits |= k_exponents[sbchair];		
 			}
 			// search BB
-			if (bbchair == kUndefined && p_bet <= p_engine_container->symbol_engine_tablelimits()->bblind() && p_bet > p_engine_container->symbol_engine_tablelimits()->sblind() && chair != sbchair)
+			if (bbchair == kUndefined && p_bet <= EngineContainer()->symbol_engine_tablelimits()->bblind() && p_bet > EngineContainer()->symbol_engine_tablelimits()->sblind() && chair != sbchair)
 			{
 				bbchair = chair;	
 				_bblindbits = k_exponents[bbchair];
@@ -134,7 +134,7 @@ void CSymbolEngineBlinds::CalculateBlinds()
 		// SB not found correction.
 		// Will only apply if we are the bb + missed action(s). most common case. 
 		// Restrictions : 3 or less players were dealt or last bb is active
-		if (sbchair == kUndefined && (p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits() < 3 || (bbchair == p_engine_container->symbol_engine_userchair()->userchair() && p_engine_container->symbol_engine_positions()->nchairsdealtright() == 1)))
+		if (sbchair == kUndefined && (EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits() < 3 || (bbchair == EngineContainer()->symbol_engine_userchair()->userchair() && EngineContainer()->symbol_engine_positions()->nchairsdealtright() == 1)))
 		{
 			for (int i=DEALER_CHAIR+1; i<DEALER_CHAIR+nchairs(); i++)
 			{
@@ -142,7 +142,7 @@ void CSymbolEngineBlinds::CalculateBlinds()
 				double p_bet = TableState()->Player(chair)->_bet.GetValue();
 
 				// 1st caller/raiser after dealer is sb
-				if (p_bet >= p_engine_container->symbol_engine_tablelimits()->bblind() && sbchair == kUndefined && chair != bbchair)
+				if (p_bet >= EngineContainer()->symbol_engine_tablelimits()->bblind() && sbchair == kUndefined && chair != bbchair)
 				{
 					sbchair = chair;
 					_playersblindbits |= k_exponents[sbchair];

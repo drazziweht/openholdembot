@@ -28,11 +28,11 @@
 // This affects cards to be scraped and evaluated.
 // The data containers must be large enough to store kMaxNumberOfCardsPerPlayer.
 int NumberOfCardsPerPlayer() {
-  if (p_engine_container->symbol_engine_isomaha() == NULL) {
+  if (EngineContainer()->symbol_engine_isomaha() == NULL) {
     // Not yet initialized. Keep the OpenHoldem default
     return kNumberOfCardsPerPlayerHoldEm;
   }
-  if (p_engine_container->symbol_engine_isomaha()->isomaha()) {
+  if (EngineContainer()->symbol_engine_isomaha()->isomaha()) {
     return kNumberOfCardsPerPlayerOmaha;
   }
   return kNumberOfCardsPerPlayerHoldEm;

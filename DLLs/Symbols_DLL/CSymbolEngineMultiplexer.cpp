@@ -129,7 +129,7 @@ CString CSymbolEngineMultiplexer::MultiplexedSymbolName(CString name) {
     return name;
   }
   double evaluated_postfix = kUndefined;
-  p_engine_container->EvaluateSymbol(postfix, &evaluated_postfix, false);
+  EngineContainer()->EvaluateSymbol(postfix, &evaluated_postfix, false);
   if (evaluated_postfix == kUndefined) {
     // Valid postfix, but invalid (negative) value
 	  if (false/*!!!!!!!p_formula_parser->IsParsing()*/) {
@@ -172,7 +172,7 @@ bool CSymbolEngineMultiplexer::EvaluateSymbol(const CString name, double *result
     // Not a multiplexer-symbol
     return false;
   }
-  bool success = p_engine_container->EvaluateSymbol(multiplexed_symbol_name, result, log);
+  bool success = EngineContainer()->EvaluateSymbol(multiplexed_symbol_name, result, log);
   write_log(Preferences()->debug_multiplexer(), "[CSymbolEngineMultiplexer] %s -> %s -> %.2f\n",
     name, multiplexed_symbol_name, *result);
   return success;

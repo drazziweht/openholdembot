@@ -33,9 +33,9 @@ CSymbolEngineAutoplayer::CSymbolEngineAutoplayer() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-  assert(p_engine_container->symbol_engine_time() != NULL);
-  assert(p_engine_container->symbol_engine_userchair() != NULL);
+  assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+  assert(EngineContainer()->symbol_engine_time() != NULL);
+  assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEngineAutoplayer::~CSymbolEngineAutoplayer() {
@@ -141,7 +141,7 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
   // if we are not playing (occluded?) 2008-03-25 Matrix
 	else if (!TableState()->User()->HasKnownCards())	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because the user is \"not playing\"\n");
-		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Chair %d (locked) has no cards\n", p_engine_container->symbol_engine_userchair()->userchair());
+		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Chair %d (locked) has no cards\n", EngineContainer()->symbol_engine_userchair()->userchair());
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Possibly a tablemap-problem\n");
 		_isfinalanswer = false;
 	}
@@ -152,9 +152,9 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
   write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Number of stable frames: % d\n", p_stableframescounter->NumberOfStableFrames());
   CString delay_function = k_standard_function_names[k_standard_function_delay];
   double desired_delay_in_milli_seconds = p_function_collection->Evaluate(delay_function, Preferences()->log_delay_function());
-  p_engine_container->symbol_engine_debug()->SetValue(1, desired_delay_in_milli_seconds);
-  double milli_seconds_since_my_turn = p_engine_container->symbol_engine_time()->elapsedmyturn() * 1000;
-  p_engine_container->symbol_engine_debug()->SetValue(2, milli_seconds_since_my_turn);
+  EngineContainer()->symbol_engine_debug()->SetValue(1, desired_delay_in_milli_seconds);
+  double milli_seconds_since_my_turn = EngineContainer()->symbol_engine_time()->elapsedmyturn() * 1000;
+  EngineContainer()->symbol_engine_debug()->SetValue(2, milli_seconds_since_my_turn);
   if (milli_seconds_since_my_turn < desired_delay_in_milli_seconds) {
     write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not isfinalanswer because of f$delay\n");
     _isfinalanswer = false;
@@ -165,7 +165,7 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
        p_function_collection->Evaluate(delay_function, Preferences()->log_delay_function()));
 		_isfinalanswer = false;
 	}
-  p_engine_container->symbol_engine_debug()->SetValue(3, _isfinalanswer);
+  EngineContainer()->symbol_engine_debug()->SetValue(3, _isfinalanswer);
 }
 
 CString CSymbolEngineAutoplayer::GetFCKRAString()

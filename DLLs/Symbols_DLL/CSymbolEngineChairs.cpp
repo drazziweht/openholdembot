@@ -44,13 +44,13 @@ CSymbolEngineChairs::CSymbolEngineChairs() {
   // The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-  assert(p_engine_container->symbol_engine_checks_bets_folds() != NULL);
-  assert(p_engine_container->symbol_engine_poker_action() != NULL);
-  assert(p_engine_container->symbol_engine_positions() != NULL);
-  assert(p_engine_container->symbol_engine_userchair() != NULL);
-  assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-  // Also using p_engine_container->symbol_engine_history()->DidAct()
+  assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_checks_bets_folds() != NULL);
+  assert(EngineContainer()->symbol_engine_poker_action() != NULL);
+  assert(EngineContainer()->symbol_engine_positions() != NULL);
+  assert(EngineContainer()->symbol_engine_userchair() != NULL);
+  assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+  // Also using EngineContainer()->symbol_engine_history()->DidAct()
 // but that's no real dependency, as it is from the past
 }
 
@@ -83,11 +83,11 @@ void CSymbolEngineChairs::UpdateOnHeartbeat() {
 }
 
 int CSymbolEngineChairs::HeadsupChair() {
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying() != 1) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying() != 1) {
     return kUndefined;
   }
   for (int i = 0; i < _nchairs; ++i) {
-    if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->opponentsplayingbits(), i)) {
+    if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->opponentsplayingbits(), i)) {
       return i;
     }
   }
@@ -98,7 +98,7 @@ int CSymbolEngineChairs::HeadsupChair() {
 
 int CSymbolEngineChairs::ChairByDealposition(int dealposition) {
   for (int i = 0; i < _nchairs; ++i) {
-    if (p_engine_container->symbol_engine_poker_action()->DealPosition(i) == dealposition) {
+    if (EngineContainer()->symbol_engine_poker_action()->DealPosition(i) == dealposition) {
       return i;
     }
   }
@@ -115,7 +115,7 @@ int CSymbolEngineChairs::NBlindsAtTheTable() {
 int CSymbolEngineChairs::ChairByLogicalPosition(int offset_from_dealer) {
   assert(offset_from_dealer >= kOffsetDealer);
   assert(offset_from_dealer <= kOffsetEP1);
-  int dealposition = p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() - offset_from_dealer;
+  int dealposition = EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() - offset_from_dealer;
   if (dealposition <= NBlindsAtTheTable()) {
     // This is a blind poster
     // His position can't be looked up counter-clockwise from the dealer
@@ -127,7 +127,7 @@ int CSymbolEngineChairs::ChairByLogicalPosition(int offset_from_dealer) {
 }
 
 int CSymbolEngineChairs::UTGChair() {
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() <= 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() <= 2) {
     // Headsup
     return kUndefined;
   }
@@ -142,7 +142,7 @@ int CSymbolEngineChairs::UTGChair() {
 int CSymbolEngineChairs::SmallStackChair() {
   int result = kUndefined;
   int nchairs = 10;/// nchairs();
-  int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+  int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
   // Init with huge number that we will never see in practice
   double smallest_stack = 999999999999;
   for (int i = 0; i < nchairs; ++i) {
@@ -165,7 +165,7 @@ int CSymbolEngineChairs::SmallStackChair() {
 int CSymbolEngineChairs::BigStackChair() {
   int result = kUndefined;
   int nchairs = 10; /// nchairs();
-  int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+  int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
   double biggest_stack = 0.0;
   for (int i = 0; i < nchairs; ++i) {
     if (i == userchair) {
@@ -185,11 +185,11 @@ int CSymbolEngineChairs::BigStackChair() {
 }
 
 int CSymbolEngineChairs::SmallBlindChair() {
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) {
     return kUndefined;
   }
   // Headsup
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() == 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() == 2) {
     return ChairByDealposition(2);
   }
   if (MissingSmallBlind()) {
@@ -199,11 +199,11 @@ int CSymbolEngineChairs::SmallBlindChair() {
 }
 
 int CSymbolEngineChairs::BigBlindChair() {
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() < 2) {
     return kUndefined;
   }
   // Headsup
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt() == 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt() == 2) {
     return ChairByDealposition(1);
   }
   if (MissingSmallBlind()) {
@@ -213,14 +213,14 @@ int CSymbolEngineChairs::BigBlindChair() {
 }
 
 bool CSymbolEngineChairs::MissingSmallBlind() {
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nplayersseated() < 2) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersseated() < 2) {
     return false;
   }
   if (false/*#p_betround_calculator->betround() > kBetroundPreflop*/) {
     // Gets initialized at our first action preflop
     return _missing_smallblind;
   }
-  if (p_engine_container->symbol_engine_history()->DidAct()) {
+  if (EngineContainer()->symbol_engine_history()->DidAct()) {
     return _missing_smallblind;
   }
   // Not yet initialized
@@ -231,21 +231,21 @@ int CSymbolEngineChairs::CalculateMissingSmallBlind() {
   // True, if SB is missing, false otherwise
   // Should be called at our first action preflop only.
   assert(!_missing_smallblind_calculated);
-  if (p_engine_container->symbol_engine_active_dealt_playing()->nopponentsdealt() <= 0) {
+  if (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsdealt() <= 0) {
     return false;
   }
   int dealposition1_chair = ChairByDealposition(1);
   assert(dealposition1_chair >= 0);
   double currentbet_of_dealposition1_chair = TableState()->Player(dealposition1_chair)->_bet.GetValue();
   assert(currentbet_of_dealposition1_chair >= 0);
-  if (currentbet_of_dealposition1_chair == p_engine_container->symbol_engine_tablelimits()->sblind()) {
+  if (currentbet_of_dealposition1_chair == EngineContainer()->symbol_engine_tablelimits()->sblind()) {
     // Small blind found
     return false;
   }
   // If we are NOT the Second player to be dealt and see a bet 
   // of 1 big blind left to the dealer, then it is the big blind (SB missing)
-  int dealposition = p_engine_container->symbol_engine_positions()->dealposition();
-  double bblind = p_engine_container->symbol_engine_tablelimits()->bblind();
+  int dealposition = EngineContainer()->symbol_engine_positions()->dealposition();
+  double bblind = EngineContainer()->symbol_engine_tablelimits()->bblind();
   if ((dealposition != 2) && (currentbet_of_dealposition1_chair == bblind)) {
     return true;
   }
@@ -282,7 +282,7 @@ bool CSymbolEngineChairs::PlayersBehindDealPosition2ChairDidAct() {
   // This affects calculation of small blind, big blind,
   // all positions and finally lots of other things...
   assert(p_betround_calculator->betround() == kBetroundPreflop);
-  if (p_engine_container->symbol_engine_checks_bets_folds()->nopponentsfolded() > 0) {
+  if (EngineContainer()->symbol_engine_checks_bets_folds()->nopponentsfolded() > 0) {
     return true;
   }
   for (int i = 0; i < _nchairs; ++i) {

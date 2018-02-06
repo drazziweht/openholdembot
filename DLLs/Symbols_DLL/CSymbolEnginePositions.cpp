@@ -28,9 +28,9 @@ CSymbolEnginePositions::CSymbolEnginePositions()
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEnginePositions::~CSymbolEnginePositions()
@@ -69,7 +69,7 @@ void CSymbolEnginePositions::CalculateNChairsDealtLeftRight() {
 	_nchairsdealtright = 0;
 	_nchairsdealtleft  = 0;
 
-	if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed())	{
+	if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed())	{
 		// Nothing to search for
 		return;
 	}
@@ -81,9 +81,9 @@ void CSymbolEnginePositions::CalculateNChairsDealtLeftRight() {
 		int next_chair = i%nchairs();
 		double p_bet = TableState()->Player(next_chair)->_bet.GetValue();
 
-		if (next_chair == p_engine_container->symbol_engine_userchair()->userchair())	{
+		if (next_chair == EngineContainer()->symbol_engine_userchair()->userchair())	{
 			found_userchair = true;
-		}	else if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) 	{
+		}	else if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) 	{
 			if (!found_userchair)	{
 				_nchairsdealtright++;
 			}	else {
@@ -104,13 +104,13 @@ void CSymbolEnginePositions::CalculatePositionForTheRaiser() {
 		  i++) {
 		int next_chair = i%nchairs();
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=20746
-		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair)) {
+		if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair)) {
 			_betpositionrais++;
 		}
-    if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) {
+    if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) {
 			_dealpositionrais++;
 		}
-    if (next_chair == p_engine_container->symbol_engine_raisers()->raischair()) {
+    if (next_chair == EngineContainer()->symbol_engine_raisers()->raischair()) {
       break;
     }
 	}
@@ -127,29 +127,29 @@ void CSymbolEnginePositions::CalculatePositionsForTheUserchair() {
 		  i<=DEALER_CHAIR+nchairs();
 		  i++) {
 		int next_chair = i%nchairs();
-		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair))	{
+		if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersplayingbits(), next_chair))	{
 			_betposition++;
 		}
-		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) {
+		if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits(), next_chair)) {
 			_dealposition++;
 		}
-		if ((next_chair) == p_engine_container->symbol_engine_userchair()->userchair())	{
+		if ((next_chair) == EngineContainer()->symbol_engine_userchair()->userchair())	{
 			// Stop searching
 			break;
 		}
 	}
 
-	int raischair = p_engine_container->symbol_engine_raisers()->raischair();
+	int raischair = EngineContainer()->symbol_engine_raisers()->raischair();
 	for (int i=raischair+1; i<=raischair+nchairs(); i++) 	{
 		int next_chair = i%nchairs();
-		if (IsBitSet(p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt(), next_chair)) 	{
+		if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt(), next_chair)) 	{
 			_callposition++;
 		}
 	}
 
   // calculate _callposition; _betpositionrais must have been calculated at this point
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=20746
-  int nplayers = p_engine_container->symbol_engine_active_dealt_playing()->nplayersplaying();
+  int nplayers = EngineContainer()->symbol_engine_active_dealt_playing()->nplayersplaying();
   int offset = (_betposition + nplayers - _betpositionrais);
   if (nplayers > 0) {
     _callposition = offset % nplayers;

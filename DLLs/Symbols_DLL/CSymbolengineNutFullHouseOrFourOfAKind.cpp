@@ -33,8 +33,8 @@ CSymbolEngineNutFullhouseOrFourOfAKind::CSymbolEngineNutFullhouseOrFourOfAKind()
   // we assure correct ordering by checking if they are initialized.
   //
   // This engine does not use any other engines.
-  assert(p_engine_container->symbol_engine_cards() != NULL);
-  assert(p_engine_container->symbol_engine_userchair() != NULL);
+  assert(EngineContainer()->symbol_engine_cards() != NULL);
+  assert(EngineContainer()->symbol_engine_userchair() != NULL);
   // Also depending on CSymbolEngineIsOmaha.h, which returns "constant" values
 }
 
@@ -82,7 +82,7 @@ int CSymbolEngineNutFullhouseOrFourOfAKind::Handstrength(CardMask cards, int n_c
   if (hand_type != HandType_QUADS) {
     // Unmodified hand-strength of our 5-card-hand (non-quads).
   }
-  else if (p_engine_container->symbol_engine_cards()->nrankedcommon() == 4) {
+  else if (EngineContainer()->symbol_engine_cards()->nrankedcommon() == 4) {
     // Quads on board, kickers do count.
     // Keep hand-strength unmodified.
   }
@@ -120,7 +120,7 @@ void CSymbolEngineNutFullhouseOrFourOfAKind::CalculateNutFullhouseOrFourOfAKind(
       "[CSymbolEngineNutFullhouseOrFourOfAKind] Not yet flop. no fullhouse possible\n");
     return;
   }
-  int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+  int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
   if (userchair == kUndefined) {
     // Can happen if we are not seated 
     // or if we connect in a potential showdown-situation (river without buttons)

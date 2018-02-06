@@ -11,13 +11,26 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CHandHistoryAction.cpp" />
+    <ClCompile Include="CHandHistoryDealPhase.cpp" />
+    <ClCompile Include="CHandHistoryShowdown.cpp" />
+    <ClCompile Include="CHandHistoryUncontested.cpp" />
+    <ClCompile Include="CHandHistoryWriter.cpp" />
     <ClCompile Include="Files.cpp" />
+    <ClCompile Include="handhistory_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CHandHistory.h" />
+    <ClInclude Include="CHandHistoryAction.h" />
+    <ClInclude Include="CHandHistoryDealPhase.h" />
+    <ClInclude Include="CHandHistoryShowdown.h" />
+    <ClInclude Include="CHandHistoryUncontested.h" />
+    <ClInclude Include="CHandHistoryWriter.h" />
     <ClInclude Include="Files.h" />
+    <ClInclude Include="handhistory_generator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6D9F9D81-4D08-4C57-A773-4B041360D150}</ProjectGuid>
+    <ProjectGuid>{6685BEFD-E62E-442E-9E1C-255B39D0A4D5}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>

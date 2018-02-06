@@ -16,7 +16,7 @@
 
 #include "CVirtualSymbolEngine.h"
 
-#define DEALER_CHAIR p_engine_container->symbol_engine_dealerchair()->dealerchair()
+#define DEALER_CHAIR EngineContainer()->symbol_engine_dealerchair()->dealerchair()
 
 class CSymbolEngineDealerchair: public CVirtualSymbolEngine {
  public:

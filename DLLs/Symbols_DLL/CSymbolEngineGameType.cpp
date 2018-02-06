@@ -28,7 +28,7 @@ CSymbolEngineGameType::CSymbolEngineGameType() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_istournament() != NULL);
+	assert(EngineContainer()->symbol_engine_istournament() != NULL);
   InitOnStartup();
 }
 
@@ -90,7 +90,7 @@ CString CSymbolEngineGameType::GetGameTypeAsString() {
     // That's better than former "unknown".
 		result = "FL";
 	}
-	if (p_engine_container->symbol_engine_istournament()->istournament()) {
+	if (EngineContainer()->symbol_engine_istournament()->istournament()) {
 		result += "T";
 	}
 	return result;

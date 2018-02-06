@@ -41,10 +41,10 @@ CSymbolEnginePokerTracker::CSymbolEnginePokerTracker()
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_isrush() != NULL); 
-	assert(p_engine_container->symbol_engine_raisers() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
+	assert(EngineContainer()->symbol_engine_isrush() != NULL); 
+	assert(EngineContainer()->symbol_engine_raisers() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
 }
 
 CSymbolEnginePokerTracker::~CSymbolEnginePokerTracker() {
@@ -61,7 +61,7 @@ void CSymbolEnginePokerTracker::UpdateOnConnection() {
 }
 
 void CSymbolEnginePokerTracker::UpdateOnHandreset() {
-  if (p_engine_container->symbol_engine_isrush()->isrush())
+  if (EngineContainer()->symbol_engine_isrush()->isrush())
     ClearAllStats();
 }
 
@@ -181,7 +181,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *resul
 	}
 	int chair = 0;
 	if (!p_pokertracker_thread->IsConnected()) 	{
-		if (!p_engine_container->symbol_engine_userchair()->userchair_confirmed() || p_formula_parser->IsParsing()) {
+		if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed() || p_formula_parser->IsParsing()) {
 			// We are not yet seated or formula is getting parsed.
 			// Symbol-lookup happens, because of Formula-validation.
 			// Not a problem, if we do not yet have a DB-connection.

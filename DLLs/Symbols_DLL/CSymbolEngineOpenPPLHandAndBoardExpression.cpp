@@ -50,9 +50,9 @@ CSymbolEngineOpenPPLHandAndBoardExpression::CSymbolEngineOpenPPLHandAndBoardExpr
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_cards() != NULL);
-  assert(p_engine_container->symbol_engine_isomaha() != NULL);
-	assert(p_engine_container->symbol_engine_pokerval() != NULL);
+	assert(EngineContainer()->symbol_engine_cards() != NULL);
+  assert(EngineContainer()->symbol_engine_isomaha() != NULL);
+	assert(EngineContainer()->symbol_engine_pokerval() != NULL);
 }
 
 CSymbolEngineOpenPPLHandAndBoardExpression::~CSymbolEngineOpenPPLHandAndBoardExpression()
@@ -74,7 +74,7 @@ void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnMyTurn() {
 }
 
 void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnHeartbeat() {
-  if (p_engine_container->symbol_engine_isomaha()->isomaha()) {
+  if (EngineContainer()->symbol_engine_isomaha()->isomaha()) {
     _prime_coded_hole_cards = PrimeCodedRanks(
       TableState()->User()->hole_cards(0)->GetOpenHoldemRank(),
       TableState()->User()->hole_cards(1)->GetOpenHoldemRank(),
@@ -201,7 +201,7 @@ bool CSymbolEngineOpenPPLHandAndBoardExpression::EvaluateSymbol(const CString na
 		if (is_hand_expression)	{
 			// Suited hand-expression
 			// Ranks already checked, there are only 2, this simplifies things
-			if (!p_engine_container->symbol_engine_cards()->issuited()) {
+			if (!EngineContainer()->symbol_engine_cards()->issuited()) {
         write_log(Preferences()->debug_hand_and_board_expressions(), 
 			    "[CSymbolEngineOpenPPLHandAndBoardExpression] No match, because off-suited hole-cards\n");
 				// No suited ranks available
@@ -210,7 +210,7 @@ bool CSymbolEngineOpenPPLHandAndBoardExpression::EvaluateSymbol(const CString na
 			}
 		}	else {
 			// Suited board-expression
-			int rankbits_available = p_engine_container->symbol_engine_pokerval()->srankbitscommon();
+			int rankbits_available = EngineContainer()->symbol_engine_pokerval()->srankbitscommon();
 			// Check ranks in expression against available ranks
 			if ((rankbits_to_be_searched & rankbits_available) != rankbits_to_be_searched)
 			{

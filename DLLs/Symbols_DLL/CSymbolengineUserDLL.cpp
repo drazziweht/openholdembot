@@ -92,7 +92,7 @@ EXE_IMPLEMENTS double GetSymbol(const char* name_of_single_symbol__not_expressio
     // restart iterator thread
     p_iterator_thread->RestartPrWinComputations();
     // Recompute versus tables
-    p_engine_container->symbol_engine_versus()->GetCounts();
+    EngineContainer()->symbol_engine_versus()->GetCounts();
     // Busy waiting until recalculation got finished.
     // Nothing better to do, as we already evaluate bot-logic,
     // so we can't continue with another heartbeat or something else.
@@ -103,7 +103,7 @@ EXE_IMPLEMENTS double GetSymbol(const char* name_of_single_symbol__not_expressio
     return 0;
   }
   double result = kUndefined;
-  p_engine_container->EvaluateSymbol(name_of_single_symbol__not_expression,
+  EngineContainer()->EvaluateSymbol(name_of_single_symbol__not_expression,
     &result,
     kAlwaysLogDLLMessages);
   return result;

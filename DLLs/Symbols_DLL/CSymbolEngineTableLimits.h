@@ -16,8 +16,8 @@
 
 #include "CVirtualSymbolEngine.h"
 
-#define BIG_BLIND p_engine_container->symbol_engine_tablelimits()->bblind()
-#define SMALL_BLIND p_engine_container->symbol_engine_tablelimits()->sblind()
+#define BIG_BLIND EngineContainer()->symbol_engine_tablelimits()->bblind()
+#define SMALL_BLIND EngineContainer()->symbol_engine_tablelimits()->sblind()
 
 struct STableLimit {
 	double sblind;

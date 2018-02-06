@@ -27,8 +27,8 @@ CSymbolEngineChipAmounts::CSymbolEngineChipAmounts() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
 }
 
 CSymbolEngineChipAmounts::~CSymbolEngineChipAmounts()
@@ -78,10 +78,10 @@ void CSymbolEngineChipAmounts::UpdateOnHeartbeat() {
 }
 
 double CSymbolEngineChipAmounts::ncurrentbets() {
-  if (p_engine_container->symbol_engine_tablelimits()->bet() == 0) {
+  if (EngineContainer()->symbol_engine_tablelimits()->bet() == 0) {
     return 0;
   }
-  return (TableState()->User()->_bet.GetValue() / p_engine_container->symbol_engine_tablelimits()->bet());
+  return (TableState()->User()->_bet.GetValue() / EngineContainer()->symbol_engine_tablelimits()->bet());
 }
 
 void CSymbolEngineChipAmounts::SetMaxBalanceConditionally() { 
@@ -164,7 +164,7 @@ void CSymbolEngineChipAmounts::CalculatePots() {
 void CSymbolEngineChipAmounts::CalculateAmountsToCallToRaise() {
 	int	next_largest_bet = 0;
 	double largest_bet = Largestbet();
-  if (p_engine_container->symbol_engine_userchair()->userchair_confirmed()) {
+  if (EngineContainer()->symbol_engine_userchair()->userchair_confirmed()) {
 		_call = largest_bet - TableState()->User()->_bet.GetValue();
 	} else {
 		_call = 0;
@@ -188,14 +188,14 @@ void CSymbolEngineChipAmounts::CalculateAmountsToCallToRaise() {
 }
 
 void CSymbolEngineChipAmounts::CalculateBetsToCallToRaise() {
-	double bet = p_engine_container->symbol_engine_tablelimits()->bet();
+	double bet = EngineContainer()->symbol_engine_tablelimits()->bet();
 	if (bet <= 0) {
     // Fail-safe for the case of not being connected 
     // and completely bogus input
     bet = 1.00;
 	}
   double users_currentbet = 0;
-	if (p_engine_container->symbol_engine_userchair()->userchair_confirmed())	{
+	if (EngineContainer()->symbol_engine_userchair()->userchair_confirmed())	{
 		_nbetstocall = _call / bet;	
     users_currentbet = TableState()->User()->_bet.GetValue();
 	} else {
@@ -323,7 +323,7 @@ CString CSymbolEngineChipAmounts::SymbolsProvided() {
 }
 
 double CSymbolEngineChipAmounts::MaxActiveOpponentStack() {
-  int userchair = p_engine_container->symbol_engine_userchair()->userchair();
+  int userchair = EngineContainer()->symbol_engine_userchair()->userchair();
   double max_stack = 0;
   for (int i=0; i<kMaxNumberOfPlayers; ++i) {
     if (!TableState()->Player(i)->active()) {

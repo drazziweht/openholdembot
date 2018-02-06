@@ -35,7 +35,7 @@ void CValidator::SetEnabledManually(bool Enabled) {
 }
 
 void CValidator::Validate() {
-  assert(p_engine_container != nullptr);
+  assert(EngineContainer() != nullptr);
   if (!EngineContainer()->symbol_engine_autoplayer()->ismyturn()) {
     // Validate only if it is my turn.
     //   * because then we have stable frames

@@ -36,13 +36,13 @@ CSymbolEngineChecksBetsFolds::CSymbolEngineChecksBetsFolds() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-  assert(p_engine_container->symbol_engine_autoplayer() != NULL);
-	assert(p_engine_container->symbol_engine_chip_amounts() != NULL);
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
-	// Also using p_engine_container->symbol_engine_history() one time,
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_autoplayer() != NULL);
+	assert(EngineContainer()->symbol_engine_chip_amounts() != NULL);
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
+	// Also using EngineContainer()->symbol_engine_history() one time,
 	// but because we use "old" information here
 	// there is no dependency on this cycle.
 }
@@ -90,7 +90,7 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
         && TableState()->Player(i)->HasAnyCards())	{
 			_nplayerscallshort++;
 		}
-		if (i == p_engine_container->symbol_engine_userchair()->userchair()) {
+		if (i == EngineContainer()->symbol_engine_userchair()->userchair()) {
 			// No opponent;
 			// Nothing more to do
 			continue;
@@ -99,7 +99,7 @@ void CSymbolEngineChecksBetsFolds::CalculateNOpponentsCheckingBettingFolded() {
 			_nopponentsbetting++;
 		}
 		// Players might have been betting, but folded, so no else for the if
-		if ((p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits() & (1<<(i)))
+		if ((EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits() & (1<<(i)))
         && !TableState()->Player(i)->HasAnyCards())	{
 			_nopponentsfolded++;					
 		}
@@ -138,7 +138,7 @@ void CSymbolEngineChecksBetsFolds::CalculateFoldBits() {
 		}
 	}
 	// remove players, who didn't get dealt.
-	new_foldbits &= p_engine_container->symbol_engine_active_dealt_playing()->playersdealtbits();
+	new_foldbits &= EngineContainer()->symbol_engine_active_dealt_playing()->playersdealtbits();
 	// remove players, who folded in earlier betting-rounds.
 	if (BETROUND >= kBetroundFlop) {
 		new_foldbits &= (~_foldbits[kBetroundPreflop]);
@@ -158,9 +158,9 @@ void CSymbolEngineChecksBetsFolds::CalculateFoldBits() {
   // Special fail-safe-code for foldbits: 
   // when it is our turn and we have stable input we try to repair foldbits 
   // of all betrounds and remove all playing players again.
-  if (p_engine_container->symbol_engine_autoplayer()->ismyturn()) {
+  if (EngineContainer()->symbol_engine_autoplayer()->ismyturn()) {
     for (int i = kBetroundPreflop; i <= kBetroundRiver; ++i) {
-      _foldbits[i] &= ~p_engine_container->symbol_engine_active_dealt_playing()->playersplayingbits();
+      _foldbits[i] &= ~EngineContainer()->symbol_engine_active_dealt_playing()->playersplayingbits();
     }
   }
 }

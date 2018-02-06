@@ -27,8 +27,8 @@ CSymbolEngineTableStats::CSymbolEngineTableStats() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-  assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-  assert(p_engine_container->symbol_engine_chip_amounts() != NULL);
+  assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_chip_amounts() != NULL);
   UpdateOnConnection();
 }
 
@@ -83,9 +83,9 @@ void CSymbolEngineTableStats::ShiftOldestDataAway() {
 void CSymbolEngineTableStats::UpdateData() {
   switch (BETROUND) {
     case kBetroundPreflop:
-      dealt_players[kIndexCurrentHand] = p_engine_container->symbol_engine_active_dealt_playing()->nplayersdealt();
-      bets_preflop[kIndexCurrentHand] = p_engine_container->symbol_engine_chip_amounts()->ncallbets();
-      if (p_engine_container->symbol_engine_chip_amounts()->ncallbets() > 1) {
+      dealt_players[kIndexCurrentHand] = EngineContainer()->symbol_engine_active_dealt_playing()->nplayersdealt();
+      bets_preflop[kIndexCurrentHand] = EngineContainer()->symbol_engine_chip_amounts()->ncallbets();
+      if (EngineContainer()->symbol_engine_chip_amounts()->ncallbets() > 1) {
         // raised_preflop is a "counter" with state 0/1
         // so that we can use SumUp().
         raised_preflop[kIndexCurrentHand] = 1;
@@ -93,17 +93,17 @@ void CSymbolEngineTableStats::UpdateData() {
       break;
     case kBetroundFlop:
       if (seen_flop[kIndexCurrentHand] == 0) {
-        seen_flop[kIndexCurrentHand] = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying();
+        seen_flop[kIndexCurrentHand] = EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying();
       }
       break;
     case kBetroundTurn:
       if (seen_turn[kIndexCurrentHand] == 0) {
-        seen_turn[kIndexCurrentHand] = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying();
+        seen_turn[kIndexCurrentHand] = EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying();
       }
       break;
     case kBetroundRiver:
       if (seen_river[kIndexCurrentHand] == 0) {
-        seen_river[kIndexCurrentHand] = p_engine_container->symbol_engine_active_dealt_playing()->nopponentsplaying();
+        seen_river[kIndexCurrentHand] = EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsplaying();
       }
       break;
   }

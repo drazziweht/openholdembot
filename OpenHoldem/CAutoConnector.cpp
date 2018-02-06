@@ -257,7 +257,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   if (p_table_positioner == NULL) return false;
   if (p_autoplayer == NULL) return false;
   if (p_casino_interface == NULL) return false;
-  if (p_engine_container == NULL) return false;
+  if (EngineContainer() == NULL) return false;
   if (p_flags_toolbar == NULL) return false;
   if (p_scraper == NULL) return false;
   if (p_sharedmem == NULL) return false;

@@ -32,20 +32,20 @@
 #include "..\Tablestate_DLL\TableState.h"
 
 // Some symbols are only well-defined if it is my turn
-#define RETURN_UNDEFINED_VALUE_IF_NOT_MY_TURN { if (!p_engine_container->symbol_engine_autoplayer()->ismyturn()) *result = kUndefined; }
+#define RETURN_UNDEFINED_VALUE_IF_NOT_MY_TURN { if (!EngineContainer()->symbol_engine_autoplayer()->ismyturn()) *result = kUndefined; }
 
 CSymbolEngineCallers::CSymbolEngineCallers() {
 	// The values of some symbol-engines depend on other engines.
 	// As the engines get later called in the order of initialization
 	// we assure correct ordering by checking if they are initialized.
-	assert(p_engine_container->symbol_engine_active_dealt_playing() != NULL);
-  assert(p_engine_container->symbol_engine_autoplayer() != NULL);
-	assert(p_engine_container->symbol_engine_chip_amounts() != NULL);
-	assert(p_engine_container->symbol_engine_dealerchair() != NULL);
-  assert(p_engine_container->symbol_engine_raisers() != NULL);
-	assert(p_engine_container->symbol_engine_tablelimits() != NULL);
-	assert(p_engine_container->symbol_engine_userchair() != NULL);
-	// Also using p_engine_container->symbol_engine_history() one time,
+	assert(EngineContainer()->symbol_engine_active_dealt_playing() != NULL);
+  assert(EngineContainer()->symbol_engine_autoplayer() != NULL);
+	assert(EngineContainer()->symbol_engine_chip_amounts() != NULL);
+	assert(EngineContainer()->symbol_engine_dealerchair() != NULL);
+  assert(EngineContainer()->symbol_engine_raisers() != NULL);
+	assert(EngineContainer()->symbol_engine_tablelimits() != NULL);
+	assert(EngineContainer()->symbol_engine_userchair() != NULL);
+	// Also using EngineContainer()->symbol_engine_history() one time,
 	// but because we use "old" information here
 	// there is no dependency on this cycle.
   //
@@ -90,7 +90,7 @@ void CSymbolEngineCallers::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineCallers::UpdateAfterAutoplayerAction(int autoplayer_action_code) {
-  _allinbits_previous_orbit = p_engine_container->symbol_engine_active_dealt_playing()->playersallinbits();
+  _allinbits_previous_orbit = EngineContainer()->symbol_engine_active_dealt_playing()->playersallinbits();
   write_log(Preferences()->debug_symbolengine(),
     "[CSymbolEngineCallers] Players allin from previous orbit: %x\n",
     _allinbits_previous_orbit);
@@ -102,13 +102,13 @@ void CSymbolEngineCallers::CalculateCallers() {
   _nopponentscalling = 0;
   _firstcaller_chair = kUndefined;
   _lastcaller_chair = kUndefined;
-  int first_possible_raiser = p_engine_container->symbol_engine_raisers()->FirstPossibleActor();
-  int last_possible_raiser = p_engine_container->symbol_engine_raisers()->LastPossibleActor() + _nchairs;
+  int first_possible_raiser = EngineContainer()->symbol_engine_raisers()->FirstPossibleActor();
+  int last_possible_raiser = EngineContainer()->symbol_engine_raisers()->LastPossibleActor() + _nchairs;
   assert(last_possible_raiser > first_possible_raiser);
   assert((last_possible_raiser - first_possible_raiser) <= (2 * _nchairs));
-  assert(p_engine_container->symbol_engine_debug() != NULL);
+  assert(EngineContainer()->symbol_engine_debug() != NULL);
   int chairs_seen = 0;
-  double highest_bet = p_engine_container->symbol_engine_raisers()->MinimumStartingBetCurrentOrbit(false);
+  double highest_bet = EngineContainer()->symbol_engine_raisers()->MinimumStartingBetCurrentOrbit(false);
   write_log(Preferences()->debug_symbolengine(),
     "[CSymbolEngineCallers] current highest bet: %.2f\n", highest_bet);
   write_log(Preferences()->debug_symbolengine(),
@@ -136,7 +136,7 @@ void CSymbolEngineCallers::CalculateCallers() {
         "[CSymbolEngineCallers] Chair %i checking\n", chair);
       continue;
     }
-    if (current_players_bet < p_engine_container->symbol_engine_tablelimits()->bblind()) {
+    if (current_players_bet < EngineContainer()->symbol_engine_tablelimits()->bblind()) {
       // Player is posting the small-blind or ante
       write_log(Preferences()->debug_symbolengine(),
         "[CSymbolEngineCallers] Chair %i posts SB or ante\n", chair);
@@ -149,7 +149,7 @@ void CSymbolEngineCallers::CalculateCallers() {
       highest_bet = current_players_bet;
       continue;
     }
-    if (chair == p_engine_container->symbol_engine_userchair()->userchair()) {
+    if (chair == EngineContainer()->symbol_engine_userchair()->userchair()) {
       // User is no opponent
       // and its bet is of no interest either (start or end of search)
       write_log(Preferences()->debug_symbolengine(),

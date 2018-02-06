@@ -280,7 +280,7 @@ void CDlgFormulaScintilla::UpdateScintillaKeywords(CScintillaWnd *pWnd) {
   CString filter;
   m_SearchEdit.GetWindowText(filter);
   if (filter.IsEmpty()) {
-    assert(p_engine_container != NULL);
+    assert(EngineContainer() != NULL);
     keywords = EngineContainer()->SymbolsProvided();
 	pWnd->SendMessage(SCI_SETKEYWORDS, 0, (LPARAM) keywords.GetString());
   } else {
