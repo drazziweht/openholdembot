@@ -436,7 +436,7 @@ void CMainFrame::OnFileOpen() {
 		pDoc->OnOpenDocument(cfd.GetPathName());
 		pDoc->SetPathName(cfd.GetPathName());
 		// Update window title, registry
-		p_openholdem_title->UpdateTitle();
+		GUI()->OpenHoldemTitle()->UpdateTitle();
 		theApp.StoreLastRecentlyUsedFileList();
 	}
 }

@@ -133,9 +133,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoConnector\n");
   assert(!p_autoconnector);
   p_autoconnector = new CAutoConnector;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create COpenHoldemTitle\n");
-  assert(!p_openholdem_title);
-  p_openholdem_title = new COpenHoldemTitle;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWhiteInfoBox\n");
   assert(!p_white_info_box);
   p_white_info_box = new CWhiteInfoBox;
@@ -208,8 +205,6 @@ void DeleteAllSingletons() {
   DELETE_AND_CLEAR(p_rebuymanagement)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting white info box\n");
   DELETE_AND_CLEAR(p_white_info_box)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting OpenHoldem title\n");
-  DELETE_AND_CLEAR(p_openholdem_title)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting popup handler\n");
   DELETE_AND_CLEAR(p_popup_handler)
   write_log(Preferences()->debug_singletons(), "[Singletons] Deleting autoconnector\n");

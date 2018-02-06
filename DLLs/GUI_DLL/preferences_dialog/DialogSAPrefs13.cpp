@@ -68,6 +68,6 @@ void CDlgSAPrefs13::OnOK()
 	Preferences()->SetValue(k_prefs_mutex_name, temp);
 	Preferences()->SetValue(k_prefs_simple_window_title, IsDlgButtonChecked(IDC_SIMPLE_TITLE));
 
-	p_openholdem_title->UpdateTitle();
+	GUI()->OpenHoldemTitle()->UpdateTitle();
 	CSAPrefsSubDlg::OnOK();
 }

@@ -161,7 +161,7 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
 	// Reply-frames no longer here in the heartbeat.
   // we have a "ReplayFrameController for that.
   LeaveCriticalSection(&pParent->cs_update_in_progress);
-	p_openholdem_title->UpdateTitle();
+	GUI()->OpenHoldemTitle()->UpdateTitle();
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// Update scraper output dialog if it is present
 	if (m_ScraperOutputDlg) {

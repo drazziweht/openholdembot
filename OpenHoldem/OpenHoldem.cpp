@@ -222,8 +222,8 @@ void COpenHoldemApp::FinishInitialization() {
 	write_log(Preferences()->debug_openholdem(), "[OpenHoldem] FinishInitialization()\n");
 	write_log(Preferences()->debug_openholdem(), "[OpenHoldem] m_pMainWnd = %i\n",
 		m_pMainWnd);
-	assert(p_openholdem_title != NULL);
-	p_openholdem_title->UpdateTitle();
+	assert(GUI()->OpenHoldemTitle() != NULL);
+	GUI()->OpenHoldemTitle()->UpdateTitle();
 	// The one and only window has been initialized, so show and update it
 	if (Preferences()->gui_first_visible() && (p_sessioncounter->session_id() == 0)) {
     m_pMainWnd->ShowWindow(SW_SHOW);

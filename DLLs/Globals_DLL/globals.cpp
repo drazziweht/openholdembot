@@ -17,13 +17,30 @@
 #define GLOBALS_DLL_EXPORTS
 
 #include "globals.h"
+#include "..\GUI_DLL\CGUI.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\TableState_DLL\TableState.h"
 
+CEngineContainer engine_container;
+CGUI gui;
 CPreferences preferences;
 CTableState table_state;
 
 GLOBALS_DLL_API void InitGlobals() {
+}
+
+GLOBALS_DLL_API CEngineContainer* EngineContainer() {
+  return &engine_container;
+}
+
+GLOBALS_DLL_API CFunctionCollection* FunctionCollection() {
+  return NULL; //!!!!!
+}
+
+
+GLOBALS_DLL_API CGUI* GUI() {
+  return &gui;
 }
 
 GLOBALS_DLL_API CPreferences* Preferences() {
