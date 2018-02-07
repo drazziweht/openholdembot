@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,9 +13,6 @@
 //   The collection gets cleared every heartbeat.
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOL_ENGINE_OPENPPL_USER_VARIABLES_H
-#define INC_CSYMBOL_ENGINE_OPENPPL_USER_VARIABLES_H
 
 #include <map>
 #include "CVirtualSymbolEngine.h"
@@ -37,5 +35,3 @@ class CSymbolEngineOpenPPLUserVariables: public CVirtualSymbolEngine {
  private:
   std::map<CString, bool> _user_variables;
 };
-
-#endif INC_CSYMBOL_ENGINE_OPENPPL_USER_VARIABLES_H

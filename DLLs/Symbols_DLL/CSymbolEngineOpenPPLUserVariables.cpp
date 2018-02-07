@@ -7,10 +7,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Data container for OpenPPL user-variables.
+//   If they exist they evaluate to true.
+//   The collection gets cleared every heartbeat.
 //
 //******************************************************************************
-
 
 #include "CSymbolEngineOpenPPLUserVariables.h"
 #include "CStringHashtableTemplate.h"
@@ -79,4 +80,3 @@ bool CSymbolEngineOpenPPLUserVariables::EvaluateSymbol(const CString name, doubl
 
 // SymbolsProvided() does not make much sense here
 // as we only know the prefixes
-

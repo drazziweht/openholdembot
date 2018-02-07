@@ -8,14 +8,22 @@
 //
 //******************************************************************************
 //
-// Purpose: Warning about unknown (erroneaous) and outdated symbols
-//   Is not able to care about wrong function names; this has to be handled
-//   by CFormula::WarnAboutOutdatedConcepts().
+// Purpose: To be used with CMap-hashtables and CStrings as keys
 //
 //******************************************************************************
 
-#include <afxwin.h>
+// CString hashtable below by Sam NG
+// http://www.codeproject.com/Articles/13458/CMap-How-to
+template<> 
+UINT AFXAPI HashKey<CString*> (CString* key);
 
-// This function will also show a warning message with explanations
-bool IsOutdatedSymbol(CString symbol);
-void WarnAboutUnknownSymbol(CString symbol);
+// I don't know why, but CompareElements can't work with CString*
+// have to define this
+typedef CString* LPCString;
+
+template<>
+BOOL AFXAPI CompareElements<LPCString, LPCString> 
+     (const LPCString* pElement1, const LPCString* pElement2);
+
+// End of CString hashtable by Sam NG
+

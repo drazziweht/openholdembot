@@ -185,7 +185,3 @@ CString CSymbolEngineMultiplexer::SymbolsProvided() {
   // losing syntax-highlighting for multiplexed symbols.
   return "";
 }
-
-
-
-

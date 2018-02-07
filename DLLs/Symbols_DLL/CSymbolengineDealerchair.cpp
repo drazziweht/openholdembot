@@ -7,21 +7,18 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: calculating the delaer-chair
+//   !!!!! logical / technical, by button / SB / remembering
 //
 //******************************************************************************
 
 #include "CSymbolEngineDealerchair.h"
-
 #include "CEngineContainer.h"
-
-
 #include "CSymbolEngineTableLimits.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 CSymbolEngineDealerchair::CSymbolEngineDealerchair() {
 	// The values of some symbol-engines depend on other engines.

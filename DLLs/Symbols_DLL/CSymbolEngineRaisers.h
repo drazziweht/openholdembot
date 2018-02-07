@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -32,9 +33,6 @@
 //    but at least somewhat meaningful in the debug-tab).
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINERAISERS_H
-#define INC_CSYMBOLENGINERAISERS_H
 
 #include "CVirtualSymbolEngine.h"
 #include "CBetroundCalculator.h"
@@ -90,5 +88,3 @@ class CSymbolEngineRaisers: public CVirtualSymbolEngine {
 	int _raisbits[kNumberOfBetrounds + 1];
   int _lastraised[kNumberOfBetrounds + 1]; 
 };
-
-#endif INC_CSYMBOLENGINERAISERS_H

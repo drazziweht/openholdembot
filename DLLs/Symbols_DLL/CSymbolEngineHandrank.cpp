@@ -7,22 +7,17 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Rating the strangth of our hole-cards
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineHandrank.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "COpenHoldemStatusbar.h"
-
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 
 int handrank_table_2652[kMaxNumberOfPlayers][kNumberOfStartingHands] =
 {
@@ -112,7 +107,7 @@ void CSymbolEngineHandrank::CalculateHandrank() {
       break;
     }
   }
-  GUI()->OpenholdemStatusbar()->SetHandrank(_handrank169);
+  //#!!!!! Bad, not here!GUI()->OpenholdemStatusbar()->SetHandrank(_handrank169);
   _handrank1326 = _handrank2652 / 2;
   _handrank1000 = 1000 * _handrank2652 / 2652;
   _handrankp = 2652.0 / (1.0 + (double)nopponents);

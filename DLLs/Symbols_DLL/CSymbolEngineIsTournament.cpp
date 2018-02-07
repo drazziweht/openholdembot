@@ -12,14 +12,10 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineIsTournament.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "CHandresetDetector.h"
-
-
+///#include "CHandresetDetector.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineCasino.h"
@@ -28,13 +24,12 @@
 #include "CSymbolEngineChipAmounts.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineTableLimits.h"
-#include "..\CTablemap\CTablemap.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\..\CTablemap\CTablemap.h"
 
 const double k_lowest_bigblind_ever_seen_in_tournament           = 10.0;
 const double k_large_bigblind_probably_later_table_in_tournament = 500.0;
@@ -288,7 +283,7 @@ void CSymbolEngineIsTournament::TryToDetectTournament() {
 	// Also checking for (elapsedauto < elapsed). i.e. at least one action
 	// since connection, as handsplayed does not reset if we play multiple games.
 	if ((_istournament != kUndefined)
-		  && (p_handreset_detector->hands_played() > 2)
+		  //#&& (p_handreset_detector->hands_played() > 2)
 		  && (EngineContainer()->symbol_engine_time()->elapsedauto() < EngineContainer()->symbol_engine_time()->elapsed())) {
 		write_log(Preferences()->debug_istournament(), "[CSymbolEngineIsTournament] Enough hands played; locking current value\n");
 		_decision_locked = true;

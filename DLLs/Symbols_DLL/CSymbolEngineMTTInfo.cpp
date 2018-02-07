@@ -12,7 +12,6 @@
 //******************************************************************************
 
 #include "CSymbolEngineMTTInfo.h"
-
 #include "CBetroundCalculator.h"
 #include "..\Tablestate_DLL\TableState.h"
 

@@ -11,16 +11,12 @@
 //
 //****************************************************************************** 
 
-
 #include "CSymbolEngineTableLimits.h"
-
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CBlindGuesser.h"
 #include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-
-
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineIsTournament.h"

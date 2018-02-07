@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+//   !!!!! logical / technical, by button / SB / remembering
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEDEALERCHAIR_H
-#define INC_CSYMBOLENGINEDEALERCHAIR_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -41,5 +39,3 @@ class CSymbolEngineDealerchair: public CVirtualSymbolEngine {
  private:
   int _dealerchair;
 };
-
-#endif INC_CSYMBOLENGINEUSERCHAIR_H

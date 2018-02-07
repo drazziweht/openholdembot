@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEICM
-#define INC_CSYMBOLENGINEICM
 
 #include "CVirtualSymbolEngine.h"
 
@@ -36,5 +34,3 @@ class CSymbolEngineICM: public CVirtualSymbolEngine {
   int GetChairFromDealPos(const char* pquery);
   double EquityICM(double *stacks, double *prizes, int playerNB, int player);
 };
-
-#endif INC_CSYMBOLENGINEICM

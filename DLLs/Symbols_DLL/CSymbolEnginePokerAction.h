@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEPOKERACTION_H
-#define INC_CSYMBOLENGINEPOKERACTION_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -43,5 +41,3 @@ class CSymbolEnginePokerAction: public CVirtualSymbolEngine {
 	const int		BetPosition(const int chairnum);
 	const bool	AgchairAfter();
 };
-
-#endif INC_CSYMBOLENGINEPOKERACTION_H

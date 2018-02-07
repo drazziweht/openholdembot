@@ -12,13 +12,10 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineVariousDataLookup.h"
-
 #include <assert.h>
 #include <process.h>
 #include <float.h>
-
 #include "CAutoconnector.h"
 #include "CAutoplayerTrace.h"
 #include "CBetroundCalculator.h"
@@ -30,9 +27,7 @@
 #include "CHandresetDetector.h"
 #include "CIteratorThread.h"
 #include "CPokerTrackerThread.h"
-
 #include "CSessionCounter.h"
-
 #include "CSymbolEngineUserchair.h"
 #include "..\CTablemap\CTablemap.h"
 #include "..\CTransform\CTransform.h"

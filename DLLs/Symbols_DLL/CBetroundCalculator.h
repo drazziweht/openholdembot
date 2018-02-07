@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CBETROUNDCALCULATOR_H
-#define INC_CBETROUNDCALCULATOR_H
 
 // The betround-calculator is not a normal symbol-engine,
 // because changes in the betround need to be known
@@ -38,6 +36,4 @@ private:
 	int _betround_previous_heartbeat;
 };
 
-extern CBetroundCalculator *p_betround_calculator;
-
-#endif
+extern CBetroundCalculator *p_betround_calculator; //!!!!

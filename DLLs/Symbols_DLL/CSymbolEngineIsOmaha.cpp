@@ -13,16 +13,14 @@
 //******************************************************************************
 
 #include "CSymbolEngineIsOmaha.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
-///
-#include "..\..\CTablemap\CTablemap.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\..\CTablemap\CTablemap.h"
 
 // The number of cards per player depends on the game-type.
 // This affects cards to be scraped and evaluated.
@@ -67,7 +65,7 @@ void CSymbolEngineIsOmaha::UpdateOnMyTurn() {
 
 void CSymbolEngineIsOmaha::UpdateOnHeartbeat() {
   if (_isomaha) {
-    write_log(kPreferences()->debug_symbolengine(), "[CSymbolEngineIsOmaha] Already Omaha\n");
+    write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineIsOmaha] Already Omaha\n");
     return;
   }
   if (!p_tablemap->SupportsOmaha()) {

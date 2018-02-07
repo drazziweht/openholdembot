@@ -15,14 +15,11 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineIniFunctions.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
+///#include "CFormulaParser.h"
 #include "CFunctionCollection.h"
-
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineBlinds.h"

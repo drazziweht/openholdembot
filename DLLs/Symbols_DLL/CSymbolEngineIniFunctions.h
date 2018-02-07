@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -14,9 +15,6 @@
 // Not really a symbol-engine, but easy to implement with this concept.
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEINIFUNCTIONS_H
-#define INC_CSYMBOLENGINEINIFUNCTIONS_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -35,5 +33,3 @@ public:
  public:
   CString SymbolsProvided();
 };
-
-#endif INC_CSYMBOLENGINEINIFUNCTIONS_H

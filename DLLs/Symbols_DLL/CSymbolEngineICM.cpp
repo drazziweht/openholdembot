@@ -27,10 +27,7 @@
 #include "CSymbolEngineICM.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
-
-
 #include "CSymbolEngineTableLimits.h"
-#include "..\CTablemap\CTablemap.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineBlinds.h"
 #include "CSymbolEngineChipAmounts.h"
@@ -41,9 +38,8 @@
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
-
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\CTablemap\CTablemap.h"
 
 CSymbolEngineICM::CSymbolEngineICM() {
   // The values of some symbol-engines depend on other engines.
@@ -114,7 +110,7 @@ int CSymbolEngineICM::GetChairFromDealPos(const char* name)
 {
 	int	sym_nplayersseated =	EngineContainer()->symbol_engine_active_dealt_playing()->nplayersseated();
 	int	sym_dealerchair =		EngineContainer()->symbol_engine_dealerchair()->dealerchair();
-	int nchairs =               nchairs();
+	int nchairs = p_tablemap.>nchairs();
 	int	chair = -1;
 
 		if (strcmp(name,"SB")==0)

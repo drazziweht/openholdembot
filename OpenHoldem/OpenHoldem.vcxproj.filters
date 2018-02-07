@@ -2,7 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="BetpotCalculations.cpp" />
-    <ClCompile Include="CAllinSlider.cpp" />
     <ClCompile Include="CAutoplayerButton.cpp" />
     <ClCompile Include="CBetsizeInputBox.cpp" />
     <ClCompile Include="CCasinoHotkey.cpp" />
@@ -44,12 +43,9 @@
     <ClCompile Include="CConfigurationCheck.cpp" />
     <ClCompile Include="CProblemSolver.cpp" />
     <ClCompile Include="CVersionInfo.cpp" />
-    <ClCompile Include="BringKeyboard.cpp" />
-    <ClCompile Include="CAutoplayer.cpp" />
     <ClCompile Include="CAutoplayerFunctions.cpp" />
     <ClCompile Include="CCasinoInterface.cpp" />
     <ClCompile Include="CStableFramesCounter.cpp" />
-    <ClCompile Include="PokerChat.cpp" />
     <ClCompile Include="CAutoConnector.cpp" />
     <ClCompile Include="CTableMapLoader.cpp" />
     <ClCompile Include="CTablePositioner.cpp" />
@@ -67,7 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BetpotCalculations.h" />
-    <ClInclude Include="CAllinSlider.h" />
     <ClInclude Include="CAutoplayerButton.h" />
     <ClInclude Include="CBetsizeInputBox.h" />
     <ClInclude Include="CCasinoHotkey.h" />
@@ -134,13 +129,10 @@
     <ClInclude Include="COpenHoldemHopperCommunication.h" />
     <ClInclude Include="CSessionCounter.h" />
     <ClInclude Include="CSharedMem.h" />
-    <ClInclude Include="BringKeyboard.h" />
-    <ClInclude Include="CAutoplayer.h" />
     <ClInclude Include="CAutoplayerFunctions.h" />
     <ClInclude Include="CCasinoInterface.h" />
     <ClInclude Include="CRebuyManagement.h" />
     <ClInclude Include="CStableFramesCounter.h" />
-    <ClInclude Include="PokerChat.hpp" />
     <ClInclude Include="CAutoConnector.h" />
     <ClInclude Include="CTableMapLoader.h" />
     <ClInclude Include="CTablePositioner.h" />

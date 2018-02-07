@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,15 +12,11 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEPOKERVAL_H
-#define INC_CSYMBOLENGINEPOKERVAL_H
-
 #include "CVirtualSymbolEngine.h"
 #include "assert.h"
 #include "CSymbolEngineUserChair.h"
 #include "CSymbolEngineTableLimits.h"
-
-
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 
 class CSymbolEnginePokerval: public CVirtualSymbolEngine
 {
@@ -153,5 +150,3 @@ private:
 private:
 	HandVal	handval; 
 };
-
-#endif INC_CSYMBOLENGINEPOKERVAL_H

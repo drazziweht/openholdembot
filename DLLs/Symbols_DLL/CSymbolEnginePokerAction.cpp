@@ -11,9 +11,7 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEnginePokerAction.h"
-
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 #include "CSymbolEngineActiveDealtPlaying.h"

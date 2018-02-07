@@ -11,14 +11,11 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineOpenPPLHandAndBoardExpression.h"
-
-#include "CardFunctions.h"
+///#include "CardFunctions.h"
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
-#include "CParseErrors.h"
-
+///#include "CFormulaParser.h"
+///#include "CParseErrors.h"
 #include "CSymbolEngineCards.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEnginePokerval.h"
@@ -101,7 +98,7 @@ void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnHeartbeat() {
 
 void CSymbolEngineOpenPPLHandAndBoardExpression::CheckForProbablyMistakenSpadesInsteadOfSuited(CString expression) {
   if (!p_formula_parser->IsParsing()) {
-    // We want this check andf warning only once at parse-time
+    // We want this check and warning only once at parse-time
     return;
   }
   // This function must only be called if the prefix is hand$ or board$
@@ -132,7 +129,7 @@ void CSymbolEngineOpenPPLHandAndBoardExpression::CheckForProbablyMistakenSpadesI
 	"Please disambiguate this expression.\n"
 	"Either use \"suited\" or reorder the spades-card.\n",
     expression, guessed_correct_expression);
-  CParseErrors::Error(message);
+  //#CParseErrors::Error(message);
 }
 
 bool CSymbolEngineOpenPPLHandAndBoardExpression::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {
@@ -315,7 +312,7 @@ int CSymbolEngineOpenPPLHandAndBoardExpression::PrimeCodedRanks(CString card_exp
       // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=19774
       CString message;
       message.Format("Invalid character \"%c\" in hand- or board-expression.\n", next_character);
-      CParseErrors::Error(message);
+      //#CParseErrors::Error(message);
       break;
     } else {
       result *= prime_coded_card_ranks[rank];

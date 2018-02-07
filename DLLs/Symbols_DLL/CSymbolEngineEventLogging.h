@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   but a good way to get important events logged.
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEEVENTLOGGING_H
-#define INC_CSYMBOLENGINEEVENTLOGGING_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -34,5 +32,3 @@ public:
 	// Public accessors
 	bool EvaluateSymbol(const CString name, double *result, bool log = false);
 };
-
-#endif INC_CSYMBOLENGINEEVENTLOGGING_H

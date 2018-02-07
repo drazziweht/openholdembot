@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   to enable / disable automatic blind-locking (stability) 
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEISTOURNAMENT_H
-#define INC_CSYMBOLENGINEISTOURNAMENT_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -53,5 +51,3 @@ class CSymbolEngineIsTournament: public CVirtualSymbolEngine {
 	int _istournament;
 	bool _decision_locked;
 };
-
-#endif INC_CSYMBOLENGINEISTOURNAMENT_H

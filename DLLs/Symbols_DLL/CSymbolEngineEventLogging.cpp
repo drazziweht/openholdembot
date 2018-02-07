@@ -12,7 +12,6 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEngineEventLogging.h"
 
 /*#include "CAutoconnector.h"
@@ -38,7 +37,7 @@ void CSymbolEngineEventLogging::InitOnStartup()
 {}
 
 void CSymbolEngineEventLogging::UpdateOnConnection() {
-  p_autoplayer_trace->Clear();
+  //#p_autoplayer_trace->Clear();
 }
 
 void CSymbolEngineEventLogging::UpdateOnHandreset() {
@@ -52,7 +51,7 @@ void CSymbolEngineEventLogging::UpdateOnHandreset() {
     "==============================================\n"
     "HAND RESET\n"
     "==============================================\n",
-    p_version_info->GetVersionInfo(), 
+    "", //#p_version_info->GetVersionInfo(), 
     TableState()->TableTitle()->Title());
 }
 
@@ -63,7 +62,7 @@ void CSymbolEngineEventLogging::UpdateOnMyTurn()
 {}
 
 void CSymbolEngineEventLogging::UpdateOnHeartbeat() {
-  p_autoplayer_trace->Clear();
+  //#p_autoplayer_trace->Clear();
 }
 
 bool CSymbolEngineEventLogging::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {

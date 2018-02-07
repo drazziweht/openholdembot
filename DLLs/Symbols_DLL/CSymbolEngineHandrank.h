@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Rating the strangth of our hole-cards
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINEHANDRANK_H
-#define INC_CSYMBOLENGINEHANDRANK_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -49,5 +47,3 @@ private:
 	double _handrank1000;
 	double _handrankp;
 };
-
-#endif INC_CSYMBOLENGINEHANDRANK_H

@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: lookup gor scraped colourcode-symbols for rating opponents
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINECOLOURCODES_H
-#define INC_CSYMBOLENGINECOLOURCODES_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -37,5 +35,3 @@ class CSymbolEngineColourCodes: public CVirtualSymbolEngine {
   // otherwise scraped colour-code.
   int ColourCodeToDisplay(const int chair);
 };
-
-#endif INC_CSYMBOLENGINECOLOURCODES_H

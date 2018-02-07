@@ -7,13 +7,11 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Virtual base class for all symbol-engines
 //
 //******************************************************************************
 
-
 #include "CVirtualSymbolEngine.h"
-
 #include "CEngineContainer.h"
 #include "CCasinoInterface.h"
 #include "CFormulaParser.h"

@@ -12,16 +12,11 @@
 //***************************************************************************** 
 
 #include "CSymbolEngineTableStats.h"
-
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "CHandresetDetector.h"
-
-
-
+///#include "CHandresetDetector.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineChipAmounts.h"
-
 
 CSymbolEngineTableStats::CSymbolEngineTableStats() {
 	// The values of some symbol-engines depend on other engines.

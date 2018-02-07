@@ -11,16 +11,12 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEnginePrwin.h"
-
 #include <assert.h>
 #include <math.h>
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 #include "CIteratorThread.h"
-
-
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolenginePokerval.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"

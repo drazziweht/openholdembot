@@ -12,7 +12,6 @@
 //******************************************************************************
 
 #include "CSymbolEnginePositions.h"
-
 #include <assert.h>
 #include "CEngineContainer.h"
 #include "CSymbolEngineActiveDealtPlaying.h"

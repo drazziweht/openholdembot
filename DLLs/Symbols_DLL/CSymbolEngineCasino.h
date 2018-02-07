@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose: 
 //
 //******************************************************************************
-
-#ifndef INC_CSYMBOLENGINECASINO_H
-#define INC_CSYMBOLENGINECASINO_H
 
 #include "CVirtualSymbolEngine.h"
 
@@ -42,5 +40,3 @@ class CSymbolEngineCasino: public CVirtualSymbolEngine {
  private:
   bool SitenameContainsCasinoIdentifier(const char *casino);
 };
-
-#endif /* INC_CSYMBOLENGINECASINO_H */

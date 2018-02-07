@@ -47,11 +47,11 @@
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
-#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
-#include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CSymbolEngineRaisers::CSymbolEngineRaisers() {
 	// The values of some symbol-engines depend on other engines.

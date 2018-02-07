@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,12 +8,9 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Virtual base class for all symbol-engines
 //
 //******************************************************************************
-
-#ifndef INC_CVIRTUALSYMBOLENGINE_H
-#define INC_CVIRTUALSYMBOLENGINE_H
 
 #include <afxwin.h>
 ///#include "CSpaceOptimizedGlobalObject.h"
@@ -42,7 +40,3 @@ class CVirtualSymbolEngine/*!!!!!!!: public CSpaceOptimizedGlobalObject */{
 	// To build a list of identifiers for the editor
 	virtual CString SymbolsProvided();
 };
-
-#endif INC_CVIRTUALSYMBOLENGINE_H
-
-
