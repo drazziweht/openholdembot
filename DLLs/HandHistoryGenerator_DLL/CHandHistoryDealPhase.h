@@ -15,7 +15,7 @@
 //
 //******************************************************************************
 
-#include "CVirtualSymbolEngine.h"
+#include "..\Symbols_DLL\CVirtualSymbolEngine.h"
 
 class CHandHistoryDealPhase: public CVirtualSymbolEngine {
  public:

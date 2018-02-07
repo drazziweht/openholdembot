@@ -19,7 +19,7 @@
 //
 //******************************************************************************
 
-#include "CVirtualSymbolEngine.h"
+#include "..\Symbols_DLL\CVirtualSymbolEngine.h"
 
 const int kMaxLines = 256;
 

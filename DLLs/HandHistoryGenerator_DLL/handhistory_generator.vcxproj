@@ -20,7 +20,6 @@
     <ClCompile Include="handhistory_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CHandHistory.h" />
     <ClInclude Include="CHandHistoryAction.h" />
     <ClInclude Include="CHandHistoryDealPhase.h" />
     <ClInclude Include="CHandHistoryShowdown.h" />

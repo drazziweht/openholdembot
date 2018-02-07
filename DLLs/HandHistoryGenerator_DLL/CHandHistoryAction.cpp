@@ -7,18 +7,14 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: Part of the modular handhistory-generator.
+//   Not really a symbol-engine but it is convenient
+//   to make use of the symbol-engine-concepts,
+//   Also used for the new summary in the logs.
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CHandHistoryAction.h"
-
-
-#include "CScraper.h"
-
-
-CHandHistoryAction *p_handhistory_action = NULL;
 
 CHandHistoryAction::CHandHistoryAction() {
 	// The values of some symbol-engines depend on other engines.

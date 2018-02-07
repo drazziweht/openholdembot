@@ -11,12 +11,9 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CHandHistoryShowdown.h"
-
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-
 #include "CScraper.h"
 #include "CSymbolEngineUserchair.h"
 

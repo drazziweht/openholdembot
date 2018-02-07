@@ -15,7 +15,7 @@
 //
 //******************************************************************************
 
-#include "CVirtualSymbolEngine.h"
+#include "..\Symbols_DLL\CVirtualSymbolEngine.h"
 
 class CHandHistoryAction: public CVirtualSymbolEngine {
  public:

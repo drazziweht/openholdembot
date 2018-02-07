@@ -18,12 +18,9 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CHandHistoryWriter.h"
-
 #include "CHandHistoryDealPhase.h"
 #include "CHandHistoryUncontested.h"
-
 #include "CScraper.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 

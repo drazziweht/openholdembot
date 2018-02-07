@@ -11,9 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CHandHistoryDealPhase.h"
-
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 #include "CHandHistoryWriter.h"

@@ -11,12 +11,9 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CHandHistoryUncontested.h"
-
 #include "CEngineContainer.h"
 #include "CHandHistoryWriter.h"
-
 #include "CScraper.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
