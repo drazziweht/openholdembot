@@ -21,8 +21,6 @@
 #include "../CTablemap/CTableMapAccess.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
-CTablePositioner *p_table_positioner = NULL;
-
 CTablePositioner::CTablePositioner() {
   SystemParametersInfo(SPI_GETWORKAREA, NULL, &_desktop_rectangle, NULL);
 }

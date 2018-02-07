@@ -32,5 +32,3 @@ class CTablePositioner /*#: public CSpaceOptimizedGlobalObject */{
 	RECT _desktop_rectangle;
   RECT _table_position;
 };
-
-extern CTablePositioner *p_table_positioner;

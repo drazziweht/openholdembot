@@ -85,11 +85,23 @@ void CAutoplayerButton::SetLabel(const CString label) {
 }
 
 bool CAutoplayerButton::IsLabelAllin() {
-  return p_string_match->IsStringAllin(_label);
+  CString s_lower_case = _label;
+  s_lower_case.MakeLower();
+  s_lower_case.Remove(' ');
+  s_lower_case.Remove('-');
+  s_lower_case = s_lower_case.Left(5);
+  return (s_lower_case == "allin"
+    || s_lower_case == "a11in"
+    || s_lower_case == "allln"
+    || s_lower_case == "a111n"
+    || s_lower_case == "aiiin"
+    || s_lower_case == "buyin"
+    || s_lower_case.Left(3) == "max");
 }
 
 bool CAutoplayerButton::IsLabelRaise() {
-  CString s_lower_case = _label.MakeLower();
+  CString s_lower_case = _label;
+  s_lower_case.MakeLower();
   s_lower_case = s_lower_case.Left(5);
   return (s_lower_case == "raise"
     || s_lower_case == "ra1se"
@@ -100,28 +112,31 @@ bool CAutoplayerButton::IsLabelRaise() {
 }
 
 bool CAutoplayerButton::IsLabelCall() {
-  CString s_lower_case = _label.MakeLower();
+  CString s_lower_case = _label;
+  s_lower_case.MakeLower();
   s_lower_case = s_lower_case.Left(4);
   return (s_lower_case == "call" || s_lower_case == "caii" || s_lower_case == "ca11");
 }
 
 bool CAutoplayerButton::IsLabelCheck() {
-  CString s_lower_case = _label.MakeLower();
+  CString s_lower_case = _label;
+  s_lower_case.MakeLower();
   s_lower_case = s_lower_case.Left(5);
   return (s_lower_case == "check" || s_lower_case == "cheok");
 }
 
 bool CAutoplayerButton::IsLabelFold() {
-  CString s_lower_case = _label.MakeLower();
+  CString s_lower_case = _label;
+  s_lower_case.MakeLower();
   s_lower_case = s_lower_case.Left(4);
   return (s_lower_case == "fold" || s_lower_case == "fo1d" || s_lower_case == "foid");
 }
 
 bool CAutoplayerButton::IsLabelAutopost() {
   CString s_lower_case = _label;
+  s_lower_case.MakeLower();
   s_lower_case.Remove(' ');
   s_lower_case.Remove('-');
-  s_lower_case.MakeLower();
   s_lower_case = s_lower_case.Left(8);
   return (s_lower_case == "autopost" || s_lower_case == "aut0p0st");
 }

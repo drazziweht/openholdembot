@@ -253,7 +253,8 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   // We have to check and return very early, we must not do this
   // after locking the mutex, otherwiese we block other instances forever.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19407&p=140417#p140417
-  if (p_table_positioner == NULL) return false;
+  //!!!!! DONOWORKS if noi GUI
+  if (OpenHoldem()->TablePositioner() == NULL) return false;
   if (p_autoplayer == NULL) return false;
   if (p_casino_interface == NULL) return false;
   if (EngineContainer() == NULL) return false;
@@ -262,7 +263,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   if (OpenHoldem()->SharedMem() == NULL) return false;
   if (p_tablemap == NULL) return false;
   if (p_tablemap_loader == NULL) return false;
-  if (p_table_positioner == NULL) return false;
+  if (OpenHoldem()->TablePositioner() == NULL) return false;
   if (TableState() == NULL) return false;
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Connect(..)\n");
   ASSERT(_autoconnector_mutex->m_hObject != NULL); 
@@ -325,8 +326,8 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			PMainframe()->ResetDisplay();
       // log OH title bar text and table reset
       WriteLogTableReset("NEW CONNECTION");
-      p_table_positioner->ResizeToTargetSize();
-			p_table_positioner->PositionMyWindow();
+      OpenHoldem()->TablePositioner()->ResizeToTargetSize();
+			OpenHoldem()->TablePositioner()->PositionMyWindow();
 			p_autoplayer->EngageAutoPlayerUponConnectionIfNeeded();
 		}
 	}

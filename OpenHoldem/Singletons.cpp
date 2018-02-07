@@ -58,9 +58,6 @@ void InstantiateAllSingletons() {
   // So the global class-pointers have to be NULL.
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create m emory pools\n");
   CreateMemoryPools();
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CStringMatch\n");
-  assert(!p_string_match);
-  p_string_match = new CStringMatch;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerTrace\n");
   assert(!p_autoplayer_trace);
   p_autoplayer_trace = new CAutoplayerTrace;
@@ -110,8 +107,8 @@ void InstantiateAllSingletons() {
   assert(!p_validator);
   p_validator = new CValidator;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTablePositioner\n");
-  assert(!p_table_positioner);
-  p_table_positioner = new CTablePositioner;
+  assert(!OpenHoldem()->TablePositioner());
+  OpenHoldem()->TablePositioner() = new CTablePositioner;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTableMapLoader\n");
   assert(!p_tablemap_loader);
   p_tablemap_loader = new CTableMapLoader;
