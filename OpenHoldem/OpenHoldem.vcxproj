@@ -346,7 +346,6 @@
     <None Include="..\##_OpenHoldem_Release_Directory_##\ManualMode Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OHReplay Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenHoldem Release Notes.txt" />
-    <None Include="..\##_OpenPPL_Release_Directory_##\OpenPPL Release Notes.txt" />
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenScrape Release Notes.txt" />
   </ItemGroup>
   <ItemGroup>

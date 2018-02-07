@@ -11,9 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CConfigurationCheck.cpp" />
+    <ClCompile Include="CProblemSolver.cpp" />
     <ClCompile Include="Files.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CConfigurationCheck.h" />
+    <ClInclude Include="CProblemSolver.h" />
     <ClInclude Include="Files.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
