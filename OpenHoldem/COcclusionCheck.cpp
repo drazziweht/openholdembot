@@ -20,10 +20,6 @@
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 
-
-COcclusionCheck *p_occlusioncheck = NULL;
-
-
 COcclusionCheck::COcclusionCheck()
 {}
 

@@ -27,5 +27,3 @@ private:
 	bool AnyOpponentNameKnown();
 	bool AnyApponentBalanceNonZero();
 };
-
-extern COcclusionCheck *p_occlusioncheck;
