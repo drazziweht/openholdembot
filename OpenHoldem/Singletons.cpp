@@ -118,9 +118,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTablePositioner\n");
   assert(!p_table_positioner);
   p_table_positioner = new CTablePositioner;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CFileSystemMonitor\n");
-  assert(!p_filesystem_monitor);
-  p_filesystem_monitor = new CFileSystemMonitor;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTableMapLoader\n");
   assert(!p_tablemap_loader);
   p_tablemap_loader = new CTableMapLoader;

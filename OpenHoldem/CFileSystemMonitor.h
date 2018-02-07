@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -36,7 +37,3 @@ class CFileSystemMonitor /*#: public CSpaceOptimizedGlobalObject */{
 	HANDLE dwChangeHandle;
   bool _scraper_directory_on_a_network_drive;
 };
-
-extern CFileSystemMonitor * p_filesystem_monitor;
-
-#endif // INC_CFILESYSTEM_MONITOR_H

@@ -162,7 +162,7 @@ void CTableMapLoader::ExtractConnectionDataFromCurrentTablemap(CTablemap *cmap) 
 }
 
 void CTableMapLoader::ReloadAllTablemapsIfChanged() {
-  if (p_filesystem_monitor->AnyChanges()) {
+  if (filesystem_monitor->AnyChanges()) {
     // Since OpenHoldem 4.0.0 there is no longer any possibility 
     // for manual connection; i.e. no possibility for re-connection.
     // Therefore the file-system-monitor does now dis-connect
