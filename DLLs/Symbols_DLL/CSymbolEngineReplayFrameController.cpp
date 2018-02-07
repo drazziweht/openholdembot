@@ -102,7 +102,7 @@ void CSymbolEngineReplayFrameController::UpdateAfterAutoplayerAction(int autopla
 }
 
 void CSymbolEngineReplayFrameController::ShootReplayFrameIfNotYetDone() {
-  int heartbeat_counter = p_heartbeat_thread->heartbeat_counter();
+  int heartbeat_counter = OpenHoldem()->HeartbeatThread()->heartbeat_counter();
   // Don't shoot replay-frames twice per heartbeat
   if (_heartbeat_of_last_replay_frame == heartbeat_counter) {
     write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] Not shooting a replay-frame, because we already shot one this heartbeat\n");

@@ -274,8 +274,8 @@ void CFormulaParser::ParseFormula(COHScriptObject* function_or_list_to_be_parsed
   // Unfortunatelly parsing some bot-loghic like the legendary
   // 20 MB Flopzilla code takes a bit longer than other instances
   // watchdog expects, that's why the parser regularly has to shout "ALIVE!"
-  ///assert(p_watchdog != NULL);
-  ///p_watchdog->MarkThisInstanceAsAlive();
+  assert(p_watchdog != NULL);
+  p_watchdog->MarkThisInstanceAsAlive();
   _function_name = function_or_list_to_be_parsed->name();
   _tokenizer.SetInputFunction(function_or_list_to_be_parsed);
   // No longer any check for end of file or end of function here.

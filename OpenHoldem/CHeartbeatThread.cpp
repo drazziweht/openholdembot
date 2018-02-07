@@ -41,7 +41,7 @@
 #include "..\CTablemap\CTablemap.h"
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 
-CHeartbeatThread	 *p_heartbeat_thread = NULL;
+CHeartbeatThread	 *OpenHoldem()->HeartbeatThread() = NULL;
 CRITICAL_SECTION	 CHeartbeatThread::cs_update_in_progress;
 long int			     CHeartbeatThread::_heartbeat_counter = 0;
 CHeartbeatThread   *CHeartbeatThread::pParent = NULL;
@@ -68,7 +68,7 @@ CHeartbeatThread::~CHeartbeatThread() {
 	::CloseHandle(_m_wait_thread);
 
 	DeleteCriticalSection(&cs_update_in_progress);
-	p_heartbeat_thread = NULL;
+	OpenHoldem()->HeartbeatThread() = NULL;
 }
 
 void CHeartbeatThread::StartThread() {

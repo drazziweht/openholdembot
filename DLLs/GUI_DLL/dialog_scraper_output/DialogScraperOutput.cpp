@@ -165,10 +165,10 @@ void CDlgScraperOutput::UpdateDisplay() {
 
 	if (in_startup) return;
   // Only do this if we are not in the middle of a scraper/symbol update
-	/*#if (TryEnterCriticalSection(&p_heartbeat_thread->cs_update_in_progress)) 	*/{
+	/*#if (TryEnterCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress)) 	*/{
 		if (m_RegionList.GetCurSel() == kUndefined) {
 			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
-			///LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+			///LeaveCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
 			return;
 		}
 
@@ -180,7 +180,7 @@ void CDlgScraperOutput::UpdateDisplay() {
     }	else {
 			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
     }
-		///LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+		///LeaveCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
 	}
 }
 

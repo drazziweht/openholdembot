@@ -72,7 +72,7 @@ void CReplayFrame::CreateReplayFrame(void){
 	}
 	// Get exclusive access to CScraper and CSymbols variables
 	// (Wait for scrape/symbol cycle to finish before saving frame)
-	EnterCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+	EnterCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
   CString next_frame;
 	next_frame.Format("[%06d]", _next_replay_frame);
   // Replay-frame should always be mentioned in the log for easy reference
@@ -127,7 +127,7 @@ void CReplayFrame::CreateReplayFrame(void){
 		fprintf(fp, "</body></html>\n");
     fclose(fp);
 	}	
-  LeaveCriticalSection(&p_heartbeat_thread->cs_update_in_progress);
+  LeaveCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
 }
 
 CString CReplayFrame::GeneralInfo() {

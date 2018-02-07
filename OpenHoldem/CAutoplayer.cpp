@@ -126,7 +126,7 @@ bool CAutoplayer::TimeToHandleSecondaryFormulas() {
  	}
 	write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] TimeToHandleSecondaryFormulas() heartbeats to pause: %i\n",
 		hearbeats_to_pause);
-	bool act_this_heartbeat = ((p_heartbeat_thread->heartbeat_counter() % hearbeats_to_pause) == 0);
+	bool act_this_heartbeat = ((OpenHoldem()->HeartbeatThread()->heartbeat_counter() % hearbeats_to_pause) == 0);
 	write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] TimeToHandleSecondaryFormulas() act_this_heartbeat: %s\n",
 		Bool2CString(act_this_heartbeat));
 	return act_this_heartbeat;
