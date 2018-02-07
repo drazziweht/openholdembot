@@ -34,8 +34,8 @@ CTablePositioner::~CTablePositioner() {
 void CTablePositioner::PositionMyWindow() {		
 	// Build list of poker tables (child windows)
 	// Use the shared memory (auto-connector) for that. 
-	HWNDs_of_child_windows = p_sharedmem->GetDenseListOfConnectedPokerWindows();
-	_number_of_tables = p_sharedmem->SizeOfDenseListOfAttachedPokerWindows();
+	HWNDs_of_child_windows = OpenHoldem()->SharedMem()->GetDenseListOfConnectedPokerWindows();
+	_number_of_tables = OpenHoldem()->SharedMem()->SizeOfDenseListOfAttachedPokerWindows();
   GetWindowSize(p_autoconnector->attached_hwnd(),
     &_table_size_x, &_table_size_y);
   if (_number_of_tables <= 0)	{

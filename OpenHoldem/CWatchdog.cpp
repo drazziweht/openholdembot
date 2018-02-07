@@ -39,8 +39,8 @@ CWatchdog::~CWatchdog() {
 }
 
 void CWatchdog::HandleCrashedAndFrozenProcesses() {
-  assert(p_sharedmem != NULL);
-  if (p_sharedmem->OpenHoldemProcessID() == 0) {
+  assert(OpenHoldem()->SharedMem() != NULL);
+  if (OpenHoldem()->SharedMem()->OpenHoldemProcessID() == 0) {
     write_log(k_always_log_errors, "WARNING! Watch-dog turned off, unavailable process ID\n");
     return;
   }
@@ -80,10 +80,10 @@ void CWatchdog::MarkThisInstanceAsDead() {
 void CWatchdog::WatchForCrashedProcesses() {
   write_log(Preferences()->debug_watchdog(), "[CWatchdog] Watching for crashed processes\n");
   for (int i = 0; i < MAX_SESSION_IDS; ++i) {
-    if (p_sharedmem->IsDeadOpenHoldemProcess(i)) {
+    if (OpenHoldem()->SharedMem()->IsDeadOpenHoldemProcess(i)) {
       write_log(Preferences()->debug_watchdog(), "[CWatchdog] Found crashed process and cleaning up\n");
       MarkInstanceAsDead(i);;
-      p_sharedmem->CleanUpProcessMemory(i);
+      OpenHoldem()->SharedMem()->CleanUpProcessMemory(i);
     }
   }
 }
@@ -108,7 +108,7 @@ void CWatchdog::WatchForFrozenProcesses() {
   time_t current_time;
   time(&current_time);
   for (int i = 0; i < MAX_SESSION_IDS; ++i) {
-    if (p_sharedmem->OpenHoldemProcessID(i) == 0) {
+    if (OpenHoldem()->SharedMem()->OpenHoldemProcessID(i) == 0) {
       // Not a process
       continue;
     }
@@ -122,19 +122,19 @@ void CWatchdog::WatchForFrozenProcesses() {
         // Probably a new process which does not yet proper heartbeating,
         // fix its time-stamp and grant it some time to continue.
         write_log(Preferences()->debug_watchdog(), "[CWatchdog] Deep freeze detected %i, PID: %i\n",
-          i, p_sharedmem->OpenHoldemProcessID(i));
+          i, OpenHoldem()->SharedMem()->OpenHoldemProcessID(i));
         write_log(Preferences()->debug_watchdog(), "[CWatchdog] Might be stale data\n");
         write_log(Preferences()->debug_watchdog(), "[CWatchdog] Granting more time\n");
-        p_sharedmem->OpenHoldemProcessID(i);
+        OpenHoldem()->SharedMem()->OpenHoldemProcessID(i);
         MarkInstanceAsAlive(i);
         continue;
       }
 #ifndef _DEBUG
       write_log(Preferences()->debug_watchdog(), "[CWatchdog] Killing frozen process %i, PID: %i\n",
-        i, p_sharedmem->OpenHoldemProcessID(i));
-      KillProcess(p_sharedmem->OpenHoldemProcessID(i));
+        i, OpenHoldem()->SharedMem()->OpenHoldemProcessID(i));
+      KillProcess(OpenHoldem()->SharedMem()->OpenHoldemProcessID(i));
       MarkInstanceAsDead(i);
-      p_sharedmem->CleanUpProcessMemory(i);
+      OpenHoldem()->SharedMem()->CleanUpProcessMemory(i);
 #else
       // Don't kill any processes in debug.mode
       // It is extremely annoying if we hit a breakpoint
@@ -142,7 +142,7 @@ void CWatchdog::WatchForFrozenProcesses() {
 #endif _DEBUG
       write_log(Preferences()->debug_watchdog(), 
         "[CWatchdog] Skipped killing frozen process %i, PID: %i because of debug-mode\n",
-        i, p_sharedmem->OpenHoldemProcessID(i));
+        i, OpenHoldem()->SharedMem()->OpenHoldemProcessID(i));
     }
   }
 }

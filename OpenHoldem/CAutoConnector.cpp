@@ -158,8 +158,8 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
 void CAutoConnector::set_attached_hwnd(const HWND table) {
   CSLock lock(m_critsec);
   _attached_hwnd = table;
-  assert(p_sharedmem != NULL);
-  p_sharedmem->MarkPokerWindowAsAttached(table);
+  assert(OpenHoldem()->SharedMem() != NULL);
+  OpenHoldem()->SharedMem()->MarkPokerWindowAsAttached(table);
 }
 
 BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
@@ -186,7 +186,7 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
 		// to select windows manually will cause us lots of headaches,
 		// as the lists will be of different size 
 		// and the indexes will not match.
-    if (p_sharedmem->PokerWindowAttached(hwnd)) {
+    if (OpenHoldem()->SharedMem()->PokerWindowAttached(hwnd)) {
       write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Window candidate already served: [%d]\n", hwnd);
     } else if (p_popup_handler->WinIsOpenHoldem(hwnd)) {
       write_log(Preferences()->debug_popup_blocker(), "[CAutoConnector] Window belongs to OpenHoldem\n");
@@ -215,13 +215,13 @@ void CAutoConnector::WriteLogTableReset(CString event_and_reason) {
 }
 
 void CAutoConnector::FailedToConnectBecauseNoWindowInList() {
-	p_sharedmem->RememberTimeOfLastFailedAttemptToConnect();
+	OpenHoldem()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
 	GoIntoPopupBlockingMode();
 }
 
 void CAutoConnector::FailedToConnectProbablyBecauseAllTablesAlreadyServed() {
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Attempt to connect did fail\n");
-	p_sharedmem->RememberTimeOfLastFailedAttemptToConnect();
+	OpenHoldem()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
 	GoIntoPopupBlockingMode();
 }
 
@@ -229,7 +229,7 @@ void CAutoConnector::GoIntoPopupBlockingMode() {
 	// We have a free instance that has nothing to do.
 	// Care about potential popups here, once per auto-connector-heartbeat.
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Not connected. Going into popup-blocking mode.\n");
-	if (p_sharedmem->AnyWindowAttached())	{
+	if (OpenHoldem()->SharedMem()->AnyWindowAttached())	{
 		// Only handle popups if at least one bot is connected to a table.
 		// Especially stop popup-handling if the last table got closed
 		// to allow "normal" human work again.
@@ -260,7 +260,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   if (EngineContainer() == NULL) return false;
   if (p_flags_toolbar == NULL) return false;
   if (p_scraper == NULL) return false;
-  if (p_sharedmem == NULL) return false;
+  if (OpenHoldem()->SharedMem() == NULL) return false;
   if (p_tablemap == NULL) return false;
   if (p_tablemap_loader == NULL) return false;
   if (p_table_positioner == NULL) return false;
@@ -392,7 +392,7 @@ int CAutoConnector::SelectTableMapAndWindowAutomatically() {
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] SelectTableMapAndWindowAutomatically(..)\n");
   int n_window_candidates = (int)g_tlist.GetSize();
 	for (int i=0; i<n_window_candidates; ++i) {
-		if (!p_sharedmem->PokerWindowAttached(g_tlist[i].hwnd))	{
+		if (!OpenHoldem()->SharedMem()->PokerWindowAttached(g_tlist[i].hwnd))	{
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Chosen (table, TM)-pair in list: %d\n", i);
 			return i;
 		}
@@ -403,7 +403,7 @@ int CAutoConnector::SelectTableMapAndWindowAutomatically() {
 }
 
 double CAutoConnector::SecondsSinceLastFailedAttemptToConnect() {
-	time_t last_failed_attempt_to_connect = p_sharedmem->GetTimeOfLastFailedAttemptToConnect(); 
+	time_t last_failed_attempt_to_connect = OpenHoldem()->SharedMem()->GetTimeOfLastFailedAttemptToConnect(); 
 	time_t CurrentTime;
 	time(&CurrentTime);
 	double _TimeSincelast_failed_attempt_to_connect = difftime(CurrentTime, last_failed_attempt_to_connect);

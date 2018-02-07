@@ -73,5 +73,3 @@ class CSharedMem /*#: public CSpaceOptimizedGlobalObject */{
  private:
 	CCritSec	m_critsec;
 };
-
-extern CSharedMem *p_sharedmem;

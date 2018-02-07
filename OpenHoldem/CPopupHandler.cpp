@@ -70,7 +70,7 @@ bool CPopupHandler::WinIsOpenHoldem(HWND window) {
   if (!GetWindowThreadProcessId(window, &PID)) {
     return false;
   }
-  return (p_sharedmem->IsAnyOpenHoldemProcess(PID));
+  return (OpenHoldem()->SharedMem()->IsAnyOpenHoldemProcess(PID));
 }
 
 void CPopupHandler::HandlePotentialPopup(HWND potential_popup, bool hard_kill) {
@@ -122,7 +122,7 @@ void CPopupHandler::HandlePotentialPopup(HWND potential_popup, bool hard_kill) {
 		write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Window is program manager\n");
 		return;
 	}
-	if (p_sharedmem->PokerWindowAttached(potential_popup)) {
+	if (OpenHoldem()->SharedMem()->PokerWindowAttached(potential_popup)) {
 		write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Window is a served poker table\n");
 		return;
 	}

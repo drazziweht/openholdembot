@@ -33,12 +33,12 @@ COpenHoldemStarter::~COpenHoldemStarter() {
 }
 
 void COpenHoldemStarter::StartNewInstanceIfNeeded() {
-  assert(p_sharedmem != NULL);
-  if (p_sharedmem->OpenHoldemProcessID() == 0) {
+  assert(OpenHoldem()->SharedMem() != NULL);
+  if (OpenHoldem()->SharedMem()->OpenHoldemProcessID() == 0) {
     write_log(k_always_log_errors, "WARNING! Auto-starter turned off, unavailable process ID\n");
     return;
   }
-  if (p_sharedmem->NUnoccupiedBots() >= kMinNumberOfUnoccupiedBotsNeeded) {
+  if (OpenHoldem()->SharedMem()->NUnoccupiedBots() >= kMinNumberOfUnoccupiedBotsNeeded) {
     // Enough instance available for new connections / popup handling
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] No bots needed, enough free instances.\n");
     return;
@@ -51,7 +51,7 @@ void COpenHoldemStarter::StartNewInstanceIfNeeded() {
     // and don't flood the screen with new bots.
     return;
   }
-  if (p_sharedmem->LowestConnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
+  if (OpenHoldem()->SharedMem()->LowestConnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
     // Only one instance should handle auto-starting.
     // This might delay auto-starting until the first connection, which is OK.
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my business to start new instances.\n");
@@ -73,8 +73,8 @@ void COpenHoldemStarter::StartNewInstanceIfNeeded() {
 }
 
 void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
-  assert(p_sharedmem != NULL);
-  if (p_sharedmem->OpenHoldemProcessID() == 0) {
+  assert(OpenHoldem()->SharedMem() != NULL);
+  if (OpenHoldem()->SharedMem()->OpenHoldemProcessID() == 0) {
     write_log(k_always_log_errors, "WARNING! Auto-shutdown turned off, unavailable process ID\n");
     return;
   }
@@ -83,7 +83,7 @@ void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
     // Instance needed for playing
     return;
   }
-  if (p_sharedmem->NUnoccupiedBots() <= kMinNumberOfUnoccupiedBotsNeeded) {
+  if (OpenHoldem()->SharedMem()->NUnoccupiedBots() <= kMinNumberOfUnoccupiedBotsNeeded) {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Needed for new connections.\n");
     // Instance needed for new connections / popup handling
     return;
@@ -94,11 +94,11 @@ void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not waited long enough for shutdown.\n");
     return;
   }
-  if (p_sharedmem->LowestUnconnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
+  if (OpenHoldem()->SharedMem()->LowestUnconnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
     // Only one instance should tzerminate at a time
     // to keep one instance available
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my turn to shutdown.\n");
-    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Lowest free ID: %d\n", p_sharedmem->LowestUnconnectedSessionID());
+    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Lowest free ID: %d\n", OpenHoldem()->SharedMem()->LowestUnconnectedSessionID());
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] My ID: %d\n", OpenHoldem()->SessionCounter()->session_id());
     return;
   }

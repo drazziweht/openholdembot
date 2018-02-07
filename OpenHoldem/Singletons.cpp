@@ -76,9 +76,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerFunctions\n");
   assert(!p_autoplayer_functions);
   p_autoplayer_functions = new CAutoplayerFunctions;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CSharedMem\n");
-  assert(!p_sharedmem);
-  p_sharedmem = new CSharedMem;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CStableFramesCounter\n");
   assert(!p_stableframescounter);
   p_stableframescounter = new CStableFramesCounter;                                                                                                                                                         

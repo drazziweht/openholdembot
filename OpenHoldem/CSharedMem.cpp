@@ -54,7 +54,7 @@ __declspec(allocate(kOpenHoldemSharedmemorySegment)) static	int    openholdem_PI
 //
 ///////////////////////////////////////////////////////////////////////////////////
 
-CSharedMem *p_sharedmem = NULL;
+CSharedMem *OpenHoldem()->SharedMem() = NULL;
 
 CSharedMem::CSharedMem() {
 	// We can verify the mutex here,
