@@ -65,6 +65,7 @@
     <ClCompile Include="CSymbolEngineVersus.cpp" />
     <ClCompile Include="CVirtualSymbolEngine.cpp" />
     <ClCompile Include="Symbols.cpp" />
+    <ClCompile Include="UnknownSymbols.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CBetroundCalculator.h" />
@@ -121,6 +122,7 @@
     <ClInclude Include="CSymbolengineVersus.h" />
     <ClInclude Include="CVirtualSymbolEngine.h" />
     <ClInclude Include="Symbols.h" />
+    <ClInclude Include="UnknownSymbols.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CB40F3BD-DAE1-487E-B33F-5F677A146B21}</ProjectGuid>

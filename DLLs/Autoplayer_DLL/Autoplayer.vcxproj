@@ -12,9 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Files.cpp" />
+    <ClCompile Include="PokerChat.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Files.h" />
+    <ClInclude Include="PokerChat.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F90B2E47-0E62-45F4-9B51-B04AB7773B4A}</ProjectGuid>
