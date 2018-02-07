@@ -121,9 +121,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CVersionInfo\n");
   assert(!p_version_info);
   p_version_info = new CVersionInfo;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CPopupHandler\n");
-  assert(!p_popup_handler);
-  p_popup_handler = new CPopupHandler;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoConnector\n");
   assert(!p_autoconnector);
   p_autoconnector = new CAutoConnector;

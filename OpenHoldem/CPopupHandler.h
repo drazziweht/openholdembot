@@ -34,5 +34,3 @@ private:
 private:
 	void HandleAllWindows(bool hard_kill);
 };
-
-extern CPopupHandler *p_popup_handler;

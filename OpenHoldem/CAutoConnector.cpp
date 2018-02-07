@@ -188,7 +188,7 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
 		// and the indexes will not match.
     if (OpenHoldem()->SharedMem()->PokerWindowAttached(hwnd)) {
       write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Window candidate already served: [%d]\n", hwnd);
-    } else if (p_popup_handler->WinIsOpenHoldem(hwnd)) {
+    } else if (popup_handler->WinIsOpenHoldem(hwnd)) { // !!! refactore, does not belong to popup-handler
       write_log(Preferences()->debug_popup_blocker(), "[CAutoConnector] Window belongs to OpenHoldem\n");
 		}	else {
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Adding window candidate to the list: [%d]\n", hwnd);
@@ -233,8 +233,7 @@ void CAutoConnector::GoIntoPopupBlockingMode() {
 		// Only handle popups if at least one bot is connected to a table.
 		// Especially stop popup-handling if the last table got closed
 		// to allow "normal" human work again.
-		assert(p_popup_handler != NULL);
-		p_popup_handler->HandleAllWindows();
+		popup_handler.HandleAllWindows();
 	} else {
     write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] No table connected at all. No need for popup-blocking.\n");
   }

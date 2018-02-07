@@ -20,8 +20,6 @@
 // Only for testing
 #undef MESSAGEBOX_BEFORE_MINIMIZING
 
-CPopupHandler *p_popup_handler = NULL;
-
 CPopupHandler::CPopupHandler() {
 	if (Preferences()->popup_blocker() != k_popup_disabled) {
 		// Initial minimization of all windows

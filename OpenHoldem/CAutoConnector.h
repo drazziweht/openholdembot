@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,9 +12,6 @@
 //   using shared memory and a mutex to synchronize with other instaces.
 //
 //******************************************************************************
-
-#ifndef INC_CAUTOCONNECTOR_H
-#define INC_CAUTOCONNECTOR_H
 
 #include "..\CTablemap\CTablemap.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
@@ -46,6 +44,8 @@ class CAutoConnector /*#: public CSpaceOptimizedGlobalObject */{
 	void FailedToConnectProbablyBecauseAllTablesAlreadyServed();
 	void GoIntoPopupBlockingMode();
  private:
+  CPopupHandler popup_handler;
+ private:
 	// private variables - use public accessors and public mutators to address these
 	HWND     _attached_hwnd; // Table that we are attached to
 	CCritSec m_critsec;
@@ -55,5 +55,3 @@ class CAutoConnector /*#: public CSpaceOptimizedGlobalObject */{
 };
 
 extern  CAutoConnector *p_autoconnector;
-
-#endif INC_CAUTOCONNECTOR_H
