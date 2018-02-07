@@ -38,8 +38,6 @@ struct sprw1326
   sprw1326_chair  chair[kMaxNumberOfPlayers];  // structures for each chair
 };
 
-extern sprw1326	_prw1326;	// prwin 1326 data structure Matrix 2008-04-29
-
 class CIteratorThread /*!!!!!: public CSpaceOptimizedGlobalObject */{
  public:
 	// public functions
