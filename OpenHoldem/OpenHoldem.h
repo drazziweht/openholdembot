@@ -16,8 +16,14 @@
 	#error "include 'stdafx.h' before including this file for PCH"
 #endif
 
-#include "resource.h"	   // main symbols
+#include "resource.h"	  
 
+#include "CAutoConnector.h"
+#include "CHeartBeatThread.h"
+#include "CSessionCounter.h"
+#include "CSharedMem.h"
+#include "CWatchdog.h"
+#include "CTablePositioner.h"
 #include "..\..\Reference Mouse DLL\mousedll.h"
 #include "..\..\Reference Keyboard DLL\keyboarddll.h"
 
@@ -47,12 +53,12 @@ class COpenHoldemApp : public CWinApp {
 	HMODULE	_mouse_dll;
 	HMODULE	_keyboard_dll;
 public:
-  CAutoConnector    AutoConnector()   { return &_autoconnector; }
+  CAutoConnector*   AutoConnector()   { return &_autoconnector; }
+  CHeartBeatThread* HeartBeatThread(); //!!!!!
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }
-  CTablePositioner  TablePositioner() { return &_table_positioner; }
+  CTablePositioner* TablePositioner() { return &_table_positioner; }
   CWatchdog*        Watchdog()        { return &_watchdog; }
-  CHeartBeatThread* HeartBeatThread(); //!!!!!
  private:
 	void FinishInitialization();
   void InitializeThreads();

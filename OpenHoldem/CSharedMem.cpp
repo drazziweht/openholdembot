@@ -14,8 +14,9 @@
 
 #include "stdafx.h"
 #include "CSharedMem.h"
-#include "crc32hash.h"
 #include "CSessionCounter.h"
+#include "OpenHoldem.h"
+#include "..\DLLs\Checksums_DLL\crc32hash.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineRandom.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
@@ -53,8 +54,6 @@ __declspec(allocate(kOpenHoldemSharedmemorySegment)) static	int    openholdem_PI
 // CLASS CSharedMem to access the shared memory
 //
 ///////////////////////////////////////////////////////////////////////////////////
-
-CSharedMem *OpenHoldem()->SharedMem() = NULL;
 
 CSharedMem::CSharedMem() {
 	// We can verify the mutex here,

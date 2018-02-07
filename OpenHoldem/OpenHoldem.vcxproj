@@ -208,7 +208,6 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AllinAdjustment.cpp" />
     <ClCompile Include="BetpotCalculations.cpp" />
     <ClCompile Include="CAllinSlider.cpp" />
     <ClCompile Include="CardFunctions.cpp" />
@@ -224,7 +223,6 @@
     <ClCompile Include="COcclusionCheck.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="crc32hash.cpp" />
-    <ClCompile Include="CSelftestParserEvaluator.cpp" />
     <ClCompile Include="CSpaceOptimizedFormulaObject.cpp" />
     <ClCompile Include="CTitleEvaluator.cpp" />
     <ClCompile Include="CValidator.cpp" />
@@ -350,7 +348,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shared\MagicNumbers\MagicNumbers.h" />
-    <ClInclude Include="AllinAdjustment.h" />
     <ClInclude Include="BetpotCalculations.h" />
     <ClInclude Include="CAllinSlider.h" />
     <ClInclude Include="CAutoplayerButton.h" />

@@ -15,9 +15,6 @@
 #include "CSessionCounter.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
-// Global instantiation of CSessionCounter class
-CSessionCounter *OpenHoldem()->SessionCounter() = NULL;
-
 CSessionCounter::CSessionCounter()
 {	
 	_session_id = -1;
