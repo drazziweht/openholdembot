@@ -46,9 +46,13 @@ class COpenHoldemApp : public CWinApp {
 	keyboard_sendkey_t      _dll_keyboard_sendkey;
 	HMODULE	_mouse_dll;
 	HMODULE	_keyboard_dll;
+public:
+  CSessionCounter* SessionCounter();
  private:
 	void FinishInitialization();
   void InitializeThreads();
+private:
+  CSessionCounter _sessioncounter;
 };
 
 COpenHoldemApp* OpenHoldem(); //!!!!!

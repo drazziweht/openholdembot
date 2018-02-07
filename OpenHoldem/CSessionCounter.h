@@ -30,5 +30,3 @@ class CSessionCounter {
 	// private functions and variables - not available via accessors or mutators		
 	HANDLE hMutex;
 };
-
-extern CSessionCounter *p_sessioncounter;

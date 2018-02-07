@@ -26,7 +26,7 @@ CPopupHandler::CPopupHandler() {
 	if (Preferences()->popup_blocker() != k_popup_disabled) {
 		// Initial minimization of all windows
 		// This should be done exactly once, by instance 0
-		if (p_sessioncounter->session_id() == 0) {
+		if (OpenHoldem()->SessionCounter()->session_id() == 0) {
 			write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Minimizing all windows on startup (session ID 0).\n");
 			MinimizeAllOnstartup();
 		}

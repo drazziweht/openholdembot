@@ -57,7 +57,7 @@ void CTablePositioner::PositionMyWindow() {
     TileSingleWindow(p_autoconnector->attached_hwnd(), HWNDs_of_child_windows);
 	}	else if (Preferences()->table_positioner_options() == k_position_tables_cascaded) {
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to cascade %d windows...\n", _number_of_tables);
-    CascadeSingleWindow(p_autoconnector->attached_hwnd(), p_sessioncounter->session_id());
+    CascadeSingleWindow(p_autoconnector->attached_hwnd(), OpenHoldem()->SessionCounter()->session_id());
 	}	else {
 		// Preferences()->table_positioner_options() == k_position_tables_never
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Not doing anything because of Preferences()->\n");

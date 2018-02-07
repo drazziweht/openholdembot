@@ -79,8 +79,8 @@ void CReplayFrame::CreateReplayFrame(void){
   write_log(k_always_log_basic_information, "[CReplayFrame] Shooting frame %s\n", next_frame);
 	CreateBitMapFile();
   // Create HTML file
-  assert(p_sessioncounter != nullptr);
-	CString path = ReplayHTMLFilename(p_sessioncounter->session_id(), _next_replay_frame);
+  assert(OpenHoldem()->SessionCounter() != nullptr);
+	CString path = ReplayHTMLFilename(OpenHoldem()->SessionCounter()->session_id(), _next_replay_frame);
 	if (fopen_s(&fp, path.GetString(), "w")==0) {
 		write_log(Preferences()->debug_replayframes(), "[CReplayFrame] Creating HTML file: %s\n", path);
 		// First line has to be the "title" of the table.
@@ -148,7 +148,7 @@ CString CReplayFrame::GeneralInfo() {
 	// Session, 
   result += "<tr><td>\n";
   result += "Session: ";
-	result += Number2CString(p_sessioncounter->session_id(), 0);
+	result += Number2CString(OpenHoldem()->SessionCounter()->session_id(), 0);
   result += "</td></tr>\n";
   // Frame number 
   result += "<tr><td>\n";
@@ -308,8 +308,8 @@ CString CReplayFrame::GetPotsAsHTML() {
 }
 
 void CReplayFrame::CreateReplaySessionDirectoryIfNecessary() {
-  assert(p_sessioncounter != nullptr);
-	CString path = ReplaySessionDirectory(p_sessioncounter->session_id());
+  assert(OpenHoldem()->SessionCounter() != nullptr);
+	CString path = ReplaySessionDirectory(OpenHoldem()->SessionCounter()->session_id());
 	if (GetFileAttributes(path.GetString()) == INVALID_FILE_ATTRIBUTES)	{
     write_log(Preferences()->debug_replayframes(), "[CReplayFrame] Creating replay directory %s\n", path);
 		SHCreateDirectoryEx(NULL, path.GetString(), NULL);
@@ -330,7 +330,7 @@ CString CReplayFrame::GetLinksToPrevAndNextFile() {
 void CReplayFrame::CreateBitMapFile() {
 	CString path;
   CreateReplaySessionDirectoryIfNecessary();
-  const char *szFile = ReplayBitmapFilename(p_sessioncounter->session_id(), _next_replay_frame);
+  const char *szFile = ReplayBitmapFilename(OpenHoldem()->SessionCounter()->session_id(), _next_replay_frame);
   HBITMAP hBMP = p_scraper->entire_window_cur();
   // Saves the hBitmap as a bitmap.
   HDC					hdcScreen = CreateDC("DISPLAY", NULL, NULL, NULL);

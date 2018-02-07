@@ -64,16 +64,16 @@ CSharedMem::CSharedMem() {
 }
 
 CSharedMem::~CSharedMem() {
-  write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Terminating %d\n", p_sessioncounter->session_id());
+  write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Terminating %d\n", OpenHoldem()->SessionCounter()->session_id());
 }
 
 void CSharedMem::AquireOwnProcessID() {
   write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Aquiring own process IG\n");
-  assert(p_sessioncounter != NULL);
-  AssertRange(p_sessioncounter->session_id(), 0, MAX_SESSION_IDS - 1);
+  assert(OpenHoldem()->SessionCounter() != NULL);
+  AssertRange(OpenHoldem()->SessionCounter()->session_id(), 0, MAX_SESSION_IDS - 1);
   int my_PID = GetCurrentProcessId();
   // Share our process ID for autostarter, watchdog and popup-blocker
-  openholdem_PIDs[p_sessioncounter->session_id()] = my_PID;
+  openholdem_PIDs[OpenHoldem()->SessionCounter()->session_id()] = my_PID;
   if (my_PID == 0) {
     // GetCurrentProcessId() can fail on some systems,
     // on startup or in general.
@@ -107,14 +107,14 @@ bool CSharedMem::AnyWindowAttached() {
 
 void CSharedMem::MarkPokerWindowAsAttached(HWND Window) {
   ENT;
-	attached_poker_windows[p_sessioncounter->session_id()] = Window;	
+	attached_poker_windows[OpenHoldem()->SessionCounter()->session_id()] = Window;	
 }
 
 void CSharedMem::RememberTimeOfLastFailedAttemptToConnect() {
 	ENT;
 	time(&last_failed_attempt_to_connect);
 	write_log(Preferences()->debug_autoconnector(), "[CSharedMem] Set last_failed_attempt_to_connect %d\n", last_failed_attempt_to_connect);
-	session_ID_of_last_instance_that_failed_to_connect = p_sessioncounter->session_id();
+	session_ID_of_last_instance_that_failed_to_connect = OpenHoldem()->SessionCounter()->session_id();
 	write_log(Preferences()->debug_autoconnector(), "[CSharedMem] Instance %d failed to connect\n", session_ID_of_last_instance_that_failed_to_connect);
 }
 
@@ -328,8 +328,8 @@ int CSharedMem::OpenHoldemProcessID(int session_ID) {
   assert(session_ID >= 0);
   assert(session_ID < MAX_SESSION_IDS);
   int process_ID = openholdem_PIDs[session_ID];
-  assert(p_sessioncounter != NULL);
-  if ((session_ID == p_sessioncounter->session_id())
+  assert(OpenHoldem()->SessionCounter() != NULL);
+  if ((session_ID == OpenHoldem()->SessionCounter()->session_id())
     && (process_ID == 0)) {
     // Own process ID not available
     // Try to aquire new one
@@ -343,7 +343,7 @@ int CSharedMem::OpenHoldemProcessID(int session_ID) {
 }
 
 int CSharedMem::OpenHoldemProcessID() {
-  assert(p_sessioncounter != NULL);
-  int my_session_ID = p_sessioncounter->session_id();
+  assert(OpenHoldem()->SessionCounter() != NULL);
+  int my_session_ID = OpenHoldem()->SessionCounter()->session_id();
   return openholdem_PIDs[my_session_ID];
 }

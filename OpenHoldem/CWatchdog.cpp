@@ -60,8 +60,8 @@ void CWatchdog::MarkInstanceAsAlive(int session_ID) {
 
 void CWatchdog::MarkThisInstanceAsAlive() {
   write_log(Preferences()->debug_watchdog(), "[CWatchdog] Marking this instance alive\n");
-  assert(p_sessioncounter != NULL);
-  MarkInstanceAsAlive(p_sessioncounter->session_id());
+  assert(OpenHoldem()->SessionCounter() != NULL);
+  MarkInstanceAsAlive(OpenHoldem()->SessionCounter()->session_id());
 }
 
 void CWatchdog::MarkInstanceAsDead(int session_ID) {
@@ -73,8 +73,8 @@ void CWatchdog::MarkInstanceAsDead(int session_ID) {
 
 void CWatchdog::MarkThisInstanceAsDead() {
   write_log(Preferences()->debug_watchdog(), "[CWatchdog] Marking this instance dead\n");
-  assert(p_sessioncounter != NULL);
-  MarkInstanceAsDead(p_sessioncounter->session_id());
+  assert(OpenHoldem()->SessionCounter() != NULL);
+  MarkInstanceAsDead(OpenHoldem()->SessionCounter()->session_id());
 }
 
 void CWatchdog::WatchForCrashedProcesses() {

@@ -51,7 +51,7 @@ void COpenHoldemStarter::StartNewInstanceIfNeeded() {
     // and don't flood the screen with new bots.
     return;
   }
-  if (p_sharedmem->LowestConnectedSessionID() != p_sessioncounter->session_id()) {
+  if (p_sharedmem->LowestConnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
     // Only one instance should handle auto-starting.
     // This might delay auto-starting until the first connection, which is OK.
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my business to start new instances.\n");
@@ -94,12 +94,12 @@ void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not waited long enough for shutdown.\n");
     return;
   }
-  if (p_sharedmem->LowestUnconnectedSessionID() != p_sessioncounter->session_id()) {
+  if (p_sharedmem->LowestUnconnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
     // Only one instance should tzerminate at a time
     // to keep one instance available
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my turn to shutdown.\n");
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Lowest free ID: %d\n", p_sharedmem->LowestUnconnectedSessionID());
-    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] My ID: %d\n", p_sessioncounter->session_id());
+    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] My ID: %d\n", OpenHoldem()->SessionCounter()->session_id());
     return;
   }
   write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Shutting down this instance.\n");

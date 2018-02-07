@@ -35,8 +35,6 @@
 // http://msdn.microsoft.com/en-us/library/aa364417%28VS.85%29.aspx
 // http://msdn.microsoft.com/en-us/library/aa365261(v=vs.85).aspx
 
-CFileSystemMonitor *p_filesystem_monitor = NULL;
-
 CFileSystemMonitor::CFileSystemMonitor() {
 	write_log(Preferences()->debug_filesystem_monitor(), "[CFileSystemMonitor] executing constructor.)\n");
 	absolute_path_to_scraper_directory = ScraperDirectory();

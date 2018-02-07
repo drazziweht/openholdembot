@@ -121,7 +121,6 @@ BOOL COpenHoldemApp::InitInstance() {
   free((void*)m_pszProfileName);
   m_pszProfileName = _strdup(IniFilePath().GetString());
   Preferences()->LoadPreferences();
-	if (!p_sessioncounter) p_sessioncounter = new CSessionCounter();
 	// Start logging immediatelly after the loading the preferences
 	// and initializing the sessioncounter, which is necessary for 
 	// the filename of the log (oh_0.log, etc).
@@ -133,7 +132,7 @@ BOOL COpenHoldemApp::InitInstance() {
     if (file_size > max_file_size) {
       delete_log();
     }*/
-	start_log(p_sessioncounter->session_id(), false); //!!!!!
+	start_log(sessioncounter->session_id(), false); //!!!!!
   // ...then re-Load the preferences immediately after creation 
   // of the log-file again, as We might want to to log the preferences too,
   // which was not yet possible some lines above.
@@ -225,7 +224,7 @@ void COpenHoldemApp::FinishInitialization() {
 	assert(GUI()->OpenHoldemTitle() != NULL);
 	GUI()->OpenHoldemTitle()->UpdateTitle();
 	// The one and only window has been initialized, so show and update it
-	if (Preferences()->gui_first_visible() && (p_sessioncounter->session_id() == 0)) {
+	if (Preferences()->gui_first_visible() && (sessioncounter->session_id() == 0)) {
     m_pMainWnd->ShowWindow(SW_SHOW);
 	}	else {
     m_pMainWnd->ShowWindow(SW_MINIMIZE);

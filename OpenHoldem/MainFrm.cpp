@@ -270,8 +270,8 @@ void CMainFrame::OnEditFormula() {
 }
 
 void CMainFrame::OnEditViewLog() {
-  assert(p_sessioncounter != nullptr);
-  OpenFileInExternalSoftware(LogFilePath(p_sessioncounter->session_id()));
+  assert(OpenHoldem()->SessionCounter() != nullptr);
+  OpenFileInExternalSoftware(LogFilePath(OpenHoldem()->SessionCounter()->session_id()));
 }
 
 void CMainFrame::OnEditTagLog() {

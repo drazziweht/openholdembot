@@ -57,7 +57,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   assert(p_betround_calculator != NULL);
   assert(p_handreset_detector != NULL);
   assert(p_formula_parser != NULL);
-  assert(p_sessioncounter != NULL);
+  assert(OpenHoldem()->SessionCounter() != NULL);
   assert(p_tablemap != NULL);
   assert(TableState()->TableTitle() != NULL);
   assert(p_white_info_box != NULL);
@@ -101,7 +101,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
   else if (name == "currentround") *result = p_betround_calculator->betround();
   else if (name == "previousround") *result = p_betround_calculator->PreviousRound();
   // GENERAL
-  else if (memcmp(name, "session", 7)==0 && strlen(name)==7)	*result = p_sessioncounter->session_id();
+  else if (memcmp(name, "session", 7)==0 && strlen(name)==7)	*result = OpenHoldem()->SessionCounter()->session_id();
   else if (memcmp(name, "version", 7)==0 && strlen(name)==7)	*result = VERSION_NUMBER;
   // Handreset
   else if (memcmp(name, "handsplayed", 11)==0 && strlen(name)==11) *result = p_handreset_detector->hands_played();
