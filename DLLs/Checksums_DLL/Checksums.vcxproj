@@ -11,17 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CMemoryPool.cpp" />
-    <ClCompile Include="MemoryLogging.cpp" />
+    <ClCompile Include="crc32hash.cpp" />
+    <ClCompile Include="MD5_Checksum.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CMemoryPool.h" />
-    <ClInclude Include="CSpaceOptimizedGlobalObject.h" />
+    <ClInclude Include="crc32hash.h" />
     <ClInclude Include="LibDef.h" />
-    <ClInclude Include="MemoryLogging.h" />
+    <ClInclude Include="MD5_Checksum.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{1633C380-B48D-4B71-AC84-0731272187A5}</ProjectGuid>
+    <ProjectGuid>{AB4652CE-39AD-4990-9D86-6F01489A9515}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -72,11 +71,11 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)memory_management.dll</OutputFile>
+      <OutputFile>$(OutDir)files.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -89,13 +88,13 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <OutputFile>$(OutDir)memory_management.dll</OutputFile>
+      <OutputFile>$(OutDir)files.dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

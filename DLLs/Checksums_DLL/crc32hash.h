@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,28 +12,32 @@
 //
 //******************************************************************************
 //
+// Header file created for crc32hash.c
+// which has been found on the net without a header.
+// Original source of crc32hash.c released under GPLv2.
+//
 // crc32hash.c - derived from linux/lib/crc32.c, GNU GPL v2 
 // Found at http://www.kernel.org/doc/Documentation/pcmcia/crc32hash.c
 //
+// Slightly modified by THF to avoid passing the length as a parameter.
+// Now part of Checksums.DLL, added DLL-export.
+//
 //******************************************************************************
 
-#include "stdafx.h"
-#include "crc32hash.h"
+#include "LibDef.h"
 
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <stdlib.h>
+CHECKSUMS_DLL_API unsigned int crc32(unsigned char const *p);
 
-unsigned int crc32(unsigned char const *p)
-{
-	unsigned int crc = 0;
-	unsigned int len = strlen((char const *) p); 
-	while (len--) {
-		crc ^= *p++;
-		for (int i = 0; i < 8; i++)
-			crc = (crc >> 1) ^ ((crc & 1) ? 0xedb88320 : 0);
+/* Usage example:
+
+int main(int argc, char **argv) {
+	unsigned int result;
+	if (argc != 2) {
+		printf("no string passed as argument\n");
+		return -1;
 	}
-	return crc;
+	result = crc32((unsigned char const *)argv[1]);
+	printf("0x%x\n", result);
+	return 0;
 }
-
+*/
