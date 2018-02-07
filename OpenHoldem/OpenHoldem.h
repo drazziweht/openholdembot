@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,12 +12,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_OPENHOLDEM_H
-#define INC_OPENHOLDEM_H
-
-// OpenHoldem.h : main header file for the OpenHoldem application
-//
-
 #ifndef __AFXWIN_H__
 	#error "include 'stdafx.h' before including this file for PCH"
 #endif
@@ -26,9 +21,6 @@
 #include "..\..\Reference Mouse DLL\mousedll.h"
 #include "..\..\Reference Keyboard DLL\keyboarddll.h"
 
-// COpenHoldemApp:
-// See OpenHoldem.cpp for the implementation of this class
-//
 
 class COpenHoldemApp : public CWinApp {
  public:
@@ -45,6 +37,7 @@ class COpenHoldemApp : public CWinApp {
 	void LoadLastRecentlyUsedFileList();
 	void OpenLastRecentlyUsedFile();
  public:
+   //!!!!!remove
 	mouse_process_message_t	_dll_mouse_process_message;
 	mouse_click_t           _dll_mouse_click;
 	mouse_clickdrag_t       _dll_mouse_click_drag;
@@ -58,6 +51,7 @@ class COpenHoldemApp : public CWinApp {
   void InitializeThreads();
 };
 
-extern COpenHoldemApp theApp;
+COpenHoldemApp* OpenHoldem(); //!!!!!
 
-#endif //INC_OPENHOLDEM_H
+extern COpenHoldemApp theApp;//!!!!!
+

@@ -137,9 +137,6 @@ void InstantiateAllSingletons() {
   assert(!p_white_info_box);
   p_white_info_box = new CWhiteInfoBox;
   EngineContainer()->CreateSymbolEngines();
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create COcclusionCheck\n");
-  assert(!p_occlusioncheck);
-  p_occlusioncheck = new COcclusionCheck;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CCasinoInterface\n");
   assert(!p_casino_interface);
   p_casino_interface = new CCasinoInterface;
@@ -169,95 +166,53 @@ void StopThreads() {
 	}
 	all_threads_stopped = true;
 }
-
-#define DELETE_AND_CLEAR(object_pointer) if (object_pointer)	{ delete object_pointer; object_pointer = NULL; }
-
-void DeleteAllSingletons() {
-  // First all timers and threads have to be stopped, 
-  // then all singletons can (have to) be deleted.
-  // StopThreads gets called by CMainFrame::DestroyWindow()
-  // DeleteAllSingletons() by COpenHoldemApp::ExitInstance()
-  // Correct order should be guaranteed, because of
-  //   "At the time ExitInstance is called, the main window no longer exists"
-  //   (http://computer-programming-forum.com/82-mfc/7ad0828fdb127d7b.htm)
-  // AnyWay: we make sure...
-  if (!all_threads_stopped) {
-    // Explicit check to check potential pronlems 
-    // that don't happen in debug-mode.
-    write_log(Preferences()->debug_singletons(), 
-      "[Singletons] ERROR: threads not stopped.\n");
-    assert(all_threads_stopped);
-  }
-  // Global instances.
-  // Releasing in reverse order should be good,
-  // but we have to be careful, as sometimes we do some work in the destructors,
-  // that depends on other classes, e.g. the destructor of the autoconnector
-  // needs its session_id (CSessionCounter).
-  //
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting casino interface\n");
-  DELETE_AND_CLEAR(p_casino_interface)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting occlusion check\n");
-  DELETE_AND_CLEAR(p_occlusioncheck)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting white info box\n");
-  DELETE_AND_CLEAR(p_white_info_box)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting popup handler\n");
-  DELETE_AND_CLEAR(p_popup_handler)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting autoconnector\n");
-  DELETE_AND_CLEAR(p_autoconnector)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting version_info\n");
-  DELETE_AND_CLEAR(p_version_info)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting tablemap loader\n");
-  DELETE_AND_CLEAR(p_tablemap_loader)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 01\n");
-  DELETE_AND_CLEAR(p_filesystem_monitor)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 02\n");
-  DELETE_AND_CLEAR(p_table_positioner)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 03\n");
-  DELETE_AND_CLEAR(p_validator)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 07\n");
-  DELETE_AND_CLEAR(p_autoplayer)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 08\n");
-  DELETE_AND_CLEAR(p_formula_parser)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 09\n");
-  DELETE_AND_CLEAR(p_parser_symbol_table)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 10\n");
-  //!!!DELETE_AND_CLEAR(p_debug_tab)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 11\n");
-  DELETE_AND_CLEAR(p_tablemap_access)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 12\n");
-  DELETE_AND_CLEAR(p_tablemap)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 13\n");
-  DELETE_AND_CLEAR(p_lazyscraper)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 14\n");
-  DELETE_AND_CLEAR(p_scraper)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 15\n");
-  DELETE_AND_CLEAR(p_title_evaluator)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 16\n");
-  DELETE_AND_CLEAR(p_stableframescounter)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 17\n");
-  DELETE_AND_CLEAR(p_sharedmem)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 19\n");
-  DELETE_AND_CLEAR(p_autoplayer_functions)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 20\n");
-  DELETE_AND_CLEAR(p_configurationcheck)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 21\n");
-  DELETE_AND_CLEAR(p_handreset_detector)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 22\n");
-  DELETE_AND_CLEAR(p_autoplayer_trace)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 24\n");
-  DELETE_AND_CLEAR(p_string_match)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting 28\n");
-  DELETE_AND_CLEAR(p_watchdog)
-  // Session counter at the very end,
-  // as it lots of other modules depend on it,
-  // but it doesn't depend on anything else.
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting CSessionCounter\n");
-  DELETE_AND_CLEAR(p_sessioncounter)
-  write_log(Preferences()->debug_singletons(), "[Singletons] Deleting memory pools\n");
-  DeleteAllMemoryPools();
-  write_log(Preferences()->debug_singletons(), "[Singletons] All singletons successfully deleted\n");
-}
-  
+ 
   
 
+CreateMemoryPools();
+EngineContainer()->CreateSymbolEngines();
 
+Formula
+=======
+CParserSymbolTable
+CFormulaParser
+CDebugTab
+
+Main
+====
+CWatchdog
+CSharedMem
+CAutoplayer
+CTablePositioner
+CVersionInfo
+CPopupHandler
+CAutoConnector
+
+Symbols
+=======
+CAutoplayerTrace -> EvaluatorTrace
+CPokerTrackerThread
+
+Refactoring
+===========
+CStringMatch
+
+Scraper
+=======
+CTitleEvaluator
+CScraper
+
+Unclear
+=======
+CHandresetDetector (main or symbols)
+CConfigurationCheck
+CAutoplayerFunctions
+CStableFramesCounter (main or symbols)
+CLazyScraper (main or scraper, simplescraper / region_evaluator?)
+CTablemap
+CTablemapAccess
+CValidator
+CFileSystemMonitor
+CTableMapLoader
+CWhiteInfoBox (only used for log$, not for the rest, to be refactored)
+CCasinoInterface

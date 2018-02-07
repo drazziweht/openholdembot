@@ -33,7 +33,7 @@ CFlagsToolbar::CFlagsToolbar(CFrameWnd *parent_window)
 	AlignToolbars();
 
 	bool to_be_enabled_or_not = p_autoplayer->autoplayer_engaged();
-	//p_flags_toolbar->
+	//GUI()->FlagsToolbar()->
 	m_MainToolBar.GetToolBarCtrl().CheckButton(ID_MAIN_TOOLBAR_AUTOPLAYER, to_be_enabled_or_not);
 	for (int i=0; i<kNumberOfFlags; i++)
 	{

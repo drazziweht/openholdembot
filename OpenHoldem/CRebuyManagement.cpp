@@ -30,8 +30,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
-CRebuyManagement *p_rebuymanagement = NULL;
-
 CRebuyManagement::CRebuyManagement() {
 	// Init time of last rebuy in a reasonable way at startup.
 	time(&RebuyLastTime);
@@ -95,7 +93,7 @@ bool CRebuyManagement::NoCards(){
 bool CRebuyManagement::OcclusionCheck() {
 	if (!Preferences()->rebuy_condition_heuristic_check_for_occlusion()) {
 		return true;
-	}	else if (p_occlusioncheck->UserBalanceOccluded()) {
+	}	else if (occlusion_check->UserBalanceOccluded()) {
 		write_log(Preferences()->debug_rebuy(), "[CRebuyManagement] OcclusionCheck: false (occluded)\n");
 		return false;
 	}

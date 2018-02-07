@@ -13,6 +13,7 @@
 //******************************************************************************
 
 #include <time.h>
+#include "COcclusionCheck.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
 
 class CRebuyManagement /*#: public CSpaceOptimizedGlobalObject*/
@@ -20,7 +21,6 @@ class CRebuyManagement /*#: public CSpaceOptimizedGlobalObject*/
 public:
 	CRebuyManagement();
 	~CRebuyManagement();	
-	
 public:
 	// IMPORTANT!
 	//
@@ -28,7 +28,6 @@ public:
 	// and keyboard collisions, e.g by a mutex.
 	// We expect the autoplayer to do this job!
 	bool TryToRebuy();
-
 private:
 	bool MinimumDelayElapsed();
 	bool ChangeInHandNumber();
@@ -39,11 +38,11 @@ private:
 	// It has to be protected by a mutex.
 	// We assume, the autoplayer does that.
 	void ExecuteRebuyScript();
-
+private:
+  COcclusionCheck occlusion_check;
 private:
 	static const unsigned int UnknownCard = 0;
 	static const unsigned int RebuyMinimumTimeDifference = 30;
-
 private:
 	time_t	RebuyLastTime, CurrentTime;
 	CString	PreviousRebuyHandNumber;
