@@ -28,7 +28,7 @@ class CAutoplayerFunctions /*#: public CSpaceOptimizedGlobalObject */{
   void CalcPrimaryFormulasOpenPPL();
   void TranslateOpenPPLDecisionToAutoplayerFunctions(double decision);
   bool IsPercentagePotsizeBet(double decision);
-  double BetSizeForPercentagedPotsizeBet(double decision);
+  double BetSizeForPercentagedPotsizeBet(double decision); //!!!!! dupliate to betpot-calculations?
  private:
   void CheckIfDecisionMatchesElementaryAction(int decision, int action);
   void CalculateSingleOpenPPLBackupAction(
