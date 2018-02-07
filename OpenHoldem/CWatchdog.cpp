@@ -18,8 +18,6 @@
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 
-CWatchdog *p_watchdog = NULL;
-
 // CWatchdog uses the same shared memory segment like CSharedMem
 #pragma data_seg(kOpenHoldemSharedmemorySegment) // names are limited to 8 chars, including the dot.
 __declspec(allocate(kOpenHoldemSharedmemorySegment)) static	time_t timestamps_openholdem_alive[MAX_SESSION_IDS] = { NULL };

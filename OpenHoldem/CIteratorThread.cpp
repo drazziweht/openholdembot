@@ -51,7 +51,6 @@ int pair2rank_offsuited[170] = {0}, pair2rank_suited[170] = {0};
 // int willplay = 0, wontplay = 0, topclip = 0, mustplay = 0
 sprw1326	_prw1326;	//prwin 1326 data structure Matrix 2008-04-29
 
-
 // handrank table used to prime weighted prwin lookup table.
 // This is the Sklansky-Chubukov hand rankings.
 // left in this form for ease of developer modification.

@@ -58,9 +58,6 @@ void InstantiateAllSingletons() {
   // So the global class-pointers have to be NULL.
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create m emory pools\n");
   CreateMemoryPools();
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWatchdog\n");
-  assert(!p_watchdog);
-  p_watchdog = new CWatchdog;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CStringMatch\n");
   assert(!p_string_match);
   p_string_match = new CStringMatch;
@@ -140,10 +137,10 @@ bool all_threads_stopped = false;
 // as these threads might access some variables.
 void StopThreads() {
 	write_log(Preferences()->debug_singletons(), "[Singletons] StopThreads()\n");
-	if (p_heartbeat_thread)	{
+	if (OpenHoldem()->HeartbeatThread())	{
 		write_log(Preferences()->debug_singletons(), "[Singletons] Deleting heartbeat-thread\n");
-		delete p_heartbeat_thread;
-		p_heartbeat_thread = NULL;
+		delete OpenHoldem()->HeartbeatThread();
+		OpenHoldem()->HeartbeatThread() = NULL;
 	}
 	if (p_iterator_thread) {
 		write_log(Preferences()->debug_singletons(), "[Singletons] Deleting iterator-thread\n");

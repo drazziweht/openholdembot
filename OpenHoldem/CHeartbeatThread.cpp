@@ -125,9 +125,8 @@ UINT CHeartbeatThread::HeartbeatThreadFunction(LPVOID pParam) {
         ScrapeEvaluateAct();
       } 		
 		}
-    assert(p_watchdog != NULL);
     LogMemoryUsage("H8");
-    p_watchdog->HandleCrashedAndFrozenProcesses();
+    OpenHoldem()->WatchDog()->HandleCrashedAndFrozenProcesses();
     if (Preferences()->use_auto_starter()) {
       LogMemoryUsage("H9");
       _openholdem_starter.StartNewInstanceIfNeeded();

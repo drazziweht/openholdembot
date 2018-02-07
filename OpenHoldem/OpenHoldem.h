@@ -48,7 +48,8 @@ class COpenHoldemApp : public CWinApp {
 	HMODULE	_keyboard_dll;
 public:
   CSessionCounter*  SessionCounter() { return &_sessioncounter; }
-  CSharedMem*       CSharedMem()     { return &_shared_mem; }
+  CSharedMem*       SharedMem()      { return &_shared_mem; }
+  CWatchdog*        Watchdog()       { return _watchdog; }
   CHeartBeatThread* HeartBeatThread(); //!!!!!
  private:
 	void FinishInitialization();
@@ -56,6 +57,7 @@ public:
 private:
   CSessionCounter _sessioncounter;
   CSharedMem _shared_mem;
+  CWatchdog _watchdog;
   //!!!!!CHeartBeatThread
 };
 
