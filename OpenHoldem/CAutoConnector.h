@@ -53,5 +53,3 @@ class CAutoConnector /*#: public CSpaceOptimizedGlobalObject */{
 	// Mutex used for cross-instance autoconnector coordination
 	CMutex *_autoconnector_mutex;
 };
-
-extern  CAutoConnector *p_autoconnector;

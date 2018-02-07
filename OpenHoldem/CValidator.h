@@ -28,6 +28,4 @@ class CValidator {
 	void SetEnabledManually(bool Enabled);
  private:
   bool _enabled_manually;
-};
-
-extern CValidator *p_validator; 																																																					
+};																																																			

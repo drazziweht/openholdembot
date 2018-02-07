@@ -61,7 +61,7 @@ bool CAllinSlider::SlideAllin() {
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] Slider : Calling mouse.dll to jam from %d,%d to %d,%d\n", drag_region.left, drag_region.top, drag_region.right, drag_region.bottom);
   // Not really (0, 0), but (-1, -1), out of the screen
   POINT	point_null = { kUndefined, kUndefined };
-  (theApp._dll_mouse_click_drag) (p_autoconnector->attached_hwnd(), drag_region);
+  (theApp._dll_mouse_click_drag) (OpenHoldem()->AutoConnector()->attached_hwnd(), drag_region);
 
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] Sleeping %d ms\n.", Preferences()->swag_delay_3());
   Sleep(Preferences()->swag_delay_3());

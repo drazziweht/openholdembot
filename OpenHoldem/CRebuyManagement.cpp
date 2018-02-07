@@ -140,7 +140,7 @@ void CRebuyManagement::ExecuteRebuyScript() {
 	}	else {
 		Casino = "Undefined";
 	}
-	HWND WindowHandleOfThePokerTable = p_autoconnector->attached_hwnd();
+	HWND WindowHandleOfThePokerTable = OpenHoldem()->AutoConnector()->attached_hwnd();
 	double SmallBlind = EngineContainer()->symbol_engine_tablelimits()->sblind();
 	double BigBlind = EngineContainer()->symbol_engine_tablelimits()->bblind();
 	double BigBet = EngineContainer()->symbol_engine_tablelimits()->bigbet();

@@ -70,7 +70,7 @@ void CCasinoInterface::Reset() {
 
 bool CCasinoInterface::TableLostFocus() {
   HWND foreground_window = GetForegroundWindow();
-  HWND connected_window = p_autoconnector->attached_hwnd();
+  HWND connected_window = OpenHoldem()->AutoConnector()->attached_hwnd();
 	bool lost_focus = (foreground_window != connected_window);
   if (lost_focus) {
     CString foreground_title(" ", MAX_WINDOW_TITLE);
@@ -87,7 +87,7 @@ bool CCasinoInterface::TableLostFocus() {
 void CCasinoInterface::ClickRect(RECT rect) {
 	write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Calling mouse.dll to single click button: %d,%d %d,%d\n", 
     rect.left, rect.top, rect.right, rect.bottom);
-	(theApp._dll_mouse_click) (p_autoconnector->attached_hwnd(), rect, MouseLeft, 1);
+	(theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), rect, MouseLeft, 1);
   EngineContainer()->symbol_engine_time()->UpdateOnAutoPlayerAction();
 }
 
@@ -109,7 +109,7 @@ bool CCasinoInterface::CloseWindow() {
 
 	RECT table_size, close_region;
 	// http://msdn.microsoft.com/en-us/library/ms633503.aspx
-	GetClientRect(p_autoconnector->attached_hwnd(), &table_size);
+	GetClientRect(OpenHoldem()->AutoConnector()->attached_hwnd(), &table_size);
 
 	close_region.top    = -3;
 	close_region.bottom = -15;
@@ -128,7 +128,7 @@ void CCasinoInterface::PressTabToSwitchOHReplayToNextFrame() {
 	POINT	cur_pos = {0};
 
   assert(EngineContainer()->symbol_engine_casino()->ConnectedToOHReplay());
-  (theApp._dll_keyboard_sendstring) (p_autoconnector->attached_hwnd(), 
+  (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), 
     rect_somewhere, "\t", false);
 }
 
@@ -141,7 +141,7 @@ bool CCasinoInterface::EnterChatMessage(CString &message) {
 		return false;
 	}
 	write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Sending chat-message: %s\n", message);
-	(theApp._dll_keyboard_sendstring) (p_autoconnector->attached_hwnd(), rect_chatbox, message, false);
+	(theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), rect_chatbox, message, false);
 
 	// Clear old chat_message to allow new ones.
 	_the_chat_message = NULL;
@@ -268,5 +268,5 @@ void CCasinoInterface::SendKey(const char ascii_key) {
   char input[2];
   input[0] = ascii_key;
   input[1] = '\0';
-  (theApp._dll_keyboard_sendstring) (p_autoconnector->attached_hwnd(), r_null, input, false);
+  (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), r_null, input, false);
 }

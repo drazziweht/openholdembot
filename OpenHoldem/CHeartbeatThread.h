@@ -47,5 +47,3 @@ class CHeartbeatThread /*: public CSpaceOptimizedGlobalObject */{
 	HANDLE		_m_stop_thread;
 	HANDLE		_m_wait_thread;
 };
-
-extern CHeartbeatThread *p_heartbeat_thread;

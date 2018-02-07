@@ -78,7 +78,7 @@ void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
     write_log(k_always_log_errors, "WARNING! Auto-shutdown turned off, unavailable process ID\n");
     return;
   }
-  if (p_autoconnector->IsConnectedToAnything()) {
+  if (OpenHoldem()->AutoConnector()->IsConnectedToAnything()) {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Playing, therefore still needed.\n");
     // Instance needed for playing
     return;

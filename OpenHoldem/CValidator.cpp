@@ -21,8 +21,6 @@
 #include "..\DLLs\Symbols_DLL\CSymbolEngineVersus.h"
 #include "..\DLLs\GamestateValidation_DLL\GamestateValidation.h"
 
-CValidator *p_validator = NULL;
-
 CValidator::CValidator() {
   _enabled_manually = false;
 }

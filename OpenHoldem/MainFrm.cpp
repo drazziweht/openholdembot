@@ -444,7 +444,7 @@ void CMainFrame::OnFileOpen() {
 void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
   write_log(Preferences()->debug_timers(), "[GUI] CMainFrame::OnTimer()\n");
   // There was a race-condition in this function during termination 
-  // if OnTimer was in progress and p_autoconnector became dangling.
+  // if OnTimer was in progress and OpenHoldem()->AutoConnector() became dangling.
   // This is probably fixed, as we now kill the timers
   // before we delete singleton, but we keep these safety-meassures.
   // It is OK to skip CWnd::OnTimer(nIDEvent); if we terminate.
@@ -454,7 +454,7 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
   /*#if (p_openholdem_statusbar == NULL) {
     return;
   }*/
-  if (p_autoconnector == NULL) {
+  if (OpenHoldem()->AutoConnector() == NULL) {
     return;
   }
   if (nIDEvent == HWND_CHECK_TIMER) {
@@ -462,17 +462,17 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
     // Important: check is_conected first.
     // Checking only garbage HWND, then disconnecting
     // can lead to freezing if it colludes with Connect()
- 	  if (p_autoconnector->IsConnectedToGoneWindow()) {
+ 	  if (OpenHoldem()->AutoConnector()->IsConnectedToGoneWindow()) {
  	    // Table disappeared 		
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer found disappeared window()\n");
- 	    p_autoconnector->Disconnect("table disappeared"); 		 		
+ 	    OpenHoldem()->AutoConnector()->Disconnect("table disappeared"); 		 		
     }
  	} else if (nIDEvent == ENABLE_BUTTONS_TIMER) {
 		// Autoplayer
 		// Since OH 4.0.5 we support autoplaying immediatelly after connection
 		// without the need to know the userchair to act on secondary formulas.
     write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_E\n");
-		if (p_autoconnector->IsConnectedToAnything()) 	{
+		if (OpenHoldem()->AutoConnector()->IsConnectedToAnything()) 	{
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer enabling buttons\n");
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_F\n");
 			GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, true);
@@ -550,11 +550,11 @@ void CMainFrame::OnUpdateDllLoadspecificfile(CCmdUI *pCmdUI) {
 }
 
 void CMainFrame::OnUpdateViewShootreplayframe(CCmdUI *pCmdUI) {
-	pCmdUI->Enable(p_autoconnector->IsConnectedToAnything());
+	pCmdUI->Enable(OpenHoldem()->AutoConnector()->IsConnectedToAnything());
 }
 
 void CMainFrame::OnUpdateViewScraperOutput(CCmdUI *pCmdUI) {
-	pCmdUI->Enable(p_autoconnector->IsConnectedToAnything());
+	pCmdUI->Enable(OpenHoldem()->AutoConnector()->IsConnectedToAnything());
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

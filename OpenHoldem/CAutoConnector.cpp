@@ -38,8 +38,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
-CAutoConnector *p_autoconnector = NULL;
-
 struct STableList {
   HWND		hwnd;
   int     tablemap_index;

@@ -40,7 +40,6 @@
 #include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "CStableFramesCounter.h"
-#include "CStringMatch.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "CTableMaploader.h"
 #include "CTablePositioner.h"
@@ -103,9 +102,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CPokerTrackerThread\n");
   assert(!p_pokertracker_thread);
   p_pokertracker_thread = new CPokerTrackerThread;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CValidator\n");
-  assert(!p_validator);
-  p_validator = new CValidator;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTablePositioner\n");
   assert(!OpenHoldem()->TablePositioner());
   OpenHoldem()->TablePositioner() = new CTablePositioner;
@@ -116,8 +112,8 @@ void InstantiateAllSingletons() {
   assert(!p_version_info);
   p_version_info = new CVersionInfo;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoConnector\n");
-  assert(!p_autoconnector);
-  p_autoconnector = new CAutoConnector;
+  assert(!OpenHoldem()->AutoConnector());
+  OpenHoldem()->AutoConnector() = new CAutoConnector;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWhiteInfoBox\n");
   assert(!p_white_info_box);
   p_white_info_box = new CWhiteInfoBox;
@@ -177,10 +173,6 @@ Symbols
 =======
 CAutoplayerTrace -> EvaluatorTrace
 CPokerTrackerThread
-
-Refactoring
-===========
-CStringMatch
 
 Scraper
 =======

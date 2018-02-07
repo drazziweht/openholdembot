@@ -53,7 +53,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   // we assure correct ordering by checking if they are initialized.
   assert(EngineContainer()->symbol_engine_userchair() != NULL);
   // Other objects that we depend on
-  assert(p_autoconnector != NULL);
+  assert(OpenHoldem()->AutoConnector() != NULL);
   assert(p_betround_calculator != NULL);
   assert(p_handreset_detector != NULL);
   assert(p_formula_parser != NULL);
@@ -129,7 +129,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19421
     *result = true;
   } else if ((memcmp(name, "attached_hwnd", 13)==0) && (strlen(name)==13)) {
-    *result = int(p_autoconnector->attached_hwnd());
+    *result = int(OpenHoldem()->AutoConnector()->attached_hwnd());
   } else if ((memcmp(name, "islobby", 7)==0) && (strlen(name)==7)) {
     *result = p_tablemap->islobby();
   }  else if ((memcmp(name, "ispopup", 7) == 0) && (strlen(name) == 7)) {

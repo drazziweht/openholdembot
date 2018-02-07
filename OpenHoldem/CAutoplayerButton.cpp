@@ -13,13 +13,9 @@
 
 #include "stdafx.h"
 #include "CAutoplayerButton.h"
-
 #include "CCasinoHotkey.h"
 #include "CCasinoInterface.h"
-
-#include "CStringMatch.h"
 #include "..\CTablemap\CTablemap.h"
-
 
 CAutoplayerButton::CAutoplayerButton() {
   Reset();

@@ -100,14 +100,14 @@ UINT CHeartbeatThread::HeartbeatThreadFunction(LPVOID pParam) {
     LogMemoryUsage("H1");
 		p_tablemap_loader->ReloadAllTablemapsIfChanged();
     LogMemoryUsage("H2");
-    assert(p_autoconnector != NULL);
+    assert(OpenHoldem()->AutoConnector() != NULL);
     write_log(Preferences()->debug_alltherest(), "[CHeartbeatThread] location Johnny_B\n");
-    if (p_autoconnector->IsConnectedToGoneWindow()) {
+    if (OpenHoldem()->AutoConnector()->IsConnectedToGoneWindow()) {
       LogMemoryUsage("H3");
-      p_autoconnector->Disconnect("table disappeared");
+      OpenHoldem()->AutoConnector()->Disconnect("table disappeared");
     }
     LogMemoryUsage("H4");
-    if (!p_autoconnector->IsConnectedToAnything()) {
+    if (!OpenHoldem()->AutoConnector()->IsConnectedToAnything()) {
       // Not connected
       AutoConnect();
     }
@@ -116,10 +116,10 @@ UINT CHeartbeatThread::HeartbeatThreadFunction(LPVOID pParam) {
     // without any heartbeat-sleeping.
     LogMemoryUsage("H5");
     write_log(Preferences()->debug_alltherest(), "[CHeartbeatThread] location Johnny_C\n");
-		if (p_autoconnector->IsConnectedToExistingWindow()) {
+		if (OpenHoldem()->AutoConnector()->IsConnectedToExistingWindow()) {
       if (tablepoint_checker.TablepointsMismatchedTheLastNHeartbeats()) {
         LogMemoryUsage("H6");
-        p_autoconnector->Disconnect("table theme changed (tablepoints)");
+        OpenHoldem()->AutoConnector()->Disconnect("table theme changed (tablepoints)");
       } else {
         LogMemoryUsage("H7");
         ScrapeEvaluateAct();
@@ -187,11 +187,11 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
 
 void CHeartbeatThread::AutoConnect() {
   write_log(Preferences()->debug_alltherest(), "[CHeartbeatThread] location Johnny_D\n");
-	assert(!p_autoconnector->IsConnectedToAnything());
+	assert(!OpenHoldem()->AutoConnector()->IsConnectedToAnything());
 	if (Preferences()->autoconnector_when_to_connect() == k_AutoConnector_Connect_Permanent) {
-		if (p_autoconnector->SecondsSinceLastFailedAttemptToConnect() > 1 /* seconds */) {
+		if (OpenHoldem()->AutoConnector()->SecondsSinceLastFailedAttemptToConnect() > 1 /* seconds */) {
 			write_log(Preferences()->debug_autoconnector(), "[CHeartbeatThread] going to call Connect()\n");
-			p_autoconnector->Connect(NULL);
+			OpenHoldem()->AutoConnector()->Connect(NULL);
 		}	else {
 			write_log(Preferences()->debug_autoconnector(), "[CHeartbeatThread] Reconnection blocked. Other instance failed previously.\n");
 		}

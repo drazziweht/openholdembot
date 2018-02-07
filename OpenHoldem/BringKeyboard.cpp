@@ -43,7 +43,7 @@ void CheckBringKeyboard(void) {
 	memset(&mii, 0, sizeof(MENUITEMINFO));
 
 	// Find position of "Keyboard" item on system menu
-	bringsysmenu = GetSystemMenu(p_autoconnector->attached_hwnd(), false);
+	bringsysmenu = GetSystemMenu(OpenHoldem()->AutoConnector()->attached_hwnd(), false);
 
 	mii.cbSize = sizeof(MENUITEMINFO);
 	mii.fMask = MIIM_STRING;
@@ -109,9 +109,9 @@ void CheckBringKeyboard(void) {
 		hwnd_focus = GetFocus();
 		GetCursorPos(&cur_pos);
 
-		SetFocus(p_autoconnector->attached_hwnd());
-		SetForegroundWindow(p_autoconnector->attached_hwnd());
-		SetActiveWindow(p_autoconnector->attached_hwnd());
+		SetFocus(OpenHoldem()->AutoConnector()->attached_hwnd());
+		SetForegroundWindow(OpenHoldem()->AutoConnector()->attached_hwnd());
+		SetActiveWindow(OpenHoldem()->AutoConnector()->attached_hwnd());
 		SendInput(input_count, input, sizeof(INPUT));
 
 		Sleep(200);
@@ -129,9 +129,9 @@ void CheckBringKeyboard(void) {
 		input[input_count].ki.dwFlags = KEYEVENTF_KEYUP;
 		input_count++;
 
-		SetFocus(p_autoconnector->attached_hwnd());
-		SetForegroundWindow(p_autoconnector->attached_hwnd());
-		SetActiveWindow(p_autoconnector->attached_hwnd());
+		SetFocus(OpenHoldem()->AutoConnector()->attached_hwnd());
+		SetForegroundWindow(OpenHoldem()->AutoConnector()->attached_hwnd());
+		SetActiveWindow(OpenHoldem()->AutoConnector()->attached_hwnd());
 		SendInput(input_count, input, sizeof(INPUT));
 
 		SetActiveWindow(hwnd_focus);
