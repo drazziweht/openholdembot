@@ -59,9 +59,9 @@ public:
 private:
   CSessionCounter _sessioncounter;
   CSharedMem _shared_mem;
-  CWatchdog _watchdog;
+  CWatchdog _watchdog; //!!!!! -> hearbeat?
   CAutoConnector _autoconnector;
-  CTablePositioner _table_positioner;
+  CTablePositioner _table_positioner;//!!!!! -> hearbeat?
   //!!!!!CHeartBeatThread
 };
 
