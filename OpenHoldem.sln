@@ -70,6 +70,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Autoplayer", "DLLs\Autoplay
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Checksums", "DLLs\Checksums_DLL\Checksums.vcxproj", "{AB4652CE-39AD-4990-9D86-6F01489A9515}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scraper", "DLLs\Scraper_DLL\Scraper.vcxproj", "{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -474,6 +476,20 @@ Global
 		{AB4652CE-39AD-4990-9D86-6F01489A9515}.Template|Any CPU.Build.0 = Release|Win32
 		{AB4652CE-39AD-4990-9D86-6F01489A9515}.Template|Win32.ActiveCfg = Release|Win32
 		{AB4652CE-39AD-4990-9D86-6F01489A9515}.Template|Win32.Build.0 = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Debug|Win32.Build.0 = Debug|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release - Optimized|Any CPU.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release - Optimized|Any CPU.Build.0 = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release - Optimized|Win32.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release - Optimized|Win32.Build.0 = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release|Any CPU.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release|Win32.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Release|Win32.Build.0 = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Template|Any CPU.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Template|Any CPU.Build.0 = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Template|Win32.ActiveCfg = Release|Win32
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}.Template|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -501,6 +517,7 @@ Global
 		{F0050F4F-E2AF-4B12-A196-3CCD67D1141E} = {C2261860-0CF9-4EAA-A6BC-333B4810A59D}
 		{F90B2E47-0E62-45F4-9B51-B04AB7773B4A} = {C2261860-0CF9-4EAA-A6BC-333B4810A59D}
 		{AB4652CE-39AD-4990-9D86-6F01489A9515} = {C2261860-0CF9-4EAA-A6BC-333B4810A59D}
+		{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C} = {C2261860-0CF9-4EAA-A6BC-333B4810A59D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		VisualSVNWorkingCopyRoot = 

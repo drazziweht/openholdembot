@@ -11,13 +11,29 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="CTablemap\CTablemap.cpp" />
+    <ClCompile Include="CTransform\CTransform.cpp" />
+    <ClCompile Include="CTransform\hash\lookup3.cpp" />
+    <ClCompile Include="CTransform\pdiff\CompareArgs.cpp" />
+    <ClCompile Include="CTransform\pdiff\LPyramid.cpp" />
+    <ClCompile Include="CTransform\pdiff\Metric.cpp" />
+    <ClCompile Include="CTransform\pdiff\RGBAImage.cpp" />
+    <ClCompile Include="CTransform\WebSafeColours.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Files.h" />
+    <ClInclude Include="CTablemap\CTablemap.h" />
+    <ClInclude Include="CTransform\CTransform.h" />
+    <ClInclude Include="CTransform\hash\lookup3.h" />
+    <ClInclude Include="CTransform\pdiff\CompareArgs.h" />
+    <ClInclude Include="CTransform\pdiff\LPyramid.h" />
+    <ClInclude Include="CTransform\pdiff\Metric.h" />
+    <ClInclude Include="CTransform\pdiff\RGBAImage.h" />
+    <ClInclude Include="CTransform\WebSafeColours.h" />
+    <ClInclude Include="LibDef.h" />
+    <ClInclude Include="Scraper.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{6D9F9D81-4D08-4C57-A773-4B041360D150}</ProjectGuid>
+    <ProjectGuid>{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}</ProjectGuid>
     <RootNamespace>ReferenceMouseDLL</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
@@ -72,7 +88,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)numerical_functions.lib;$(OutDir)string_functions.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,7 +107,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
-      <AdditionalDependencies>psapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>psapi.lib;$(OutDir)numerical_functions.lib;$(OutDir)string_functions.lib;$(OutDir)window_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

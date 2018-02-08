@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CTransform\CTransform.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\pdiff\CompareArgs.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\pdiff\LPyramid.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\pdiff\Metric.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\pdiff\RGBAImage.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\hash\lookup3.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+    <ClCompile Include="CTablemap\CTablemap.cpp">
+      <Filter>CTablemap</Filter>
+    </ClCompile>
+    <ClCompile Include="CTransform\WebSafeColours.cpp">
+      <Filter>CTransform</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CTransform\CTransform.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform\pdiff\CompareArgs.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform\pdiff\LPyramid.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform\pdiff\Metric.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform\pdiff\RGBAImage.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTransform\hash\lookup3.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+    <ClInclude Include="CTablemap\CTablemap.h">
+      <Filter>CTablemap</Filter>
+    </ClInclude>
+    <ClInclude Include="LibDef.h" />
+    <ClInclude Include="Scraper.h" />
+    <ClInclude Include="CTransform\WebSafeColours.h">
+      <Filter>CTransform</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CTablemap">
+      <UniqueIdentifier>{67d110cd-fc77-4239-b87e-964d6030d9d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CTransform">
+      <UniqueIdentifier>{3b03950d-bf44-476a-877f-7484eb0ee7b8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #include "lookup3.h"
 
 /*
