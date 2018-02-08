@@ -8,8 +8,9 @@
 //
 //*******************************************************************************
 //
-// Purpose: simple interface for OpenHoldems scraper-DLL, C-style.
-//   Meant to be used by external programs like table-hoppers
+// Purpose: Two interfaces for OpenHoldems scraper-DLL
+//.  * object-oriented interface for OpenHoldem.
+//   * simple C-style interface, meant for other programs like table-hoppers
 //
 //*******************************************************************************
 //
@@ -21,10 +22,41 @@
 //
 //*******************************************************************************
 
+#include <afxwin.h>
 #include "LibDef.h"
 
+//*******************************************************************************
+//
+// Object-oriented interface for OpenHoldem.
+//
+//*******************************************************************************
+
+SCRAPER_DLL_API class CTablemap;
+
+SCRAPER_DLL_API class CBasicScraper {
+public:
+  CBasicScraper();
+  ~CBasicScraper();
+public:
+  bool LoadTablemap(const char* path);
+  // Loads a tablemap (and automatically unloads the previous one)
+  CString ScrapeRegion(const CString name);
+  CTablemap* Tablemap();
+};
+
+//*******************************************************************************
+//
+// Simple C-style interface, meant for other programs like table-hoppers
+//
+//*******************************************************************************
+
+// Creates a CBasicScraperObject
+SCRAPER_DLL_API void InitBasciScraperInterface();
+
+SCRAPER_DLL_API void DeleteBasciScraperInterface();
+
+// Loads a tablemap (and automatically unloads the previous one)
 SCRAPER_DLL_API bool LoadTablemap(const char* path);
-SCRAPER_DLL_API void UnloadTablemap();
 
 // result-buffer has to be managed by the caller
 // returned results are usually numbers and player-names,
