@@ -42,16 +42,6 @@ class COpenHoldemApp : public CWinApp {
  private:
 	void LoadLastRecentlyUsedFileList();
 	void OpenLastRecentlyUsedFile();
- public:
-   //!!!!!remove
-	mouse_process_message_t	_dll_mouse_process_message;
-	mouse_click_t           _dll_mouse_click;
-	mouse_clickdrag_t       _dll_mouse_click_drag;
-	keyboard_process_message_t _dll_keyboard_process_message;
-	keyboard_sendstring_t   _dll_keyboard_sendstring;
-	keyboard_sendkey_t      _dll_keyboard_sendkey;
-	HMODULE	_mouse_dll;
-	HMODULE	_keyboard_dll;
 public:
   CAutoConnector*   AutoConnector()   { return &_autoconnector; }
   CHeartBeatThread* HeartBeatThread(); //!!!!!

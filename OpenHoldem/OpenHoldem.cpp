@@ -139,47 +139,6 @@ BOOL COpenHoldemApp::InitInstance() {
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=124&t=20281&p=142334#p142334
   Preferences()->LoadPreferences();
 	InstantiateAllSingletons();
-  write_log(Preferences()->debug_openholdem(), "[OpenHoldem] Going to load mouse.DLL\n");
-	// mouse.dll - failure in load is fatal
-	_mouse_dll = LoadLibrary("mouse.dll");
-	if (_mouse_dll == NULL)	{
-		CString		t = "";
-		t.Format("Unable to load mouse.dll, error: %d\n\nExiting.", GetLastError());
-		MessageBox_Error_Warning(t, "OpenHoldem mouse.dll ERROR");
-		return false;
-	}	else {
-		_dll_mouse_process_message = (mouse_process_message_t) GetProcAddress(_mouse_dll, "ProcessMessage");
-		_dll_mouse_click = (mouse_click_t) GetProcAddress(_mouse_dll, "MouseClick");
-		_dll_mouse_click_drag = (mouse_clickdrag_t) GetProcAddress(_mouse_dll, "MouseClickDrag");
-		if (_dll_mouse_process_message==NULL || _dll_mouse_click==NULL || _dll_mouse_click_drag==NULL) {
-			CString		t = "";
-			t.Format("Unable to find all symbols in mouse.dll");
-			MessageBox_Error_Warning(t, "OpenHoldem mouse.dll ERROR");
-			FreeLibrary(_mouse_dll);
-			_mouse_dll = NULL;
-			return false;
-		}
-	write_log(Preferences()->debug_openholdem(), "[OpenHoldem] Going to load keyboard.DLL\n");}
-	// keyboard.dll - failure in load is fatal
-	_keyboard_dll = LoadLibrary("keyboard.dll");
-	if (_keyboard_dll==NULL) {
-		CString		t = "";
-		t.Format("Unable to load keyboard.dll, error: %d\n\nExiting.", GetLastError());
-		MessageBox_Error_Warning(t, "OpenHoldem keyboard.dll ERROR");
-		return false;
-	}	else {
-		_dll_keyboard_process_message = (keyboard_process_message_t) GetProcAddress(_keyboard_dll, "ProcessMessage");
-		_dll_keyboard_sendstring = (keyboard_sendstring_t) GetProcAddress(_keyboard_dll, "SendString");
-		_dll_keyboard_sendkey = (keyboard_sendkey_t) GetProcAddress(_keyboard_dll, "SendKey");
-		if (_dll_keyboard_process_message==NULL || _dll_keyboard_sendstring==NULL || _dll_keyboard_sendkey==NULL)	{
-			CString		t = "";
-			t.Format("Unable to find all symbols in keyboard.dll");
-			MessageBox_Error_Warning(t, "OpenHoldem keyboard.dll ERROR");
-			FreeLibrary(_keyboard_dll);
-			_keyboard_dll = NULL;
-			return false;
-		}
-	}
 	LoadLastRecentlyUsedFileList();
 	// Register the application's document templates.  Document templates
 	// serve as the connection between documents, frame windows and views
