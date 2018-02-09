@@ -11,12 +11,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Files.cpp" />
+    <ClCompile Include="AllinAdjustment.cpp" />
+    <ClCompile Include="BringKeyboard.cpp" />
+    <ClCompile Include="CAllinSlider.cpp" />
+    <ClCompile Include="CAutoplayerButton.cpp" />
+    <ClCompile Include="CBetsizeInputBox.cpp" />
+    <ClCompile Include="CCasinoHotkey.cpp" />
+    <ClCompile Include="CCasinoInterface.cpp" />
+    <ClCompile Include="COcclusionCheck.cpp" />
+    <ClCompile Include="low_level\keyboard.cpp" />
+    <ClCompile Include="low_level\mouse.cpp" />
     <ClCompile Include="PokerChat.cpp" />
+    <ClCompile Include="SwagAdjustment.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Files.h" />
+    <ClInclude Include="AllinAdjustment.h" />
+    <ClInclude Include="BringKeyboard.h" />
+    <ClInclude Include="CAllinSlider.h" />
+    <ClInclude Include="CAutoplayerButton.h" />
+    <ClInclude Include="CBetsizeInputBox.h" />
+    <ClInclude Include="CCasinoHotkey.h" />
+    <ClInclude Include="CCasinoInterface.h" />
+    <ClInclude Include="COcclusionCheck.h" />
+    <ClInclude Include="LibDef.h" />
+    <ClInclude Include="low_level\keyboard.h" />
+    <ClInclude Include="low_level\mouse.h" />
     <ClInclude Include="PokerChat.hpp" />
+    <ClInclude Include="SwagAdjustment.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F90B2E47-0E62-45F4-9B51-B04AB7773B4A}</ProjectGuid>

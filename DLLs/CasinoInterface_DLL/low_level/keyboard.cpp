@@ -7,7 +7,7 @@
 //
 //******************************************************************************
 //
-// Purpose: keyboarddll.cpp : Defines the entry point for the DLL application.
+// Purpose: keyboard-handling for OpewnHoldems autoplayer.
 //
 //******************************************************************************
 
@@ -37,7 +37,7 @@
 #include <windows.h>
 #include <math.h>
 #include <atlstr.h>
-#include "keyboarddll.h"
+#include "keyboard.h"
 
 const int Shift   = 1;
 const int Control = 2;
@@ -61,7 +61,7 @@ void PlayKeyboardEvent(int vkey, int bscan)
 		keybd_event(VK_MENU,    0, KEYEVENTF_KEYUP, 0);
 }
 
-KEYBOARDDLL_API int SendString(const HWND hwnd, const RECT rect, const CString s, const bool use_comma)
+int SendString(const HWND hwnd, const RECT rect, const CString s, const bool use_comma)
 {
 	// Send each character of the string via PlayKeyboardEvent
 	char ch_str[100];
@@ -83,7 +83,7 @@ KEYBOARDDLL_API int SendString(const HWND hwnd, const RECT rect, const CString s
 	return (int) true;
 }
 
-KEYBOARDDLL_API int SendKey(const HWND hwnd, const RECT rect, UINT vkey)
+int SendKey(const HWND hwnd, const RECT rect, UINT vkey)
 {
 	INPUT			input[4];
 
@@ -138,25 +138,6 @@ KEYBOARDDLL_API int SendKey(const HWND hwnd, const RECT rect, UINT vkey)
 	SendInput(input_count, input, sizeof(INPUT));
   Sleep(20);
 	return (int) true;
-}
-
-KEYBOARDDLL_API void ProcessMessage(const char *message, const void *param)
-{
-	if (message==NULL)  return;
-}
-
-BOOL APIENTRY DllMain( HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
-{
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-		//MessageBox(NULL, "kbd", "1", 0);
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-    return true;
 }
 
 const POINT RandomizeClickLocation(const RECT rect) 

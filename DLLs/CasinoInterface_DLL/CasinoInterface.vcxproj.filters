@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="PokerChat.cpp" />
+    <ClCompile Include="low_level\keyboard.cpp">
+      <Filter>Low_Level</Filter>
+    </ClCompile>
+    <ClCompile Include="low_level\mouse.cpp">
+      <Filter>Low_Level</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="PokerChat.hpp" />
+    <ClInclude Include="low_level\keyboard.h">
+      <Filter>Low_Level</Filter>
+    </ClInclude>
+    <ClInclude Include="low_level\mouse.h">
+      <Filter>Low_Level</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Low_Level">
+      <UniqueIdentifier>{70ca74ce-1c00-48fa-a135-715cfbb82079}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

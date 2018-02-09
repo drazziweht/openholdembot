@@ -7,10 +7,9 @@
 //
 //******************************************************************************
 //
-// Purpose: mousedll.cpp : Defines the entry point for the DLL application.
+// Purpose: mouse-handling for OpewnHoldems autoplayer.
 //
 //******************************************************************************
-
 
 #ifndef VC_EXTRALEAN
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
@@ -36,9 +35,9 @@
 
 #include <windows.h>
 #include <math.h>
-#include "mousedll.h"
+#include "mouse.h"
 
-MOUSEDLL_API int MouseClick(const HWND hwnd, const RECT rect, const MouseButton button, const int clicks)
+int MouseClick(const HWND hwnd, const RECT rect, const MouseButton button, const int clicks)
 {
 	INPUT			input[100] = {0};
 
@@ -103,7 +102,7 @@ MOUSEDLL_API int MouseClick(const HWND hwnd, const RECT rect, const MouseButton 
 	return (int) true;
 }
 
-MOUSEDLL_API int MouseClickDrag(const HWND hwnd, const RECT rect) {
+int MouseClickDrag(const HWND hwnd, const RECT rect) {
 	INPUT			input[3];
 	POINT			pt;
 	double		fx, fy;
@@ -148,24 +147,6 @@ MOUSEDLL_API int MouseClickDrag(const HWND hwnd, const RECT rect) {
 	// Send input
 	SendInput(3, input, sizeof(INPUT));
 	return (int) true;
-}
-
-MOUSEDLL_API void ProcessMessage(const char *message, const void *param)
-{
-	if (message==NULL)  return;
-}
-
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
-{
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-	case DLL_THREAD_ATTACH:
-	case DLL_THREAD_DETACH:
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-    return true;
 }
 
 const POINT RandomizeClickLocation(const RECT rect) 

@@ -7,38 +7,21 @@
 //
 //******************************************************************************
 //
-// Purpose:
+// Purpose: a very simple chat system for OpenHoldem,
+// providing:
+//   * an interface for user.dll
+//   * (limited) chat support for the OH scripting language.
 //
 //******************************************************************************
 
-//////////////////////////////////////////////////////////////////////////
-//
-// Author: TheHighFish
-//
-// Created: 2007.11.21
-//
-// Last change: 2008.02.25
-//
-// Description: A very simple chat system for OpenHoldem,
-// providing:
-//   - an interface for user.dll
-//   - (limited) chat support for the OH scripting language.
-//
-// PokerChat is non-OOP, as we pass a function pointer to DLLs,
-// which would lead to problems for methods.
-//
-//////////////////////////////////////////////////////////////////////////
+#define CASINO_INTERFACE_DLL_EXPORTS
 
-#include <stdafx.h>
 #include "PokerChat.hpp"
-
+#include <afxwin.h>
 #include <math.h>
-#include <String>
 #include <time.h>
-#include <windows.h>
-#include <winuser.h>
-
-#include "..\DLLs\User_DLL\user.h"
+#include "..\Globals_DLL\globals.h"
+#include "..\Preferences_DLL\Preferences.h"
 
 char *_the_chat_message = NULL;
 
@@ -81,7 +64,7 @@ time_t _first_possible_next_chat_time;
 // as we store a pointer to the message, until the autoplayer
 // acts again!
 //
-EXE_IMPLEMENTS void SendChatMessage(char *message) {
+CASINO_INTERFACE_DLL_API void SendChatMessage(char *message) {
 	if (_the_chat_message != NULL || message == "")	{
 		// Old message has not been sent yet.
 		// Ignore newer one (especially, if

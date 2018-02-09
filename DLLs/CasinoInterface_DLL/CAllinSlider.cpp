@@ -15,7 +15,6 @@
 #include "stdafx.h"
 #include "CAllinSlider.h"
 #include "CAutoConnector.h"
-#include "CAutoplayerTrace.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoInterface.h"
 #include "OpenHoldem.h"

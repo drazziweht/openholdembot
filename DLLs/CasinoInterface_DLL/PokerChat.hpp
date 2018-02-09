@@ -2,22 +2,20 @@
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
-//    Source code:           https://github.com/OpenHoldem/openholdembot/
-//    Forums:                http://www.maxinmontreal.com/forums/index.php
-//    Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
+//  Source code:           https://github.com/OpenHoldem/openholdembot/
+//  Forums:                http://www.maxinmontreal.com/forums/index.php
+//  Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
 //
 //******************************************************************************
 //
-// Purpose: A very simple chat system for OpenHoldem,
-//	providing:
-//	  - an interface for user.dll
-//	  - (limited) chat support for the OH scripting language.
-//
-//  PokerChat is non-OOP, as we pass a function pointer to DLLs,
+// Purpose: a very simple chat system for OpenHoldem,
+// providing:
+//   * an interface for user.dll
+//   * (limited) chat support for the OH scripting language.
 //
 //******************************************************************************
 
-#include "..\DLLs\User_DLL\user.h"
+#include "LibDef.h"
 
 //  Enumeration constants for simple chat messages.
 //
@@ -57,7 +55,12 @@ void ComputeFirstPossibleNextChatTime();
 //	Use f$chat as "the_MessageIndex".
 void RegisterChatMessage(double message_index);
 
-//  Pointer to the chatmessage to store it,
-//	until it is processed and send to the keyboard
+// Interface for the DLL-guys.
 //
-extern char *_the_chat_message;
+// IMPORTANT:
+// ==========
+// The variable containing the message has to be global,
+// as we store a pointer to the message, until the autoplayer
+// acts again!
+//
+CASINO_INTERFACE_DLL_API void SendChatMessage(char *message);
