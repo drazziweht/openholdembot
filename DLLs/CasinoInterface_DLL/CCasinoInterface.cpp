@@ -87,7 +87,7 @@ bool CCasinoInterface::TableLostFocus() {
 void CCasinoInterface::ClickRect(RECT rect) {
 	write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Calling mouse.dll to single click button: %d,%d %d,%d\n", 
     rect.left, rect.top, rect.right, rect.bottom);
-	(theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), rect, MouseLeft, 1);
+	MouseClick(OpenHoldem()->AutoConnector()->attached_hwnd(), rect, MouseLeft, 1);
   EngineContainer()->symbol_engine_time()->UpdateOnAutoPlayerAction();
 }
 

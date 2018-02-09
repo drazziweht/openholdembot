@@ -12,6 +12,8 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
+
 class CBetsizeInputBox {
   friend class CAllinSlider;
  public:

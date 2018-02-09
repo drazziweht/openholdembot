@@ -11,18 +11,20 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CBetsizeInputBox.h"
-#include "CAutoConnector.h"
-#include "CAutoplayerTrace.h"
+///#include "CAutoConnector.h"
+///#include "CAutoplayerTrace.h"
 #include "CCasinoInterface.h"
 #include "SwagAdjustment.h"
-#include "OpenHoldem.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineHistory.h"
-#include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "low_level\mouse.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineHistory.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CBetsizeInputBox::CBetsizeInputBox() {
   // dummy point for mouse and keyboard DLL
@@ -162,19 +164,19 @@ void CBetsizeInputBox::SelectText() {
   if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_SINGLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to single click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-    (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 1);
+    MouseClick(OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 1);
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_DOUBLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to double click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-    (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 2);
+    MouseClick(OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 2);
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_TRIPLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to triple click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-    (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 3);
+    MouseClick(OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 3);
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_CLICKDRAG) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to click drag: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-    (theApp._dll_mouse_click_drag) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region);
+    MouseClickDrag) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region);
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_NOTHING) {
     // Nothing to do
   } else {
