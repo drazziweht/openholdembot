@@ -49,7 +49,7 @@ void CHandHistoryShowdown::UpdateOnMyTurn() {
 }
 
 bool AnyOpponentsCardsVisible() {
-  for (int i=0; i<p_tablemap->nchairs(); ++i) {
+  for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); ++i) {
     if (i == EngineContainer()->symbol_engine_userchair()->userchair()) {
       // Not an opponent
       continue;
@@ -62,7 +62,7 @@ bool AnyOpponentsCardsVisible() {
 }
 
 bool AllPlayersActed() {
-  for (int i=0; i<p_tablemap->nchairs(); ++i) {
+  for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); ++i) {
 
   }
   return false;

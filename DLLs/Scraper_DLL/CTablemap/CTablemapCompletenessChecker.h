@@ -12,6 +12,8 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
+
 class CTablemapCompletenessChecker {
  public:
   CTablemapCompletenessChecker();

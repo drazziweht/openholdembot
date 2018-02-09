@@ -126,9 +126,9 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
   } else if ((memcmp(name, "attached_hwnd", 13)==0) && (strlen(name)==13)) {
     *result = int(OpenHoldem()->AutoConnector()->attached_hwnd());
   } else if ((memcmp(name, "islobby", 7)==0) && (strlen(name)==7)) {
-    *result = p_tablemap->islobby();
+    *result = BasicScraper()->Tablemap()->islobby();
   }  else if ((memcmp(name, "ispopup", 7) == 0) && (strlen(name) == 7)) {
-    *result = p_tablemap->ispopup();
+    *result = BasicScraper()->Tablemap()->ispopup();
   } else if ((memcmp(name, "title$", 6) == 0) && (strlen(name) >= 7)) {
     CString substring = CString(name).Mid(6);
     *result = TableState()->TableTitle()->ContainsSubstring(substring);

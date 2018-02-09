@@ -11,6 +11,8 @@
 //
 //*******************************************************************************
 
+#define SCRAPER_DLL_EXPORTS
+
 #include "CTablemap.h"
 #include <assert.h>
 #include <Math.h>
@@ -26,8 +28,6 @@
 #ifdef OPENSCRAPE_PROGRAM
 #include "../OpenScrape/debug.h"
 #endif
-
-CTablemap			*p_tablemap = NULL;
 
 CTablemap::CTablemap(void) {
   ClearTablemap();

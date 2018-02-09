@@ -132,10 +132,10 @@ void CSymbolEngineChipAmounts::CalculatePots() {
 	}
   assert(_potplayer >= 0.0);
 	// pot, potcommon, based on value of potmethod
-	if (/*#p_tablemap->potmethod()*/2 == 2)	{
+	if (/*#BasicScraper()->Tablemap()->potmethod()*/2 == 2)	{
 		_pot = TableState()->Pot(0);
 		_potcommon = _pot - _potplayer;
-	}	else if(/*#p_tablemap->potmethod()*/2 == 3) {
+	}	else if(/*#BasicScraper()->Tablemap()->potmethod()*/2 == 3) {
     // Special pots at Bodog
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=9331
 		_pot = TableState()->Pot(0);

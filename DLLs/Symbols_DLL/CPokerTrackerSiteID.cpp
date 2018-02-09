@@ -70,8 +70,8 @@ const int CPokerTrackerSiteID::GetSiteId()
 	std::map<CString, int>::const_iterator lookup, end;
 	lookup = _pt4_siteid.begin();
 	end = _pt4_siteid.end();
-	CString sitename = p_tablemap->sitename();
-	CString network = p_tablemap->network();
+	CString sitename = BasicScraper()->Tablemap()->sitename();
+	CString network = BasicScraper()->Tablemap()->network();
 	while (lookup!=end)
 	{
 		CString supported_sitename = lookup->first;

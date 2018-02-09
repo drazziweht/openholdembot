@@ -132,7 +132,7 @@ bool CTablepointChecker::CheckTablepointsOfCurrentTablemap() {
     CString tablepointX;
     tablepointX.Format("tablepoint%i", i);
     CString tablepoint_result;
-    if (p_tablemap->ItemExists(tablepointX)) {
+    if (BasicScraper()->Tablemap()->ItemExists(tablepointX)) {
       assert(p_scraper != NULL);
       p_scraper->EvaluateRegion(tablepointX, &tablepoint_result);
       if (tablepoint_result != "true") {

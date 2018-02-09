@@ -40,7 +40,7 @@ END_MESSAGE_MAP()
 
 COpenScrapeDoc::COpenScrapeDoc()
 {
-	p_tablemap->ClearTablemap();
+	BasicScraper()->Tablemap()->ClearTablemap();
 
 	attached_hwnd = NULL;
 	ZeroMemory(&attached_rect, sizeof(RECT));
@@ -67,7 +67,7 @@ BOOL COpenScrapeDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 	
-	p_tablemap->ClearTablemap();
+	BasicScraper()->Tablemap()->ClearTablemap();
 
 	if (theApp.m_TableMapDlg)  
 		theApp.m_TableMapDlg->create_tree();
@@ -82,7 +82,7 @@ BOOL COpenScrapeDoc::OnOpenDocument(LPCTSTR lpszPathName)
 
 	if (!valid_open)
 	{
-		p_tablemap->ClearTablemap();
+		BasicScraper()->Tablemap()->ClearTablemap();
 		SetTitle("");
 	}
 	
@@ -108,7 +108,7 @@ void COpenScrapeDoc::Serialize(CArchive& ar)
 
 	if (ar.IsStoring())
 	{
-		p_tablemap->SaveTablemap(ar, VERSION_TEXT);
+		BasicScraper()->Tablemap()->SaveTablemap(ar, VERSION_TEXT);
 	}
 
 	else
@@ -117,7 +117,7 @@ void COpenScrapeDoc::Serialize(CArchive& ar)
 		// We do no longer do this here.
 		// There is also no longer any need to auto-correct old v1-TMs
 		// that are older than 3 years old.
-		ret = p_tablemap->LoadTablemap((char *) ar.m_strFileName.GetString());
+		ret = BasicScraper()->Tablemap()->LoadTablemap((char *) ar.m_strFileName.GetString());
 		if (ret == SUCCESS)
 		{
 			valid_open = true;

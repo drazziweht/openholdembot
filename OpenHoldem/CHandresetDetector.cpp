@@ -194,8 +194,8 @@ bool CHandresetDetector::IsHandresetByHandNumber() {
 
 bool CHandresetDetector::IsValidHandNumber(CString handnumber) {
 	int length_of_handnumber = handnumber.GetLength();
-	int max_length_of_handnumber = p_tablemap->HandNumberMaxExpectedDigits();
-	int min_length_of_handnumber = p_tablemap->HandNumberMinExpectedDigits(); 
+	int max_length_of_handnumber = BasicScraper()->Tablemap()->HandNumberMaxExpectedDigits();
+	int min_length_of_handnumber = BasicScraper()->Tablemap()->HandNumberMinExpectedDigits(); 
 
 	if ((min_length_of_handnumber > 0) && (max_length_of_handnumber > 0)) {
 		return ((length_of_handnumber >= min_length_of_handnumber)
@@ -208,7 +208,7 @@ bool CHandresetDetector::IsValidHandNumber(CString handnumber) {
 
 bool CHandresetDetector::IsValidDealerChair(int dealerchair) {
 	// Dealerchair should be -1, if not found (occlusion).
-	return ((dealerchair >= 0) && (dealerchair < p_tablemap->nchairs()));
+	return ((dealerchair >= 0) && (dealerchair < BasicScraper()->Tablemap()->nchairs()));
 }
 
 bool CHandresetDetector::IsHandresetByCommunityCards() {
@@ -300,7 +300,7 @@ bool CHandresetDetector::IsHandresetByButtonsAfterFold() {
 }
 
 bool CHandresetDetector::SmallBlindExists() {
-  for (int i=0; i<p_tablemap->nchairs(); ++i) {
+  for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); ++i) {
     double players_bet = TableState()->Player(i)->_bet.GetValue();
     if ((players_bet > 0) && (players_bet < _bblind)) {
       // Either SB or ante, first orbit preflop, hand-reset
@@ -349,13 +349,13 @@ void CHandresetDetector::GetNewSymbolValues() {
   _antes_visible = TableState()->AntesVisible();
   _buttons_visible = p_casino_interface->IsMyTurn();
 	for (int i=0; i<kMaxNumberOfCardsPerPlayer; i++) {
-		if ((userchair >= 0) && (userchair < p_tablemap->nchairs())) {
+		if ((userchair >= 0) && (userchair < BasicScraper()->Tablemap()->nchairs())) {
       playercards[i] = TableState()->User()->hole_cards(i)->GetValue();
 		} else {
 			playercards[i] = CARD_UNDEFINED;
 		}
 	}
-  for (int i=0; i<p_tablemap->nchairs(); ++i) {
+  for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); ++i) {
     _balance[i] = TableState()->Player(i)->_balance.GetValue();
   }
   assert(TableState()->TableTitle() != NULL);
@@ -377,7 +377,7 @@ void CHandresetDetector::StoreOldValuesForComparisonOnNextHeartbeat() {
 	for (int i=0; i<NumberOfCardsPerPlayer(); i++) {
 		last_playercards[i] = playercards[i];
 	}
-  for (int i = 0; i < p_tablemap->nchairs(); ++i) {
+  for (int i = 0; i < BasicScraper()->Tablemap()->nchairs(); ++i) {
     _last_balance[i] = _balance[i];
   }
   _last_ohreplay_framenumber = _ohreplay_framenumber;

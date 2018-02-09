@@ -5,17 +5,17 @@
 //    Forums:                http://www.maxinmontreal.com/forums/index.php
 //    Licensed under GPL v3: http://www.gnu.org/licenses/gpl.html
 // 
-//******************************************************************************
+//*****************************************************************************
 //
 // Purpose: Verifying that a tablemap is complete and usable
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CTablemapCompletenessChecker.h"
-#include "CSessionCounter.h"
-#include "../CTablemap/CTablemap.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "CTablemap.h"
+#include "..\CBasicScraper.h"
+#include "..\..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 
 CTablemapCompletenessChecker::CTablemapCompletenessChecker() {
 }
@@ -28,7 +28,7 @@ void CTablemapCompletenessChecker::ErrorMissingItem(CString item) {
   message.Format("Missing item in tablemap: %s.\n"
     "This item is absolutely necessary for correct execution.\n"
     "%s", 
-    item, p_tablemap->filepath());
+    item, BasicScraper()->Tablemap()->filepath());
   MessageBox_Interactive(message, "Error", 0);
 }
 
@@ -40,7 +40,7 @@ void CTablemapCompletenessChecker::ErrorDeprecatedItem(CString item) {
     "The reasons and potential consequences are documented in the release-notes.\n"
     "\n"
     "%s", 
-    item, p_tablemap->filepath());
+    item, BasicScraper()->Tablemap()->filepath());
   MessageBox_Interactive(message, "Error", 0);
 }
 
@@ -55,7 +55,7 @@ void CTablemapCompletenessChecker::ErrorSwagRenamed() {
     "  * swagtextmethod -> betsizeinterpretationmethod\n"
     "\n"
     "%s", 
-    p_tablemap->filepath());
+    BasicScraper()->Tablemap()->filepath());
   MessageBox_Interactive(message, "Error", 0);
 }
 
@@ -67,7 +67,7 @@ void CTablemapCompletenessChecker::ErrorMissingTablepoint() {
     "at least r$tablepoint0 must be present.\n"
     "\n"
     "%s",
-    p_tablemap->filepath());
+    BasicScraper()->Tablemap()->filepath());
   MessageBox_Interactive(message, "Error", 0);
 }
 
@@ -82,7 +82,7 @@ void CTablemapCompletenessChecker::ErrorClientsizeReplaced() {
 }
 
 void CTablemapCompletenessChecker::CheckItem(CString item) {
-  if (!p_tablemap->ItemExists(item)) {
+  if (!BasicScraper()->Tablemap()->ItemExists(item)) {
     ErrorMissingItem(item);
   }
 }
@@ -95,7 +95,7 @@ void CTablemapCompletenessChecker::CheckSetOfItems(CString prefix,
   // if the first optional item exists                                                   
   CString first_optional_item;
   first_optional_item.Format("%s%i%s", prefix, 0, postfix);
-  if (p_tablemap->ItemExists(first_optional_item)) {
+  if (BasicScraper()->Tablemap()->ItemExists(first_optional_item)) {
     mandatory = true;
   }
   if (!mandatory) return;
@@ -111,18 +111,18 @@ void CTablemapCompletenessChecker::CheckItem(CString prefix, int infix, CString 
 }
 
 bool CTablemapCompletenessChecker::IsNoLimitMap() {
-  return (p_tablemap->ItemExists("i3edit")
-    || p_tablemap->ItemExists("i3slider")
-    || p_tablemap->ItemExists("betpotmethod")
-    || p_tablemap->ItemExists("betsizeselectionmethod")
-    || p_tablemap->ItemExists("betsizedeletionmethod")
-    || p_tablemap->ItemExists("betsizeinterpretationmethod")
-    || p_tablemap->ItemExists("betsizeconfirmationmethod"));
+  return (BasicScraper()->Tablemap()->ItemExists("i3edit")
+    || BasicScraper()->Tablemap()->ItemExists("i3slider")
+    || BasicScraper()->Tablemap()->ItemExists("betpotmethod")
+    || BasicScraper()->Tablemap()->ItemExists("betsizeselectionmethod")
+    || BasicScraper()->Tablemap()->ItemExists("betsizedeletionmethod")
+    || BasicScraper()->Tablemap()->ItemExists("betsizeinterpretationmethod")
+    || BasicScraper()->Tablemap()->ItemExists("betsizeconfirmationmethod"));
 }
 
 void CTablemapCompletenessChecker::CheckBetsOrChips() {
-  bool tm_uses_stacks = p_tablemap->ItemExists("p0chip00");
-  int nchairs = p_tablemap->nchairs();
+  bool tm_uses_stacks = BasicScraper()->Tablemap()->ItemExists("p0chip00");
+  int nchairs = BasicScraper()->Tablemap()->nchairs();
   for (int i=0; i<nchairs; ++i) {
     if (tm_uses_stacks) {
       CheckItem("p", i, "chip00");
@@ -138,7 +138,7 @@ void CTablemapCompletenessChecker::CheckCardFaces(CString prefix, int infix, CSt
   CString name;
   name.Format("%s%d%s", prefix, infix, postfix);
   CString rank_name = name + "rank";
-  if (p_tablemap->ItemExists(rank_name)) {
+  if (BasicScraper()->Tablemap()->ItemExists(rank_name)) {
     // If a rank exists then the suit also needs to get scraped
     CString suit_name = name + "suit";
     CheckItem(suit_name);
@@ -149,7 +149,7 @@ void CTablemapCompletenessChecker::CheckCardFaces(CString prefix, int infix, CSt
 }
 
 void CTablemapCompletenessChecker::CheckMainPot() {
-  if (p_tablemap->ItemExists("c0pot0chip00")) {
+  if (BasicScraper()->Tablemap()->ItemExists("c0pot0chip00")) {
      CheckItem("c0pot0chip01");
      CheckItem("c0pot0chip10");
   } else {
@@ -162,9 +162,9 @@ void CTablemapCompletenessChecker::VerifySingleC0limitsItem(CString name) {
   // a corresponding s£c0limitsX-symbol,
   // otherwise OpenHoldem can crash on evaluation
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=18865
-  if (!p_tablemap->ItemExists(name)) return;
-  SMapCI sit = p_tablemap->s$()->find(name); 
-  if (sit == p_tablemap->s$()->end()) {
+  if (!BasicScraper()->Tablemap()->ItemExists(name)) return;
+  SMapCI sit = BasicScraper()->Tablemap()->s$()->find(name); 
+  if (sit == BasicScraper()->Tablemap()->s$()->end()) {
     CString missing_item = "s$" + name;
     ErrorMissingItem(missing_item);
   }
@@ -182,7 +182,7 @@ void CTablemapCompletenessChecker::VerifyC0limits() {
 void CTablemapCompletenessChecker::VerifyMap() {
   // Only session 0 verifies the tablemaps
   // for better performance amd to avoid driving users crazy.
-  if (OpenHoldem()->SessionCounter()->session_id() > 0) return;
+  ///if (OpenHoldem()->SessionCounter()->session_id() > 0) return;
   // First check for deprecated (and renamed( items.
   // This avoids confusion if we cmplain about missing renamed symbols later
   CheckForDeprecatedItems();
@@ -195,29 +195,29 @@ void CTablemapCompletenessChecker::VerifyMap() {
   CheckItem("targetsize");
   // All the rest is only needed for tables, 
   // but not for lobby-tablemaps or popup-TMs
-  if (p_tablemap->islobby()) return;
-  if (p_tablemap->ispopup()) return;
+  if (BasicScraper()->Tablemap()->islobby()) return;
+  if (BasicScraper()->Tablemap()->ispopup()) return;
   // Basic info, needed by every table
   CheckItem("nchairs");
   CheckItem("network");
   CheckItem("ttlimits");
-  if (p_tablemap->sitename() == "") {
+  if (BasicScraper()->Tablemap()->sitename() == "") {
     CString error_message;
     error_message.Format("Tablemap contains no sitename.\n"
       "Sitenames are necessary to recognize duplicate TMs\n"
       "(and for other features like PokerTracker).\n\n",
-      "%s", p_tablemap->filepath());
+      "%s", BasicScraper()->Tablemap()->filepath());
     MessageBox_Error_Warning(error_message, "Warning");
   }
   // Range-check nchairs
-  int nchairs = p_tablemap->nchairs();
+  int nchairs = BasicScraper()->Tablemap()->nchairs();
   int last_chair = nchairs - 1;
   if ((nchairs < 2) || (nchairs > kMaxNumberOfPlayers)) {
     CString message;
     message.Format("Tablemap item nchairs out of range\n"
       "Correct values: 2..10\n"
       "%s",
-      p_tablemap->filepath());
+      BasicScraper()->Tablemap()->filepath());
     MessageBox_Interactive(message, "Error", 0);
   }
   // Check mandatory items for every seat
@@ -229,7 +229,7 @@ CheckSetOfItems("p", last_chair, "seated", true);
 CheckSetOfItems("p", last_chair, "cardback", true);
 CheckSetOfItems("p", last_chair, "cardface0nocard", true);
 CheckSetOfItems("p", last_chair, "cardface1nocard", true);
-if (p_tablemap->SupportsOmaha()) {
+if (BasicScraper()->Tablemap()->SupportsOmaha()) {
   CheckSetOfItems("p", last_chair, "cardface2nocard", true);
   CheckSetOfItems("p", last_chair, "cardface3nocard", true);
 }
@@ -237,7 +237,7 @@ if (p_tablemap->SupportsOmaha()) {
 for (int i = 0; i < nchairs; ++i) {
   CheckCardFaces("p", i, "cardface0");
   CheckCardFaces("p", i, "cardface1");
-  if (p_tablemap->SupportsOmaha()) {
+  if (BasicScraper()->Tablemap()->SupportsOmaha()) {
     CheckCardFaces("p", i, "cardface2");
     CheckCardFaces("p", i, "cardface3");
   }
@@ -255,7 +255,7 @@ int number_of_buttons_seen = 0;
 for (int i = 0; i < k_max_number_of_buttons; ++i) {
   CString button;
   button.Format("i%cbutton", HexadecimalChar(i));
-  if (p_tablemap->ItemExists(button)) {
+  if (BasicScraper()->Tablemap()->ItemExists(button)) {
     ++number_of_buttons_seen;
     CString button_state;
     button_state.Format("i%cstate", HexadecimalChar(i));
@@ -272,7 +272,7 @@ if (number_of_buttons_seen < 3) {
     "  Fold, Check/Call, Bet/Raise\n"
     "At least one of them is missing.\n"
     "%s",
-    p_tablemap->filepath());
+    BasicScraper()->Tablemap()->filepath());
   MessageBox_Interactive(message, "Error", 0);
 }
 // No Limit only
@@ -293,7 +293,7 @@ if (IsNoLimitMap()) {
 }
 // Font-types
 for (int i = 0; i < k_max_number_of_font_groups_in_tablemap; ++i) {
-  if (p_tablemap->FontGroupInUse(i)) {
+  if (BasicScraper()->Tablemap()->FontGroupInUse(i)) {
     CheckItem("t", i, "type");
   }
 }
@@ -319,26 +319,26 @@ CheckSetOfItems("u", last_chair, "dealer", false);
 
 void CTablemapCompletenessChecker::VerifyTitleTexts() {
   // titletext should exist (already checked)
-  if (!p_tablemap->ItemExists("titletext")) {
+  if (!BasicScraper()->Tablemap()->ItemExists("titletext")) {
     return;
   }
-  if (p_tablemap->GetTMSymbol("titletext") == "") {
+  if (BasicScraper()->Tablemap()->GetTMSymbol("titletext") == "") {
     // Since version 11.0.1 we support empty titletexts 
     // But then at least one tablepoint is required
     // in addition to clientsizemin/max to avoid random connections.
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=124&t=20382
-    if (!p_tablemap->ItemExists("tablepoint0")) {
+    if (!BasicScraper()->Tablemap()->ItemExists("tablepoint0")) {
       ErrorMissingTablepoint();
     }
     for (int i = 0; i < k_max_number_of_titletexts; ++i) {
       CString title;
       title.Format("titletext%d", i);
-      if (p_tablemap->ItemExists(title)) {
+      if (BasicScraper()->Tablemap()->ItemExists(title)) {
         CString message;
         message.Format("Tablemap contains empty titletext.\n"
           "It must not contain additional titles: %s\n"
           "%s",
-          title, p_tablemap->filepath());
+          title, BasicScraper()->Tablemap()->filepath());
         MessageBox_Interactive(message, "Error", 0);
       }
     }
@@ -349,16 +349,16 @@ void CTablemapCompletenessChecker::VerifyTitleTexts() {
   for (int i = 0; i < k_max_number_of_titletexts; ++i) {
     CString title;
     title.Format("titletext%d", i);
-    if (!p_tablemap->ItemExists(title)) {
+    if (!BasicScraper()->Tablemap()->ItemExists(title)) {
       continue;
     }
-    if (p_tablemap->GetTMSymbol(title) == "") {
+    if (BasicScraper()->Tablemap()->GetTMSymbol(title) == "") {
       CString message;
       message.Format("Tablemap contains empty %s.\n"
         "Only the main titletext may be empty.\n"
         "Mixed empty and specified titles are not supported."
         "%s",
-        title, p_tablemap->filepath());
+        title, BasicScraper()->Tablemap()->filepath());
       MessageBox_Interactive(message, "Error", 0);
     }
   }
@@ -366,32 +366,32 @@ void CTablemapCompletenessChecker::VerifyTitleTexts() {
 
 void CTablemapCompletenessChecker::CheckForDeprecatedItems() {
   // r$c0istournament no longer supported, works automatically
-  if (p_tablemap->ItemExists("c0istournament")) {
+  if (BasicScraper()->Tablemap()->ItemExists("c0istournament")) {
     ErrorDeprecatedItem("c0istournament");
   }
   // handresetmethod no longer supported, works automatically
-  if (p_tablemap->ItemExists("handresetmethod")) {
+  if (BasicScraper()->Tablemap()->ItemExists("handresetmethod")) {
     ErrorDeprecatedItem("handresetmethod");
   }
   // swag cofiguration symbols got renamed
-  if (p_tablemap->ItemExists("swagselectionmethod")
-      || p_tablemap->ItemExists("swagdeletionmethodmethod")
-      || p_tablemap->ItemExists("swagconfirmationmethod")
-      || p_tablemap->ItemExists("swagtextmethod")) {
+  if (BasicScraper()->Tablemap()->ItemExists("swagselectionmethod")
+      || BasicScraper()->Tablemap()->ItemExists("swagdeletionmethodmethod")
+      || BasicScraper()->Tablemap()->ItemExists("swagconfirmationmethod")
+      || BasicScraper()->Tablemap()->ItemExists("swagtextmethod")) {
     ErrorSwagRenamed();
   }
   // activemethod no longer upported since OpenHoldem 7.3.1
   // since it was based on backward-compatibilitz for a bug
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=117&t=17818&start=30#p125307
-  if (p_tablemap->ItemExists("activemethod")) {
+  if (BasicScraper()->Tablemap()->ItemExists("activemethod")) {
     ErrorDeprecatedItem("activemethod");
   }
   // allinmethod no longer supported, works automatically
-  if (p_tablemap->ItemExists("allinmethod")) {
+  if (BasicScraper()->Tablemap()->ItemExists("allinmethod")) {
     ErrorDeprecatedItem("allinmethod");
   }
   // clientsize removed in favour of clientsizemin/max and targetzize
-  if (p_tablemap->ItemExists("clientsize")) {
+  if (BasicScraper()->Tablemap()->ItemExists("clientsize")) {
     ErrorClientsizeReplaced();
   }
 }

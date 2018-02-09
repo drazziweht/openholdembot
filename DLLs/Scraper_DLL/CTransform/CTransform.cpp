@@ -14,6 +14,7 @@
 #include "CTransform.h"
 #include <math.h>
 #include "WebSafeColours.h"
+#include "..\CBasicScraper.h"
 #include "..\..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\..\Preferences_DLL\Preferences.h"
 #include "..\..\StringFunctions_DLL\string_functions.h"
@@ -155,7 +156,7 @@ int CTransform::CTypeTransform(RMapCI region, const HDC hdc, CString *text, COLO
 int CTransform::ITypeTransform(RMapCI region, const HDC hdc, CString *text) 
 {
 	int					width = 0, height = 0, x = 0, y = 0, i = 0, result = 0;
-	IMapCI				best_match = p_tablemap->i$()->end();
+	IMapCI				best_match = BasicScraper()->Tablemap()->i$()->end();
 	unsigned int		smallest_pix_diff = 0;
 	int					retval=ERR_NOTHING_TO_SCRAPE;
 	HBITMAP				hbm = NULL;
@@ -218,7 +219,7 @@ int CTransform::ITypeTransform(RMapCI region, const HDC hdc, CString *text)
 
 	// scan through all i$ records and find the one that has the smallest pixel difference
 	smallest_pix_diff = 0xffffffff;
-	for (IMapCI i_iter=p_tablemap->i$()->begin(); i_iter!=p_tablemap->i$()->end(); i_iter++)
+	for (IMapCI i_iter=BasicScraper()->Tablemap()->i$()->begin(); i_iter!=BasicScraper()->Tablemap()->i$()->end(); i_iter++)
 	{	
 		if (i_iter->second.width == width && i_iter->second.height == height)
 		{
@@ -289,7 +290,7 @@ int CTransform::HTypeTransform(RMapCI region, const HDC hdc, CString *text)
 	height = region->second.bottom - region->second.top + 1;
 	hash_type = RightDigitCharacterToNumber(region->second.transform);
 	
-	if (p_tablemap->h$(hash_type)->empty())
+	if (BasicScraper()->Tablemap()->h$(hash_type)->empty())
 		return ERR_NO_HASH_MATCH;
 
 	// See if region size is too large
@@ -337,7 +338,7 @@ int CTransform::HTypeTransform(RMapCI region, const HDC hdc, CString *text)
 	else if (hash_type>=1 && hash_type<k_max_number_of_hash_groups_in_tablemap) 
 	{
 		pixcount = 0;
-		for (PMapCI p_iter=p_tablemap->p$(hash_type)->begin(); p_iter!=p_tablemap->p$(hash_type)->end(); p_iter++) 
+		for (PMapCI p_iter=BasicScraper()->Tablemap()->p$(hash_type)->begin(); p_iter!=BasicScraper()->Tablemap()->p$(hash_type)->end(); p_iter++) 
 		{
 			x = p_iter->second.x;
 			y = p_iter->second.y;
@@ -357,10 +358,10 @@ int CTransform::HTypeTransform(RMapCI region, const HDC hdc, CString *text)
 	}
 
 	// lookup hash in h$ records
-	HMapCI h_iter = p_tablemap->h$(hash_type)->find(hash);
+	HMapCI h_iter = BasicScraper()->Tablemap()->h$(hash_type)->find(hash);
 
 	// no hash match
-	if (h_iter == p_tablemap->h$(hash_type)->end()) 
+	if (h_iter == BasicScraper()->Tablemap()->h$(hash_type)->end()) 
 	{ 
 		retval = ERR_NO_HASH_MATCH; 
 		*text = "";
@@ -410,8 +411,8 @@ int CTransform::TTypeTransform(RMapCI region, const HDC hdc, CString *text, CStr
 
 	s.Format("t%ctype", region->second.transform[1]);
 
-	SMapCI s_iter = p_tablemap->s$()->find(s.GetString());
-	if (s_iter != p_tablemap->s$()->end())
+	SMapCI s_iter = BasicScraper()->Tablemap()->s$()->find(s.GetString());
+	if (s_iter != BasicScraper()->Tablemap()->s$()->end())
 		s$tXtype = s_iter->second.text;
 
 	// Allocate heap space for BITMAPINFO
@@ -544,10 +545,10 @@ int CTransform::DoPlainFontScan(RMapCI region, const int width, const int height
 			CalcHexmash(vert_band_left, temp_right, y_begin, y_end, ch, &hexmash);
 
 			// lookup font in t$ records
-			TMapCI t_iter = p_tablemap->t$(text_group)->find(hexmash.GetString());
+			TMapCI t_iter = BasicScraper()->Tablemap()->t$(text_group)->find(hexmash.GetString());
 
 			// Found match, save char and move on
-			if (t_iter != p_tablemap->t$(text_group)->end()) 
+			if (t_iter != BasicScraper()->Tablemap()->t$(text_group)->end()) 
 			{
 				retval = ERR_GOOD_SCRAPE_GENERAL;
 
@@ -616,7 +617,7 @@ int CTransform::DoFuzzyFontScan(RMapCI region, const int width, const int height
 		// Find best hamming distance match within this MAX_SINGLE_CHAR_WIDTH group of bands 
 		TMapCI t_iter = GetBestHammingDistance(region, width, height, bg, ch, vert_band_left, tolerance);
 
-		if (t_iter != p_tablemap->t$(font_group)->end())
+		if (t_iter != BasicScraper()->Tablemap()->t$(font_group)->end())
 		{
 			retval = ERR_GOOD_SCRAPE_GENERAL;
 			
@@ -642,7 +643,7 @@ TMapCI CTransform::GetBestHammingDistance(RMapCI region, const int width, const 
 	double				best_weighted_hd = 999999.;
 	unsigned int		hexval_array[MAX_SINGLE_CHAR_WIDTH] = {0};
 	int					font_group = strtoul(CString(region->second.transform[1]), NULL, 10);
-	TMapCI				best_hd_t_iter = p_tablemap->t$(font_group)->end();
+	TMapCI				best_hd_t_iter = BasicScraper()->Tablemap()->t$(font_group)->end();
 
 	for (int x=0; x<MAX_SINGLE_CHAR_WIDTH && left+x<width; x++)
 	{
@@ -666,7 +667,7 @@ TMapCI CTransform::GetBestHammingDistance(RMapCI region, const int width, const 
 
 		// Scan through each font record for this region's group and identify the one with the 
 		// best hamming distance match
-		for (TMapCI t_iter=p_tablemap->t$(font_group)->begin(); t_iter!=p_tablemap->t$(font_group)->end(); t_iter++)
+		for (TMapCI t_iter=BasicScraper()->Tablemap()->t$(font_group)->begin(); t_iter!=BasicScraper()->Tablemap()->t$(font_group)->end(); t_iter++)
 		{
 			double lit_pixels = 0.000001;
 			double tot_hd = 0.000001;

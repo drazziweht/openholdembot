@@ -286,7 +286,7 @@ void CRegionCloner::CloneCommonCards()
 		new_region.radius = region_to_be_cloned.radius;
 		new_region.transform = region_to_be_cloned.transform;
 
-		p_tablemap->r$_insert(new_region);
+		BasicScraper()->Tablemap()->r$_insert(new_region);
 
 		theApp.m_TableMapDlg->UpdateDisplayOfAllRegions();
 	}
@@ -342,7 +342,7 @@ void CRegionCloner::CloneCircularCloneableRegions() {
 				new_region.left = region_with_balance.left - ( balance_0_left - region_to_be_cloned.left );
 				new_region.bottom = new_region.top + (region_to_be_cloned.bottom-region_to_be_cloned.top );
 				new_region.right = new_region.left + ( region_to_be_cloned.right - region_to_be_cloned.left );
-				p_tablemap->r$_insert(new_region);
+				BasicScraper()->Tablemap()->r$_insert(new_region);
 			}
 		}
 	}

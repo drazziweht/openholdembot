@@ -12,6 +12,7 @@
 //
 //*******************************************************************************
 
+#include "..\LibDef.h"
 #include <afxwin.h>
 #include <atlstr.h>
 #include <map>
@@ -215,5 +216,3 @@ class CTablemap {
 	CCritSec m_critsec;
   int      _nchairs;
 };
-
-extern CTablemap *p_tablemap;

@@ -100,7 +100,7 @@ bool CSymbolEngineCasino::ConnectedToDDPoker() {
 }
 
 bool CSymbolEngineCasino::SitenameContainsCasinoIdentifier(const char *casino) {
-  CString sitename = p_tablemap->sitename();
+  CString sitename = BasicScraper()->Tablemap()->sitename();
   sitename.MakeLower();
   return (sitename.Find(casino) >= 0);
 }
@@ -117,7 +117,7 @@ bool CSymbolEngineCasino::EvaluateSymbol(const CString name, double *result, boo
   else if (memcmp(name, "nchairs", 7)==0 && strlen(name)==7)	*result = nchairs();
   //PROFILE
   else if (memcmp(name, "sitename$", 9)==0)	*result = SitenameContainsCasinoIdentifier(name.Mid(9));
-  else if (memcmp(name, "network$", 8)==0)	*result = p_tablemap->network().Find(name.Mid(8))!=-1;
+  else if (memcmp(name, "network$", 8)==0)	*result = BasicScraper()->Tablemap()->network().Find(name.Mid(8))!=-1;
   else {
     *result = kUndefined;
     return false;

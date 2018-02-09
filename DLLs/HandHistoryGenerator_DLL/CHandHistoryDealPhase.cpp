@@ -73,7 +73,7 @@ void CHandHistoryDealPhase::UpdateOnHeartbeat() {
   bool smallblind_seen = false;
   bool bigblind_seen   = false;
   int last_chair  = EngineContainer()->symbol_engine_dealerchair()->dealerchair();
-  int first_chair = (last_chair + 1) % p_tablemap->nchairs();
+  int first_chair = (last_chair + 1) % BasicScraper()->Tablemap()->nchairs();
   for (int i=first_chair; i<=last_chair; ++i) {
     double currentbet = TableState()->Player(i)->_bet.GetValue();
     if (currentbet <= 0) {

@@ -238,7 +238,7 @@ void CAutoplayerTrace::LogBasicInfo(const char *action_taken) {
   write_log_separator(k_always_log_basic_information, "Basic Info");
   write_log(k_always_log_basic_information, "  Version:       %s\n",    VERSION_TEXT); 
   write_log(k_always_log_basic_information, "  Handnumber:    %s\n",    p_handreset_detector->GetHandNumber());
-  write_log(k_always_log_basic_information, "  Chairs:        %5d\n",   p_tablemap->nchairs());
+  write_log(k_always_log_basic_information, "  Chairs:        %5d\n",   BasicScraper()->Tablemap()->nchairs());
   write_log(k_always_log_basic_information, "  Userchair:     %5d\n",   userchair);
   write_log(k_always_log_basic_information, "  Holecards:     %s\n",    player_cards.GetString());
   write_log(k_always_log_basic_information, "  Community:     %s\n",    comcards.GetString());
@@ -269,7 +269,7 @@ void CAutoplayerTrace::LogPlayers() {
   // Logging all players at the table
   // starting at userchair (hero), so that we can easily see all raises behind him
   int	userchair = EngineContainer()->symbol_engine_userchair()->userchair();
-  int nchairs = p_tablemap->nchairs();
+  int nchairs = BasicScraper()->Tablemap()->nchairs();
   for (int i = 0; i < nchairs; ++i) {
     int chair = (userchair + i) % nchairs;
     CString data;

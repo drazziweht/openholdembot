@@ -14,7 +14,7 @@
 //
 //*******************************************************************************
 //
-// The scraüer.DLL depends on
+// The scraper.DLL depends on
 //   * numerical_functions.DLL
 //   * string_functions.DLL
 //   * window_function.DLL
@@ -24,6 +24,7 @@
 
 #include <afxwin.h>
 #include "LibDef.h"
+#include "CTablemap\CTablemap.h"
 
 //*******************************************************************************
 //
@@ -31,7 +32,11 @@
 //
 //*******************************************************************************
 
-SCRAPER_DLL_API class CTablemap;
+class CBasicScraper;
+
+// Accessor for the singleton of CBasicScraper
+// Singleton gets initialized via the accessor-function once needed
+CBasicScraper* BasicScraper();
 
 SCRAPER_DLL_API class CBasicScraper {
 public:
@@ -41,7 +46,9 @@ public:
   bool LoadTablemap(const char* path);
   // Loads a tablemap (and automatically unloads the previous one)
   CString ScrapeRegion(const CString name);
-  CTablemap* Tablemap();
+  CTablemap* Tablemap() { return &_tablemap; }
+private:
+  CTablemap _tablemap;
 };
 
 //*******************************************************************************
@@ -49,11 +56,6 @@ public:
 // Simple C-style interface, meant for other programs like table-hoppers
 //
 //*******************************************************************************
-
-// Creates a CBasicScraperObject
-SCRAPER_DLL_API void InitBasciScraperInterface();
-
-SCRAPER_DLL_API void DeleteBasciScraperInterface();
 
 // Loads a tablemap (and automatically unloads the previous one)
 SCRAPER_DLL_API bool LoadTablemap(const char* path);

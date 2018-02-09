@@ -194,7 +194,7 @@ CString CReplayFrame::GetPlayerInfoAsHTML() {
 	// Table body
 	player_info += "  <tbody>\n";
 	// One table row per player...
-	for (int i=0; i<p_tablemap->nchairs(); i++) {
+	for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); i++) {
 		player_info += "    <tr>\n";
 		// Chair number
 		text.Format("      <td>%d</td>\n", i);   

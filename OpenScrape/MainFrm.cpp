@@ -286,7 +286,7 @@ void CMainFrame::OnEditUpdatehashes()
 	COpenScrapeDoc	*pDoc = COpenScrapeDoc::GetDocument();
 	CMainFrame		*pMyMainWnd  = (CMainFrame *) (theApp.m_pMainWnd);
 
-	ret = p_tablemap->UpdateHashes(pMyMainWnd->GetSafeHwnd(), _startup_path);
+	ret = BasicScraper()->Tablemap()->UpdateHashes(pMyMainWnd->GetSafeHwnd(), _startup_path);
 
 	// Redraw the tree
 	theApp.m_TableMapDlg->update_tree("");
@@ -298,7 +298,7 @@ void CMainFrame::OnEditUpdatehashes()
 void CMainFrame::OnEditDuplicateregion()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapCI				sel_region = p_tablemap->r$()->end();
+	RMapCI				sel_region = BasicScraper()->Tablemap()->r$()->end();
 	HTREEITEM			parent = NULL;
 	CString				sel = "", selected_parent_text = "";
 		
@@ -317,10 +317,10 @@ void CMainFrame::OnEditDuplicateregion()
 
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	// Present multi-selector region dialog
@@ -356,7 +356,7 @@ void CMainFrame::OnEditDuplicateregion()
 		bool add_it = (strstr(list_of_regions[i], target.GetString())!=NULL);
 
 		CString s = list_of_regions[i];
-		for (RMapCI r_iter=p_tablemap->r$()->begin(); r_iter!=p_tablemap->r$()->end(); r_iter++)
+		for (RMapCI r_iter=BasicScraper()->Tablemap()->r$()->begin(); r_iter!=BasicScraper()->Tablemap()->r$()->end(); r_iter++)
 		{
 			if (r_iter->second.name == s)  
 				add_it = false;
@@ -392,7 +392,7 @@ void CMainFrame::OnEditDuplicateregion()
 				new_region.transform = sel_region->second.transform;
 
 				// Insert the new record in the existing array of z$ records
-				if (p_tablemap->r$_insert(new_region))
+				if (BasicScraper()->Tablemap()->r$_insert(new_region))
 				{
 					added_at_least_one = true;
 

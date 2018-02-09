@@ -45,10 +45,10 @@ void CTablePositioner::PositionMyWindow() {
 		// That's not what we want.
 		return;
 	}
-  if (p_tablemap->islobby()) { 
+  if (BasicScraper()->Tablemap()->islobby()) { 
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to handle the lobby...\n");
     MoveWindowToTopLeft(OpenHoldem()->AutoConnector()->attached_hwnd());
-  } else if (p_tablemap->ispopup()) { 
+  } else if (BasicScraper()->Tablemap()->ispopup()) { 
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Ignoring connected popup...\n");
   } else if (Preferences()->table_positioner_options() == k_position_tables_tiled) {
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to tile %d windows...\n", _number_of_tables);	

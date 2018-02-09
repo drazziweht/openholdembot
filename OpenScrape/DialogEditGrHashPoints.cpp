@@ -77,12 +77,12 @@ BOOL CDlgEditGrHashPoints::OnInitDialog()
 
 	// Sample image list
 	m_Sample_Image.SetWindowPos(NULL, 0, 0, 86, 200, SWP_NOMOVE | SWP_NOZORDER);
-	for (IMapCI i_iter=p_tablemap->i$()->begin(); i_iter!=p_tablemap->i$()->end(); i_iter++) 
+	for (IMapCI i_iter=BasicScraper()->Tablemap()->i$()->begin(); i_iter!=BasicScraper()->Tablemap()->i$()->end(); i_iter++) 
 	{
 		text.Format("%s (%dx%d)", i_iter->second.name, i_iter->second.width, i_iter->second.height);
 		new_item = m_Sample_Image.AddString(text.GetString());
 		m_Sample_Image.SetItemData(new_item, 
-			(DWORD_PTR) p_tablemap->CreateI$Index(i_iter->second.name, i_iter->second.width, i_iter->second.height, i_iter->second.pixel));
+			(DWORD_PTR) BasicScraper()->Tablemap()->CreateI$Index(i_iter->second.name, i_iter->second.width, i_iter->second.height, i_iter->second.pixel));
 	}
 
 	// Zoom
@@ -147,17 +147,17 @@ void CDlgEditGrHashPoints::update_bitmap() {
 	HDC					hdcControl, hdcScreen, hdc_image;
 	HBITMAP			bitmap_image, old_bitmap_image, bitmap_control, old_bitmap_control;
 	BYTE				*pBits, alpha, red, green, blue;
-	IMapCI			sel_image = p_tablemap->i$()->end();
+	IMapCI			sel_image = BasicScraper()->Tablemap()->i$()->end();
 	COLORREF		cr;
 	
 	// Get pointer to selected image record
 	if (m_Sample_Image.GetCurSel() != LB_ERR)
 	{
 		int index = (int) m_Sample_Image.GetItemData(m_Sample_Image.GetCurSel());
-		sel_image = p_tablemap->i$()->find(index);
+		sel_image = BasicScraper()->Tablemap()->i$()->find(index);
 	}
 
-	if (sel_image != p_tablemap->i$()->end())
+	if (sel_image != BasicScraper()->Tablemap()->i$()->end())
 	{
 		// Get bitmap size
 		width = sel_image->second.width;

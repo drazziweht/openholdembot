@@ -764,7 +764,7 @@ UINT CPokerTrackerThread::PokertrackerThreadFunction(LPVOID pParam) {
 		write_log(Preferences()->debug_pokertracker(), "[PokerTracker] sleepTime set to %d\n", sleep_time);
 		LightSleep(sleep_time, pParent);
 		if (pParent->_connected && PQstatus(pParent->_pgconn) == CONNECTION_OK)	{
-			for (int chair = 0; chair < p_tablemap->nchairs(); ++chair)	{
+			for (int chair = 0; chair < BasicScraper()->Tablemap()->nchairs(); ++chair)	{
 				GetStatsForChair(pParam, chair, sleep_time);
 				/* Verify therad_stop is false */ 
         if (LightSleep(0, pParent)) {

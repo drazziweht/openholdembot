@@ -142,7 +142,7 @@ void CDlgScraperOutput::AddListboxItems() {
 	m_RegionList.ResetContent();
 	m_RegionList.SetCurSel(-1);
 
-	for (RMapCI r_iter=p_tablemap->r$()->begin(); r_iter!=p_tablemap->r$()->end(); r_iter++) {
+	for (RMapCI r_iter=BasicScraper()->Tablemap()->r$()->begin(); r_iter!=BasicScraper()->Tablemap()->r$()->end(); r_iter++) {
 		m_RegionList.AddString(r_iter->second.name);
   }
 }
@@ -167,18 +167,18 @@ void CDlgScraperOutput::UpdateDisplay() {
   // Only do this if we are not in the middle of a scraper/symbol update
 	/*#if (TryEnterCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress)) 	*/{
 		if (m_RegionList.GetCurSel() == kUndefined) {
-			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
+			DoBitblt(NULL, BasicScraper()->Tablemap()->r$()->end());  // Clear display
 			///LeaveCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
 			return;
 		}
 
 		m_RegionList.GetText(m_RegionList.GetCurSel(), curtext);
-    RMapCI r_iter = p_tablemap->r$()->find(curtext.GetString());
+    RMapCI r_iter = BasicScraper()->Tablemap()->r$()->find(curtext.GetString());
 
-		if (r_iter != p_tablemap->r$()->end()) {
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end()) {
 			DoBitblt(r_iter->second.last_bmp, r_iter);
     }	else {
-			DoBitblt(NULL, p_tablemap->r$()->end());  // Clear display
+			DoBitblt(NULL, BasicScraper()->Tablemap()->r$()->end());  // Clear display
     }
 		///LeaveCriticalSection(&OpenHoldem()->HeartbeatThread()->cs_update_in_progress);
 	}

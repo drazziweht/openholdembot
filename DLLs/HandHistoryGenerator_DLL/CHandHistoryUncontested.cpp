@@ -52,7 +52,7 @@ void CHandHistoryUncontested::UpdateOnHeartbeat() {
   // So here we are:
   // * a game is going on
   // * only 1 player is left, who wins uncontested
-  for (int i=0; i<p_tablemap->nchairs(); ++i) {
+  for (int i=0; i<BasicScraper()->Tablemap()->nchairs(); ++i) {
     if (IsBitSet(EngineContainer()->symbol_engine_active_dealt_playing()->playersactivebits(), i)) {
       CString message;
       message.Format("Player %s wins the pot uncontested\n",

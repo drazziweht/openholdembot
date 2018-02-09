@@ -520,7 +520,7 @@ void CDlgTableMap::draw_region_bitmap(void)
 	int					left, right, top, bottom, zoom;
 	CPen				*pTempPen, oldpen;
 	CBrush				*pTempBrush, oldbrush;
-	RMapCI				sel_region = p_tablemap->r$()->end();
+	RMapCI				sel_region = BasicScraper()->Tablemap()->r$()->end();
 	CString				sel = "";
 
 	// Get name of currently selected item
@@ -528,10 +528,10 @@ void CDlgTableMap::draw_region_bitmap(void)
 		sel = m_TableMapTree.GetItemText(m_TableMapTree.GetSelectedItem());
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->r$()->find(sel.GetString());
+	sel_region = BasicScraper()->Tablemap()->r$()->find(sel.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	pDC = m_BitmapFrame.GetDC();
@@ -607,13 +607,13 @@ void CDlgTableMap::draw_image_bitmap(void)
 	HDC					hdcControl, hdcScreen, hdc_image;
 	HBITMAP				bitmap_image, old_bitmap_image, bitmap_control, old_bitmap_control;
 	BYTE				*pBits, alpha, red, green, blue;
-	IMapCI				sel_image = p_tablemap->i$()->end();
+	IMapCI				sel_image = BasicScraper()->Tablemap()->i$()->end();
 	
 	// Get selected image record
 	if (m_TableMapTree.GetSelectedItem())
 	{
 		int index = (int) m_TableMapTree.GetItemData(m_TableMapTree.GetSelectedItem());
-		sel_image = p_tablemap->i$()->find(index);
+		sel_image = BasicScraper()->Tablemap()->i$()->find(index);
 	}
 	else
 	{
@@ -698,16 +698,16 @@ void CDlgTableMap::OnRegionChange()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	CString				text, alpha, red, green, blue;
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	if (ignore_changes)  return;
@@ -840,8 +840,8 @@ void CDlgTableMap::update_display(void)
 			// Display selected size record
 			if (m_TableMapTree.GetSelectedItem())
 			{
-				ZMap::const_iterator z_iter = p_tablemap->z$()->find(sel_text.GetString());
-				if (z_iter != p_tablemap->z$()->end())
+				ZMap::const_iterator z_iter = BasicScraper()->Tablemap()->z$()->find(sel_text.GetString());
+				if (z_iter != BasicScraper()->Tablemap()->z$()->end())
 				{
 					text.Format("%d x %d", z_iter->second.width, z_iter->second.height);
 					m_Result.SetWindowText(text.GetString());
@@ -859,8 +859,8 @@ void CDlgTableMap::update_display(void)
 			// Display selected symbol record
 			if (m_TableMapTree.GetSelectedItem())
 			{
-				SMap::const_iterator s_iter = p_tablemap->s$()->find(sel_text.GetString());
-				if (s_iter != p_tablemap->s$()->end())
+				SMap::const_iterator s_iter = BasicScraper()->Tablemap()->s$()->find(sel_text.GetString());
+				if (s_iter != BasicScraper()->Tablemap()->s$()->end())
 					m_Result.SetWindowText(s_iter->second.text.GetString());
 			}
 		}
@@ -935,7 +935,7 @@ void CDlgTableMap::update_display(void)
 			// Display selected hash value record
 			int hash_type = GetType(sel_text);
 			bool displayed = false;
-			for (HMapCI h_iter=p_tablemap->h$(hash_type)->begin(); h_iter!=p_tablemap->h$(hash_type)->end() && !displayed; h_iter++)
+			for (HMapCI h_iter=BasicScraper()->Tablemap()->h$(hash_type)->begin(); h_iter!=BasicScraper()->Tablemap()->h$(hash_type)->end() && !displayed; h_iter++)
 			{
 				int start=0;
 				if (h_iter->second.name == sel_text.Tokenize(" ", start))
@@ -966,7 +966,7 @@ void CDlgTableMap::update_display(void)
 			for (int j=0; j<=3; j++)
 			{
 				bool found = false;
-				for (HMapCI h_iter=p_tablemap->h$(j)->begin(); h_iter!=p_tablemap->h$(j)->end() && !found; h_iter++)
+				for (HMapCI h_iter=BasicScraper()->Tablemap()->h$(j)->begin(); h_iter!=BasicScraper()->Tablemap()->h$(j)->end() && !found; h_iter++)
 				{
 					if (h_iter->second.name == sel_text)
 					{
@@ -1077,16 +1077,16 @@ void CDlgTableMap::update_r$_display(bool dont_update_spinners)
 	HBITMAP				old_bitmap_orig, bitmap_transform, old_bitmap_transform;
 	COLORREF			cr_avg;
 	CTransform			trans;
-	RMapCI				sel_region = p_tablemap->r$()->end();
+	RMapCI				sel_region = BasicScraper()->Tablemap()->r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	// Left/top/right/bottom edits/spinners
@@ -1269,7 +1269,7 @@ void CDlgTableMap::update_t$_display(void)
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	CString				separation, text, charstr;
 	bool				character[MAX_CHAR_WIDTH][MAX_CHAR_HEIGHT] = { false };	
-	TMapCI				sel_font = p_tablemap->t$(0)->end();
+	TMapCI				sel_font = BasicScraper()->Tablemap()->t$(0)->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
@@ -1282,10 +1282,10 @@ void CDlgTableMap::update_t$_display(void)
 	CString hexmash = sel_text.Mid(sel_text.Find("[")+1, sel_text.Find("]") - sel_text.Find("[") - 1);
 	
 	// Get iterator for selected font
-	sel_font = p_tablemap->t$(font_type)->find(hexmash.GetString());
+	sel_font = BasicScraper()->Tablemap()->t$(font_type)->find(hexmash.GetString());
 
 	// Exit if we can't find the font record
-	if (sel_font == p_tablemap->t$(font_type)->end())
+	if (sel_font == BasicScraper()->Tablemap()->t$(font_type)->end())
 		return;
 
 	// Get set bits
@@ -1330,16 +1330,16 @@ void CDlgTableMap::OnDeltaposLeftSpin(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN			pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 	
 	if (ignore_changes)  return;
@@ -1359,16 +1359,16 @@ void CDlgTableMap::OnDeltaposTopSpin(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN			pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	if (ignore_changes)  return;
@@ -1388,16 +1388,16 @@ void CDlgTableMap::OnDeltaposBottomSpin(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN			pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	if (ignore_changes)  return;
@@ -1417,16 +1417,16 @@ void CDlgTableMap::OnDeltaposRightSpin(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN			pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	if (ignore_changes)  return;
@@ -1446,16 +1446,16 @@ void CDlgTableMap::OnDeltaposRadiusSpin(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN			pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	if (ignore_changes)  return;
@@ -1487,7 +1487,7 @@ void CDlgTableMap::OnBnClickedNew() {
 		ZMap::const_iterator z_iter;
 		for (int i=0; i<list_of_sizes.size(); i++) {
 			bool used_string = false;
-      for (z_iter=p_tablemap->z$()->begin(); z_iter!=p_tablemap->z$()->end(); z_iter++) {
+      for (z_iter=BasicScraper()->Tablemap()->z$()->begin(); z_iter!=BasicScraper()->Tablemap()->z$()->end(); z_iter++) {
 				if (z_iter->second.name == list_of_sizes[i]) { 
 					used_string=true;
         }
@@ -1507,7 +1507,7 @@ void CDlgTableMap::OnBnClickedNew() {
 				new_size.width = dlgsizes.width;
 				new_size.height = dlgsizes.height;
         // Insert the new record in the existing array of z$ records
-				if (!p_tablemap->z$_insert(new_size))	{
+				if (!BasicScraper()->Tablemap()->z$_insert(new_size))	{
 					MessageBox("Failed to create size record.", "Size creation error", MB_OK);
 				}	else {
 					// Add new record to tree
@@ -1534,7 +1534,7 @@ void CDlgTableMap::OnBnClickedNew() {
 		SMap::const_iterator s_iter;
 		for (int i=0; i<list_of_symbols.size(); i++)	{
 			bool used_string = false;
-      for (s_iter = p_tablemap->s$()->begin(); s_iter != p_tablemap->s$()->end(); s_iter++) {
+      for (s_iter = BasicScraper()->Tablemap()->s$()->begin(); s_iter != BasicScraper()->Tablemap()->s$()->end(); s_iter++) {
         if (list_of_symbols[i] == "" || s_iter->second.name == list_of_symbols[i]) {
 					used_string=true;
         }
@@ -1558,7 +1558,7 @@ void CDlgTableMap::OnBnClickedNew() {
 				new_symbol.text = dlgsymbols.value;
 
 				// Insert the new record in the existing array of z$ records
-				if (!p_tablemap->s$_insert(new_symbol))
+				if (!BasicScraper()->Tablemap()->s$_insert(new_symbol))
 				{
 					MessageBox("Failed to create symbol record.", "Symbol creation error", MB_OK);
 				}
@@ -1588,7 +1588,7 @@ void CDlgTableMap::OnBnClickedNew() {
       // but we keep this checl, as the consequences of empty symbols were nasty.
       if (list_of_regions[i] == "") continue;
 			bool used_string = false;
-			for (RMapCI r_iter=p_tablemap->r$()->begin(); r_iter!=p_tablemap->r$()->end(); r_iter++) {
+			for (RMapCI r_iter=BasicScraper()->Tablemap()->r$()->begin(); r_iter!=BasicScraper()->Tablemap()->r$()->end(); r_iter++) {
         CString tablemap_string = r_iter->second.name;
         CString allowed_string = list_of_regions[i];
         assert(tablemap_string != "");
@@ -1625,7 +1625,7 @@ void CDlgTableMap::OnBnClickedNew() {
 				new_region.transform = "N";
 
 				// Insert the new record in the existing array of z$ records
-				if (!p_tablemap->r$_insert(new_region))
+				if (!BasicScraper()->Tablemap()->r$_insert(new_region))
 				{
 					MessageBox("Failed to create region record.", "Region creation error", MB_OK);
 				}
@@ -1667,7 +1667,7 @@ void CDlgTableMap::OnBnClickedNew() {
 			new_hashpoint.y = dlghashpoint.y;
 
 			// Insert the new record in the existing array of p$ records
-			if (!p_tablemap->p$_insert(type, new_hashpoint))
+			if (!BasicScraper()->Tablemap()->p$_insert(type, new_hashpoint))
 			{
 				MessageBox("Failed to create hash point record.", "Hash point creation error", MB_OK);
 			}
@@ -1742,18 +1742,18 @@ void CDlgTableMap::OnBnClickedDelete()
 
 	if (type_text == "Sizes")
 	{
-		if (p_tablemap->z$_erase(sel_text))
+		if (BasicScraper()->Tablemap()->z$_erase(sel_text))
 			item_deleted = true;
 	}
 	
 	else if (type_text == "Symbols")
 	{
-		if (p_tablemap->s$_erase(sel_text))
+		if (BasicScraper()->Tablemap()->s$_erase(sel_text))
 			item_deleted = true;
 	}
 	
 	else if (type_text == "Regions") {
-		if (p_tablemap->r$_erase(sel_text)) {
+		if (BasicScraper()->Tablemap()->r$_erase(sel_text)) {
       item_deleted = true;
     }
 	}
@@ -1766,7 +1766,7 @@ void CDlgTableMap::OnBnClickedDelete()
 
 		CString hexmash = sel_text.Mid(sel_text.Find("[")+1, sel_text.Find("]") - sel_text.Find("[") - 1);
 
-		if (p_tablemap->t$_erase(font_type, hexmash))
+		if (BasicScraper()->Tablemap()->t$_erase(font_type, hexmash))
 			item_deleted = true;
  	}
 	
@@ -1776,20 +1776,20 @@ void CDlgTableMap::OnBnClickedDelete()
 		int x = strtoul(sel_text.Mid(3, sel_text.Find(",")-3).GetString(), NULL, 10);
 		int y = strtoul(sel_text.Mid(sel_text.Find(",")+2, sel_text.Find(")")-sel_text.Find(",")+2).GetString(), NULL, 10);
 
-		if (p_tablemap->p$_erase(hashpoint_type, ((x&0xffff)<<16) | (y&0xffff)))
+		if (BasicScraper()->Tablemap()->p$_erase(hashpoint_type, ((x&0xffff)<<16) | (y&0xffff)))
 			item_deleted = true;
 	}
 	
 	else if (type_text == "Hashes")
 	{
 		int hash_type = GetType(sel_text);
-		for (HMapCI h_iter=p_tablemap->h$(hash_type)->begin(); h_iter!=p_tablemap->h$(hash_type)->end(); h_iter++)
+		for (HMapCI h_iter=BasicScraper()->Tablemap()->h$(hash_type)->begin(); h_iter!=BasicScraper()->Tablemap()->h$(hash_type)->end(); h_iter++)
 		{
 			int start=0;
 			if (h_iter->second.name == sel_text.Tokenize(" ", start))
 			{
 
-				if (p_tablemap->h$_erase(hash_type, h_iter->second.hash))
+				if (BasicScraper()->Tablemap()->h$_erase(hash_type, h_iter->second.hash))
 					item_deleted = true;
 				break;
 			}
@@ -1801,7 +1801,7 @@ void CDlgTableMap::OnBnClickedDelete()
 		// Get index into array for selected record
 		int index = (int) m_TableMapTree.GetItemData(m_TableMapTree.GetSelectedItem());
 
-		if (p_tablemap->i$_erase(index))
+		if (BasicScraper()->Tablemap()->i$_erase(index))
 			item_deleted = true;
 	}
 
@@ -1900,9 +1900,9 @@ void CDlgTableMap::OnBnClickedEdit()
 	if (type_text == "Sizes")
 	{
 		// Get selected size record
-		ZMapCI z_iter = p_tablemap->z$()->find(sel_text.GetString());
+		ZMapCI z_iter = BasicScraper()->Tablemap()->z$()->find(sel_text.GetString());
 
-		if (z_iter == p_tablemap->z$()->end())
+		if (z_iter == BasicScraper()->Tablemap()->z$()->end())
 		{
 			MessageBox("Error editing record - not found.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
@@ -1925,14 +1925,14 @@ void CDlgTableMap::OnBnClickedEdit()
 
 		// If key is changed, search for new key, and error out if found
 		if (dlgsizes.name != z_iter->second.name &&
-			p_tablemap->z$()->find(dlgsizes.name) != p_tablemap->z$()->end())
+			BasicScraper()->Tablemap()->z$()->find(dlgsizes.name) != BasicScraper()->Tablemap()->z$()->end())
 		{
 			MessageBox("Error editing record - name already exists.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
 		}
 
 		// Delete original record in internal structure
-		if (!p_tablemap->z$_erase(sel_text))
+		if (!BasicScraper()->Tablemap()->z$_erase(sel_text))
 		{
 			MessageBox("Error applying changes.", "ERROR (1)", MB_OK | MB_TOPMOST);
 			return;
@@ -1944,7 +1944,7 @@ void CDlgTableMap::OnBnClickedEdit()
 		new_size.width = dlgsizes.width;
 		new_size.height = dlgsizes.height;
 
-		if (!p_tablemap->z$_insert(new_size))
+		if (!BasicScraper()->Tablemap()->z$_insert(new_size))
 		{
 			MessageBox("Error applying changes.", "ERROR (2)", MB_OK | MB_TOPMOST);
 			return;
@@ -1963,9 +1963,9 @@ void CDlgTableMap::OnBnClickedEdit()
 	else if (type_text == "Symbols")
 	{
 		// Get selected symbol record
-		SMapCI s_iter = p_tablemap->s$()->find(sel_text.GetString());
+		SMapCI s_iter = BasicScraper()->Tablemap()->s$()->find(sel_text.GetString());
 
-		if (s_iter == p_tablemap->s$()->end())
+		if (s_iter == BasicScraper()->Tablemap()->s$()->end())
 		{
 			MessageBox("Error editing record - not found.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
@@ -1991,14 +1991,14 @@ void CDlgTableMap::OnBnClickedEdit()
 		// If key is changed, search for new key, and error out if found
     CString old_name = s_iter->second.name;
 		if (dlgsymbols.name != old_name 
-      && p_tablemap->s$()->find(dlgsymbols.name) != p_tablemap->s$()->end())
+      && BasicScraper()->Tablemap()->s$()->find(dlgsymbols.name) != BasicScraper()->Tablemap()->s$()->end())
 		{
 			MessageBox("Error editing record - name already exists.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
 		}
 
 		// Delete original record in internal structure
-		if (!p_tablemap->s$_erase(sel_text))
+		if (!BasicScraper()->Tablemap()->s$_erase(sel_text))
 		{
 			MessageBox("Error applying changes.", "ERROR (1)", MB_OK | MB_TOPMOST);
 			return;
@@ -2009,7 +2009,7 @@ void CDlgTableMap::OnBnClickedEdit()
 		new_symbol.name = dlgsymbols.name;
 		new_symbol.text = dlgsymbols.value;
 
-		if (!p_tablemap->s$_insert(new_symbol))
+		if (!BasicScraper()->Tablemap()->s$_insert(new_symbol))
 		{
 			MessageBox("Error applying changes.", "ERROR (2)", MB_OK | MB_TOPMOST);
 			return;
@@ -2028,9 +2028,9 @@ void CDlgTableMap::OnBnClickedEdit()
 	else if (type_text == "Regions")
 	{
 		// Get selected region record
-		RMapCI r_iter = p_tablemap->r$()->find(sel_text.GetString());
+		RMapCI r_iter = BasicScraper()->Tablemap()->r$()->find(sel_text.GetString());
 
-		if (r_iter == p_tablemap->r$()->end())
+		if (r_iter == BasicScraper()->Tablemap()->r$()->end())
 		{
 			MessageBox("Error editing record - not found.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
@@ -2051,14 +2051,14 @@ void CDlgTableMap::OnBnClickedEdit()
 
 		// If key is changed, search for new key, and error out if found
 		if (dlgregion.name != r_iter->second.name &&
-			p_tablemap->r$()->find(dlgregion.name) != p_tablemap->r$()->end())
+			BasicScraper()->Tablemap()->r$()->find(dlgregion.name) != BasicScraper()->Tablemap()->r$()->end())
 		{
 			MessageBox("Error editing record - name already exists.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
 		}
 
 		// Delete original record in internal structure
-		if (!p_tablemap->r$_erase(sel_text))
+		if (!BasicScraper()->Tablemap()->r$_erase(sel_text))
 		{
 			MessageBox("Error applying changes.", "ERROR (1)", MB_OK | MB_TOPMOST);
 			return;
@@ -2077,7 +2077,7 @@ void CDlgTableMap::OnBnClickedEdit()
 		new_region.cur_bmp = r_iter->second.cur_bmp;
 		new_region.last_bmp = r_iter->second.last_bmp;
 
-		if (!p_tablemap->r$_insert(new_region))
+		if (!BasicScraper()->Tablemap()->r$_insert(new_region))
 		{
 			MessageBox("Error applying changes.", "ERROR (2)", MB_OK | MB_TOPMOST);
 			return;
@@ -2103,9 +2103,9 @@ void CDlgTableMap::OnBnClickedEdit()
 
 		CString hexmash = sel_text.Mid(sel_text.Find("[")+1, sel_text.Find("]") - sel_text.Find("[") - 1);
 		
-		TMapCI t_iter = p_tablemap->t$(font_group)->find(hexmash);
+		TMapCI t_iter = BasicScraper()->Tablemap()->t$(font_group)->find(hexmash);
 
-		if (t_iter == p_tablemap->t$(font_group)->end())
+		if (t_iter == BasicScraper()->Tablemap()->t$(font_group)->end())
 		{
 			MessageBox("Error editing record - not found.", "ERROR", MB_OK | MB_TOPMOST);
 			return;
@@ -2135,7 +2135,7 @@ void CDlgTableMap::OnBnClickedEdit()
 			return;
 
 		// Delete original record in internal structure
-		if (!p_tablemap->t$_erase(font_group, hexmash))
+		if (!BasicScraper()->Tablemap()->t$_erase(font_group, hexmash))
 		{
 			MessageBox("Error applying changes.", "ERROR (1)", MB_OK | MB_TOPMOST);
 			return;
@@ -2144,7 +2144,7 @@ void CDlgTableMap::OnBnClickedEdit()
 		// Add new record to internal structure
 		edit_font.ch = dlg_editfont.character.GetAt(0);
 
-		if (!p_tablemap->t$_insert(font_group, edit_font))
+		if (!BasicScraper()->Tablemap()->t$_insert(font_group, edit_font))
 		{
 			MessageBox("Error applying changes.", "ERROR (2)", MB_OK | MB_TOPMOST);
 			return;
@@ -2172,7 +2172,7 @@ void CDlgTableMap::OnBnClickedEdit()
 			CDlgEditGrHashPoints dlggrhashpoints;
 			for (int i=0; i<=3; i++)
 			{
-				for (PMapCI p_iter=p_tablemap->p$(i)->begin(); p_iter!=p_tablemap->p$(i)->end(); p_iter++)
+				for (PMapCI p_iter=BasicScraper()->Tablemap()->p$(i)->begin(); p_iter!=BasicScraper()->Tablemap()->p$(i)->end(); p_iter++)
 				{
 					STablemapHashPoint hash_point;
 					hash_point.x = p_iter->second.x;
@@ -2187,7 +2187,7 @@ void CDlgTableMap::OnBnClickedEdit()
 
 			// Clear all existing hash points
 			for (int i=0; i<=3; i++)
-				p_tablemap->p$_clear(i);
+				BasicScraper()->Tablemap()->p$_clear(i);
 
 			// Clear Hash Points branch of tree
 			HTREEITEM hHashPointNode = GetTypeNode("Hash Points");
@@ -2208,7 +2208,7 @@ void CDlgTableMap::OnBnClickedEdit()
 					STablemapHashPoint hash_point;
 					hash_point.x = dlggrhashpoints.working_hash_points[i].GetAt(j).x;
 					hash_point.y = dlggrhashpoints.working_hash_points[i].GetAt(j).y;
-					p_tablemap->p$_insert(i, hash_point);
+					BasicScraper()->Tablemap()->p$_insert(i, hash_point);
 
 					// Tree
 					CString text;
@@ -2232,9 +2232,9 @@ void CDlgTableMap::OnBnClickedEdit()
 			int x = strtoul(sel_text.Mid(3, sel_text.Find(",")-3).GetString(), NULL, 10);
 			int y = strtoul(sel_text.Mid(sel_text.Find(",")+2, sel_text.Find(")")-sel_text.Find(",")+2).GetString(), NULL, 10);
 
-			PMapCI sel_hash_point = p_tablemap->p$(hashpoint_type)->find(((x&0xffff)<<16) | (y&0xffff));
+			PMapCI sel_hash_point = BasicScraper()->Tablemap()->p$(hashpoint_type)->find(((x&0xffff)<<16) | (y&0xffff));
 
-			if (sel_hash_point == p_tablemap->p$(hashpoint_type)->end())
+			if (sel_hash_point == BasicScraper()->Tablemap()->p$(hashpoint_type)->end())
 				return;
 
 			// Prep dialog
@@ -2252,7 +2252,7 @@ void CDlgTableMap::OnBnClickedEdit()
 				return;
 
 			// Delete original record in internal structure
-			if (!p_tablemap->p$_erase(hashpoint_type, ((sel_hash_point->second.x&0xffff)<<16) | (sel_hash_point->second.y&0xffff)))
+			if (!BasicScraper()->Tablemap()->p$_erase(hashpoint_type, ((sel_hash_point->second.x&0xffff)<<16) | (sel_hash_point->second.y&0xffff)))
 			{
 				MessageBox("Error applying changes.", "ERROR (1)", MB_OK | MB_TOPMOST);
 				return;
@@ -2264,7 +2264,7 @@ void CDlgTableMap::OnBnClickedEdit()
 			hash_point.x = dlghashpoint.x;
 			hash_point.y = dlghashpoint.y;
 
-			if (!p_tablemap->p$_insert(new_hashpoint_type, hash_point))
+			if (!BasicScraper()->Tablemap()->p$_insert(new_hashpoint_type, hash_point))
 			{
 				MessageBox("Error applying changes.", "ERROR (2)", MB_OK | MB_TOPMOST);
 				return;
@@ -2303,16 +2303,16 @@ void CDlgTableMap::OnBnClickedCreateImage()
 	HTREEITEM			new_hti;
 	CString				text, node_text, sel_region_name;
 	HTREEITEM			image_node, region_node, child_node;
-	RMapCI				sel_region = p_tablemap->r$()->end();
+	RMapCI				sel_region = BasicScraper()->Tablemap()->r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 
@@ -2377,7 +2377,7 @@ void CDlgTableMap::OnBnClickedCreateImage()
 		}
 
 		// Insert the new record in the existing array of i$ records, exit on failure
-		if (!p_tablemap->i$_insert(new_image))
+		if (!BasicScraper()->Tablemap()->i$_insert(new_image))
 		{
 			MessageBox("Failed to create image record, possible duplicate?", "Image creation error", MB_OK);
 			return;
@@ -2399,7 +2399,7 @@ void CDlgTableMap::OnBnClickedCreateImage()
 			text.Format("%s (%dx%d)", new_image.name, new_image.width, new_image.height);
 			new_hti = m_TableMapTree.InsertItem(text.GetString(), image_node);
 			m_TableMapTree.SetItemData(new_hti, 
-				(DWORD_PTR) p_tablemap->CreateI$Index(new_image.name, new_image.width, new_image.height, new_image.pixel));
+				(DWORD_PTR) BasicScraper()->Tablemap()->CreateI$Index(new_image.name, new_image.width, new_image.height, new_image.pixel));
 			m_TableMapTree.SortChildren(image_node);
 		}
 
@@ -2441,17 +2441,17 @@ void CDlgTableMap::OnBnClickedCreateFont()
 	HTREEITEM			parent = GetRecordTypeNode(m_TableMapTree.GetSelectedItem());
 	CArray <STablemapFont, STablemapFont>		new_t$_recs[4];
 	CTransform			trans;
-	RMapCI				sel_region = p_tablemap->r$()->end();
+	RMapCI				sel_region = BasicScraper()->Tablemap()->r$()->end();
 	int					font_group;
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->r$()->find(sel_text.GetString());
 
 	// Exit if we can't find the region record
-	if (sel_region == p_tablemap->r$()->end())
+	if (sel_region == BasicScraper()->Tablemap()->r$()->end())
 		return;
 
 	// Get the text group we are dealing with
@@ -2529,7 +2529,7 @@ void CDlgTableMap::OnBnClickedCreateFont()
 								 character, &new_font.hexmash, false);
 
 		// Populate new font record array, if this character does not already exist in this font group
-		if (p_tablemap->t$(font_group)->find(new_font.hexmash) == p_tablemap->t$(font_group)->end()) 
+		if (BasicScraper()->Tablemap()->t$(font_group)->find(new_font.hexmash) == BasicScraper()->Tablemap()->t$(font_group)->end()) 
 		{
 			CString text;
 			m_Transform.GetLBText(m_Transform.GetCurSel(), text);
@@ -2581,7 +2581,7 @@ void CDlgTableMap::OnBnClickedCreateFont()
 				new_font.ch = new_t$_recs[font_group].GetAt(i).ch;
 
 				// Insert into internal structure
-				p_tablemap->t$_insert(font_group, new_font);
+				BasicScraper()->Tablemap()->t$_insert(font_group, new_font);
 
 				// Insert the new record into the tree
 				if (font_node!=NULL)
@@ -2699,15 +2699,15 @@ void CDlgTableMap::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	RECT				bmp_rect;
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		m_BitmapFrame.GetWindowRect(&bmp_rect);
 		ScreenToClient(&bmp_rect);
@@ -2733,15 +2733,15 @@ void CDlgTableMap::OnMouseMove(UINT nFlags, CPoint point)
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	RECT				bmp_rect;
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		m_BitmapFrame.GetWindowRect(&bmp_rect);
 		ScreenToClient(&bmp_rect);
@@ -2832,7 +2832,7 @@ void CDlgTableMap::create_tree(void)
 	parent = m_TableMapTree.InsertItem("Sizes");
 	m_TableMapTree.SetItemState(parent, TVIS_BOLD, TVIS_BOLD );
 
-	for (ZMapCI z_iter=p_tablemap->z$()->begin(); z_iter!=p_tablemap->z$()->end(); z_iter++)
+	for (ZMapCI z_iter=BasicScraper()->Tablemap()->z$()->begin(); z_iter!=BasicScraper()->Tablemap()->z$()->end(); z_iter++)
 		m_TableMapTree.InsertItem(z_iter->second.name, parent);
 
 	m_TableMapTree.SortChildren(parent);
@@ -2841,7 +2841,7 @@ void CDlgTableMap::create_tree(void)
 	parent = m_TableMapTree.InsertItem("Symbols");
 	m_TableMapTree.SetItemState(parent, TVIS_BOLD, TVIS_BOLD );
 
-	for (SMapCI s_iter=p_tablemap->s$()->begin(); s_iter!=p_tablemap->s$()->end(); s_iter++)
+	for (SMapCI s_iter=BasicScraper()->Tablemap()->s$()->begin(); s_iter!=BasicScraper()->Tablemap()->s$()->end(); s_iter++)
 		m_TableMapTree.InsertItem(s_iter->second.name, parent);
 
 	m_TableMapTree.SortChildren(parent);
@@ -2850,7 +2850,7 @@ void CDlgTableMap::create_tree(void)
 	parent = m_TableMapTree.InsertItem("Regions");
 	m_TableMapTree.SetItemState(parent, TVIS_BOLD, TVIS_BOLD );
 
-  for (RMapCI r_iter = p_tablemap->r$()->begin(); r_iter != p_tablemap->r$()->end(); r_iter++) {
+  for (RMapCI r_iter = BasicScraper()->Tablemap()->r$()->begin(); r_iter != BasicScraper()->Tablemap()->r$()->end(); r_iter++) {
     m_TableMapTree.InsertItem(r_iter->second.name, parent);
   }
   GroupRegions(); 
@@ -2863,7 +2863,7 @@ void CDlgTableMap::create_tree(void)
 	
 	for (int i=0; i<=3; i++)
 	{
-		for (TMapCI t_iter=p_tablemap->t$(i)->begin(); t_iter!=p_tablemap->t$(i)->end(); t_iter++)
+		for (TMapCI t_iter=BasicScraper()->Tablemap()->t$(i)->begin(); t_iter!=BasicScraper()->Tablemap()->t$(i)->end(); t_iter++)
 		{
 			text.Format("%c (%d) [%s]", t_iter->second.ch, i, t_iter->second.hexmash);
 			newitem = m_TableMapTree.InsertItem(text, parent);
@@ -2877,7 +2877,7 @@ void CDlgTableMap::create_tree(void)
 
 	for (int i=0; i<3; i++)
 	{
-		for (PMapCI p_iter=p_tablemap->p$(i)->begin(); p_iter!=p_tablemap->p$(i)->end(); p_iter++)
+		for (PMapCI p_iter=BasicScraper()->Tablemap()->p$(i)->begin(); p_iter!=BasicScraper()->Tablemap()->p$(i)->end(); p_iter++)
 		{
 			text.Format("%d (%d, %d)", i, p_iter->second.x, p_iter->second.y);
 			newitem = m_TableMapTree.InsertItem(text, parent);
@@ -2892,7 +2892,7 @@ void CDlgTableMap::create_tree(void)
 
 	for (int i=0; i<=3; i++)
 	{
-		for (HMapCI h_iter=p_tablemap->h$(i)->begin(); h_iter!=p_tablemap->h$(i)->end(); h_iter++)
+		for (HMapCI h_iter=BasicScraper()->Tablemap()->h$(i)->begin(); h_iter!=BasicScraper()->Tablemap()->h$(i)->end(); h_iter++)
 		{
 			text.Format("%s (%d)", h_iter->second.name, i);
 			newitem = m_TableMapTree.InsertItem(text, parent);
@@ -2905,12 +2905,12 @@ void CDlgTableMap::create_tree(void)
 	parent = m_TableMapTree.InsertItem("Images");
 	m_TableMapTree.SetItemState(parent, TVIS_BOLD, TVIS_BOLD );
 
-	for (IMapCI i_iter=p_tablemap->i$()->begin(); i_iter!=p_tablemap->i$()->end(); i_iter++)
+	for (IMapCI i_iter=BasicScraper()->Tablemap()->i$()->begin(); i_iter!=BasicScraper()->Tablemap()->i$()->end(); i_iter++)
 	{
 		text.Format("%s (%dx%d)", i_iter->second.name, i_iter->second.width, i_iter->second.height);
 		newitem = m_TableMapTree.InsertItem(text, parent);
 		m_TableMapTree.SetItemData(newitem, 
-			(DWORD_PTR) p_tablemap->CreateI$Index(i_iter->second.name, i_iter->second.width, i_iter->second.height, i_iter->second.pixel));
+			(DWORD_PTR) BasicScraper()->Tablemap()->CreateI$Index(i_iter->second.name, i_iter->second.width, i_iter->second.height, i_iter->second.pixel));
 	}
 
 	m_TableMapTree.SortChildren(parent);
@@ -2922,15 +2922,15 @@ void CDlgTableMap::OnBnClickedNudgeTaller()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.top = sel_region->second.top-1;
 		sel_region->second.bottom = sel_region->second.bottom+1;
@@ -2943,15 +2943,15 @@ void CDlgTableMap::OnBnClickedNudgeShorter()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.top = sel_region->second.top+1;
 		sel_region->second.bottom = sel_region->second.bottom-1;
@@ -2964,15 +2964,15 @@ void CDlgTableMap::OnBnClickedNudgeWider()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left-1;
 		sel_region->second.right = sel_region->second.right+1;
@@ -2985,15 +2985,15 @@ void CDlgTableMap::OnBnClickedNudgeNarrower()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left+1;
 		sel_region->second.right = sel_region->second.right-1;
@@ -3006,15 +3006,15 @@ void CDlgTableMap::OnBnClickedNudgeBigger()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left-1;
 		sel_region->second.top = sel_region->second.top-1;
@@ -3029,15 +3029,15 @@ void CDlgTableMap::OnBnClickedNudgeSmaller()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		if (sel_region->second.left+1<=sel_region->second.right)
 			sel_region->second.left = sel_region->second.left+1;
@@ -3059,15 +3059,15 @@ void CDlgTableMap::OnBnClickedNudgeUpleft()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left-1;
 		sel_region->second.top = sel_region->second.top-1;
@@ -3084,15 +3084,15 @@ void CDlgTableMap::OnBnClickedNudgeUp()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.top = sel_region->second.top-1;
 		sel_region->second.bottom = sel_region->second.bottom-1;
@@ -3105,15 +3105,15 @@ void CDlgTableMap::OnBnClickedNudgeUpright()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left+1;
 		sel_region->second.top = sel_region->second.top-1;
@@ -3128,15 +3128,15 @@ void CDlgTableMap::OnBnClickedNudgeRight()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left+1;
 		sel_region->second.right = sel_region->second.right+1;
@@ -3149,15 +3149,15 @@ void CDlgTableMap::OnBnClickedNudgeDownright()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left+1;
 		sel_region->second.top = sel_region->second.top+1;
@@ -3172,15 +3172,15 @@ void CDlgTableMap::OnBnClickedNudgeDown()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.top = sel_region->second.top+1;
 		sel_region->second.bottom = sel_region->second.bottom+1;
@@ -3193,15 +3193,15 @@ void CDlgTableMap::OnBnClickedNudgeDownleft()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left-1;
 		sel_region->second.top = sel_region->second.top+1;
@@ -3216,15 +3216,15 @@ void CDlgTableMap::OnBnClickedNudgeLeft()
 {
 	COpenScrapeDoc		*pDoc = COpenScrapeDoc::GetDocument();
 	
-	RMapI				sel_region = p_tablemap->set_r$()->end();
+	RMapI				sel_region = BasicScraper()->Tablemap()->set_r$()->end();
 
 	CString				sel_text = "", type_text = "";
 	HTREEITEM type_node = GetTextSelItemAndRecordType(&sel_text, &type_text);
 
 	// Get iterator for selected region
-	sel_region = p_tablemap->set_r$()->find(sel_text.GetString());
+	sel_region = BasicScraper()->Tablemap()->set_r$()->find(sel_text.GetString());
 
-	if (sel_region != p_tablemap->r$()->end())
+	if (sel_region != BasicScraper()->Tablemap()->r$()->end())
 	{
 		sel_region->second.left = sel_region->second.left-1;
 		sel_region->second.right = sel_region->second.right-1;
@@ -3745,12 +3745,12 @@ void CDlgTableMap::CreateHash(int hash_type)
 
 	// Calculate hash for selected image
 	int index = (int) m_TableMapTree.GetItemData(m_TableMapTree.GetSelectedItem());
-	IMapCI i_iter = p_tablemap->i$()->find(index);
-	new_hash.hash = p_tablemap->CalculateHashValue(i_iter, hash_type);
+	IMapCI i_iter = BasicScraper()->Tablemap()->i$()->find(index);
+	new_hash.hash = BasicScraper()->Tablemap()->CalculateHashValue(i_iter, hash_type);
 
 	// Add new record to internal structure
 	new_hash.name = sel_text;
-	if (!p_tablemap->h$_insert(hash_type, new_hash))
+	if (!BasicScraper()->Tablemap()->h$_insert(hash_type, new_hash))
 	{
 		MessageBox("Error adding hash record: " + new_hash.name, "Hash record add error", MB_OK);
 	}

@@ -68,7 +68,7 @@ void CSymbolEngineIsOmaha::UpdateOnHeartbeat() {
     write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineIsOmaha] Already Omaha\n");
     return;
   }
-  if (!p_tablemap->SupportsOmaha()) {
+  if (!BasicScraper()->Tablemap()->SupportsOmaha()) {
     write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineIsOmaha] Omaha not supported by tablemap\n");
     return;
   }

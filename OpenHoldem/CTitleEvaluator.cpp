@@ -78,13 +78,13 @@ CString CTitleEvaluator::ExtractHandnumFromString(CString t) {
 #ifdef OPENHOLDEM_PROGRAM
 void CTitleEvaluator::EvaluateTitleText() {
   CString titletext = TableState()->TableTitle()->PreprocessedTitle();
-  CString title_format = p_tablemap->GetTMSymbol("ttlimits");
+  CString title_format = BasicScraper()->Tablemap()->GetTMSymbol("ttlimits");
   ProcessTitle(titletext, title_format);
   // Now try alternative ttlimitsX
   for (int i = 0; i < k_max_number_of_titletexts; i++) {
     CString ttlimitsX;
     ttlimitsX.Format("ttlimits%d", i);
-    title_format = p_tablemap->GetTMSymbol(ttlimitsX);
+    title_format = BasicScraper()->Tablemap()->GetTMSymbol(ttlimitsX);
     ProcessTitle(titletext, title_format);
   }
 }
@@ -108,7 +108,7 @@ void CTitleEvaluator::EvaluateC0LimitsX(CString c0limitsX) {
   // * a symbol s$c0limits to define how to interpret the scrape text,
   //   similar to s$ttlimits
   // First lookup s$c0limitsX
-  CString title_format = p_tablemap->GetTMSymbol(c0limitsX);
+  CString title_format = BasicScraper()->Tablemap()->GetTMSymbol(c0limitsX);
   if (title_format == "") {
     // Not supported by tablemap
     // Missing s$c0limits could crash OpenHoldem in the past

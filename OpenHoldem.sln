@@ -70,7 +70,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Autoplayer", "DLLs\Autoplay
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Checksums", "DLLs\Checksums_DLL\Checksums.vcxproj", "{AB4652CE-39AD-4990-9D86-6F01489A9515}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scraper", "DLLs\Scraper_DLL\Scraper.vcxproj", "{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CBasicScraper", "DLLs\Scraper_DLL\CBasicScraper.vcxproj", "{93F0DFB6-AE1D-4040-A3CF-51F4EC1EEC8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

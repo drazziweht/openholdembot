@@ -117,7 +117,7 @@ void COpenScrapeView::OnDraw(CDC* pDC)
 	}
 
 	// Draw all region rectangles
-	for (RMapCI r_iter=p_tablemap->r$()->begin(); r_iter!=p_tablemap->r$()->end(); r_iter++)
+	for (RMapCI r_iter=BasicScraper()->Tablemap()->r$()->begin(); r_iter!=BasicScraper()->Tablemap()->r$()->end(); r_iter++)
 	{
 		if ( (r_iter->second.name==dragged_region && dragging) || 
 				(r_iter->second.name==drawrect_region && drawing_rect && drawing_started) )
@@ -190,9 +190,9 @@ void COpenScrapeView::OnLButtonDown(UINT nFlags, CPoint point)
 		drawrect_start = point;
 		drawing_started = true;
 		
-		RMapI r_iter = p_tablemap->set_r$()->find(sel.GetString());
+		RMapI r_iter = BasicScraper()->Tablemap()->set_r$()->find(sel.GetString());
 		
-		if (r_iter != p_tablemap->r$()->end())
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 		{
 			drawrect_region = r_iter->second.name;
 
@@ -220,9 +220,9 @@ void COpenScrapeView::OnLButtonDown(UINT nFlags, CPoint point)
 		// Shift click means we want to drag the region
 		if (nFlags & MK_SHIFT)
 		{
-			RMapCI r_iter = p_tablemap->r$()->find(sel.GetString());
+			RMapCI r_iter = BasicScraper()->Tablemap()->r$()->find(sel.GetString());
 			
-			if (r_iter != p_tablemap->r$()->end())
+			if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 			{
 				if (point.x >= (LONG) r_iter->second.left-1 &&
 					point.x <= (LONG) r_iter->second.right+1 &&
@@ -241,7 +241,7 @@ void COpenScrapeView::OnLButtonDown(UINT nFlags, CPoint point)
 		// No shift means just select the region in the tree
 		else
 		{
-			for (RMapCI r_iter=p_tablemap->r$()->begin(); r_iter!=p_tablemap->r$()->end(); r_iter++)
+			for (RMapCI r_iter=BasicScraper()->Tablemap()->r$()->begin(); r_iter!=BasicScraper()->Tablemap()->r$()->end(); r_iter++)
 			{
 				if (point.x >= (LONG) r_iter->second.left-1 &&
 					point.x <= (LONG) r_iter->second.right+1 &&
@@ -275,9 +275,9 @@ void COpenScrapeView::OnLButtonUp(UINT nFlags, CPoint point)
 		drawing_rect = false;
 		drawing_started = false;
 
-		RMapI r_iter=p_tablemap->set_r$()->find(drawrect_region.GetString());
+		RMapI r_iter=BasicScraper()->Tablemap()->set_r$()->find(drawrect_region.GetString());
 
-		if (r_iter != p_tablemap->r$()->end())
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 		{
 			r_iter->second.left = drawrect_start.x<point.x ? drawrect_start.x : point.x;
 			r_iter->second.top = drawrect_start.y<point.y ? drawrect_start.y : point.y;
@@ -311,9 +311,9 @@ void COpenScrapeView::OnMouseMove(UINT nFlags, CPoint point)
 
 	if (drawing_rect && drawing_started)
 	{
-		RMapI r_iter=p_tablemap->set_r$()->find(drawrect_region.GetString());
+		RMapI r_iter=BasicScraper()->Tablemap()->set_r$()->find(drawrect_region.GetString());
 
-		if (r_iter != p_tablemap->r$()->end())
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 		{
 			// Update internal structure for selected region
 			r_iter->second.left = drawrect_start.x<point.x ? drawrect_start.x : point.x;
@@ -340,9 +340,9 @@ void COpenScrapeView::OnMouseMove(UINT nFlags, CPoint point)
 
 	else if (dragging)
 	{
-		RMapI r_iter=p_tablemap->set_r$()->find(dragged_region.GetString());
+		RMapI r_iter=BasicScraper()->Tablemap()->set_r$()->find(dragged_region.GetString());
 
-		if (r_iter != p_tablemap->r$()->end())
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 		{
 			width = r_iter->second.right - r_iter->second.left;
 			height = r_iter->second.bottom - r_iter->second.top;
@@ -389,9 +389,9 @@ void COpenScrapeView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		|| nChar==VK_NUMPAD1 || nChar==VK_NUMPAD3 || nChar==VK_NUMPAD7 || nChar==VK_NUMPAD9) {
 		// find the currently selected
 		CString sel = theApp.m_TableMapDlg->m_TableMapTree.GetItemText(theApp.m_TableMapDlg->m_TableMapTree.GetSelectedItem());	
-		RMapI r_iter = p_tablemap->set_r$()->find(sel.GetString());
+		RMapI r_iter = BasicScraper()->Tablemap()->set_r$()->find(sel.GetString());
 
-		if (r_iter != p_tablemap->r$()->end())
+		if (r_iter != BasicScraper()->Tablemap()->r$()->end())
 		{
 			// check what key combinations are down
 			bool shiftKeyDown = GetKeyState(VK_SHIFT)>>7;
@@ -490,8 +490,8 @@ void COpenScrapeView::blink_rect(void)
 	pTempBrush = (CBrush*)pDC->SelectObject(GetStockObject(NULL_BRUSH));
 	oldbrush.FromHandle((HBRUSH)pTempBrush);			// Save old brush
 
-	RMapCI r_iter=p_tablemap->r$()->find(sel.GetString());
-  if (r_iter != p_tablemap->r$()->end()) {
+	RMapCI r_iter=BasicScraper()->Tablemap()->r$()->find(sel.GetString());
+  if (r_iter != BasicScraper()->Tablemap()->r$()->end()) {
     pDC->Rectangle(r_iter->second.left - 1, r_iter->second.top - 1, r_iter->second.right + 2, r_iter->second.bottom + 2);
   }
 	// Clean up

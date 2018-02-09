@@ -49,7 +49,7 @@ void CTableMapLoader::ParseAllTableMapsToLoadConnectionData(CString scraper_dire
 	BOOL bFound = hFile.FindFile(wildcard);
 	while (bFound) {
 		bFound = hFile.FindNextFile();
-    // Formerly there has been a check /hFile.GetFilePath() != p_tablemap->filepath()) 
+    // Formerly there has been a check /hFile.GetFilePath() != BasicScraper()->Tablemap()->filepath()) 
     // but if we want to reload, then everything
     write_log(Preferences()->debug_tablemap_loader(), "[CTablemapLoader] Looking at %s\n",
       hFile.GetFilePath());
@@ -68,7 +68,7 @@ void CTableMapLoader::ParseAllTableMapsToLoadConnectionData(CString scraper_dire
       continue;
     }
     write_log(Preferences()->debug_tablemap_loader(), "[CTablemapLoader] Loading file\n");
-		int ret = p_tablemap->LoadTablemap(hFile.GetFilePath().GetString());
+		int ret = BasicScraper()->Tablemap()->LoadTablemap(hFile.GetFilePath().GetString());
 		if (ret == SUCCESS)	{
 			ExtractConnectionDataFromCurrentTablemap(p_tablemap);
       CTablemapCompletenessChecker tablemap_completeness_checker;
