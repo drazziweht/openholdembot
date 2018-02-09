@@ -11,13 +11,14 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CCasinoHotkey.h"
-
 #include "CCasinoInterface.h"
-
-#include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\StringFunctions_DLL\string_functions.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 const char kHotkeyUndefined = '\0';
 
@@ -51,7 +52,7 @@ void CCasinoHotkey::SetName(CString name) {
 
 char CCasinoHotkey::LookupHotkey() {
   assert(_name != "");
-  CString key_to_be_pressed = p_tablemap->GetTMSymbol(_name);
+  CString key_to_be_pressed = BasicScraper()->Tablemap()->GetTMSymbol(_name);
   if (key_to_be_pressed == "") {
     return kHotkeyUndefined;
   }

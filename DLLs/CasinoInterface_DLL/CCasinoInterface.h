@@ -11,13 +11,11 @@
 //
 //******************************************************************************
 
-#ifndef INC_CCASINOINTERFACE_H
-#define INC_CCASINOINTERFACE_H
-
 #include "CAllinSlider.h"
 #include "CAutoplayerButton.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoHotkey.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
 
 class CCasinoInterface /*: public CSpaceOptimizedGlobalObject */{
@@ -70,5 +68,3 @@ class CCasinoInterface /*: public CSpaceOptimizedGlobalObject */{
 }; 
 
 extern CCasinoInterface *p_casino_interface;
-
-#endif // INC_CCasinoInterface_H

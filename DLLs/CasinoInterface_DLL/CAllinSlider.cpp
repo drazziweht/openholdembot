@@ -73,8 +73,8 @@ bool CAllinSlider::SlideAllin() {
 }
 
 bool CAllinSlider::GetSliderRegions() {
-  p_tablemap->GetTMRegion("i3slider", &_i3_slider);
-  p_tablemap->GetTMRegion("i3handle", &_i3_handle);
+  BasicScraper()->Tablemap()->GetTMRegion("i3slider", &_i3_slider);
+  BasicScraper()->Tablemap()->GetTMRegion("i3handle", &_i3_handle);
   if ((_i3_slider.bottom < 0)
     || (_i3_slider.left < 0)
     || (_i3_slider.right < 0)
@@ -92,15 +92,15 @@ bool CAllinSlider::GetSliderRegions() {
 
 bool CAllinSlider::SlideAllinPossible() {
   // Required: betsize-confirmation-button, slider and handle
-  if (p_tablemap->swagconfirmationmethod() == BETCONF_CLICKBET) {
+  if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET) {
     if (!p_casino_interface->BetsizeConfirmationButton()->IsClickable()) {
       return false;
     }
   }
-  if (!p_tablemap->ItemExists("i3slider")) {
+  if (!BasicScraper()->Tablemap()->ItemExists("i3slider")) {
     return false;
   }
-  if (!p_tablemap->ItemExists("i3handle")) {
+  if (!BasicScraper()->Tablemap()->ItemExists("i3handle")) {
     return false;
   }
   if (!GetSliderRegions()) {

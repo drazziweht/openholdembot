@@ -72,10 +72,10 @@ double SwagAmountAjustedToCasino(double amount_to_raise_to) {
 	// so we have to calculate our adjustment the other way.
 	// http://www.winholdem.net/help/help-formula.html
 	// http://forum.winholdem.net/wbb/viewtopic.php?t=1849
-	if (p_tablemap->swagtextmethod() == 2) {
+	if (BasicScraper()->Tablemap()->swagtextmethod() == 2) {
 		// Old adjustment: call, so currentbet is too much
 		swag_amount_ajusted_to_casino = amount_to_raise_to - TableState()->User()->_bet.GetValue();
-	}	else if (p_tablemap->swagtextmethod() == 3)	{
+	}	else if (BasicScraper()->Tablemap()->swagtextmethod() == 3)	{
 		// Old adjustment: call + currentbet.
 		// Everything fine, nothing to do.
 	}	else {

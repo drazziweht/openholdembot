@@ -12,7 +12,9 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
 #include "CCasinoHotkey.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CAutoplayerButton {
   friend class CScraper;

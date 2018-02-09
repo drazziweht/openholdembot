@@ -12,6 +12,8 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
+
 class CCasinoHotkey {
  public:
 	CCasinoHotkey();

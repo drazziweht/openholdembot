@@ -89,7 +89,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] betsize (not adjusted): %.2f\n", total_betsize_in_dollars);
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] calling keyboard.dll to enter betsize (adjusted): %s %d,%d %d,%d\n",
     swag_amt, _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-  bool use_comma_instead_of_dot = p_tablemap->use_comma_instead_of_dot();
+  bool use_comma_instead_of_dot = BasicScraper()->Tablemap()->use_comma_instead_of_dot();
   (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region,
     swag_amt, use_comma_instead_of_dot);
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Sleeping %dms.\n", Preferences()->swag_delay_3());
@@ -106,20 +106,20 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
     write_log(k_always_log_errors, "[CBetsizeInputBox] Another window popped up and receives mouse and keyboard input.\n");
      write_log(k_always_log_errors, "[CBetsizeInputBox] This might be caused by bad casino, bad hopper or by user-interaction.\n");
   } else {
-    if (p_tablemap->swagconfirmationmethod() == BETCONF_ENTER) {
+    if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_ENTER) {
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Confirmation; calling keyboard.dll to press 'Enter'\n");
       p_casino_interface->SendKey(VK_RETURN);
-    } else if (p_tablemap->swagconfirmationmethod() == BETCONF_CLICKBET
+    } else if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET
       && p_casino_interface->LogicalAutoplayerButton(k_autoplayer_function_raise)->IsClickable()) {
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Bet Confirmation: Using raise button\n");
-      if (p_tablemap->buttonclickmethod() == BUTTON_DOUBLECLICK) {
+      if (BasicScraper()->Tablemap()->buttonclickmethod() == BUTTON_DOUBLECLICK) {
         p_casino_interface->ClickButtonSequence(k_autoplayer_function_raise,
           k_autoplayer_function_raise,
           k_double_click_delay);
       } else {
         p_casino_interface->LogicalAutoplayerButton(k_autoplayer_function_raise)->Click();
       }
-    } else if (p_tablemap->swagconfirmationmethod() == BETCONF_NOTHING) {
+    } else if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_NOTHING) {
     } else {
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] ...ending DoBetsize early (invalid betsizeconfirmationmethod).\n");
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Valid options are: \"enter\", \"click bet\", \"nothing\"\n");
@@ -133,7 +133,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
 }
 
 bool CBetsizeInputBox::GetI3EditRegion() {
-  p_tablemap->GetTMRegion("i3edit", &_i3_edit_region);
+  BasicScraper()->Tablemap()->GetTMRegion("i3edit", &_i3_edit_region);
   if ((_i3_edit_region.bottom < 0)
       || (_i3_edit_region.left < 0)
       || (_i3_edit_region.right < 0)
@@ -144,12 +144,12 @@ bool CBetsizeInputBox::GetI3EditRegion() {
 }
 
 bool CBetsizeInputBox::IsReadyToBeUsed() {
-  if (p_tablemap->swagconfirmationmethod() == BETCONF_CLICKBET) {
+  if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET) {
     if (!p_casino_interface->BetsizeConfirmationButton()->IsClickable()) {
       return false;
     }
   }
-  if (!p_tablemap->ItemExists("i3edit")) {
+  if (!BasicScraper()->Tablemap()->ItemExists("i3edit")) {
     return false;
   }
   if (!GetI3EditRegion()) {
@@ -159,23 +159,23 @@ bool CBetsizeInputBox::IsReadyToBeUsed() {
 }
 
 void CBetsizeInputBox::SelectText() {
-  if (p_tablemap->swagselectionmethod() == TEXTSEL_SINGLECLICK) {
+  if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_SINGLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to single click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
     (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 1);
-  } else if (p_tablemap->swagselectionmethod() == TEXTSEL_DOUBLECLICK) {
+  } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_DOUBLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to double click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
     (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 2);
-  } else if (p_tablemap->swagselectionmethod() == TEXTSEL_TRIPLECLICK) {
+  } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_TRIPLECLICK) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to triple click: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
     (theApp._dll_mouse_click) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region, MouseLeft, 3);
-  } else if (p_tablemap->swagselectionmethod() == TEXTSEL_CLICKDRAG) {
+  } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_CLICKDRAG) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to click drag: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
     (theApp._dll_mouse_click_drag) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region);
-  } else if (p_tablemap->swagselectionmethod() == TEXTSEL_NOTHING) {
+  } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_NOTHING) {
     // Nothing to do
   } else {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] ...ending DoBetsize early (invalid betsizeselectionmethod).\n");
@@ -184,15 +184,15 @@ void CBetsizeInputBox::SelectText() {
 }
 
 void CBetsizeInputBox::Clear() {
-  if (p_tablemap->swagdeletionmethod() == TEXTDEL_DELETE) {
+  if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_DELETE) {
     write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text deletion; calling keyboard.dll to press 'delete'\n");
     p_casino_interface->SendKey(VK_DELETE);
   }
-  else if (p_tablemap->swagdeletionmethod() == TEXTDEL_BACKSPACE) {
+  else if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_BACKSPACE) {
     write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text deletion; calling keyboard.dll to press 'backspace'\n");
      p_casino_interface->SendKey(VK_BACK);
   }
-  else if (p_tablemap->swagdeletionmethod() == TEXTDEL_NOTHING) {
+  else if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_NOTHING) {
     // Nothing to do to delete the text
     // Once selected it will be overwritten.
   }

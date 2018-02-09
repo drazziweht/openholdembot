@@ -13,6 +13,8 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
+
 class CAllinSlider {
  public:
   CAllinSlider();

@@ -347,3 +347,8 @@ private:
   const char* kPreferencesSectionInIniFile = "Preferences";;
   CString ini_filename;
 };
+
+
+
+//!!!!!!!
+CPreferences* Preferences();
