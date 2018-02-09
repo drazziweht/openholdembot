@@ -16,8 +16,8 @@
 ///#include "GUI()->FlagsToolbar().h"
 ///#include "CHeartbeatThread.h"
 
-#include "..\..\Scraper_DLL\CScraper.h"
-#include "..\..\..\CTransform\CTransform.h"
+#include "..\..\Scraper_DLL\CBasicScraper.h"
+#include "..\..\Scraper_DLL\CTransform\CTransform.h"
 ///#include "MainFrm.h"
 ///#include "OpenHoldem.h"
 

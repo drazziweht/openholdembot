@@ -45,10 +45,14 @@ CBasicScraper::~CBasicScraper(){
 }
 
 bool CBasicScraper::LoadTablemap(const char* path) {
-  _tablemap.LoadTablemap(path);
+  bool success = _tablemap.LoadTablemap(path);
+  if (!success) {
+    return false;
+  }
   // Map will be verified as long as it is not marked as popup or lobby
   CTablemapCompletenessChecker tablemap_completeness_checker;
   tablemap_completeness_checker.VerifyMap();
+  return true; //!!!
 }
 
 CString CBasicScraper::ScrapeRegion(const CString name) {

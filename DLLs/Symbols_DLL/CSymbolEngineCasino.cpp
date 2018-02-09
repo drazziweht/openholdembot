@@ -25,10 +25,9 @@
 
 #include "CSessionCounter.h"
 
-#include "..\CTablemap\CTablemap.h"
-#include "..\CTransform\CTransform.h"
-
 #include "OpenHoldem.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\Scraper_DLL\CTransform\CTransform.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 
 CSymbolEngineCasino	*p_symbol_engine_casino = NULL;
