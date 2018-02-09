@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSpaceOptimizedFormulaObject.h"
 #include <assert.h>
 ///#include "..\DLLs\MemoryManagement_DLL\CMemoryPool.h"

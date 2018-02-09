@@ -11,7 +11,6 @@
 //
 //******************************************************************************
 
-#include "StdAfx.h"
 #include "BringKeyBoard.h"
 #include "CAutoConnector.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

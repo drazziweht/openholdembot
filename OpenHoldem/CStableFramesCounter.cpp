@@ -15,7 +15,7 @@
 // !!! Todo: turn it into a symbol-engine,
 // !!! including reset on autoplayer-action
 
-#include "stdafx.h"
+
 #include "CStableFramesCounter.h"
 
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

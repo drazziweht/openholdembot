@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "StdAfx.h"
+
 #include "CMyMutex.h"
 
 CMyMutex::CMyMutex() : _mutex(false, Preferences()->mutex_name()) {

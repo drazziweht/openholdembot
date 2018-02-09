@@ -61,3 +61,5 @@ private:
 private:
   CTableTitle _table_title;
 };
+
+CTableState* TableState(); //!!!!!

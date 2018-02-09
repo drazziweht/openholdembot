@@ -11,9 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CAutoplayerTrace.h"
-
 #include "CAutoplayerFunctions.h"
 #include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

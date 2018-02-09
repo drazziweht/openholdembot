@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CSharedMem.h"
 #include "CSessionCounter.h"
 #include "OpenHoldem.h"

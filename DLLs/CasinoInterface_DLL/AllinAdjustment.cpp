@@ -12,25 +12,27 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include <assert.h>
 #include "AllinAdjustment.h"
-#include "BetpotCalculations.h"
+///#include "BetpotCalculations.h"
 #include "SwagAdjustment.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
-#include "..\..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineGameType.h"
+#include "..\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\Tablestate_DLL\CPlayer.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 bool ChangeBetsizeToAllin(double amount_to_raise_to) {
   assert(amount_to_raise_to >= 0.0);
   assert(p_function_collection != NULL);
-  double critical_betsize_to_balance_ratio = 
-    FunctionCollection()->EvaluateAutoplayerFunction(k_standard_function_allin_on_betsize_balance_ratio);
+  double critical_betsize_to_balance_ratio =
+    0.3;///FunctionCollection()->EvaluateAutoplayerFunction(k_standard_function_allin_on_betsize_balance_ratio);
   // Enabled?
   if (critical_betsize_to_balance_ratio <= 0.0) {
     write_log(Preferences()->debug_allin_adjustment(),
@@ -68,5 +70,5 @@ bool ChangeBetsizeToAllin(double amount_to_raise_to) {
 bool ChangeBetPotActionToAllin(int betpot_action_code) {
   assert(betpot_action_code >= k_autoplayer_function_betpot_2_1);
   assert(betpot_action_code <= k_autoplayer_function_betpot_1_4);
-  return ChangeBetsizeToAllin(BetsizeForBetpot(betpot_action_code));
+  return false;/// ChangeBetsizeToAllin(BetsizeForBetpot(betpot_action_code));
 }

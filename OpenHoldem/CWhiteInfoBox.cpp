@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CWhiteInfoBox.h"
 #include "CHandresetDetector.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

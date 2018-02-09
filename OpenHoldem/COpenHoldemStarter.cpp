@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "COpenHoldemStarter.h"
 #include "CAutoConnector.h"
 #include "CSharedMem.h"

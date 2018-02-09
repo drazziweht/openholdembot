@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "BetpotCalculations.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"

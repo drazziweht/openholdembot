@@ -13,7 +13,7 @@
 
 // OpenHoldem.cpp : Defines the class behaviors for the application.
 //
-#include "stdafx.h"
+
 #include "OpenHoldem.h"
 #include <psapi.h>
 #include <windows.h>

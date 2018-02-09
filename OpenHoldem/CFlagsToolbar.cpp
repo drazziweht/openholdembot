@@ -13,7 +13,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CFlagsToolbar.h"
 #include <afxwin.h>
 #include "CAutoplayer.h"

@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CTablepointChecker.h"
 #include "CAutoConnector.h"
 #include "CTableMapLoader.h"

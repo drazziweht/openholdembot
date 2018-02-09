@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-#include "StdAfx.h"
+
 #include "CValidator.h"
 #include "CAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

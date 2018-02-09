@@ -13,7 +13,7 @@
 //
 //******************************************************************************
 
-#include "StdAfx.h"
+
 #include "CTableMaploader.h"
 #include "CAutoConnector.h"
 #include "CFileSystemMonitor.h"

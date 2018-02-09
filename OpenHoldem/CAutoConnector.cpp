@@ -12,7 +12,6 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CAutoConnector.h"
 #include <afxwin.h>
 #include "CAutoplayer.h"

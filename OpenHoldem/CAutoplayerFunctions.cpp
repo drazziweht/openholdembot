@@ -11,9 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CAutoplayerFunctions.h"
-
 #include <assert.h>
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 #include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"

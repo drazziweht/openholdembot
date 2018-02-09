@@ -16,7 +16,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
+
 #include "CVersionInfo.h"
 #include <assert.h>
 #include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
