@@ -16,10 +16,13 @@
 ///#include "CAutoplayerTrace.h"
 #include "CCasinoInterface.h"
 #include "SwagAdjustment.h"
+#include "low_level\keyboard.h"
 #include "low_level\mouse.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 #include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\Symbols_DLL\CSymbolEngineHistory.h"
@@ -92,7 +95,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] calling keyboard.dll to enter betsize (adjusted): %s %d,%d %d,%d\n",
     swag_amt, _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
   bool use_comma_instead_of_dot = BasicScraper()->Tablemap()->use_comma_instead_of_dot();
-  (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region,
+  SendString(OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region,
     swag_amt, use_comma_instead_of_dot);
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Sleeping %dms.\n", Preferences()->swag_delay_3());
   Sleep(Preferences()->swag_delay_3());

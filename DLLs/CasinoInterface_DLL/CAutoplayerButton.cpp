@@ -11,11 +11,13 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CAutoplayerButton.h"
 #include "CCasinoHotkey.h"
 #include "CCasinoInterface.h"
-#include "..\CTablemap\CTablemap.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
 
 CAutoplayerButton::CAutoplayerButton() {
   Reset();
