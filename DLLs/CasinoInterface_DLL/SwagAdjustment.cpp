@@ -11,24 +11,23 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "SwagAdjustment.h"
 
 #include <assert.h>
-#include "BetpotCalculations.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-
-#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineGameType.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineIsTournament.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
-#include "..\..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-
-
-#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
+///#include "BetpotCalculations.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineCasino.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineGameType.h"
+#include "..\Symbols_DLL\CSymbolEngineIsTournament.h"
+#include "..\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 double MinimumBetsizeDueToPreviousRaise() {
 	double minimums_swag_amount = (EngineContainer()->symbol_engine_chip_amounts()->call() 
@@ -124,7 +123,7 @@ double MaximumBetsizeForGameType() {
 	if (EngineContainer()->symbol_engine_gametype()->ispl())	{
 		write_log(Preferences()->debug_betsize_adjustment(),
 			"[BetsizeAdjustment] Game-type is Pot Limit.\n");
-		maximum_betsize = BetsizeForBetpot(k_autoplayer_function_betpot_1_1);
+		///maximum_betsize = BetsizeForBetpot(k_autoplayer_function_betpot_1_1);
     write_log(Preferences()->debug_betsize_adjustment(), 
       "[BetsizeAdjustment] MaximumBetsizeForPotLimit: %.2f\n", maximum_betsize);
 	}	else if (EngineContainer()->symbol_engine_gametype()->isfl()) {

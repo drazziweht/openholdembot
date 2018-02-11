@@ -11,11 +11,8 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "COcclusionCheck.h"
-
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
 #include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
