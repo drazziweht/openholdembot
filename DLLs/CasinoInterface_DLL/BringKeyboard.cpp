@@ -12,13 +12,15 @@
 //******************************************************************************
 
 #include "BringKeyBoard.h"
-#include "CAutoConnector.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
-#include "MainFrm.h"
-#include "OpenHoldem.h"
-#include "CMyMutex.h"
+///#include "CAutoConnector.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineCasino.h"
+#include "..\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+///#include "MainFrm.h"
+///#include "CMyMutex.h"
 
 void CheckBringKeyboard(void) {
 	HMENU			bringsysmenu = NULL;
@@ -102,8 +104,8 @@ void CheckBringKeyboard(void) {
 		input[input_count].ki.dwFlags = KEYEVENTF_KEYUP;
 		input_count++;
 
-		CMyMutex mutex;
-    if (!mutex.IsLocked()) return;
+		///CMyMutex mutex;
+    ///if (!mutex.IsLocked()) return;
 
 		hwnd_focus = GetFocus();
 		GetCursorPos(&cur_pos);
