@@ -179,7 +179,7 @@ void CBetsizeInputBox::SelectText() {
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_CLICKDRAG) {
    write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text selection; calling mouse.dll to click drag: %d,%d %d,%d\n",
       _i3_edit_region.left, _i3_edit_region.top, _i3_edit_region.right, _i3_edit_region.bottom);
-    MouseClickDrag) (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region);
+    MouseClickDrag (OpenHoldem()->AutoConnector()->attached_hwnd(), _i3_edit_region);
   } else if (BasicScraper()->Tablemap()->swagselectionmethod() == TEXTSEL_NOTHING) {
     // Nothing to do
   } else {

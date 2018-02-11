@@ -11,31 +11,29 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CCasinoInterface.h"
-#include "CAutoConnector.h"
-#include "CAutoplayerFunctions.h"
-#include "CAutoplayerTrace.h"
-#include "CHandresetDetector.h"
-#include "CMyMutex.h"
-#include "CSessionCounter.h"
-#include "MainFrm.h"
-#include "OpenHoldem.h"
+///#include "CMyMutex.h"
 #include "PokerChat.hpp"
 #include "SwagAdjustment.h"
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Symbols_DLL\CBetroundCalculator.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineHistory.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineRandom.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\CTablemap\CTablemap.h"
-#include "..\CTableMap\CTableMapAccess.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "low_level\keyboard.h"
+#include "low_level\mouse.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Symbols_DLL\CBetroundCalculator.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineCasino.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineHistory.h"
+#include "..\Symbols_DLL\CSymbolEngineRandom.h"
+#include "..\Symbols_DLL\CSymbolEngineTime.h"
+#include "..\Tablestate_DLL\TableState.h"
+///#include "..\CTableMap\CTableMapAccess.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CCasinoInterface *p_casino_interface = NULL;
 
@@ -128,7 +126,7 @@ void CCasinoInterface::PressTabToSwitchOHReplayToNextFrame() {
 	POINT	cur_pos = {0};
 
   assert(EngineContainer()->symbol_engine_casino()->ConnectedToOHReplay());
-  (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), 
+  SendString(OpenHoldem()->AutoConnector()->attached_hwnd(), 
     rect_somewhere, "\t", false);
 }
 
@@ -136,15 +134,15 @@ bool CCasinoInterface::EnterChatMessage(CString &message) {
 	RECT			rect_chatbox;
 	POINT			cur_pos = {0};
 
-	if (!p_tablemap_access->GetTableMapRect("chatbox", &rect_chatbox)) {
+	/*#if (!p_tablemap_access->GetTableMapRect("chatbox", &rect_chatbox)) {
 		write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Can't chat. No region defined.\n");
 		return false;
-	}
+	}*/
 	write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Sending chat-message: %s\n", message);
-	(theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), rect_chatbox, message, false);
+	SendString(OpenHoldem()->AutoConnector()->attached_hwnd(), rect_chatbox, message, false);
 
 	// Clear old chat_message to allow new ones.
-	_the_chat_message = NULL;
+	///_the_chat_message = NULL;
 	ComputeFirstPossibleNextChatTime();
 	return true;
 }
@@ -162,9 +160,9 @@ int CCasinoInterface::NumberOfVisibleAutoplayerButtons() {
 bool CCasinoInterface::HandleInterfacebuttonsI86(void) {
   for (int i = 0; i<k_max_number_of_i86X_buttons; ++i) {
     if (p_casino_interface->_technical_i86X_spam_buttons[i].IsClickable()) {
-      CMyMutex mutex;
-      if (!mutex.IsLocked()) return false;
-     write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Clicking i86X (%d) button.\n", i);
+      ///CMyMutex mutex;
+      ///if (!mutex.IsLocked()) return false;
+      write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Clicking i86X (%d) button.\n", i);
       return p_casino_interface->_technical_i86X_spam_buttons[i].Click();
     }
   }
@@ -268,5 +266,5 @@ void CCasinoInterface::SendKey(const char ascii_key) {
   char input[2];
   input[0] = ascii_key;
   input[1] = '\0';
-  (theApp._dll_keyboard_sendstring) (OpenHoldem()->AutoConnector()->attached_hwnd(), r_null, input, false);
+  SendString(OpenHoldem()->AutoConnector()->attached_hwnd(), r_null, input, false);
 }

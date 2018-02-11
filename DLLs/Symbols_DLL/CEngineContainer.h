@@ -12,6 +12,8 @@
 //
 //******************************************************************************
 
+#include "CFunctionCollection.h" //!!!!!
+
 ///#include "CSpaceOptimizedGlobalObject.h"
 #include "CVirtualSymbolEngine.h"
 
@@ -246,3 +248,7 @@ private:
 
 //!!!!!!! TEMP
 int nchairs() { return 10; }
+
+CEngineContainer* EngineContainer();
+
+CFunctionCollection* FunctionCollection();
