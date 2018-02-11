@@ -12,10 +12,12 @@
 //******************************************************************************
 
 #include "COcclusionCheck.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 COcclusionCheck::COcclusionCheck()
 {}
