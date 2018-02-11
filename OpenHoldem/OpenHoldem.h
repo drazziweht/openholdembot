@@ -24,9 +24,6 @@
 #include "CSharedMem.h"
 #include "CWatchdog.h"
 #include "CTablePositioner.h"
-#include "..\..\Reference Mouse DLL\mousedll.h"
-#include "..\..\Reference Keyboard DLL\keyboarddll.h"
-
 
 class COpenHoldemApp : public CWinApp {
  public:
@@ -44,7 +41,7 @@ class COpenHoldemApp : public CWinApp {
 	void OpenLastRecentlyUsedFile();
 public:
   CAutoConnector*   AutoConnector()   { return &_autoconnector; }
-  CHeartBeatThread* HeartBeatThread(); //!!!!!
+  CHeartbeatThread* HeartBeatThread(); //!!!!!
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }
   CTablePositioner* TablePositioner() { return &_table_positioner; }

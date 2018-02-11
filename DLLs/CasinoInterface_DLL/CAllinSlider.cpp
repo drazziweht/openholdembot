@@ -12,13 +12,16 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CAllinSlider.h"
-#include "CAutoConnector.h"
+//#include "CAutoConnector.h"
 #include "CBetsizeInputBox.h"
 #include "CCasinoInterface.h"
-#include "OpenHoldem.h"
-#include "../CTablemap/CTablemap.h"
+#include "low_level\mouse.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CAllinSlider::CAllinSlider() {
   ResetHandlePosition();
@@ -60,7 +63,7 @@ bool CAllinSlider::SlideAllin() {
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] Slider : Calling mouse.dll to jam from %d,%d to %d,%d\n", drag_region.left, drag_region.top, drag_region.right, drag_region.bottom);
   // Not really (0, 0), but (-1, -1), out of the screen
   POINT	point_null = { kUndefined, kUndefined };
-  MouseClickDrag) (OpenHoldem()->AutoConnector()->attached_hwnd(), drag_region);
+  MouseClickDrag (OpenHoldem()->AutoConnector()->attached_hwnd(), drag_region);
 
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] Sleeping %d ms\n.", Preferences()->swag_delay_3());
   Sleep(Preferences()->swag_delay_3());
