@@ -347,7 +347,7 @@ void CHandresetDetector::GetNewSymbolValues() {
   _bblind = EngineContainer()->symbol_engine_tablelimits()->bblind();
   _showdown_cards_visible = TableState()->ShowdownCardsVisible();
   _antes_visible = TableState()->AntesVisible();
-  _buttons_visible = p_casino_interface->IsMyTurn();
+  _buttons_visible = CasinoInterface()->IsMyTurn();
 	for (int i=0; i<kMaxNumberOfCardsPerPlayer; i++) {
 		if ((userchair >= 0) && (userchair < BasicScraper()->Tablemap()->nchairs())) {
       playercards[i] = TableState()->User()->hole_cards(i)->GetValue();

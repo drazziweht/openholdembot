@@ -68,7 +68,7 @@ void CSymbolEngineGameType::UpdateOnHeartbeat() {
     // Known type. Can't go back to FL/PL.
     return;
   }
-  if (p_casino_interface->AllinOptionAvailable()) {
+  if (CasinoInterface()->AllinOptionAvailable()) {
     _gametype = kGametypeNL;
   } else if (isfl()) {
     // FL or unknown ATM.

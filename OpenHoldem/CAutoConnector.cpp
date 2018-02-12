@@ -303,7 +303,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Scraper-bitmaps created\n");
       // Clear scraper fields
 			TableState()->Reset();
-      p_casino_interface->Reset();
+      CasinoInterface()->Reset();
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Table state cleared\n");
       // Reset symbols
 			EngineContainer()->UpdateOnConnection();
@@ -366,7 +366,7 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	p_scraper->DeleteBitmaps();
   // Clear scraper fields
 	TableState()->Reset();
-  p_casino_interface->Reset();
+  CasinoInterface()->Reset();
 	// Reset symbols
 	EngineContainer()->UpdateOnConnection();
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] UpdateOnConnection executed (disconnection)\n");

@@ -18,9 +18,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_CFILESYSTEM_MONITOR_H
-#define INC_CFILESYSTEM_MONITOR_H
-
 ///#include "CSpaceOptimizedGlobalObject.h"
 
 class CFileSystemMonitor /*#: public CSpaceOptimizedGlobalObject */{

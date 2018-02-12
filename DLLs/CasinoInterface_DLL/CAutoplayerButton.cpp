@@ -50,7 +50,7 @@ bool CAutoplayerButton::Click() {
     RECT button_region;
     BasicScraper()->Tablemap()->GetTMRegion(_technical_name, &button_region);
     // Otherwise: click the button the normal way
-    p_casino_interface->ClickRect(button_region);
+    CasinoInterface()->ClickRect(button_region);
     write_log(Preferences()->debug_autoplayer(), "[CAutoplayerButton] Clicked button [%s] [%s]\n", _label, _technical_name);
     return true;
   } else {

@@ -65,6 +65,6 @@ class CCasinoInterface /*: public CSpaceOptimizedGlobalObject */{
   CAutoplayerButton _non_clickable_fake_button;
  private:
   CCasinoHotkey casino_hotkeys;
-}; 
+};
 
-extern CCasinoInterface *p_casino_interface;
+CCasinoInterface* CasinoInterface();

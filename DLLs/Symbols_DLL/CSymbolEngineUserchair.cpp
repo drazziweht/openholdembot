@@ -51,13 +51,13 @@ void CSymbolEngineUserchair::UpdateOnMyTurn()
 {}
 
 void CSymbolEngineUserchair::UpdateOnHeartbeat() {
-	if (!userchair_confirmed() /*!!!!!!!|| (p_casino_interface->IsMyTurn())*/) {
+	if (!userchair_confirmed() /*!!!!!!!|| (CasinoInterface()->IsMyTurn())*/) {
 		CalculateUserChair();
 	}
 }
 
 bool CSymbolEngineUserchair::IsNotShowdown() {
-  int num_buttons_enabled = 2;/// p_casino_interface->NumberOfVisibleAutoplayerButtons();
+  int num_buttons_enabled = 2;/// CasinoInterface()->NumberOfVisibleAutoplayerButtons();
   if (num_buttons_enabled >= k_min_buttons_needed_for_my_turn) return true;
   ///if (p_betround_calculator->betround() < kBetroundRiver) return true;
   return false;

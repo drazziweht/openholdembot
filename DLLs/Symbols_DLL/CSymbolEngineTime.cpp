@@ -64,7 +64,7 @@ void CSymbolEngineTime::UpdateOnHeartbeat() {
   //   c) because we want them to be available all the time
   //      and normal calculations stop on disconnection.
   /*!!!!!!!assert(p_casino_interface != nullptr);
-  if (!p_casino_interface->IsMyTurn()) {
+  if (!CasinoInterface()->IsMyTurn()) {
     _last_heartbeat_was_my_turn = false;
   }*/
   // Not setting anything to true here.

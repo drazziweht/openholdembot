@@ -42,7 +42,7 @@ bool CCasinoHotkey::PressHotkey() {
       "[CasinoHotkeys] Going to press non-alpha-numeric key [%x]\n",
       key_to_be_pressed);
   }
-  p_casino_interface->SendKey(key_to_be_pressed);
+  CasinoInterface()->SendKey(key_to_be_pressed);
   return true;
 }
 

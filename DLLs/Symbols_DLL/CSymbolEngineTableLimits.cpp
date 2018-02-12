@@ -217,7 +217,7 @@ void CSymbolEngineTableLimits::AutoLockBlinds() {
     Bool2CString(blinds_locked_for_current_hand));
 	// Reasonable blinds guaranteed by the way we guess.
   // And IsMyTurn guarantees stable input
-  if (!blinds_locked_for_current_hand && p_casino_interface->IsMyTurn()) {
+  if (!blinds_locked_for_current_hand && CasinoInterface()->IsMyTurn()) {
 		AutoLockBlindsForCurrentHand();
 		AutoLockBlindsForCashgamesAfterNHands();
 	}

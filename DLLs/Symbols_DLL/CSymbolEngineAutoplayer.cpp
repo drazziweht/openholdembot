@@ -80,21 +80,21 @@ void CSymbolEngineAutoplayer::UpdateOnHeartbeat() {
 void CSymbolEngineAutoplayer::CalculateMyTurnBits() {
 	write_log(Preferences()->debug_symbolengine(), "[CSymbolEngineAutoplayer] myturnbits reset: %i\n", _myturnbits);
 	for (int i=0; i<k_max_number_of_buttons; i++) {
-		if (p_casino_interface->_technical_autoplayer_buttons[i].IsClickable()) {
+		if (CasinoInterface()->_technical_autoplayer_buttons[i].IsClickable()) {
       // myturnbits  
       // Since OH 7.7.2 in the form FCKRA 
       // like the butons in the GUI (F =lowest bit) 
-      if (p_casino_interface->_technical_autoplayer_buttons[i].IsFold()) {
+      if (CasinoInterface()->_technical_autoplayer_buttons[i].IsFold()) {
 				_myturnbits |= kMyTurnBitsFold;
-			}	else if (p_casino_interface->_technical_autoplayer_buttons[i].IsCall()) {
+			}	else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsCall()) {
 				_myturnbits |= kMyTurnBitsCall;
-			}	else if (p_casino_interface->_technical_autoplayer_buttons[i].IsCheck()) {
+			}	else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsCheck()) {
 				_myturnbits |= kMyTurnBitsCheck;
-      }	else if (p_casino_interface->_technical_autoplayer_buttons[i].IsRaise()) {
+      }	else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsRaise()) {
 				_myturnbits |= kMyTurnBitsRaise;
-			}	else if (p_casino_interface->_technical_autoplayer_buttons[i].IsAllin()) {
+			}	else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsAllin()) {
 				_myturnbits |= kMyTurnBitsAllin;
-			}	else if (p_casino_interface->_technical_autoplayer_buttons[i].IsAutopost()) {
+			}	else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsAutopost()) {
 				_isautopost = true;
 			}
 		}
@@ -104,15 +104,15 @@ void CSymbolEngineAutoplayer::CalculateMyTurnBits() {
 
 void CSymbolEngineAutoplayer::CalculateSitInState() {
   for (int i=0; i<k_max_number_of_buttons; ++i) {
-    if (p_casino_interface->_technical_autoplayer_buttons[i].IsSitin()) {
+    if (CasinoInterface()->_technical_autoplayer_buttons[i].IsSitin()) {
 	    // Sitin-button found
       // We are sitting in if that button can NOT be clicked
-	    _issittingin = !p_casino_interface->_technical_autoplayer_buttons[i].IsClickable();
+	    _issittingin = !CasinoInterface()->_technical_autoplayer_buttons[i].IsClickable();
 	    return;
-    } else if (p_casino_interface->_technical_autoplayer_buttons[i].IsSitout()) {
+    } else if (CasinoInterface()->_technical_autoplayer_buttons[i].IsSitout()) {
 	    // Sitout-button found
       // We are sitting in if that button CAN be clicked
-	    _issittingin = (p_casino_interface->_technical_autoplayer_buttons[i].IsClickable());
+	    _issittingin = (CasinoInterface()->_technical_autoplayer_buttons[i].IsClickable());
 	    return;
     }
   }
@@ -132,9 +132,9 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
 		_isfinalanswer = false;
 	}
 	// Change from only requiring one visible button (OpenHoldem 2008-04-03)
-	else if (p_casino_interface->NumberOfVisibleAutoplayerButtons() < k_min_buttons_needed_for_my_turn)	{
+	else if (CasinoInterface()->NumberOfVisibleAutoplayerButtons() < k_min_buttons_needed_for_my_turn)	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because too few buttons visible\n");
-		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Buttons visible: %i\n", p_casino_interface->NumberOfVisibleAutoplayerButtons());
+		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Buttons visible: %i\n", CasinoInterface()->NumberOfVisibleAutoplayerButtons());
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Either not your turn or problem with the tablemap\n");
 		_isfinalanswer = false;
 	}

@@ -11,21 +11,21 @@
 //
 //******************************************************************************
 
-#include <stdafx.h>
 #include "CProblemSolver.h"
 
-#include "CAutoConnector.h"
-#include "CCasinoInterface.h"
 #include "CConfigurationCheck.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
-#include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEnginePokerval.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-#include "CTableMapLoader.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
+#include "..\Symbols_DLL\CSymbolEngineTime.h"
+#include "..\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+#include "..\..\OpenHoldem\CAutoConnector.h"
+#include "..\..\OpenHoldem\CTableMapLoader.h"
 
 CProblemSolver::CProblemSolver()
 {}
@@ -43,7 +43,7 @@ bool CProblemSolver::NoTableMapsInScraperFolder()
 bool CProblemSolver::NotConnected()
 {
   write_log(Preferences()->debug_alltherest(), "[CProblemSolver] location Johnny_9\n");
-	return (p_autoconnector->IsConnectedToAnything() == false);
+	return (OpenHoldem()->AutoConnector()->IsConnectedToAnything() == false);
 }
 
 bool CProblemSolver::UserChairUnknown()
@@ -69,9 +69,8 @@ bool CProblemSolver::NoCardsVisible()
 
 bool CProblemSolver::NotEnoughButtonsVisible() {
 	// We need at least 2 visible buttons to play
-	return (p_casino_interface->NumberOfVisibleAutoplayerButtons() < 2);
+	return (CasinoInterface()->NumberOfVisibleAutoplayerButtons() < 2);
 }
-
 
 void CProblemSolver::TryToDetectBeginnersProblems()
 {

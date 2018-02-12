@@ -327,7 +327,7 @@ void CEngineContainer::EvaluateAll() {
 	if (p_betround_calculator->IsNewBetround())	{
 		UpdateOnNewRound();
 	}
-	if (p_casino_interface->IsMyTurn())	{
+	if (CasinoInterface()->IsMyTurn())	{
 		UpdateOnMyTurn();
 	}
 	// And finally UpdateOnHeartbeat() gets always called.

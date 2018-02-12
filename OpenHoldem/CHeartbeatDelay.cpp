@@ -61,7 +61,7 @@ double CHeartbeatDelay::SleepingFactor() {
     // We hold cards -- the CRITICAL case
     // Handle it early in case of any bad information or bad logic
     // that might mix things up
-    if (p_casino_interface->IsMyTurn()) {
+    if (CasinoInterface()->IsMyTurn()) {
 		  // Playing and my turn
 		  // Stable frames expected
 		  // Shorter reaction times desired

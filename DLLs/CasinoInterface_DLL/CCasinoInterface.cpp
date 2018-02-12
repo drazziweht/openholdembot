@@ -35,8 +35,6 @@
 #include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
-CCasinoInterface *p_casino_interface = NULL;
-
 CCasinoInterface::CCasinoInterface() {
 	// dummy point for mouse and keyboard DLL
 	p_null.x = kUndefined;
@@ -159,11 +157,11 @@ int CCasinoInterface::NumberOfVisibleAutoplayerButtons() {
 
 bool CCasinoInterface::HandleInterfacebuttonsI86(void) {
   for (int i = 0; i<k_max_number_of_i86X_buttons; ++i) {
-    if (p_casino_interface->_technical_i86X_spam_buttons[i].IsClickable()) {
+    if (CasinoInterface()->_technical_i86X_spam_buttons[i].IsClickable()) {
       ///CMyMutex mutex;
       ///if (!mutex.IsLocked()) return false;
       write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] Clicking i86X (%d) button.\n", i);
-      return p_casino_interface->_technical_i86X_spam_buttons[i].Click();
+      return CasinoInterface()->_technical_i86X_spam_buttons[i].Click();
     }
   }
  write_log(Preferences()->debug_autoplayer(), "[CasinoInterface] No interface button (i86X) to be handled.\n");

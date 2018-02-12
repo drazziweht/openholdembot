@@ -11,9 +11,9 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CConfigurationCheck.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CConfigurationCheck *p_configurationcheck = 0;
 
@@ -123,12 +123,12 @@ CString CConfigurationCheck::GetValue(CString mhive, int type, CString registry_
 				}
 
 			default :
-				return NULL;
+				return "";
 		}
 	}
 	else
 	{
-		return NULL;
+		return "";
 	}
 }
 

@@ -15,7 +15,8 @@
 //******************************************************************************
 
 ///#include "CSpaceOptimizedGlobalObject.h"
-#include "..\CTablemap\CTablemap.h"
+#include "CFileSystemMonitor.h"
+#include "..\DLLs\Scraper_DLL\CTablemap\CTablemap.h"
 
 // This function has to be global and can't be part of the class,
 // as it has to be called by the callback-function 

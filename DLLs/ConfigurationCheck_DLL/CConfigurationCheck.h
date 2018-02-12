@@ -12,6 +12,7 @@
 //
 //******************************************************************************
 
+#include <afxwin.h>
 ///#include "CSpaceOptimizedGlobalObject.h"
 
 class CConfigurationCheck /*#: public CSpaceOptimizedGlobalObject */{

@@ -63,7 +63,7 @@ void CVirtualSymbolEngine::WarnIfSymbolRequiresMyTurn(CString name) {
     // but don't care about the result.
     return;
   }
-  if (!p_casino_interface->IsMyTurn()) {
+  if (!CasinoInterface()->IsMyTurn()) {
     CString error_message;
     error_message.Format("%s%s%s%s%s%s%s%s",
       "The symbol \"", name, "\"\n",

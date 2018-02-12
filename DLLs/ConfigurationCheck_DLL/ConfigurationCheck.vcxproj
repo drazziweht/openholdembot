@@ -13,12 +13,10 @@
   <ItemGroup>
     <ClCompile Include="CConfigurationCheck.cpp" />
     <ClCompile Include="CProblemSolver.cpp" />
-    <ClCompile Include="Files.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CConfigurationCheck.h" />
     <ClInclude Include="CProblemSolver.h" />
-    <ClInclude Include="Files.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0050F4F-E2AF-4B12-A196-3CCD67D1141E}</ProjectGuid>

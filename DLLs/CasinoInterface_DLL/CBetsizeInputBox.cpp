@@ -60,7 +60,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   // No backup-action here:
   // OH-script doesn't provide that and OPPL eill do that automatically.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=117&t=18125
-  if (!p_casino_interface->LogicalAutoplayerButton(k_autoplayer_function_raise)->IsClickable()) {
+  if (!CasinoInterface()->LogicalAutoplayerButton(k_autoplayer_function_raise)->IsClickable()) {
     write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] ...ending DoBetsize early (no (min-)raise possible).\n");
     return false;
   }
@@ -75,14 +75,14 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Sleeping %dms.\n", Preferences()->swag_delay_1());
   Sleep(Preferences()->swag_delay_1());
   // Check for stolen , and thus misswag
-  if (p_casino_interface->TableLostFocus()) {
+  if (CasinoInterface()->TableLostFocus()) {
     lost_focus = true;
   }
   Clear();
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Sleeping %dms.\n", Preferences()->swag_delay_2());
   Sleep(Preferences()->swag_delay_2());
   // Check for stolen focus, and thus misswag
-  if (p_casino_interface->TableLostFocus()) {
+  if (CasinoInterface()->TableLostFocus()) {
     lost_focus = true;
   }
   // SWAG AMOUNT ENTRY
@@ -100,7 +100,7 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Sleeping %dms.\n", Preferences()->swag_delay_3());
   Sleep(Preferences()->swag_delay_3());
   // Check for stolen focus, and thus misswag
-  if (p_casino_interface->TableLostFocus()) {
+  if (CasinoInterface()->TableLostFocus()) {
     lost_focus = true;
   }
   // BET CONFIRMATION ACTION
@@ -113,16 +113,16 @@ bool CBetsizeInputBox::EnterBetsize(double total_betsize_in_dollars) {
   } else {
     if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_ENTER) {
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Confirmation; calling keyboard.dll to press 'Enter'\n");
-      p_casino_interface->SendKey(VK_RETURN);
+      CasinoInterface()->SendKey(VK_RETURN);
     } else if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET
-      && p_casino_interface->LogicalAutoplayerButton(k_autoplayer_function_raise)->IsClickable()) {
+      && CasinoInterface()->LogicalAutoplayerButton(k_autoplayer_function_raise)->IsClickable()) {
       write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Bet Confirmation: Using raise button\n");
       if (BasicScraper()->Tablemap()->buttonclickmethod() == BUTTON_DOUBLECLICK) {
-        p_casino_interface->ClickButtonSequence(k_autoplayer_function_raise,
+        CasinoInterface()->ClickButtonSequence(k_autoplayer_function_raise,
           k_autoplayer_function_raise,
           k_double_click_delay);
       } else {
-        p_casino_interface->LogicalAutoplayerButton(k_autoplayer_function_raise)->Click();
+        CasinoInterface()->LogicalAutoplayerButton(k_autoplayer_function_raise)->Click();
       }
     } else if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_NOTHING) {
     } else {
@@ -150,7 +150,7 @@ bool CBetsizeInputBox::GetI3EditRegion() {
 
 bool CBetsizeInputBox::IsReadyToBeUsed() {
   if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET) {
-    if (!p_casino_interface->BetsizeConfirmationButton()->IsClickable()) {
+    if (!CasinoInterface()->BetsizeConfirmationButton()->IsClickable()) {
       return false;
     }
   }
@@ -191,11 +191,11 @@ void CBetsizeInputBox::SelectText() {
 void CBetsizeInputBox::Clear() {
   if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_DELETE) {
     write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text deletion; calling keyboard.dll to press 'delete'\n");
-    p_casino_interface->SendKey(VK_DELETE);
+    CasinoInterface()->SendKey(VK_DELETE);
   }
   else if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_BACKSPACE) {
     write_log(Preferences()->debug_autoplayer(), "[CBetsizeInputBox] Text deletion; calling keyboard.dll to press 'backspace'\n");
-     p_casino_interface->SendKey(VK_BACK);
+     CasinoInterface()->SendKey(VK_BACK);
   }
   else if (BasicScraper()->Tablemap()->swagdeletionmethod() == TEXTDEL_NOTHING) {
     // Nothing to do to delete the text

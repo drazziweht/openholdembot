@@ -69,7 +69,7 @@ bool CAllinSlider::SlideAllin() {
   Sleep(Preferences()->swag_delay_3());
 
   // Click confirmation button 
-  p_casino_interface->_betsize_input_box.Confirm();
+  CasinoInterface()->_betsize_input_box.Confirm();
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] Jam complete: %d,%d,%d,%d\n", drag_region.left, drag_region.top, drag_region.right, drag_region.bottom);
   write_log(Preferences()->debug_autoplayer(), "[AllinSlider] ...ending DoSlider.\n");
   return true;
@@ -96,7 +96,7 @@ bool CAllinSlider::GetSliderRegions() {
 bool CAllinSlider::SlideAllinPossible() {
   // Required: betsize-confirmation-button, slider and handle
   if (BasicScraper()->Tablemap()->swagconfirmationmethod() == BETCONF_CLICKBET) {
-    if (!p_casino_interface->BetsizeConfirmationButton()->IsClickable()) {
+    if (!CasinoInterface()->BetsizeConfirmationButton()->IsClickable()) {
       return false;
     }
   }
