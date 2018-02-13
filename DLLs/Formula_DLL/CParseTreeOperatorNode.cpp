@@ -13,28 +13,27 @@
  
 #include "CParseTreeOperatorNode.h"
 #include <math.h>
-#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
+///#include "CAutoplayerTrace.h"
 #include "CFunction.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+///#include "CMemoryPool.h"
 #include "CParserSymbolTable.h"
 #include "CParseTreeTerminalNode.h"
 #include "CParseTreeTerminalNodeIdentifier.h"
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
+#include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\FloatingPoint_Comparisions.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
-#include "..\WindowFunctions_DLL\window_functions.h"
-
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineMemorySymbols.h"
+#include "..\Symbols_DLL\..\Symbols_DLL\CSymbolEngineOpenPPLUserVariables.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
-
-#include "TokenizerConstants.h"
 
 CParseTreeOperatorNode::CParseTreeOperatorNode(int relative_line_number) : 
     CParseTreeNode(relative_line_number)  {
@@ -76,7 +75,7 @@ double CParseTreeOperatorNode::Evaluate(bool log /* = false */) {
  write_log(Preferences()->debug_formula(), 
     "[CParseTreeOperatorNode] Evaluating node type %i %s\n", 
 		_node_type, TokenString(_node_type));
-  p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
+  ///p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
 	// operators
   if (TokenIsUnary(_node_type)) {
 		return EvaluateUnaryExpression(log);

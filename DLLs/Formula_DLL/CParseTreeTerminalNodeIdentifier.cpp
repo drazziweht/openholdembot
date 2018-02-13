@@ -16,21 +16,20 @@
 
 #include <math.h>
 ///#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+///#include "CMemoryPool.h"
 #include "CParserSymbolTable.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineMemorySymbols.h"
+#include "..\Symbols_DLL\CSymbolEngineOpenPPLUserVariables.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "TokenizerConstants.h"
 
@@ -40,7 +39,7 @@ CParseTreeTerminalNodeIdentifier::CParseTreeTerminalNodeIdentifier(
   _node_type = kTokenIdentifier;
   _terminal_name = name;
   assert(p_parser_symbol_table != NULL);
-  p_parser_symbol_table->VerifySymbol(name);
+  ///p_parser_symbol_table->VerifySymbol(name);
 }
 
 CParseTreeTerminalNodeIdentifier::~CParseTreeTerminalNodeIdentifier() {
@@ -50,7 +49,7 @@ double CParseTreeTerminalNodeIdentifier::Evaluate(bool log /* = false */){
  write_log(Preferences()->debug_formula(), 
     "[CParseTreeTerminalNode] Evaluating node type %i %s\n", 
 		_node_type, TokenString(_node_type));
-  p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
+  ///p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
 	// Most common types first: numbers and identifiers
   if (_node_type == kTokenIdentifier) {
     assert(_first_sibbling  == NULL);
@@ -64,7 +63,7 @@ double CParseTreeTerminalNodeIdentifier::Evaluate(bool log /* = false */){
     // In case of f$-functions the line changed inbetween,
     // so we have to set it to the current location (again)
     // for the next log.
-    p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
+    ///p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
 		return value;
 	}
 	// This must not happen for a terminal node
