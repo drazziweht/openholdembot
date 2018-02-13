@@ -10,7 +10,6 @@
 // Purpose: parse-tree node representing RaiseBy- and RaiseTo-actions
 //
 //******************************************************************************
-
  
 #include "CParseTreeTerminalNodeBetsizeAction.h"
 #include <math.h>
@@ -21,6 +20,7 @@
 #include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
@@ -56,7 +56,7 @@ double CParseTreeTerminalNodeBetsizeAction::Evaluate(bool log /* = false */) {
  write_log(Preferences()->debug_formula(), 
     "[CParseTreeTerminalNodeBetsizeAction] Evaluating node type %i %s\n", 
 		_node_type, TokenString(_node_type));
-  p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
+  ///p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
 	// Actions first, which are "unary".
 	// We have to encode all possible outcomes in a single floating-point,
 	// therefore:

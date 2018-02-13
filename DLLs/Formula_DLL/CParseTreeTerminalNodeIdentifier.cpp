@@ -15,7 +15,7 @@
 #include "CParseTreeTerminalNodeIdentifier.h"
 
 #include <math.h>
-#include "CAutoplayerTrace.h"
+///#include "CAutoplayerTrace.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 #include "CMemoryPool.h"

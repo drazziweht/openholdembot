@@ -135,5 +135,5 @@ CString CParseTreeNode::Serialize() {
 void* CParseTreeNode::operator new(size_t size) {
   assert(PMemoryPoolParser() != NULL);
   write_log(Preferences()->debug_memory_usage(), "[CParseTreeNode] Allocating %i bytes\n", size);
-  return PMemoryPoolParser()->Allocate(size);
+  return malloc(size); /// PMemoryPoolParser()->Allocate(size);
 }
