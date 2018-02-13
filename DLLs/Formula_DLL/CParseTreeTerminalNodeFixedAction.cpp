@@ -13,25 +13,22 @@
 
  
 #include "CParseTreeTerminalNodeFixedAction.h"
-
 #include <math.h>
-#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+///#include "CAutoplayerTrace.h"
+
+///#include "CMemoryPool.h"
 #include "CParserSymbolTable.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
-#include "..\Debug_DLL\debug.h"
-
-
-#include "..\WindowFunctions_DLL\window_functions.h"
-#include "..\StringFunctions_DLL\string_functions.h"
 #include "TokenizerConstants.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineMemorySymbols.h"
+#include "..\Symbols_DLL\CSymbolEngineOpenPPLUserVariables.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CParseTreeTerminalNodeFixedAction::CParseTreeTerminalNodeFixedAction(
   int relative_line_number, CString name) : 

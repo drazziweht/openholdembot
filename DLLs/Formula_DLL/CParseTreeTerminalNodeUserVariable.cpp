@@ -10,29 +10,25 @@
 // Purpose:
 //
 //******************************************************************************
-
  
 #include "CParseTreeTerminalNodeUserVariable.h"
-
 #include <math.h>
 ///#include "CAutoplayerTrace.h"
-#include "CEngineContainer.h"
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+///#include "CMemoryPool.h"
 #include "CParserSymbolTable.h"
-
-#include "CSymbolEngineChipAmounts.h"
-#include "CSymbolEngineMemorySymbols.h"
-#include "CSymbolEngineOpenPPLUserVariables.h"
-#include "CSymbolEngineTableLimits.h"
-#include "FloatingPoint_Comparisions.h"
+#include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
-#include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
-
-#include "TokenizerConstants.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
+#include "..\Symbols_DLL\CSymbolEngineMemorySymbols.h"
+#include "..\Symbols_DLL\CSymbolEngineOpenPPLUserVariables.h"
+#include "..\Symbols_DLL\CSymbolEngineTableLimits.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CParseTreeTerminalNodeUserVariable::CParseTreeTerminalNodeUserVariable(
   int relative_line_number, CString name) : 
@@ -49,7 +45,7 @@ double CParseTreeTerminalNodeUserVariable::Evaluate(bool log /* = false */){
   write_log(Preferences()->debug_formula(), 
     "[CParseTreeTerminalNode] Evaluating node type %i %s\n", 
 		_node_type, name);
-  p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
+  ///p_autoplayer_trace->SetLastEvaluatedRelativeLineNumber(_relative_line_number);
   if (name.Left(4).MakeLower() == "user") {
     EngineContainer()->symbol_engine_openppl_user_variables()->Set(name);
     return true;
