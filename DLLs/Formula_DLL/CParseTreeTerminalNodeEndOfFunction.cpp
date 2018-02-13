@@ -11,16 +11,14 @@
 //
 //******************************************************************************
 
- 
-#include "CParseTreeTerminalNodeEndOfFunction.h"
-
-#include "CFunctionCollection.h"
-#include "CMemoryPool.h"
+ #include "CParseTreeTerminalNodeEndOfFunction.h"
+///#include "CMemoryPool.h"
 #include "COHScriptObject.h"
 #include "CTokenizer.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CFunctionCollection.h"
 
 // static
 bool CParseTreeTerminalNodeEndOfFunction::_evaluating_defailt_logic = false;
