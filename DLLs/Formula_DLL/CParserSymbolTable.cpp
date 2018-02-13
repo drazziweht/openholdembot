@@ -14,10 +14,10 @@
 
 #include "CParserSymbolTable.h"
 #include "CFunction.h"
-///#include "CEngineContainer.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 

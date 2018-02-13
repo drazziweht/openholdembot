@@ -35,8 +35,6 @@
 #include "CParseTreeTerminalNodeIdentifier.h"
 #include "CParseTreeTerminalNodeNumber.h"
 #include "CParseTreeTerminalNodeUserVariable.h"
-///#include "CValidator.h"
-///#include "CWatchdog.h"
 #include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Files_DLL\Files.h"
@@ -48,6 +46,8 @@
 #include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\CWatchdog.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 #ifdef _DEBUG

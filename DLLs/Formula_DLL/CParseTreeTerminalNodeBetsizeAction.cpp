@@ -24,6 +24,8 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 CParseTreeTerminalNodeBetsizeAction::CParseTreeTerminalNodeBetsizeAction(int relative_line_number) : 

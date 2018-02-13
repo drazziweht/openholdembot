@@ -14,18 +14,17 @@
 #include "COHScriptList.h"
 
 ///#include "CardFunctions.h"
-///#include "CEngineContainer.h"
 #include "CFormulaParser.h"
 ///#include "CMemoryPool.h"
 #include "CParseErrors.h"
-
-///#include "CSymbolEngineCards.h"
-///#include "CSymbolEnginePokerval.h"
-///#include "CTableState.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineCards.h"
+#include "..\Symbols_DLL\CSymbolEnginePokerval.h"
+#include  "..\TableState_DLL\CTableTitle.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 COHScriptList::COHScriptList(

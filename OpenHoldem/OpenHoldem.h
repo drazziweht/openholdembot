@@ -45,7 +45,7 @@ public:
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }
   CTablePositioner* TablePositioner() { return &_table_positioner; }
-  CWatchdog*        Watchdog()        { return &_watchdog; }
+  CWatchdog*        WatchDog()        { return &_watchdog; }
  private:
 	void FinishInitialization();
   void InitializeThreads();
