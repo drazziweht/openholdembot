@@ -210,9 +210,6 @@
   <ItemGroup>
     <ClCompile Include="BetpotCalculations.cpp" />
     <ClCompile Include="CardFunctions.cpp" />
-    <ClCompile Include="CAutoplayerButton.cpp" />
-    <ClCompile Include="CBetsizeInputBox.cpp" />
-    <ClCompile Include="CCasinoHotkey.cpp" />
     <ClCompile Include="CFileSystemMonitor.cpp" />
     <ClCompile Include="CFlagsToolbar.cpp" />
     <ClCompile Include="CHandresetDetector.cpp" />
@@ -252,11 +249,9 @@
     <ClCompile Include="VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
-    <ClCompile Include="CConfigurationCheck.cpp" />
     <ClCompile Include="CProblemSolver.cpp" />
     <ClCompile Include="CVersionInfo.cpp" />
     <ClCompile Include="CAutoplayerFunctions.cpp" />
-    <ClCompile Include="CCasinoInterface.cpp" />
     <ClCompile Include="CStableFramesCounter.cpp" />
     <ClCompile Include="CAutoConnector.cpp" />
     <ClCompile Include="CTableMapLoader.cpp" />
@@ -277,7 +272,6 @@
     </ClCompile>
     <ClCompile Include="..\CTablemap\CTablemapAccess.cpp" />
     <ClCompile Include="CTablemapCompletenessChecker.cpp" />
-    <ClCompile Include="CAutoplayerTrace.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StringFunctionsDLL\string_functions.cpp" />
@@ -302,9 +296,6 @@
   <ItemGroup>
     <ClInclude Include="..\Shared\MagicNumbers\MagicNumbers.h" />
     <ClInclude Include="BetpotCalculations.h" />
-    <ClInclude Include="CAutoplayerButton.h" />
-    <ClInclude Include="CBetsizeInputBox.h" />
-    <ClInclude Include="CCasinoHotkey.h" />
     <ClInclude Include="CFileSystemMonitor.h" />
     <ClInclude Include="CFlagsToolbar.h" />
     <ClInclude Include="CHandresetDetector.h" />
@@ -369,14 +360,12 @@
     <ClInclude Include="CSessionCounter.h" />
     <ClInclude Include="CSharedMem.h" />
     <ClInclude Include="CAutoplayerFunctions.h" />
-    <ClInclude Include="CCasinoInterface.h" />
     <ClInclude Include="CRebuyManagement.h" />
     <ClInclude Include="CStableFramesCounter.h" />
     <ClInclude Include="CAutoConnector.h" />
     <ClInclude Include="CTableMapLoader.h" />
     <ClInclude Include="CTablePositioner.h" />
     <ClInclude Include="CTablepointChecker.h" />
-    <ClInclude Include="CConfigurationCheck.h" />
     <ClInclude Include="CProblemSolver.h" />
     <ClInclude Include="CVersionInfo.h" />
     <ClInclude Include="CIteratorThread.h" />
@@ -389,7 +378,6 @@
     <ClInclude Include="CStringMatch.h" />
     <ClInclude Include="FloatingPoint_Comparisions.h" />
     <ClInclude Include="WebSafeColours.h" />
-    <ClInclude Include="CAutoplayerTrace.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenHoldem.rc" />

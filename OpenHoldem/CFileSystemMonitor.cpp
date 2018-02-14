@@ -17,7 +17,7 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "CFileSystemMonitor.h"
 #include "OpenHoldem.h"
 #include "Shlwapi.h"

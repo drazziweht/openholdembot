@@ -12,8 +12,10 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "BetpotCalculations.h"
+#include "..\DLLs\Debug_DLL\debug.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineChipAmounts.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
