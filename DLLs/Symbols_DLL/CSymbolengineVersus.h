@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -12,10 +13,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINEVERSUS_H
-#define INC_CSYMBOLENGINEVERSUS_H
-
 #include "CVirtualSymbolEngine.h"
+#include "..\..\pokereval\include\rules_std.h"
 
 const int card0_offset[52] = { 0, 62475, 123725, 183750, 242550, 300125, 356475, 411600, 465500, 518175, 569625,
 	619850, 668850, 716625, 763175, 808500, 852600, 895475, 937125, 977550, 1016750,
@@ -76,5 +75,3 @@ private:
   int card_player[kMaxNumberOfCardsPerPlayer];
   int card_common[kNumberOfCommunityCards];
 };
-
-#endif INC_CSYMBOLENGINEVERSUS_H

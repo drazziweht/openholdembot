@@ -22,12 +22,11 @@
 #include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
-
 
 CSymbolEngineAutoplayer::CSymbolEngineAutoplayer() {
 	// The values of some symbol-engines depend on other engines.

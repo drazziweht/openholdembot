@@ -13,11 +13,11 @@
 
 #include "CVirtualSymbolEngine.h"
 #include "CEngineContainer.h"
-#include "CCasinoInterface.h"
-#include "CFormulaParser.h"
-#include "CMemoryPool.h"
 #include "CSymbolEngineIsOmaha.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
+#include "..\Formula_DLL\CFormulaParser.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CVirtualSymbolEngine::CVirtualSymbolEngine()
 {}
