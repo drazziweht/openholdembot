@@ -24,8 +24,10 @@
 #include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CSymbolEngineCards.h"
 #include "..\Symbols_DLL\CSymbolEnginePokerval.h"
+#include  "..\TableState_DLL\TableState.h"
 #include  "..\TableState_DLL\CTableTitle.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
+#include "..\..\OpenHoldem\CardFunctions.h"
 
 COHScriptList::COHScriptList(
     CString new_name,

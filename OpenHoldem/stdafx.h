@@ -1,4 +1,3 @@
-#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -13,6 +12,9 @@
 // but are changed infrequently
 //
 //******************************************************************************
+
+#ifndef INC_STDAFX_H
+#define INC_STDAFX_H
 
 #ifndef _SECURE_ATL
 #define _SECURE_ATL 1
@@ -156,3 +158,5 @@
 
 // To avoid some race-conditions
 #define WAIT_FOR_CONDITION(condition) { while (!(condition)) { Sleep(250); } }
+
+#endif //INC_STDAFX

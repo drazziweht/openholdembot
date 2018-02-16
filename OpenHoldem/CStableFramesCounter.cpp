@@ -15,16 +15,13 @@
 // !!! Todo: turn it into a symbol-engine,
 // !!! including reset on autoplayer-action
 
-
+#include "stdafx.h"
 #include "CStableFramesCounter.h"
-
+#include "..\DLLs\Scraper_DLL\CBasicScraper.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-
-#include "..\DLLs\Scraper_DLL\CScraper.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineIsOmaha.h"
 #include "..\DLLs\Tablestate_DLL\TableState.h"
-
 
 CStableFramesCounter *p_stableframescounter = NULL;
 
