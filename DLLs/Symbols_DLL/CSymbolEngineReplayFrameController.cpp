@@ -13,25 +13,21 @@
 //
 //******************************************************************************
 
-
-#include "CSymbolEngineReplayFrameController.h"
-
 #include <assert.h>
-#include "CAutoPlayer.h"
+#include "CSymbolEngineReplayFrameController.h"
+///#include "CAutoPlayer.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
-#include "CHeartbeatThread.h"
-#include "CLazyScraper.h"
-
-#include "CReplayFrame.h"
-#include "CStableFramesCounter.h"
+///#include "CHeartbeatThread.h"
+///#include "CLazyScraper.h"
+///#include "CReplayFrame.h"
+///#include "CStableFramesCounter.h"
 #include "CSymbolEngineAutoplayer.h"
+#include "CSymbolEngineCasino.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
-
-#include "CSymbolEngineCasino.h"
 
 CSymbolEngineReplayFrameController::CSymbolEngineReplayFrameController() {
 	// The values of some symbol-engines depend on other engines.
@@ -66,7 +62,7 @@ void CSymbolEngineReplayFrameController::UpdateOnHeartbeat() {
     write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] No replay required, as connected to OHReplay\n");
 		return;	
 	}
-	if (p_lazyscraper->IsIdenticalScrape()) {
+	if (false/*#p_lazyscraper->IsIdenticalScrape()*/) {
 	  // There is no benefit in duplicate frames, so we abort
 	  write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] No replay required, as identical scrape\n");
 	  return;
@@ -102,14 +98,14 @@ void CSymbolEngineReplayFrameController::UpdateAfterAutoplayerAction(int autopla
 }
 
 void CSymbolEngineReplayFrameController::ShootReplayFrameIfNotYetDone() {
-  int heartbeat_counter = OpenHoldem()->HeartbeatThread()->heartbeat_counter();
+  int heartbeat_counter = 0; /// OpenHoldem()->HeartbeatThread()->heartbeat_counter();
   // Don't shoot replay-frames twice per heartbeat
   if (_heartbeat_of_last_replay_frame == heartbeat_counter) {
     write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] Not shooting a replay-frame, because we already shot one this heartbeat\n");
     return;
   }
   write_log(Preferences()->debug_replayframes(), "[CSymbolEngineReplayFrameController] Going to shooting a replay-frame\n");
-  CReplayFrame crf;
-  crf.CreateReplayFrame();
+  ///CReplayFrame crf;
+  ///crf.CreateReplayFrame();
   _heartbeat_of_last_replay_frame = heartbeat_counter;
 }

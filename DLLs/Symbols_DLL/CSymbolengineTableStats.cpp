@@ -115,8 +115,8 @@ double CSymbolEngineTableStats::SumUp(int *data_set_for_n_hands) {
 }
 
 int CSymbolEngineTableStats::NumberOfHandsStored() {
-  int hands_played = p_handreset_detector->hands_played();
-  if (hands_played > kNumberOfHands) {
+  int hands_played = 20; /// p_handreset_detector->hands_played();
+  if (hands_played > kNumberOfHands) { //!!! better baning
     // All entries contains valid date
     return kNumberOfHands;
   } else if (hands_played == 0) {

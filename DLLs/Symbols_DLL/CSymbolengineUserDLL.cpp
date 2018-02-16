@@ -13,22 +13,25 @@
 
 #include "CSymbolEngineUserDLL.h"
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
+///#include "CFormulaParser.h"
 #include "CFunctionCollection.h"
-#include "CHandresetDetector.h"
+///#include "CHandresetDetector.h"
 #include "CIteratorThread.h"
-#include "COcclusionCheck.h"
-#include "COpenHoldemTitle.h"
+///#include "COcclusionCheck.h"
 
 #include "CSymbolengineVersus.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Formula_DLL\COHScriptList.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\GUI_DLL\CGUI.h"
+#include "..\GUI_DLL\COpenHoldemTitle.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\TableState_DLL\CTableTitle.h"
 #include "..\TableState_DLL\TableState.h"
 #include "..\User_DLL\user.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
-CSymbolEngineUserDLL *p_symbol_engine_formula_loading = NULL;
+///CSymbolEngineUserDLL *p_symbol_engine_formula_loading = NULL;
 
 CSymbolEngineUserDLL::CSymbolEngineUserDLL() {
 	// The values of some symbol-engines depend on other engines.

@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-#include "..\CTablemap\CTablemap.h"
+#include "..\DLLs\Scraper_DLL\CTablemap\CTablemap.h"
 #include "..\Shared\CCritSec\CCritSec.h"
 
 #define HWND_CHECK_TIMER				1
@@ -95,9 +95,6 @@ private:
 
 	CCritSec		m_critsec;
 };
-
-// used by EnumProcTopLevelWindowList function
-extern CArray <STableList, STableList>		g_tlist; 
 
 BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam);
 

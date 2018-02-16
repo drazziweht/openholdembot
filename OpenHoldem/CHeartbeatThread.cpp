@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-
+#include "srdafx.h"
 #include "CHeartbeatThread.h"
 #include <process.h>
 #include "CAutoconnector.h"
