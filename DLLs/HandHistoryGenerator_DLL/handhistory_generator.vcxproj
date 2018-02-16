@@ -16,7 +16,6 @@
     <ClCompile Include="CHandHistoryShowdown.cpp" />
     <ClCompile Include="CHandHistoryUncontested.cpp" />
     <ClCompile Include="CHandHistoryWriter.cpp" />
-    <ClCompile Include="Files.cpp" />
     <ClCompile Include="handhistory_generator.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -25,7 +24,6 @@
     <ClInclude Include="CHandHistoryShowdown.h" />
     <ClInclude Include="CHandHistoryUncontested.h" />
     <ClInclude Include="CHandHistoryWriter.h" />
-    <ClInclude Include="Files.h" />
     <ClInclude Include="handhistory_generator.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

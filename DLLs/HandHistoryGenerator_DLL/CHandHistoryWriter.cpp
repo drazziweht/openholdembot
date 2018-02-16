@@ -21,8 +21,9 @@
 #include "CHandHistoryWriter.h"
 #include "CHandHistoryDealPhase.h"
 #include "CHandHistoryUncontested.h"
-#include "CScraper.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CHandHistoryWriter::CHandHistoryWriter() {
 	// The values of some symbol-engines depend on other engines.

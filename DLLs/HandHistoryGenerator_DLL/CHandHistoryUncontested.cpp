@@ -12,11 +12,11 @@
 //******************************************************************************
 
 #include "CHandHistoryUncontested.h"
-#include "CEngineContainer.h"
 #include "CHandHistoryWriter.h"
-#include "CScraper.h"
-#include "CSymbolEngineActiveDealtPlaying.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CHandHistoryUncontested::CHandHistoryUncontested() {
 	// The values of some symbol-engines depend on other engines.

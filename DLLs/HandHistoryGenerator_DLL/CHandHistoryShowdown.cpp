@@ -12,13 +12,11 @@
 //******************************************************************************
 
 #include "CHandHistoryShowdown.h"
-#include "CBetroundCalculator.h"
-#include "CEngineContainer.h"
-#include "CScraper.h"
-#include "CSymbolEngineUserchair.h"
-
-#include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Symbols_DLL\CBetroundCalculator.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CHandHistoryShowdown::CHandHistoryShowdown() {
 	// The values of some symbol-engines depend on other engines.
