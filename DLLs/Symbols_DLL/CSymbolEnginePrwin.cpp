@@ -21,6 +21,8 @@
 #include "CSymbolenginePokerval.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Tablestate_DLL\TableState.h"
+#include "..\..\pokereval\include\poker_defs.h"
+#include "..\..\pokereval\include\rules_std.h"
 
 CSymbolEnginePrwin::CSymbolEnginePrwin() {
 	// The values of some symbol-engines depend on other engines.
@@ -65,7 +67,7 @@ void CSymbolEnginePrwin::UpdateOnNewRound() {
 void CSymbolEnginePrwin::UpdateOnMyTurn() {
 	CalculateNOpponents();
   assert(p_iterator_thread != NULL);
-	p_iterator_thread->StartPrWinComputationsIfNeeded();
+	///p_iterator_thread->StartPrWinComputationsIfNeeded();
 	CalculateNhands();
 }
 

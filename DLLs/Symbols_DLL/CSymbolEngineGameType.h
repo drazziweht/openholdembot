@@ -1,3 +1,4 @@
+#pragma once
 //****************************************************************************** 
 //
 // This file is part of the OpenHoldem project
@@ -11,11 +12,8 @@
 //
 //****************************************************************************** 
 
-#ifndef INC_CSYMBOLENGINEGAMETYPE_H
-#define INC_CSYMBOLENGINEGAMETYPE_H
-
-
 #include "CVirtualSymbolEngine.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineGameType: public CVirtualSymbolEngine {
  public:
@@ -44,5 +42,3 @@ class CSymbolEngineGameType: public CVirtualSymbolEngine {
  private:
 	int		 _gametype;
 };
-
-#endif // INC_CSYMBOLENGINEGAMETYPE_H

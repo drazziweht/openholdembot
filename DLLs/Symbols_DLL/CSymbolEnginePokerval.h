@@ -17,6 +17,11 @@
 #include "CSymbolEngineUserChair.h"
 #include "CSymbolEngineTableLimits.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\..\pokereval\include\pokereval_export.h"
+///#include "..\..\pokereval\include\poker_defs.h"
+///#include "..\..\pokereval\include\rules_std.h"
+///#include "..\..\pokereval\include\inlines\eval.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEnginePokerval: public CVirtualSymbolEngine
 {
