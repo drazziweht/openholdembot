@@ -70,7 +70,7 @@ void CFunction::Parse() {
   if (NeedsToBeParsed()) { 
     write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),
       "[CFunction] Parsing %s\n", _name);
-    p_formula_parser->ParseFormula(this);
+    OpenHoldem()->FormulaParser()->ParseFormula(this);
     MarkAsParsed();
   } else {
     write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),

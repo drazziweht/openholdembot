@@ -57,7 +57,7 @@ CString CVirtualSymbolEngine::SymbolsProvided() {
 }
 
 void CVirtualSymbolEngine::WarnIfSymbolRequiresMyTurn(CString name) {
-  if (p_formula_parser->IsParsing()) {
+  if (OpenHoldem()->FormulaParser()->IsParsing()) {
     // No error-message while parsing,
     // as we only verify existence, 
     // but don't care about the result.

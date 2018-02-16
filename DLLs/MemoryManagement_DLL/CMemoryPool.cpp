@@ -139,7 +139,7 @@ void CMemoryPool::AlignNextMemoryBlock() {
 }
 
 CMemoryPool *PMemoryPoolParser(bool for_read_only_openppl_library_and_default_bot) {
-  assert(p_formula_parser != NULL);
+  assert(OpenHoldem()->FormulaParser() != NULL);
   if (for_read_only_openppl_library_and_default_bot) {
     assert(p_memory_pool_library_logic != NULL);
     return p_memory_pool_library_logic;

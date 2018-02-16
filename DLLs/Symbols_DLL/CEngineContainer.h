@@ -102,6 +102,8 @@ class CEngineContainer/* !!!!!!!: public CSpaceOptimizedGlobalObject*/ {
   bool _reset_on_connection_executed;
   CString _list_of_symbols;
 public:
+  CFunctionCollection *function_collection()
+    { return p_function_collection; }
   CSymbolEngineActiveDealtPlaying *symbol_engine_active_dealt_playing()
     { return p_symbol_engine_active_dealt_playing; }
   CSymbolEngineAutoplayer *symbol_engine_autoplayer()
@@ -193,6 +195,7 @@ public:
   CSymbolEngineICM *symbol_engine_icm()
     { return p_symbol_engine_icm; }
 private:
+  CFunctionCollection *p_function_collection;
   CSymbolEngineActiveDealtPlaying *p_symbol_engine_active_dealt_playing;
   CSymbolEngineAutoplayer *p_symbol_engine_autoplayer;
   CSymbolEngineBlinds *p_symbol_engine_blinds;
@@ -251,4 +254,4 @@ int nchairs() { return 10; }
 
 CEngineContainer* EngineContainer();
 
-CFunctionCollection* FunctionCollection();
+CFunctionCollection* FunctionCollection() { return EngineContainer()->function_collection(); }

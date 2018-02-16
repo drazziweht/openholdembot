@@ -54,8 +54,6 @@
 #undef DEBUG_PARSER
 #endif
 
-CFormulaParser *p_formula_parser = NULL;
-
 // Global for static accessor-functions
 CString _function_name;
 

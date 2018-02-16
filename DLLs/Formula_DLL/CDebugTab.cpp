@@ -44,7 +44,7 @@ CDebugTab::~CDebugTab() {
 }
 
 void CDebugTab::Parse() {
-  p_formula_parser->ParseDebugTab(_function_text);
+  OpenHoldem()->FormulaParser()->ParseDebugTab(_function_text);
 }
 
 CString CDebugTab::EvaluateAll() {

@@ -24,6 +24,7 @@
 #include "CSharedMem.h"
 #include "CWatchdog.h"
 #include "CTablePositioner.h"
+#include "..\DLLs\Formula_DLL\CFormulaParser.h"
 
 class COpenHoldemApp : public CWinApp {
  public:
@@ -41,6 +42,7 @@ class COpenHoldemApp : public CWinApp {
 	void OpenLastRecentlyUsedFile();
 public:
   CAutoConnector*   AutoConnector()   { return &_autoconnector; }
+  CFormulaParser*   FormulaParser()   { return &_formula_parser; }
   CHeartbeatThread* HeartBeatThread(); //!!!!!
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }
@@ -53,6 +55,7 @@ private:
   CSessionCounter _sessioncounter;
   CSharedMem _shared_mem;
   CWatchdog _watchdog; //!!!!! -> hearbeat?
+  CFormulaParser _formula_parser;
   CAutoConnector _autoconnector;
   CTablePositioner _table_positioner;//!!!!! -> hearbeat?
   //!!!!!CHeartBeatThread

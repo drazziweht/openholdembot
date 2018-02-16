@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -15,9 +16,6 @@
 //     * expressions of the debug-tab:
 //
 //******************************************************************************
-
-#ifndef INC_CFORMULAPARSER_H
-#define INC_CFORMULAPARSER_H
 
 #include "afx.h"
 #include "atlstr.h"
@@ -119,7 +117,3 @@ class CFormulaParser /*: public CSpaceOptimizedGlobalObject */{
   bool _is_parsing_debug_tab;
   COHScriptObject* _currently_parsed_function_or_list;
 };
-
-extern CFormulaParser *p_formula_parser;
-
-#endif INC_CFORMULAPARSER_H

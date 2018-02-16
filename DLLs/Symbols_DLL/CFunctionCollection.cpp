@@ -170,7 +170,7 @@ void CFunctionCollection::Add(COHScriptObject *new_function) {
   }
   write_log(Preferences()->debug_formula(), 
 	  "[CFunctionCollection] Adding %s -> %i\n", name, new_function);
-  if (p_formula_parser->IsParsingReadOnlyFunctionLibrary()) { 
+  if (OpenHoldem()->FormulaParser()->IsParsingReadOnlyFunctionLibrary()) { 
     write_log(Preferences()->debug_formula(),
       "[CFunctionCollection] Making function read-only\n");
     new_function->SetAsReadOnlyLibraryFunction();
@@ -649,7 +649,7 @@ bool CFunctionCollection::ParseAll() {
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=156&t=16230
   FunctionCollection()->CheckForDefaultFormulaEntries();
   CSLock lock(m_critsec);
-  assert(p_formula_parser != NULL);
+  assert(OpenHoldem()->FormulaParser() != NULL);
   p_parser_symbol_table->Clear();
   COHScriptObject *p_oh_script_object = GetFirst();
   while (p_oh_script_object != NULL) {
@@ -730,7 +730,7 @@ bool CFunctionCollection::EvaluateSymbol(const CString name, double *result, boo
       }
       // Function does not exist
       *result = kUndefinedZero;
-      if (p_formula_parser->IsParsing()) {
+      if (OpenHoldem()->FormulaParser()->IsParsing()) {
         // EvaluateSymbol() got called as part of the parse-time-verification
         return false;
       }

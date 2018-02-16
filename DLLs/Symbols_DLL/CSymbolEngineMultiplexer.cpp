@@ -132,7 +132,7 @@ CString CSymbolEngineMultiplexer::MultiplexedSymbolName(CString name) {
   EngineContainer()->EvaluateSymbol(postfix, &evaluated_postfix, false);
   if (evaluated_postfix == kUndefined) {
     // Valid postfix, but invalid (negative) value
-	  if (false/*!!!!!!!p_formula_parser->IsParsing()*/) {
+	  if (false/*!!!!!!!OpenHoldem()->FormulaParser()->IsParsing()*/) {
       // Some (chair) values are not available,
       // but we want to continue to verify the entire multiplexer-symbol.
       // Continue with chair 0

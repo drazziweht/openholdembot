@@ -388,8 +388,8 @@ NegativeNumber:
 			if (_inside_OpenPPL_function) {
 				RETURN_DEFAULT_SINGLE_CHARACTER_OPERATOR(kTokenOperatorPercentage);
 			}
-      assert(p_formula_parser != NULL);
-      if (p_formula_parser->IsParsingDebugTab()) {
+      assert(OpenHoldem()->FormulaParser() != NULL);
+      if (OpenHoldem()->FormulaParser()->IsParsingDebugTab()) {
         // http://www.maxinmontreal.com/forums/viewtopic.php?f=297&t=19973&p=140389#p140389
         MessageBox_Error_Warning("Operator % in debug-tab detected.\n"
           "\n"

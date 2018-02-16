@@ -181,7 +181,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *resul
 	}
 	int chair = 0;
 	if (!p_pokertracker_thread->IsConnected()) 	{
-		if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed() || p_formula_parser->IsParsing()) {
+		if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed() || OpenHoldem()->FormulaParser()->IsParsing()) {
 			// We are not yet seated or formula is getting parsed.
 			// Symbol-lookup happens, because of Formula-validation.
 			// Not a problem, if we do not yet have a DB-connection.

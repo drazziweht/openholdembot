@@ -166,7 +166,7 @@ BOOL COpenHoldemApp::InitInstance() {
   write_log(Preferences()->debug_openholdem(), "[OpenHoldem] Going to InitializeThreads()\n");
   InitializeThreads();
   write_log(Preferences()->debug_openholdem(), "[OpenHoldem] Going to OpenLastRecentlyUsedFile()\n");
-  p_formula_parser->ParseDefaultLibraries(); 
+  OpenHoldem()->FormulaParser()->ParseDefaultLibraries(); 
 	OpenLastRecentlyUsedFile();
 	write_log(Preferences()->debug_openholdem(), "[OpenHoldem] m_pMainWnd = %i\n",
 		m_pMainWnd);

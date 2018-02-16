@@ -11,11 +11,7 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "MemoryLogging.h"
-
-
-
 #include <psapi.h>
 #include "Windows.h"
 

@@ -118,9 +118,9 @@ void COpenHoldemDoc::Serialize(CArchive& ar)
 			return;
 		}
 		// Read ohf file
-    assert(p_formula_parser != NULL);
-		write_log(Preferences()->debug_openholdem(), "[COpenHoldemDoc::Serialize] Going to call p_formula_parser->ParseFormulaFileWithUserDefinedBotLogic \n");
-		p_formula_parser->ParseFormulaFileWithUserDefinedBotLogic(ar);
+    assert(OpenHoldem()->FormulaParser() != NULL);
+		write_log(Preferences()->debug_openholdem(), "[COpenHoldemDoc::Serialize] Going to call OpenHoldem()->FormulaParser()->ParseFormulaFileWithUserDefinedBotLogic \n");
+		OpenHoldem()->FormulaParser()->ParseFormulaFileWithUserDefinedBotLogic(ar);
 		SetModifiedFlag(false);
 		GUI()->OpenHoldemTitle()->UpdateTitle();
 	}

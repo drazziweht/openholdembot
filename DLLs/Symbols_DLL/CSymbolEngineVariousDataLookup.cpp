@@ -51,7 +51,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   assert(OpenHoldem()->AutoConnector() != NULL);
   assert(p_betround_calculator != NULL);
   assert(p_handreset_detector != NULL);
-  assert(p_formula_parser != NULL);
+  assert(OpenHoldem()->FormulaParser() != NULL);
   assert(OpenHoldem()->SessionCounter() != NULL);
   assert(p_tablemap != NULL);
   assert(TableState()->TableTitle() != NULL);
@@ -108,14 +108,14 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     // We might however want to show a message if we are not yet connected,
     // e.g. in f$ini_function_pn_startup
     write_log(Preferences()->debug_alltherest(), "[CSymbolEngineVariousDataLookup] location Johnny_8\n");
-    if (p_formula_parser->IsParsing()) {
+    if (OpenHoldem()->FormulaParser()->IsParsing()) {
 	    *result = 0;
     } else {
 	    MessageBox_OH_Script_Messages(name);
 	    *result = 0;
     }
   } else if ((memcmp(name, "log$", 4)==0) && (strlen(name)>4)) {
-    if (!p_formula_parser->IsParsing()) {
+    if (!OpenHoldem()->FormulaParser()->IsParsing()) {
       write_log(Preferences()->debug_auto_trace(), 
         "[CSymbolEngineVariousDataLookup] %s -> 0.000 [just logged]\n", name);
       p_white_info_box->SetCustomLogMessage(name);

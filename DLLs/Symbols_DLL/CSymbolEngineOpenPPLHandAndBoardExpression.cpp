@@ -97,7 +97,7 @@ void CSymbolEngineOpenPPLHandAndBoardExpression::UpdateOnHeartbeat() {
 }
 
 void CSymbolEngineOpenPPLHandAndBoardExpression::CheckForProbablyMistakenSpadesInsteadOfSuited(CString expression) {
-  if (!p_formula_parser->IsParsing()) {
+  if (!OpenHoldem()->FormulaParser()->IsParsing()) {
     // We want this check and warning only once at parse-time
     return;
   }

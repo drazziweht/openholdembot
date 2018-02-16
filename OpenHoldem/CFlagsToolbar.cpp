@@ -13,9 +13,9 @@
 //
 //******************************************************************************
 
-
-#include "CFlagsToolbar.h"
+#include "stdafx.h"
 #include <afxwin.h>
+#include "CFlagsToolbar.h"
 #include "CAutoplayer.h"
 #include "MyCtoolbar.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"

@@ -91,8 +91,8 @@ void InstantiateAllSingletons() {
   assert(!p_parser_symbol_table);
   p_parser_symbol_table = new CParserSymbolTable;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CFormulaParser\n");
-  assert(!p_formula_parser);
-  p_formula_parser = new CFormulaParser;
+  assert(!OpenHoldem()->FormulaParser());
+  OpenHoldem()->FormulaParser() = new CFormulaParser;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CDebugTab\n");
   assert(p_debug_tab == NULL);
   p_debug_tab = new CDebugTab;

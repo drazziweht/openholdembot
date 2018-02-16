@@ -12,22 +12,9 @@
 //******************************************************************************
 
 #include "CEngineContainer.h"
-
 #include <assert.h>
-#include "CAutoplayerTrace.h"
 #include "CBetroundCalculator.h"
-#include "CCasinoInterface.h"
-#include "CFormulaParser.h"
 #include "CFunctionCollection.h"
-#include "CHandHistoryAction.h"
-#include "CHandHistoryDealPhase.h"
-#include "CHandHistoryShowdown.h"
-#include "CHandHistoryUncontested.h"
-#include "CHandHistoryWriter.h"
-#include "CHandresetDetector.h"
-#include "CParseErrors.h"
-
-#include "CSessionCounter.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineBlinds.h"
@@ -73,9 +60,26 @@
 #include "CSymbolEngineVariousDataLookup.h"
 #include "CSymbolEngineVersus.h"
 #include "UnknownSymbols.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\HandHistoryGenerator_DLL\CHandHistoryAction.h"
+#include "..\HandHistoryGenerator_DLL\CHandHistoryDealPhase.h"
+#include "..\HandHistoryGenerator_DLL\CHandHistoryShowdown.h"
+#include "..\HandHistoryGenerator_DLL\CHandHistoryUncontested.h"
+#include "..\HandHistoryGenerator_DLL\CHandHistoryWriter.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\..\OpenHoldem\CHandresetDetector.h"
+#include "..\..\OpenHoldem\CSessionCounter.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+
+/*##include "CAutoplayerTrace.h"
+
+#include "CFormulaParser.h"
+
+
+#include "CParseErrors.h"
+*/
 
 CEngineContainer::CEngineContainer() {
   write_log(Preferences()->debug_engine_container(), "[EngineContainer] CEngineContainer()\n");
@@ -303,11 +307,11 @@ void CEngineContainer::EvaluateAll() {
 		// until OnConnection() got executed.
 		return;
 	}
-	if (p_formula_parser == NULL) {
+	if (OpenHoldem()->FormulaParser() == NULL) {
 		// No formula loaded
 		return;
 	}
-	if (p_formula_parser->IsParsing()) {
+	if (OpenHoldem()->FormulaParser()->IsParsing()) {
 		// Not safe to evaluate anything
 		return;
 	}
@@ -416,13 +420,13 @@ bool CEngineContainer::EvaluateSymbol(const CString name, double *result, bool l
         // Functions receive special treatment (indentation, etc)
         write_log(Preferences()->debug_auto_trace(),
           "[EngineContainer] %s -> %.3f [evaluated]\n", name, *result);
-        p_autoplayer_trace->Add(name, *result);
+        ///p_autoplayer_trace->Add(name, *result);
       }
       return true;
     }
   }
   // Unknown symbol
-  if (p_formula_parser->IsParsing()) {
+  /*#if (OpenHoldem()->FormulaParser()->IsParsing()) {
     // Generate a verbose error-message
     // with line number and code-snippet
     CParseErrors::ErrorUnknownIdentifier(name);
@@ -436,7 +440,7 @@ bool CEngineContainer::EvaluateSymbol(const CString name, double *result, bool l
     WarnAboutUnknownSymbol(name);
     *result = kUndefined;
     return false;
-  }
+  }*/
 }
 
 void CEngineContainer::BuildListOfSymbolsProvided() {

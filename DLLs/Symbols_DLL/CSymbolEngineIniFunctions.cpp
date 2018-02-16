@@ -46,7 +46,7 @@
 // This was no problem on startup, but caused crashes
 // when we tried to load a new formula.
 // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=16788&start=30
-#define RETURN_IF_LOADING_NEW_FORMULA if ((p_function_collection == NULL) || ((p_formula_parser != NULL) && (p_formula_parser->IsParsing()))) return;
+#define RETURN_IF_LOADING_NEW_FORMULA if ((p_function_collection == NULL) || ((OpenHoldem()->FormulaParser() != NULL) && (OpenHoldem()->FormulaParser()->IsParsing()))) return;
 
 CSymbolEngineIniFunctions::CSymbolEngineIniFunctions() {
   // The values of some symbol-engines depend on other engines.
