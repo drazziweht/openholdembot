@@ -127,7 +127,7 @@ void CParserSymbolTable::VerifyAllUsedFunctionsAtEndOfParse() {
     function_name = enumerator_it->first;
     write_log(Preferences()->debug_symbol_verification(),
       "[CParserSymbolTable] Verifying existence of %s\n", function_name);
-    p_function_collection->VerifyExistence(function_name);
+    FunctionCollection()->VerifyExistence(function_name);
     ++enumerator_it;
   }
   // Now that all symbols are verified we clear them here.

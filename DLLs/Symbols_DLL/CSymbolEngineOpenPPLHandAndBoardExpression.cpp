@@ -24,6 +24,8 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\..\OpenHoldem\CardFunctions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 const int prime_coded_card_ranks[k_rank_ace+1] = {
 	1,	// rank = 0, unused, exists due to C++-definition

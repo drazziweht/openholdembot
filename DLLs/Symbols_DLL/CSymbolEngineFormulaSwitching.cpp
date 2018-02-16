@@ -46,7 +46,7 @@ void CSymbolEngineFormulaSwitching::UpdateOnConnection() {
 }
 
 void CSymbolEngineFormulaSwitching::UpdateOnHandreset() {
-  p_function_collection->Evaluate(
+  FunctionCollection()->Evaluate(
     k_standard_function_names[k_hopper_function_select_formula_file],
     Preferences()->log_hopper_functions());
   LoadNewFormulaIfNeeded();

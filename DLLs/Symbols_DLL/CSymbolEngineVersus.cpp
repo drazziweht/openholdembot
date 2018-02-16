@@ -408,7 +408,7 @@ bool CSymbolEngineVersus::EvaluateVersusHandListSymbol(const char *name, double 
     *result = kUndefinedZero;
   }
   CString list_name = symbol.Mid(3, list_name_lenght);
-  COHScriptList *hand_list = (COHScriptList*)p_function_collection->LookUp(list_name);
+  COHScriptList *hand_list = (COHScriptList*)FunctionCollection()->LookUp(list_name);
   if (hand_list == NULL) {
     // List not found
     // Symbol valid anyway
@@ -500,7 +500,7 @@ bool CSymbolEngineVersus::EvaluateVersusMultiplexSymbol(const char *name, double
   }
   CString infix = csname.Mid(13, infix_length);
   // Now evaluate the infix to get the ID of a numbered list
-  double d_list_ID = p_function_collection->Evaluate(infix, log);
+  double d_list_ID = FunctionCollection()->Evaluate(infix, log);
   int list_ID = int(d_list_ID + 0.5);
   CString list;
   list.Format("list%d", list_ID);

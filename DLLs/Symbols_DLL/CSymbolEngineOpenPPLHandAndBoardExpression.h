@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,10 +12,8 @@
 //
 //******************************************************************************
 
-#ifndef INC_CSYMBOLENGINE_HAND_AND_BOARD_EXPRESSION_H
-#define INC_CSYMBOLENGINE_HAND_AND_BOARD_EXPRESSION_H
-
 #include "CVirtualSymbolEngine.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CSymbolEngineOpenPPLHandAndBoardExpression: public CVirtualSymbolEngine
 {
@@ -53,5 +52,3 @@ private:
 	bool is_board_expression;
 	CString hand_or_board_expression;
 };
-
-#endif INC_CSYMBOLENGINE_HAND_AND_BOARD_EXPRESSION_H

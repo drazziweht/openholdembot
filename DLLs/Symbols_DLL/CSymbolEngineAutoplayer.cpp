@@ -150,7 +150,7 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
 	}
   write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Number of stable frames: % d\n", p_stableframescounter->NumberOfStableFrames());
   CString delay_function = k_standard_function_names[k_standard_function_delay];
-  double desired_delay_in_milli_seconds = p_function_collection->Evaluate(delay_function, Preferences()->log_delay_function());
+  double desired_delay_in_milli_seconds = FunctionCollection()->Evaluate(delay_function, Preferences()->log_delay_function());
   EngineContainer()->symbol_engine_debug()->SetValue(1, desired_delay_in_milli_seconds);
   double milli_seconds_since_my_turn = EngineContainer()->symbol_engine_time()->elapsedmyturn() * 1000;
   EngineContainer()->symbol_engine_debug()->SetValue(2, milli_seconds_since_my_turn);
@@ -161,7 +161,7 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
 	// If we don't have enough stable frames, or have not waited f$delay milliseconds, then return.
 	if (p_stableframescounter->NumberOfStableFrames() < Preferences()->frame_delay()) {
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because we don't have enough stable frames, or have not waited f$delay (=%.0f ms)\n", 
-       p_function_collection->Evaluate(delay_function, Preferences()->log_delay_function()));
+       FunctionCollection()->Evaluate(delay_function, Preferences()->log_delay_function()));
 		_isfinalanswer = false;
 	}
   EngineContainer()->symbol_engine_debug()->SetValue(3, _isfinalanswer);

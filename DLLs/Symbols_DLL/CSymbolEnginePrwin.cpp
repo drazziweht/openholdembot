@@ -151,7 +151,7 @@ void CSymbolEnginePrwin::CalculateNhands() {
 }
 
 void CSymbolEnginePrwin::CalculateNOpponents() {
-	_nopponents_for_prwin = p_function_collection->Evaluate(
+	_nopponents_for_prwin = FunctionCollection()->Evaluate(
 		"f$prwin_number_of_opponents", Preferences()->log_prwin_functions());
 	if (_nopponents_for_prwin > MAX_OPPONENTS) {
 		_nopponents_for_prwin = MAX_OPPONENTS;

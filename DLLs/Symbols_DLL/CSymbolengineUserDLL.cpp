@@ -135,7 +135,7 @@ EXE_IMPLEMENTS char* GetTableTitle() {
 EXE_IMPLEMENTS void ParseHandList(const char* name_of_list, const char* list_body) {
   COHScriptList* p_new_list = new COHScriptList(name_of_list, list_body);
   OpenHoldem()->FormulaParser()->ParseFormula(p_new_list);
-  p_function_collection->Add(p_new_list);
+  FunctionCollection()->Add(p_new_list);
 }
 
 EXE_IMPLEMENTS char* ScrapeTableMapRegion(char* p_region, int& p_returned_lengh) {
