@@ -16,21 +16,21 @@
 #include <assert.h>
 #include <process.h>
 #include <float.h>
-#include "CAutoconnector.h"
-#include "CAutoplayerTrace.h"
+///#include "CAutoconnector.h"
+///#include "CAutoplayerTrace.h"
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
-#include "GUI()->FlagsToolbar().h"
-#include "CFormulaParser.h"
+///#include "GU>FlagsToolbar().h"
+///#include "CFormulaParser.h"
 #include "inlines/eval.h"
 #include "Chair$Symbols.h"
-#include "CHandresetDetector.h"
+///#include "CHandresetDetector.h"
 #include "CIteratorThread.h"
 #include "CPokerTrackerThread.h"
-#include "CSessionCounter.h"
+///#include "CSessionCounter.h"
 #include "CSymbolEngineUserchair.h"
-#include "CWhiteInfoBox.h"
-#include "OpenHoldem.h"
+///#include "CWhiteInfoBox.h"
+///#include "OpenHoldem.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
@@ -75,7 +75,7 @@ void CSymbolEngineVariousDataLookup::UpdateOnConnection() {
 
 void CSymbolEngineVariousDataLookup::UpdateOnHandreset() {
   // Reset display
-  InvalidateRect(theApp.m_pMainWnd->GetSafeHwnd(), NULL, true);
+  ///InvalidateRect(theApp.m_pMainWnd->GetSafeHwnd(), NULL, true);
 }
 
 void CSymbolEngineVariousDataLookup::UpdateOnNewRound() {
@@ -88,7 +88,7 @@ void CSymbolEngineVariousDataLookup::UpdateOnHeartbeat() {
 }
 
 bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {
-  FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
+/*#  FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
   // Various symbols below
   // without any optimized lookup.
   // Betting rounds
@@ -165,7 +165,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     // gets reached during evaluation.
     *result = kUndefined;
     return false;
-  }
+  }*/
   return true;
 }
 
@@ -177,7 +177,7 @@ CString CSymbolEngineVariousDataLookup::SymbolsProvided() {
     "fmax flagbits "
     "session version islobby ispopup"
     "handsplayed handsplayed_headsup ";
-  list += RangeOfSymbols("f%i", 0, 19);
+  ///list += RangeOfSymbols("f%i", 0, 19);
   return list;
 }
 
