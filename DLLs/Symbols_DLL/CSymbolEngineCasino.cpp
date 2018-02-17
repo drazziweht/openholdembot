@@ -16,19 +16,12 @@
 #include <assert.h>
 #include <process.h>
 #include <float.h>
-
-#include "CAutoconnector.h"
-#include "CAutoplayerTrace.h"
-#include "inlines/eval.h"
 #include "Chair$Symbols.h"
-
-
-#include "CSessionCounter.h"
-
-#include "OpenHoldem.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
 #include "..\Scraper_DLL\CTablemap\CTablemap.h"
-#include "..\Scraper_DLL\CTransform\CTransform.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\CSessionCounter.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CSymbolEngineCasino	*p_symbol_engine_casino = NULL;
 
@@ -113,7 +106,7 @@ bool CSymbolEngineCasino::EvaluateSymbol(const CString name, double *result, boo
     else return false;
   }
   // GENERAL
-  else if (memcmp(name, "nchairs", 7)==0 && strlen(name)==7)	*result = nchairs();
+  else if (memcmp(name, "nchairs", 7) == 0 && strlen(name) == 7)	*result = 3;/// nchairs();
   //PROFILE
   else if (memcmp(name, "sitename$", 9)==0)	*result = SitenameContainsCasinoIdentifier(name.Mid(9));
   else if (memcmp(name, "network$", 8)==0)	*result = BasicScraper()->Tablemap()->network().Find(name.Mid(8))!=-1;

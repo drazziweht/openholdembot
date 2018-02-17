@@ -17,13 +17,14 @@
 
 #include "CSymbolEngineFormulaSwitching.h"
 #include <io.h>
-#include "CFormulaParser.h"
+#include "CEngineContainer.h"
 #include "CFunctionCollection.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Files_DLL\Files.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CSymbolEngineFormulaSwitching::CSymbolEngineFormulaSwitching() {
 	// The values of some symbol-engines depend on other engines.

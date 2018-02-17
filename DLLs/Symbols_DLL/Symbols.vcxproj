@@ -16,7 +16,6 @@
     <ClCompile Include="CFunctionCollection.cpp" />
     <ClCompile Include="CPokerTrackerSiteID.cpp" />
     <ClCompile Include="CPokerTrackerThread.cpp" />
-    <ClCompile Include="CStringHashtableTemplate.cpp" />
     <ClCompile Include="CSymbolEngine - EmptyStub.cpp" />
     <ClCompile Include="CSymbolEngineActiveDealtPlaying.cpp" />
     <ClCompile Include="CSymbolEngineAutoplayer.cpp" />
@@ -73,7 +72,6 @@
     <ClInclude Include="CFunctionCollection.h" />
     <ClInclude Include="CPokerTrackerSiteID.h" />
     <ClInclude Include="CPokerTrackerThread.h" />
-    <ClInclude Include="CStringHashtableTemplate.h" />
     <ClInclude Include="CSymbolengine - EmptyStub.h" />
     <ClInclude Include="CSymbolEngineActiveDealtPlaying.h" />
     <ClInclude Include="CSymbolEngineAutoplayer.h" />

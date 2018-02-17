@@ -15,18 +15,18 @@
 #include <assert.h>
 #include "CBetroundCalculator.h"
 #include "CBlindGuesser.h"
-#include "CCasinoInterface.h"
 #include "CEngineContainer.h"
 #include "CSymbolEngineDealerchair.h"
 #include "CSymbolEngineGameType.h"
 #include "CSymbolEngineIsTournament.h"
-#include "..\Tablestate_DLL\TableState.h"
-#include "FloatingPoint_Comparisions.h"
-#include "Median.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Median.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 CSymbolEngineTableLimits::CSymbolEngineTableLimits() {
 	// The values of some symbol-engines depend on other engines.
