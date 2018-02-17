@@ -13,9 +13,7 @@
 
 
 #include "CSymbolEnginePokerval.h"
-
 #include <assert.h>
-#include "CardFunctions.h"
 #include "CBetroundCalculator.h"
 #include "CEngineContainer.h"
 #include "CSymbolEngineCards.h"
@@ -27,7 +25,8 @@
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Scraper_DLL\CTransform\CTransform.h"
 #include "..\Tablestate_DLL\TableState.h"
-#include "inlines/eval.h"
+#include "..\..\OpenHoldem\CardFunctions.h"
+///#include "inlines/eval.h"
 
 CSymbolEnginePokerval::CSymbolEnginePokerval() {
 	// The values of some symbol-engines depend on other engines.

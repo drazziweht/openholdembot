@@ -12,19 +12,18 @@
 //******************************************************************************
 
 #include "CFunctionCollection.h"
-
 ///#include "CAutoplayerTrace.h"
 ///#include "CDebugTab.h"
 #include "CEngineContainer.h"
 ///#include "CFormulaParser.h"
-
-///#include "CFunction.h"
-///#include "CParseErrors.h"
 ///#include "CParserSymbolTable.h"
-
-#include "CSelftestParserEvaluator.h"
-
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Formula_DLL\CFunction.h"
+#include "..\Formula_DLL\CParseErrors.h"
+#include "..\Formula_DLL\CSelftestParserEvaluator.h" // there???
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 CFunctionCollection *p_function_collection = NULL;
 
@@ -64,10 +63,10 @@ void CFunctionCollection::DeleteAll(bool delete_read_only_library_functions, boo
     p_nextObject = GetNext();
   }
   if (delete_read_only_library_functions) {
-    p_memory_pool_library_logic->ReleaseAll();
+    ///p_memory_pool_library_logic->ReleaseAll();
   }
   if (delete_user_defined) {
-    p_memory_pool_user_logic->ReleaseAll();
+    ///p_memory_pool_user_logic->ReleaseAll();
   }
 }
 
@@ -242,7 +241,7 @@ CString CFunctionCollection::GetSimilarNameWithDifferentCases(CString function_n
     p_nextObject = GetNext();
   }
   // Nothing found
-  return NULL;
+  return "";
 }
 
 COHScriptObject *CFunctionCollection::LookUp(CString name) {
@@ -253,7 +252,7 @@ COHScriptObject *CFunctionCollection::LookUp(CString name) {
     // (to avoid deletion)
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=111&t=19616
     assert(p_debug_tab != NULL);
-    return p_debug_tab;
+    return NULL; /// p_debug_tab;
   }
   write_log(Preferences()->debug_formula(), "[CFunctionCollection] Lookup %s\n", name); 
   std::map<CString, COHScriptObject*>::iterator it; 
@@ -650,7 +649,7 @@ bool CFunctionCollection::ParseAll() {
   FunctionCollection()->CheckForDefaultFormulaEntries();
   CSLock lock(m_critsec);
   assert(OpenHoldem()->FormulaParser() != NULL);
-  p_parser_symbol_table->Clear();
+  ///p_parser_symbol_table->Clear();
   COHScriptObject *p_oh_script_object = GetFirst();
   while (p_oh_script_object != NULL) {
     if (p_oh_script_object->IsFunction() 
@@ -743,7 +742,7 @@ bool CFunctionCollection::EvaluateSymbol(const CString name, double *result, boo
       if (log) {
         write_log(Preferences()->debug_auto_trace(),
           "[CFunctionCollection] %s -> 0.000 [does not exist]\n", name);
-        p_autoplayer_trace->Add(name, *result);
+        ///p_autoplayer_trace->Add(name, *result);
       }
       return true;
     }

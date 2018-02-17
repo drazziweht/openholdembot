@@ -28,7 +28,9 @@
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
 #include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
@@ -488,7 +490,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 	int				lev_dist = 0, bestLD = 0, bestLDindex = 0;
 	PGresult		*res = NULL;
 	bool			result = false;
-	CLevDistance	myLD;
+	///CLevDistance	myLD;
 	int				siteid = 0;
 	double			Levenshtein_distance_matching_factor = 0.3;
 
@@ -518,7 +520,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 	if (PQntuples(res) == 1)
 	{
 		char *found_name = PQgetvalue(res, 0, 0);
-		lev_dist = myLD.LD(scraped_name, found_name);
+    lev_dist = 0;/// myLD.LD(scraped_name, found_name);
 		if (	strlen(found_name) >= k_min_name_length_to_skip_lev_dist
 			 || lev_dist <= (int)strlen(found_name) * Levenshtein_distance_matching_factor )
 		{
@@ -541,7 +543,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 		bestLD = 999;
 		for (int i=0; i<PQntuples(res); i++)
 		{
-			lev_dist = myLD.LD(scraped_name, PQgetvalue(res, i, 0));
+      lev_dist = 0;/// myLD.LD(scraped_name, PQgetvalue(res, i, 0));
 
 			if (lev_dist<bestLD && lev_dist<(int)strlen(PQgetvalue(res, i, 0))*Levenshtein_distance_matching_factor ) 
 			{

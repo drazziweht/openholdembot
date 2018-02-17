@@ -18,7 +18,7 @@
 #include "CFunctionCollection.h"
 #include "CIteratorThread.h"
 #include "CSymbolEngineIsOmaha.h"
-#include "CSymbolenginePokerval.h"
+///#include "CSymbolenginePokerval.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\..\pokereval\include\poker_defs.h"
@@ -108,8 +108,8 @@ void CSymbolEnginePrwin::CalculateNhands() {
   // player/common cards and pokerval
 	CardMask_OR(playerEvalCards, plCards, comCards);
 	hv_player = Hand_EVAL_N(playerEvalCards, nplCards+ncomCards);
-	pl_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(hv_player, 
-		nplCards+ncomCards, &dummy, CARD_NOCARD, CARD_NOCARD);
+	///pl_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(hv_player, 
+		///nplCards+ncomCards, &dummy, CARD_NOCARD, CARD_NOCARD);
 	for (int i=0; i<(kNumberOfCardsPerDeck-1); i++) {
 		for (int j=(i+1); j<kNumberOfCardsPerDeck; j++)	{
 			if (!CardMask_CARD_IS_SET(plCards, i) 
@@ -122,9 +122,9 @@ void CSymbolEnginePrwin::CalculateNhands() {
 				CardMask_SET(oppCards, j);
         CardMask_OR(opponentEvalCards, oppCards, comCards);
 				hv_opponent = Hand_EVAL_N(opponentEvalCards, 2+ncomCards);
-				opp_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(hv_opponent,
-					(NumberOfCardsPerPlayer() + ncomCards), 
-					&dummy, CARD_NOCARD, CARD_NOCARD);
+				///opp_pokval = EngineContainer()->symbol_engine_pokerval()->CalculatePokerval(hv_opponent,
+					///(NumberOfCardsPerPlayer() + ncomCards), 
+					///&dummy, CARD_NOCARD, CARD_NOCARD);
 
 				if (pl_pokval > opp_pokval)
 				{

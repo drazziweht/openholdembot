@@ -16,8 +16,8 @@
 #include <assert.h>
 ///#include "CParseErrors.h"
 ///#include "CParseTreeTerminalNode.h"
-///#include "CParseTreeTerminalNodeIdentifier.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Formula_DLL\CParseTreeTerminalNodeIdentifier.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
