@@ -32,8 +32,6 @@ class CSymbolEnginePokerTracker: public CVirtualSymbolEngine {
 	// Public accessors	
 	bool EvaluateSymbol(const CString name, double *result, bool log = false);
 	CString SymbolsProvided();
- public:
-  int PlayerIcon(const int chair);
  private:
 	void	CheckForChangedPlayersOncePerHeartbeatAndSymbolLookup();
 	void	WarnAboutInvalidPTSymbol(CString s);

@@ -23,6 +23,12 @@
 
 #include <assert.h>
 
+ ///!!
+#include "..\..\pokereval\include\pokereval_export.h"
+#include "..\..\pokereval\include\inlines\eval.h"
+#include "..\..\pokereval\include\poker_defs.h"
+#include "..\..\pokereval\include\rules_std.h"
+
 /*
  * When run over seven cards, here are the distribution of hands:
  *        high hand: 23294460

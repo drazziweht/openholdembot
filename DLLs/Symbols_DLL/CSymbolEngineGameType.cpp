@@ -12,13 +12,10 @@
 //****************************************************************************** 
 
 #include "CSymbolEngineGameType.h"
-
 #include <assert.h>
-#include "CCasinoInterface.h"
 #include "CEngineContainer.h"
-
-
 #include "CSymbolEngineIsTournament.h"
+#include "..\CasinoInterface_DLL\CCasinoInterface.h"
 #include "..\Tablestate_DLL\TableState.h"
 
 CSymbolEngineGameType	*p_symbol_engine_gametype = NULL;

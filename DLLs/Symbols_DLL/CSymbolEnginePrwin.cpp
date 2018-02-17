@@ -20,9 +20,15 @@
 #include "CSymbolEngineIsOmaha.h"
 ///#include "CSymbolenginePokerval.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\..\pokereval\include\poker_defs.h"
 #include "..\..\pokereval\include\rules_std.h"
+
+
+///!!
+#include "..\..\pokereval\include\pokereval_export.h"
+#include "..\..\pokereval\include\inlines\eval.h"
 
 CSymbolEnginePrwin::CSymbolEnginePrwin() {
 	// The values of some symbol-engines depend on other engines.
@@ -167,11 +173,11 @@ bool CSymbolEnginePrwin::EvaluateSymbol(const CString name, double *result, bool
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
 	if (memcmp(name, "pr", 2)==0) {
     if (memcmp(name, "prwin", 5)==0 && strlen(name)==5) {
-      *result = p_iterator_thread->prwin();
+      ///*result = p_iterator_thread->prwin();
     } else if (memcmp(name, "prlos", 5)==0 && strlen(name)==5) {
-      *result = p_iterator_thread->prlos();
+      ///*result = p_iterator_thread->prlos();
     } else if (memcmp(name, "prtie", 5)==0 && strlen(name)==5) {
-      *result = p_iterator_thread->prtie();
+      ///*result = p_iterator_thread->prtie();
     }	else if (memcmp(name, "prwinnow", 8)==0 && strlen(name)==8) {
 			*result = prwinnow();
 		}	else if (memcmp(name, "prlosnow", 8)==0 && strlen(name)==8)	{

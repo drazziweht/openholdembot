@@ -11,14 +11,9 @@
 //
 //******************************************************************************
 
-
 #include "CSymbolEnginePokerTracker.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CEngineContainer.h"
-#include "CFormulaParser.h"
-#include "CParseErrors.h"
-#include "CParseTreeTerminalNodeEndOfFunction.h"
-#include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 #include "CPokerTrackerThread.h"
 #include "CSymbolEngineCallers.h"
 #include "CSymbolEngineChairs.h"
@@ -27,11 +22,16 @@
 #include "CSymbolEngineRaisers.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Formula_DLL\CFormulaParser.h"
+#include "..\Formula_DLL\CParseErrors.h"
+#include "..\Formula_DLL\CParseTreeTerminalNodeEndOfFunction.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\StringFunctions_DLL\string_functions.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+#include "..\..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 
 CSymbolEnginePokerTracker::CSymbolEnginePokerTracker()
 {
@@ -131,12 +131,6 @@ void CSymbolEnginePokerTracker::ClearAllStats()
 	{
 		ClearSeatStats(i, true);
 	}
-}
-
-int CSymbolEnginePokerTracker::PlayerIcon(const int chair) {
-  assert(chair >= 0);
-  assert(chair <= kLastChair);
-  return PT_DLL_GetStat("icon", chair);
 }
 
 bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {
