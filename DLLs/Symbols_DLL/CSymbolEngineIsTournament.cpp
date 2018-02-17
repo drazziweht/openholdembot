@@ -29,7 +29,7 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\StringFunctions_DLL\string_functions.h"
-#include "..\..\CTablemap\CTablemap.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
 
 const double k_lowest_bigblind_ever_seen_in_tournament           = 10.0;
 const double k_large_bigblind_probably_later_table_in_tournament = 500.0;

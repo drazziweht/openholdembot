@@ -16,6 +16,7 @@
 
 #include "CVirtualSymbolEngine.h"
 #include <map>
+#include "poker_defs.h"
 
 // Using a large number for no full-house",
 // compatible to the former implementation in the OpenPPL-library

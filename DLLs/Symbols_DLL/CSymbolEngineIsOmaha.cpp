@@ -18,9 +18,10 @@
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
-#include "..\Tablestate_DLL\TableState.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
 #include "..\StringFunctions_DLL\string_functions.h"
-#include "..\..\CTablemap\CTablemap.h"
+#include "..\Tablestate_DLL\TableState.h"
 
 // The number of cards per player depends on the game-type.
 // This affects cards to be scraped and evaluated.

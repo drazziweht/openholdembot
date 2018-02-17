@@ -11,17 +11,13 @@
 //
 //******************************************************************************
 
-#include "StdAfx.h"
 #include "CPokerTrackerThread.h"
-
 #include <assert.h>
 #include <process.h>
 #include <comdef.h>
-#include "CAutoConnector.h"
 #include "CEngineContainer.h"
-#include "CLevDistance.h"
-#include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
-
+///#include "CLevDistance.h"
+#include "CPokerTrackerSiteID.h"
 #include "CSymbolEngineActiveDealtPlaying.h"
 #include "CSymbolEngineAutoplayer.h"
 #include "CSymbolEngineIsOmaha.h"
@@ -30,9 +26,12 @@
 #include "CSymbolEnginePokerTracker.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
-#include "..\CTablemap\CTablemap.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
+#include "..\..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 
 CPokerTrackerThread	*p_pokertracker_thread = NULL;
 
@@ -388,7 +387,7 @@ double CPokerTrackerThread::UpdateStat(int m_chr, int stat)
 	int sym_elapsed = EngineContainer()->symbol_engine_time()->elapsed();
 
 	//No more unnecessary queries when we don't even have a siteid to check
-	int siteid = pt_site_id.GetSiteId();
+	int siteid = _pokertracker_size_ID.GetSiteId();
 	if (siteid == kUndefined)
 		return kUndefined;
 
@@ -494,7 +493,7 @@ bool CPokerTrackerThread::QueryName(const char * query_name, const char * scrape
 	double			Levenshtein_distance_matching_factor = 0.3;
 
 	//No more unnecessary queries when we don't even have a siteid to check
-	siteid = pt_site_id.GetSiteId();
+	siteid = _pokertracker_size_ID.GetSiteId();
 	if (siteid == kUndefined)  return false;
 
 	if (!_connected || PQstatus(_pgconn) != CONNECTION_OK)

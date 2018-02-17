@@ -21,6 +21,9 @@
 #include <afxwin.h>
 #include "LibDef.h"
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+#define MIN(a, b) ((a) < (b) ? (a) : (b))
+
 // Deals with floating points, ints, hex and binary
 NUMERICAL_FUNCTIONS_DLL_API double StringToNumber(CString number);
 

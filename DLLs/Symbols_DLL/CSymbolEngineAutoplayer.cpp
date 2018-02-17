@@ -19,7 +19,6 @@
 /*#include "CFunctionCollection.h"
 #include "CIteratorThread.h"
 #include "CStableFramesCounter.h"*/
-#include "CSymbolengineDebug.h"
 #include "CSymbolEngineTime.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\CasinoInterface_DLL\CCasinoInterface.h"
@@ -126,45 +125,41 @@ void CSymbolEngineAutoplayer::CalculateFinalAnswer() {
 	// and should therefore only get called once per heartbeat.
 	_isfinalanswer = true;
 	// check factors that affect isFinalAnswer status
-	if (p_iterator_thread->IteratorThreadWorking())	{
+	///if (p_iterator_thread->IteratorThreadWorking())	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because iterator_thread still running\n");
 		_isfinalanswer = false;
-	}
-	// Change from only requiring one visible button (OpenHoldem 2008-04-03)
-	else if (CasinoInterface()->NumberOfVisibleAutoplayerButtons() < k_min_buttons_needed_for_my_turn)	{
+	///}
+	// Change from only requiring one visible button (OpenHoldem 2008-04-03)else if (CasinoInterface()->NumberOfVisibleAutoplayerButtons() < k_min_buttons_needed_for_my_turn)	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because too few buttons visible\n");
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Buttons visible: %i\n", CasinoInterface()->NumberOfVisibleAutoplayerButtons());
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Either not your turn or problem with the tablemap\n");
 		_isfinalanswer = false;
-	}
+	///}
   // if we are not playing (occluded?) 2008-03-25 Matrix
-	else if (!TableState()->User()->HasKnownCards())	{
+	///else if (!TableState()->User()->HasKnownCards())	{
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because the user is \"not playing\"\n");
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Chair %d (locked) has no cards\n", EngineContainer()->symbol_engine_userchair()->userchair());
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Possibly a tablemap-problem\n");
 		_isfinalanswer = false;
-	}
+	///}
 	//  Avoiding unnecessary calls to p_stableframescounter->UpdateNumberOfStableFrames(),
 	if (_isfinalanswer)	{
-		p_stableframescounter->UpdateNumberOfStableFrames();
+		///p_stableframescounter->UpdateNumberOfStableFrames();
 	}
-  write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Number of stable frames: % d\n", p_stableframescounter->NumberOfStableFrames());
+  ///write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Number of stable frames: % d\n", p_stableframescounter->NumberOfStableFrames());
   CString delay_function = k_standard_function_names[k_standard_function_delay];
   double desired_delay_in_milli_seconds = FunctionCollection()->Evaluate(delay_function, Preferences()->log_delay_function());
-  EngineContainer()->symbol_engine_debug()->SetValue(1, desired_delay_in_milli_seconds);
   double milli_seconds_since_my_turn = EngineContainer()->symbol_engine_time()->elapsedmyturn() * 1000;
-  EngineContainer()->symbol_engine_debug()->SetValue(2, milli_seconds_since_my_turn);
   if (milli_seconds_since_my_turn < desired_delay_in_milli_seconds) {
     write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not isfinalanswer because of f$delay\n");
     _isfinalanswer = false;
   }
 	// If we don't have enough stable frames, or have not waited f$delay milliseconds, then return.
-	if (p_stableframescounter->NumberOfStableFrames() < Preferences()->frame_delay()) {
+	///if (p_stableframescounter->NumberOfStableFrames() < Preferences()->frame_delay()) {
 		write_log(Preferences()->debug_autoplayer(), "[AutoPlayer] Not Final Answer because we don't have enough stable frames, or have not waited f$delay (=%.0f ms)\n", 
        FunctionCollection()->Evaluate(delay_function, Preferences()->log_delay_function()));
 		_isfinalanswer = false;
-	}
-  EngineContainer()->symbol_engine_debug()->SetValue(3, _isfinalanswer);
+	///}
 }
 
 CString CSymbolEngineAutoplayer::GetFCKRAString()

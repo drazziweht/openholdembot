@@ -23,7 +23,6 @@
 	  ICM assumes that P(i,n|j,1) = (P(i,n-1) in a game where j has been removed)
 */
 
-
 #include "CSymbolEngineICM.h"
 #include "CEngineContainer.h"
 #include "CFunctionCollection.h"
@@ -36,10 +35,12 @@
 #include "CSymbolEnginePokerAction.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\StringFunctions_DLL\string_functions.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
-#include "..\..\CTablemap\CTablemap.h"
 
 CSymbolEngineICM::CSymbolEngineICM() {
   // The values of some symbol-engines depend on other engines.
@@ -110,7 +111,7 @@ int CSymbolEngineICM::GetChairFromDealPos(const char* name)
 {
 	int	sym_nplayersseated =	EngineContainer()->symbol_engine_active_dealt_playing()->nplayersseated();
 	int	sym_dealerchair =		EngineContainer()->symbol_engine_dealerchair()->dealerchair();
-	int nchairs = p_tablemap.>nchairs();
+  int nchairs = 3;/// nchairs();
 	int	chair = -1;
 
 		if (strcmp(name,"SB")==0)
@@ -402,7 +403,7 @@ bool CSymbolEngineICM::EvaluateSymbol(const CString name, double *result, bool l
 		{
 			//assume callers are n smallest stacks
 			bool callers[kMaxNumberOfPlayers] = {0};
-			int ncallers = min(RightDigitCharacterToNumber(name), sym_nopponentsplaying);
+			int ncallers = MIN(RightDigitCharacterToNumber(name), sym_nopponentsplaying);
       
       for (int i = 0; i < ncallers; i++)
 			{
