@@ -18,6 +18,8 @@
 #include "CSymbolEnginePrwin.h"
 #include "CSymbolEngineUserchair.h"
 #include "..\Tablestate_DLL\TableState.h"
+#include "..\..\pokereval\include\poker_defs.h"
+#include "..\..\pokereval\include\rules_std.h"
 
 int handrank_table_2652[kMaxNumberOfPlayers][kNumberOfStartingHands] =
 {
