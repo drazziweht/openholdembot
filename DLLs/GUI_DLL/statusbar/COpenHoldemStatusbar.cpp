@@ -11,23 +11,19 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "COpenHoldemStatusbar.h"
-#include "CAutoplayerFunctions.h"
-#include "CAutoplayerTrace.h"
-#include "CIteratorThread.h"
-#include "resource.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CFunctionCollection.h"
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineAutoplayer.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineHandrank.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineIsOmaha.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEnginePrwin.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
-#include "..\DLLs\Symbols_DLL\CSymbolEngineUserchair.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\StringFunctions_DLL\string_functions.h"
+#include "..\..\Symbols_DLL\CEngineContainer.h"
+#include "..\..\Symbols_DLL\CFunctionCollection.h"
+#include "..\..\Scraper_DLL\CBasicScraper.h"
+#include "..\..\Symbols_DLL\CSymbolEngineAutoplayer.h"
+#include "..\..\Symbols_DLL\CSymbolEngineHandrank.h"
+#include "..\..\Symbols_DLL\CSymbolEngineIsOmaha.h"
+#include "..\..\Symbols_DLL\CSymbolEnginePrwin.h"
+#include "..\..\Symbols_DLL\CSymbolEngineTime.h"
+#include "..\..\Symbols_DLL\CSymbolEngineUserchair.h"
+#include "..\..\StringFunctions_DLL\string_functions.h"
+#include "..\..\Tablestate_DLL\TableState.h"
+#include "..\..\..\OpenHoldem\resource.h"
 
 COpenHoldemStatusbar::COpenHoldemStatusbar(CWnd *main_window) {
   _main_window = main_window;

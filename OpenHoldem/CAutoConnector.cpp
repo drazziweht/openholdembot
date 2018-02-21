@@ -121,7 +121,7 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
   // by more than one tablemap. For performance reasons we do this exactly once
   // per table at connection.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19407&start=90#p138038
-  int num_loaded_tablemaps = p_tablemap_loader->NumberOfTableMapsLoaded();
+  int num_loaded_tablemaps = OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded();
   int num_matching_tablemaps = 0;
   CString matching_tablemaps = "";
   for (int i=0; i<num_loaded_tablemaps; ++i) {
@@ -129,7 +129,7 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
     if (Check_TM_Against_Single_Window(i, hwnd)) {
       ++num_matching_tablemaps;
       // Build "list" of matching tablemaps
-      matching_tablemaps += p_tablemap_loader->GetTablemapPathToLoad(i);
+      matching_tablemaps += OpenHoldem()->TablemapLoader()->GetTablemapPathToLoad(i);
       matching_tablemaps += "\n";
     }
   }
@@ -259,7 +259,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   if (p_scraper == NULL) return false;
   if (OpenHoldem()->SharedMem() == NULL) return false;
   if (p_tablemap == NULL) return false;
-  if (p_tablemap_loader == NULL) return false;
+  if (OpenHoldem()->TablemapLoader() == NULL) return false;
   if (OpenHoldem()->TablePositioner() == NULL) return false;
   if (TableState() == NULL) return false;
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Connect(..)\n");
@@ -272,10 +272,10 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   // Clear global list for holding table candidates
 	g_tlist.RemoveAll();
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Number of tablemaps loaded: %i\n",
-    p_tablemap_loader->NumberOfTableMapsLoaded());
-	for (int tablemap_index=0; tablemap_index<p_tablemap_loader->NumberOfTableMapsLoaded(); tablemap_index++) {
+    OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded());
+	for (int tablemap_index=0; tablemap_index<OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded(); tablemap_index++) {
 		write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Going to check TM nr. %d out of %d\n", 
-			tablemap_index, p_tablemap_loader->NumberOfTableMapsLoaded());
+			tablemap_index, OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded());
 		Check_TM_Against_All_Windows_Or_TargetHWND(tablemap_index, targetHWnd);
 	}
 	// Put global candidate table list in table select dialog variables
@@ -294,7 +294,7 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
 			set_attached_hwnd(g_tlist[SelectedItem].hwnd);
       CheckIfWindowMatchesMoreThanOneTablemap(attached_hwnd());
 			assert(p_tablemap != NULL);
-      CString tablemap_to_load = p_tablemap_loader->GetTablemapPathToLoad(g_tlist[SelectedItem].tablemap_index);
+      CString tablemap_to_load = OpenHoldem()->TablemapLoader()->GetTablemapPathToLoad(g_tlist[SelectedItem].tablemap_index);
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Selected tablemap: %s\n", tablemap_to_load);
 			BasicScraper()->Tablemap()->LoadTablemap(tablemap_to_load);
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Tablemap successfully loaded\n");
@@ -310,8 +310,8 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
       write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] UpdateOnConnection executed (during connection)\n");
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Going to continue with scraper output and scraper DLL\n");
       // Reset "ScraperOutput" dialog, if it is live
-			if (m_ScraperOutputDlg) {
-				m_ScraperOutputDlg->Reset();
+			if (GUI()->DlgScraperOutput()) {
+				GUI()->DlgScraperOutput()->Reset();
 			}
 			GUI()->FlagsToolbar()->ResetButtonsOnConnect();
       // The main GUI gets created by another thread.
@@ -376,8 +376,8 @@ void CAutoConnector::Disconnect(CString reason_for_disconnection) {
 	// Reset Display 
 	PMainframe()->ResetDisplay();
 	// Reset "ScraperOutput" dialog, if it is live
-	if (m_ScraperOutputDlg)	{
-		m_ScraperOutputDlg->Reset();
+	if (GUI()->DlgScraperOutput())	{
+		GUI()->DlgScraperOutput()->Reset();
 	}
   CString message;
   message.Format("DISCONNECTION -- %s", reason_for_disconnection);

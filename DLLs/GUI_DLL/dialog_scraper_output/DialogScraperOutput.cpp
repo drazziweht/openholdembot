@@ -12,7 +12,7 @@
 //******************************************************************************
 
 #include "DialogScraperOutput.h"
-
+#include "..\CGUI.h"
 ///#include "GUI()->FlagsToolbar().h"
 ///#include "CHeartbeatThread.h"
 
@@ -20,10 +20,6 @@
 #include "..\..\Scraper_DLL\CTransform\CTransform.h"
 ///#include "MainFrm.h"
 ///#include "OpenHoldem.h"
-
-
-// CDlgScraperOutput dialog
-CDlgScraperOutput	*m_ScraperOutputDlg = NULL;
 
 #define ID_SCRAPEROUTPUT_SIZERBAR 5555
 
@@ -113,11 +109,11 @@ BOOL CDlgScraperOutput::OnInitDialog() {
 }
 
 void CDlgScraperOutput::DestroyWindowSafely() {
-  if (m_ScraperOutputDlg) {
-    m_ScraperOutputDlg->DestroyWindow();
-		delete m_ScraperOutputDlg;
+  if (GUI()->DlgScraperOutput()) {
+    GUI()->DlgScraperOutput()->DestroyWindow();
+		//!!!!!delete m_DlgScraperOutput;
   }
-	m_ScraperOutputDlg = NULL;
+	//!!!!!m_DlgScraperOutput = NULL;
 }
 
 BOOL CDlgScraperOutput::DestroyWindow() {
@@ -132,8 +128,8 @@ BOOL CDlgScraperOutput::DestroyWindow() {
 }
 
 void CDlgScraperOutput::PostNcDestroy() {
-	delete m_ScraperOutputDlg;
-	m_ScraperOutputDlg	=	NULL;
+	//!!!!!delete m_DlgScraperOutput;
+	//!!!!!m_DlgScraperOutput	=	NULL;
   CDialog::PostNcDestroy();
 }
 

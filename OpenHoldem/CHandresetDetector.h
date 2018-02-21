@@ -95,5 +95,3 @@ class CHandresetDetector /*#: public CSpaceOptimizedGlobalObject */{
   int _hands_played;
   int _hands_played_headsup;
 };
-
-extern CHandresetDetector *p_handreset_detector;

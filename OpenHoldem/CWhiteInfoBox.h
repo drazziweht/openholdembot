@@ -29,5 +29,3 @@ class CWhiteInfoBox /*#: public CSpaceOptimizedGlobalObject*/ {
  private:
   CString _custom_log_message;
 };
-
-extern CWhiteInfoBox *p_white_info_box;

@@ -35,5 +35,3 @@ private:
 	int _betround;
 	int _betround_previous_heartbeat;
 };
-
-extern CBetroundCalculator *p_betround_calculator; //!!!!

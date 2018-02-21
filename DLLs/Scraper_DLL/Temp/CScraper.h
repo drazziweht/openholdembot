@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -97,9 +98,5 @@ class CScraper /*#: public CSpaceOptimizedGlobalObject */{
 	HBITMAP			_entire_window_last;
   HBITMAP			_entire_window_cur;
 };
-
-extern CScraper *p_scraper;
-
-#endif // INC_CSCRAPER_H
 
 

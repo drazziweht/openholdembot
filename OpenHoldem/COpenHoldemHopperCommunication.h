@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_COPENHOLDEMHOPPERCOMMUNICATION_H
-#define INC_COPENHOLDEMHOPPERCOMMUNICATION_H
 
 // WM_APP = 0x8000 = 32768
 // Messages 0..WM_APP reserved for Windows
@@ -43,9 +41,3 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 };
-
-extern COpenHoldemHopperCommunication *p_openholdem_hopper_communication;
-
-
-
-#endif INC_COPENHOLDEMHOPPERCOMMUNICATION_H

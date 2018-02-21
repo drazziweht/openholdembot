@@ -55,7 +55,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   assert(OpenHoldem()->SessionCounter() != NULL);
   assert(p_tablemap != NULL);
   assert(TableState()->TableTitle() != NULL);
-  assert(p_white_info_box != NULL);
+  assert(GUI()->WhiteInfoBox() != NULL);
   // Objects that are part of the GUI which runs in its own thread.
   // They might or might not yet be initialized.
   // We don#t wait here, as the GUI also waits at some point.
@@ -118,7 +118,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     if (!OpenHoldem()->FormulaParser()->IsParsing()) {
       write_log(Preferences()->debug_auto_trace(), 
         "[CSymbolEngineVariousDataLookup] %s -> 0.000 [just logged]\n", name);
-      p_white_info_box->SetCustomLogMessage(name);
+      GUI()->WhiteInfoBox()->SetCustomLogMessage(name);
     }
     // True (1) is convenient in sequences of ANDed conditions
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19421

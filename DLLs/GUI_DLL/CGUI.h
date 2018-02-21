@@ -12,9 +12,12 @@
 //
 //******************************************************************************
 
+class CDlgFormulaScintilla;
+class CDlgScraperOutput;
 class CFlagsToolbar;
 class COpenHoldemStatusbar;
 class COpenHoldemTitle;
+class CWhiteInfoBox;
 
 class CGUI {
 public:
@@ -22,6 +25,11 @@ public:
   ~CGUI();
 public:
   CFlagsToolbar *FlagsToolbar();
-  COpenHoldemStatusbar *OpenHoldemStatusbar();
-  COpenHoldemTitle *OpenHoldemTitle();
+  COpenHoldemStatusbar* OpenHoldemStatusbar();
+  COpenHoldemTitle* OpenHoldemTitle();
+  CDlgFormulaScintilla* DlgFormulaScintilla();
+  CDlgScraperOutput *DlgScraperOutput();
+  CWhiteInfoBox* WhiteInfoBox();
 };
+
+CGUI* GUI();

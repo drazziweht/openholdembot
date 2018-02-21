@@ -44,6 +44,3 @@ class CTitleEvaluator /*#: public CSpaceOptimizedGlobalObject */{
   // Everything in one string
   CString _results_for_openscrape;
 };
-
-extern CTitleEvaluator *p_title_evaluator;
-

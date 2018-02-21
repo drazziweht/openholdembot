@@ -88,4 +88,4 @@ private:
   CPokerTrackerSiteID _pokertracker_size_ID;
 };
 
-extern CPokerTrackerThread *p_pokertracker_thread;
+

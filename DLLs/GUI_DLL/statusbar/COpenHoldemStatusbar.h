@@ -12,6 +12,9 @@
 //
 //******************************************************************************
 
+#include <afxext.h>
+#include <afxwin.h>
+
 class COpenHoldemStatusbar {
  public:
 	COpenHoldemStatusbar(CWnd *main_window);

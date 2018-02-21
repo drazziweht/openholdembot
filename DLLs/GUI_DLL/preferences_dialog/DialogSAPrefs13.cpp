@@ -13,8 +13,8 @@
 
 #include "SAPrefsSubDlg.h"
 #include "DialogSAPrefs13.h"
-#include "COpenHoldemTitle.h"
-#include "..\..\Globals_DLL\globals.h"
+#include "..\CGUI.h"
+#include "..\OpenHoldem_title\COpenHoldemTitle.h"
 #include "..\..\Preferences_DLL\Preferences.h"
 
 // CDlgSAPrefs13 dialog

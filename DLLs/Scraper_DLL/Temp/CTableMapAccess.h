@@ -35,5 +35,3 @@ class CTablemapAccess {
   bool GetClientSize(CString size_name, int *width, int *height);
 	unsigned int GetClientSize(CString size_name, dim dimension);
 };
-
-extern CTablemapAccess *p_tablemap_access;

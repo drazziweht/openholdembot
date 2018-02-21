@@ -42,5 +42,3 @@ class CTablemapCompletenessChecker {
  private:
   bool _error_flag;
 };
-
-extern CTablemapCompletenessChecker *p_tablemap_versionchecker;

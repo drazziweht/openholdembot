@@ -68,5 +68,3 @@ private:
 
 	CCritSec	m_critsec;
 };
-
-extern CAutoplayer *p_autoplayer;

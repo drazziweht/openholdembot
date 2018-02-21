@@ -24,8 +24,6 @@
 #include "..\DLLs\Files_DLL\Files.h"
 #include "..\DLLs\WindowFunctions_DLL\window_functions.h"
 
-CTableMapLoader *p_tablemap_loader = NULL;
-
 std::map<int, t_tablemap_connection_data> tablemap_connection_data;
 
 CTableMapLoader::CTableMapLoader() {

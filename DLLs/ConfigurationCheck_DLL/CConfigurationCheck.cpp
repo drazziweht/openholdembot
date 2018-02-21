@@ -15,8 +15,6 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 
-CConfigurationCheck *p_configurationcheck = 0;
-
 // A full list of keyboard layout codes can be found here:
 // http://msdn.microsoft.com/en-us/goglobal/bb895996.aspx
 const TCHAR k_KeyboardLayout_UK_US_English[KL_NAMELENGTH] = "00000409";

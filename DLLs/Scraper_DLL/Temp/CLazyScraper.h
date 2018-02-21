@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CLAZYSCRAPER_H
-#define INC_CLAZYSCRAPER_H
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -50,7 +48,3 @@ class CLazyScraper /*#: public CSpaceOptimizedGlobalObject */{
  private:
   bool _is_identical_scrape;
 };
-
-extern CLazyScraper *p_lazyscraper;
-
-#endif // INC_CLAZYSCRAPER_H

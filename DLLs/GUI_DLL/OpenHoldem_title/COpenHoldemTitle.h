@@ -29,5 +29,3 @@ private:
 	CString user_defined_title;		// defined via hopper-messages
 	CString simple_title;			// executale-name
 };
-
-extern COpenHoldemTitle *p_openholdem_title;

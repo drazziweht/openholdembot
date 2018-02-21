@@ -20,12 +20,11 @@
  */
 
 #include "ScintillaWnd.h"
-#include "..\scintilla\include\scintilla.h"
-#include "..\scintilla\include\SciLexer.h"
-#include "..\scintilla\include\Accessor.h"
-#include "..\scintilla\include\Propset.h"
-#include "..\scintilla\include\keywords.h"
-
+#include "..\Shared\scintilla\include\scintilla.h"
+#include "..\Shared\scintilla\include\SciLexer.h"
+#include "..\Shared\scintilla\include\Accessor.h"
+#include "..\Shared\scintilla\include\Propset.h"
+#include "..\Shared\scintilla\include\keywords.h"
 
 /////////////////////////////////////
 // @mfunc This is an empty constructor

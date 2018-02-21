@@ -13,7 +13,7 @@
 //******************************************************************************
 
 #include "..\Shared\WinMgr\SizerBar.h"
-#include "..\..\..\CTablemap\CTablemap.h"
+#include "..\..\Scraper_DLL\CTablemap\CTablemap.h"
 #include "..\..\..\OpenHoldem\resource.h"
 
 // CDlgScraperOutput dialog
@@ -52,6 +52,3 @@ class CDlgScraperOutput : public CDialog {
  private:
 	void AddListboxItems();
 };
-
-
-extern CDlgScraperOutput	*m_ScraperOutputDlg;

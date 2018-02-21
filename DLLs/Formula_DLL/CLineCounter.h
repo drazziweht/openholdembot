@@ -1,3 +1,4 @@
+#pragma once
 //*******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //*******************************************************************************
-
-#ifndef INC_CLINECOUNTER_H
-#define INC_CLINECOUNTER_H
 
 class CLineCounter {
  public:
@@ -36,7 +34,3 @@ class CLineCounter {
   int _starting_line_of_next_function;
   int _relative_line;
 };
-
-extern CLineCounter line_counter;
-
-#endif INC_CLINECOUNTER_H

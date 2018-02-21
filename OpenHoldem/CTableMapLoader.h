@@ -58,5 +58,3 @@ typedef struct {
 } t_tablemap_connection_data;
 
 extern std::map<int, t_tablemap_connection_data> tablemap_connection_data;
-
-extern CTableMapLoader *p_tablemap_loader;

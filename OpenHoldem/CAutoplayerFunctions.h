@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -10,9 +11,6 @@
 // Purpose:
 //
 //******************************************************************************
-
-#ifndef INC_CAUTOPLAYER_FUNCTIONS
-#define INC_CAUTOPLAYER_FUNCTIONS
 
 ///#include "CSpaceOptimizedGlobalObject.h"
 
@@ -39,7 +37,3 @@ class CAutoplayerFunctions /*#: public CSpaceOptimizedGlobalObject */{
  private:
 	CCritSec	m_critsec;
 };
-
-extern CAutoplayerFunctions *p_autoplayer_functions;
-
-#endif // INC_CAUTOPLAYER_FUNCTIONS

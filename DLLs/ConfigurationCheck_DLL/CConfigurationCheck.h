@@ -33,5 +33,3 @@ class CConfigurationCheck /*#: public CSpaceOptimizedGlobalObject */{
 	void CheckForSwapMouseBtns();
 	void CheckForFontSmoothing();
 };
-
-extern CConfigurationCheck *p_configurationcheck;

@@ -63,9 +63,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CHandresetDetector\n");
   assert(!p_handreset_detector);
   p_handreset_detector = new CHandresetDetector;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CConfigurationCheck\n");
-  assert(!p_configurationcheck);
-  p_configurationcheck = new CConfigurationCheck;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerFunctions\n");
   assert(!p_autoplayer_functions);
   p_autoplayer_functions = new CAutoplayerFunctions;
@@ -105,18 +102,12 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTablePositioner\n");
   assert(!OpenHoldem()->TablePositioner());
   OpenHoldem()->TablePositioner() = new CTablePositioner;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTableMapLoader\n");
-  assert(!p_tablemap_loader);
-  p_tablemap_loader = new CTableMapLoader;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CVersionInfo\n");
   assert(!p_version_info);
   p_version_info = new CVersionInfo;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoConnector\n");
   assert(!OpenHoldem()->AutoConnector());
   OpenHoldem()->AutoConnector() = new CAutoConnector;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CWhiteInfoBox\n");
-  assert(!p_white_info_box);
-  p_white_info_box = new CWhiteInfoBox;
   EngineContainer()->CreateSymbolEngines();
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CCasinoInterface\n");
   assert(!p_casino_interface);

@@ -96,9 +96,9 @@ UINT CHeartbeatThread::HeartbeatThreadFunction(LPVOID pParam) {
 			::SetEvent(pParent->_m_wait_thread);
 			AfxEndThread(0);
 		}
-    assert(p_tablemap_loader != NULL);
+    assert(OpenHoldem()->TablemapLoader() != NULL);
     LogMemoryUsage("H1");
-		p_tablemap_loader->ReloadAllTablemapsIfChanged();
+		OpenHoldem()->TablemapLoader()->ReloadAllTablemapsIfChanged();
     LogMemoryUsage("H2");
     assert(OpenHoldem()->AutoConnector() != NULL);
     write_log(Preferences()->debug_alltherest(), "[CHeartbeatThread] location Johnny_B\n");
@@ -163,8 +163,8 @@ void CHeartbeatThread::ScrapeEvaluateAct() {
 	GUI()->OpenHoldemTitle()->UpdateTitle();
 	////////////////////////////////////////////////////////////////////////////////////////////
 	// Update scraper output dialog if it is present
-	if (m_ScraperOutputDlg) {
-		m_ScraperOutputDlg->UpdateDisplay();
+	if (GUI()->DlgScraperOutput()) {
+		GUI()->DlgScraperOutput()->UpdateDisplay();
 	}
   
 	////////////////////////////////////////////////////////////////////////////////////////////

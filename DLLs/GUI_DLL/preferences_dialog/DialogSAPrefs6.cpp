@@ -11,14 +11,15 @@
 //
 //******************************************************************************
 
-#include "CPokerTrackerThread.h"
 #include "DialogSAPrefs6.h"
-#include "OpenHoldem.h"
-#include "MainFrm.h"
-#include "..\..\WindowFunctions_DLL\window_functions.h"
+///#include "OpenHoldem.h"
+///#include "MainFrm.h"
 #include "SAPrefsSubDlg.h"
+#include "..\..\Debug_DLL\debug.h"
 #include "..\..\Globals_DLL\globals.h"
 #include "..\..\Preferences_DLL\Preferences.h"
+#include "..\..\Symbols_DLL\CPokerTrackerThread.h"
+#include "..\..\WindowFunctions_DLL\window_functions.h"
 
 // CDlgSAPrefs6 dialog
 
@@ -102,19 +103,19 @@ void CDlgSAPrefs6::OnBnClickedPtTest() {
 					   "Warning", MB_OK);
 	}
 
-	conn_str = p_pokertracker_thread->CreateConnectionString(ip_addr, 
-		port, user, pass, dbname);
+	///conn_str = p_pokertracker_thread->CreateConnectionString(ip_addr, 
+		///port, user, pass, dbname);
 
 	// Set busy cursor
-	PMainframe()->set_wait_cursor(true);
-	PMainframe()->BeginWaitCursor();
+	///PMainframe()->set_wait_cursor(true);
+	///PMainframe()->BeginWaitCursor();
 
 	// Test the connection parameters
 	PGconn	*pgconn = PQconnectdb(conn_str.GetString());
 
 	// Unset busy cursor
-	PMainframe()->EndWaitCursor();
-	PMainframe()->set_wait_cursor(false);
+	///PMainframe()->EndWaitCursor();
+	///PMainframe()->set_wait_cursor(false);
 
 	if (PQstatus(pgconn) == CONNECTION_OK) {
 		write_log(Preferences()->debug_pokertracker(), "[PokerTracker] Test: PostgreSQL DB opened successfully <%s/%s/%s>\n", ip_addr, port, dbname);

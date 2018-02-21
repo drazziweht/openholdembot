@@ -22,8 +22,6 @@
 #include "..\DLLs\Tablestate_DLL\TableState.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 
-CWhiteInfoBox *p_white_info_box = NULL;
-
 CWhiteInfoBox::CWhiteInfoBox() {
 }
 

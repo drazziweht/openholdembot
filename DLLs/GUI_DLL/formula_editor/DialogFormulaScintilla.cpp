@@ -13,41 +13,36 @@
 
 // DialogFormulaScintilla.cpp : implementation file
 //
-
-// menu options, menu edit commands
-
-
+#include <afx.h>
+#include <afxpriv.h>
 #include "DialogFormulaScintilla.h"
-
 #include <io.h>
-#include "CAutoplayer.h"
-#include "CAutoplayerTrace.h"
-#include "CDebugTab.h"
+///#include "CAutoplayer.h"
+///#include "CAutoplayerTrace.h"
+///#include "CDebugTab.h"
+#include "..\..\Debug_DLL\debug.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 #include "..\..\Symbols_DLL\CEngineContainer.h"
-#include "GUI()->FlagsToolbar().h"
-#include "CFunction.h"
+#include "..\CGUI.h"
+#include "..\..\Formula_DLL\CFunction.h"
 #include "..\..\Symbols_DLL\CFunctionCollection.h"
-#include "CHeartbeatThread.h"
-#include "COHScriptList.h"
-
-#include "..\..\Scraper_DLL\CScraper.h"
+///#include "CHeartbeatThread.h"
+#include "..\..\Formula_DLL\COHScriptList.h"
+///#include "..\..\Scraper_DLL\CScraper.h"
 #include "..\..\Symbols_DLL\CSymbolEngineAutoplayer.h"
 #include "..\..\Symbols_DLL\CSymbolEngineIniFunctions.h"
-#include "DialogHandList.h"
-#include "DialogNew.h"
-#include "DialogRename.h"
-#include "MainFrm.h"
+#include "..\dialog_handlist\DialogHandList.h"
+#include "..\dialog_new\DialogNew.h"
+#include "..\dialog_rename\DialogRename.h"
+#include "..\MainFrame\MainFrm.h"
+///#include "..\..\..\OpenHoldem\stdafx.h"
 #include "..\..\WindowFunctions_DLL\window_functions.h"
-#include "OpenHoldem.h"
-#include "OpenHoldemDoc.h"
-#include "..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
+///#include "OpenHoldem.h"
+#include "..\..\..\OpenHoldem\OpenHoldemDoc.h" //!!!!!
+#include "..\..\..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 #include "../Shared/scintilla/include/SciLexer.h"
 #include "../Shared/scintilla/include/Scintilla.h"
-#include "WinMgr.h"
-
-
-// CDlgFormulaScintilla dialog
-CDlgFormulaScintilla	*m_formulaScintillaDlg = NULL;
+///#include "WinMgr.h"
 
 // Keywords got changed from "char* to "CString"
 // as we want to create this list dynamically
@@ -412,7 +407,7 @@ void CDlgFormulaScintilla::RemoveSingleItemGroups()
 {
 	HTREEITEM hUDFChildItem = m_FormulaTree.GetChildItem(hUDFItem);
 	HTREEITEM hNextLevelItem = NULL, hNextItem = NULL;
-	CString fnName = 0;
+	CString fnName = "";
 
 	while (hUDFChildItem != NULL)
 	{
@@ -786,7 +781,7 @@ void CDlgFormulaScintilla::OnTvnExpandedFormulaTree(NMHDR *pNMHDR, LRESULT *pRes
 
 void CDlgFormulaScintilla::SetExtendedWindowTitle(CString additional_information)
 {
-	CString new_title = CString("Formula Editor [") + CString(VERSION_TEXT) + CString("]");
+	CString new_title = CString("Formula Editor [") + CString("42.0.0"/*#VERSION_TEXT*/) + CString("]");
 	if (additional_information != "")
 	{
 		new_title += " ";
@@ -1256,7 +1251,7 @@ BOOL CDlgFormulaScintilla::DestroyWindow()
 	CloseFindReplaceDialog();
 	
 	// Uncheck formula button on main toolbar
-	GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_FORMULA, false);
+	///GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_FORMULA, false);
 
 	return CDialog::DestroyWindow();
 }
@@ -1265,7 +1260,7 @@ void CDlgFormulaScintilla::PostNcDestroy()
 {
 	CDialog::PostNcDestroy();
 	delete this;
-	m_formulaScintillaDlg	=	NULL;
+	///!!!!!m_formulaScintillaDlg	=	NULL;
 }
 
 void CDlgFormulaScintilla::ClearCalcResult() {
@@ -1494,7 +1489,7 @@ void CDlgFormulaScintilla::OnBnClickedCalc() {
     // Execute the currently selected formula
     FunctionCollection()->Dump();
     ret = FunctionCollection()->Evaluate(m_current_edit);
-    int line = p_autoplayer_trace->GetLastEvaluatedRelativeLineNumber();
+    int line = 42;/// p_autoplayer_trace->GetLastEvaluatedRelativeLineNumber();
     sprintf_s(format, 50, "%%.%df", k_precision_for_debug_tab);
     Cstr.Format(format, ret);
     m_CalcResult.SetWindowText(Cstr);
@@ -1558,7 +1553,7 @@ void CDlgFormulaScintilla::WarnAboutAutoplayerWhenApplyingFormula()
 		"We will have to turn the autoplayer off,\n"
 		"but to avoid any problems we skip saving.",
 		"Warning", MB_OK | MB_TOPMOST);
-	p_autoplayer->EngageAutoplayer(false);	
+	///p_autoplayer->EngageAutoplayer(false);	
 	return;
 }
 
@@ -1580,9 +1575,9 @@ void CDlgFormulaScintilla::OnBnClickedApply() {
   CMenu				*file_menu = this->GetMenu()->GetSubMenu(0);
   COpenHoldemDoc		*pDoc = COpenHoldemDoc::GetDocument();
   // If autoplayer is engaged, dis-engage it
-  if (p_autoplayer->autoplayer_engaged()) {
+///  if (p_autoplayer->autoplayer_engaged()) {
 	  WarnAboutAutoplayerWhenApplyingFormula();
-  }
+  ///}
   CopyTabContentsToFormulaSet();
   FunctionCollection()->ParseAll();
   if (!FunctionCollection()->BotLogicCorrectlyParsed()) {
@@ -1746,7 +1741,7 @@ void CDlgFormulaScintilla::SetStyleColors(CScintillaWnd *pWnd) {
 
 BOOL CDlgFormulaScintilla::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message)
 {
-	if (PMainframe()->wait_cursor())
+///	if (PMainframe()->wait_cursor())
 	{
 		RestoreWaitCursor();
 		return TRUE;

@@ -37,7 +37,7 @@ const char *k_title_string = "Problem Solver";
 
 bool CProblemSolver::NoTableMapsInScraperFolder()
 {
-	return (p_tablemap_loader->NumberOfTableMapsLoaded() == 0);
+	return (OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded() == 0);
 }
 
 bool CProblemSolver::NotConnected()
@@ -74,7 +74,8 @@ bool CProblemSolver::NotEnoughButtonsVisible() {
 
 void CProblemSolver::TryToDetectBeginnersProblems()
 {
-  p_configurationcheck->ForceAllConfigurationChercks();
+  CConfigurationCheck configuration_check;
+  configuration_check.ForceAllConfigurationChercks();
 	if (NoTableMapsInScraperFolder())
 	{
 		MessageBox_Interactive(

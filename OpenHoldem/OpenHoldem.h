@@ -26,6 +26,8 @@
 #include "CTablePositioner.h"
 #include "..\DLLs\Formula_DLL\CFormulaParser.h"
 
+class CTableMapLoader;
+
 class COpenHoldemApp : public CWinApp {
  public:
 	COpenHoldemApp();
@@ -46,6 +48,7 @@ public:
   CHeartbeatThread* HeartBeatThread(); //!!!!!
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }
+  CTableMapLoader*  TableMapLoader();
   CTablePositioner* TablePositioner() { return &_table_positioner; }
   CWatchdog*        WatchDog()        { return &_watchdog; }
  private:

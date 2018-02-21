@@ -15,6 +15,7 @@
 #include "SAPrefsSubDlg.h"
 #include "..\..\Globals_DLL\globals.h"
 #include "..\..\Preferences_DLL\Preferences.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // CDlgSAPrefs21 dialog
 
