@@ -13,6 +13,7 @@
 
 #include "COHScriptObject.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 

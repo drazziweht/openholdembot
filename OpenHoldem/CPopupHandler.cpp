@@ -11,7 +11,7 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "CPopupHandler.h"
 #include "CSessionCounter.h"
 #include "CSharedMem.h"

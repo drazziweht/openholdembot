@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "CSpaceOptimizedFormulaObject.h"
 #include <assert.h>
 ///#include "..\DLLs\MemoryManagement_DLL\CMemoryPool.h"
@@ -25,4 +25,3 @@ void* CSpaceOptimizedFormulaObject::operator new(size_t size) {
   return malloc(size);
   ///return PMemoryPoolParser()->Allocate(size);
 }
-

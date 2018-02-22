@@ -19,6 +19,7 @@
 #include "COHScriptList.h"
 #include "CParseErrors.h"
 #include "..\Globals_DLL\globals.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
 #include "..\Symbols_DLL\CFunctionCollection.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"

@@ -13,19 +13,18 @@
 //******************************************************************************
 
 #include "CTokenizer.h"
-
 #include "assert.h"
 #include "CFormulaparser.h"
 #include "COHScriptObject.h"
 #include "CParseErrors.h"
+#include "TokenizerConstants.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
-#include "TokenizerConstants.h"
-
 #include "..\..\OpenHoldem\CardFunctions.h" //!!!!!
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 // Global vars to be used by static accessors
 int line_relative = 1;

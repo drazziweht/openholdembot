@@ -28,6 +28,7 @@
 #include  "..\TableState_DLL\CTableTitle.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\..\OpenHoldem\CardFunctions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 
 COHScriptList::COHScriptList(
     CString new_name,

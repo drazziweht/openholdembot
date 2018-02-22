@@ -20,9 +20,11 @@
 #include "COHScriptObject.h"
 #include "CParseTreeNode.h"
 #include "..\Debug_DLL\debug.h"
+#include "..\Formula_DLL\CFormulaParser.h"
 #include "..\Globals_DLL\globals.h"
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // Global counter to detect potentially endless recursion_depth
@@ -70,7 +72,7 @@ void CFunction::Parse() {
   if (NeedsToBeParsed()) { 
     write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),
       "[CFunction] Parsing %s\n", _name);
-    OpenHoldem()->FormulaParser()->ParseFormula(this);
+    OpenHoldem()->FormulaParser()->ParseFormula(this); /// FP part of OH?
     MarkAsParsed();
   } else {
     write_log(Preferences()->debug_formula() || Preferences()->debug_parser(),

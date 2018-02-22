@@ -208,19 +208,14 @@
     <ClCompile Include="BetpotCalculations.cpp" />
     <ClCompile Include="CardFunctions.cpp" />
     <ClCompile Include="CFileSystemMonitor.cpp" />
-    <ClCompile Include="CFlagsToolbar.cpp" />
     <ClCompile Include="CHandresetDetector.cpp" />
     <ClCompile Include="CHeartbeatDelay.cpp" />
     <ClCompile Include="CHeartbeatThread.cpp" />
-    <ClCompile Include="CMyMutex.cpp" />
-    <ClCompile Include="COcclusionCheck.cpp" />
     <ClCompile Include="CPopupHandler.cpp" />
     <ClCompile Include="CSpaceOptimizedFormulaObject.cpp" />
     <ClCompile Include="CTitleEvaluator.cpp" />
-    <ClCompile Include="CValidator.cpp" />
     <ClCompile Include="CWhiteInfoBox.cpp" />
     <ClCompile Include="MainFrm.cpp" />
-    <ClCompile Include="MemoryLogging.cpp" />
     <ClCompile Include="OpenHoldem.cpp" />
     <ClCompile Include="OpenHoldemDoc.cpp" />
     <ClCompile Include="COpenHoldemStarter.cpp" />
@@ -231,7 +226,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release - Optimized|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="..\winmgr\WinMgr.cpp" />
     <ClCompile Include="..\winmgr\WinRect.cpp" />
     <ClCompile Include="..\CTransform\pdiff\CompareArgs.cpp" />
     <ClCompile Include="..\CTransform\CTransform.cpp" />
@@ -239,36 +233,19 @@
     <ClCompile Include="..\CTransform\pdiff\LPyramid.cpp" />
     <ClCompile Include="..\CTransform\pdiff\Metric.cpp" />
     <ClCompile Include="..\CTransform\pdiff\RGBAImage.cpp" />
-    <ClCompile Include="COpenHoldemTitle.cpp" />
     <ClCompile Include="COpenHoldemStatusbar.cpp" />
     <ClCompile Include="MyCToolBar.cpp" />
     <ClCompile Include="OpenHoldemView.cpp" />
     <ClCompile Include="VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="CSessionCounter.cpp" />
     <ClCompile Include="CSharedMem.cpp" />
-    <ClCompile Include="CProblemSolver.cpp" />
-    <ClCompile Include="CVersionInfo.cpp" />
     <ClCompile Include="CAutoplayerFunctions.cpp" />
     <ClCompile Include="CStableFramesCounter.cpp" />
     <ClCompile Include="CAutoConnector.cpp" />
     <ClCompile Include="CTableMapLoader.cpp" />
     <ClCompile Include="CTablePositioner.cpp" />
     <ClCompile Include="CTablepointChecker.cpp" />
-    <ClCompile Include="CIteratorThread.cpp" />
     <ClCompile Include="CReplayFrame.cpp" />
-    <ClCompile Include="CStringHashtableTemplate.cpp" />
-    <ClCompile Include="CStringMatch.cpp" />
-    <ClCompile Include="WebSafeColours.cpp" />
-    <ClCompile Include="..\CTablemap\CTablemap.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release - Optimized|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release - Optimized|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.xdc</XMLDocumentationFileName>
-    </ClCompile>
-    <ClCompile Include="..\CTablemap\CTablemapAccess.cpp" />
-    <ClCompile Include="CTablemapCompletenessChecker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\StringFunctionsDLL\string_functions.cpp" />
@@ -291,22 +268,17 @@
     <None Include="..\##_OpenHoldem_Release_Directory_##\OpenHoldem Release Notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Shared\MagicNumbers\MagicNumbers.h" />
     <ClInclude Include="BetpotCalculations.h" />
     <ClInclude Include="CFileSystemMonitor.h" />
-    <ClInclude Include="CFlagsToolbar.h" />
     <ClInclude Include="CHandresetDetector.h" />
     <ClInclude Include="CHeartbeatDelay.h" />
     <ClInclude Include="CHeartbeatThread.h" />
     <ClInclude Include="CMyMutex.h" />
-    <ClInclude Include="COcclusionCheck.h" />
     <ClInclude Include="CPopupHandler.h" />
     <ClInclude Include="CSpaceOptimizedFormulalObject.h" />
     <ClInclude Include="CSpaceOptimizedGlobalObject.h" />
     <ClInclude Include="CTitleEvaluator.h" />
-    <ClInclude Include="CValidator.h" />
     <ClInclude Include="CWhiteInfoBox.h" />
-    <ClInclude Include="MemoryLogging.h" />
     <ClInclude Include="MyCToolBar.h" />
     <ClInclude Include="OpenHoldem.h" />
     <ClInclude Include="OpenHoldemDoc.h" />
@@ -350,31 +322,20 @@
     <ClInclude Include="..\CTransform\pdiff\RGBAImage.h" />
     <ClInclude Include="..\CTransform\hash\stdint.h" />
     <ClInclude Include="COpenHoldemStatusbar.h" />
-    <ClInclude Include="COpenHoldemTitle.h" />
     <ClInclude Include="OpenHoldemView.h" />
     <ClInclude Include="VerifyFunctionAndListNames.h" />
     <ClInclude Include="COpenHoldemHopperCommunication.h" />
     <ClInclude Include="CSessionCounter.h" />
     <ClInclude Include="CSharedMem.h" />
     <ClInclude Include="CAutoplayerFunctions.h" />
-    <ClInclude Include="CRebuyManagement.h" />
     <ClInclude Include="CStableFramesCounter.h" />
     <ClInclude Include="CAutoConnector.h" />
     <ClInclude Include="CTableMapLoader.h" />
     <ClInclude Include="CTablePositioner.h" />
     <ClInclude Include="CTablepointChecker.h" />
-    <ClInclude Include="CProblemSolver.h" />
     <ClInclude Include="CVersionInfo.h" />
-    <ClInclude Include="CIteratorThread.h" />
     <ClInclude Include="CReplayFrame.h" />
-    <ClInclude Include="..\CTablemap\CTablemap.h" />
-    <ClInclude Include="..\CTablemap\CTableMapAccess.h" />
-    <ClInclude Include="CTablemapCompletenessChecker.h" />
     <ClInclude Include="CardFunctions.h" />
-    <ClInclude Include="CStringHashtableTemplate.h" />
-    <ClInclude Include="CStringMatch.h" />
-    <ClInclude Include="FloatingPoint_Comparisions.h" />
-    <ClInclude Include="WebSafeColours.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="OpenHoldem.rc" />

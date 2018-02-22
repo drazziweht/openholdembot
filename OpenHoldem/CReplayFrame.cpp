@@ -12,7 +12,7 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "CReplayFrame.h"
 #include "CHeartbeatThread.h"
 #include "CSessionCounter.h"

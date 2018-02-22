@@ -11,9 +11,8 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "Singletons.h"
-
 #include "CCasinoInterface.h"
 #include "CAutoConnector.h"
 #include "CAutoplayer.h"

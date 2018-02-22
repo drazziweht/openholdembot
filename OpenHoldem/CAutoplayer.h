@@ -11,10 +11,10 @@
 //
 //******************************************************************************
 
-#include "MainFrm.h"
-#include "../CTablemap/CTablemap.h"
-#include "../CTablemap/CTableMapAccess.h"
-#include "OpenHoldem.h"
+///#include "MainFrm.h"
+///#include "../CTablemap/CTablemap.h"
+///#include "../CTablemap/CTableMapAccess.h"
+///#include "OpenHoldem.h"
 
 class CRebuyManagement;
 

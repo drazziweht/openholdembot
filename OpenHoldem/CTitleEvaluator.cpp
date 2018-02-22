@@ -13,7 +13,7 @@
 //
 //******************************************************************************
 
-
+#include "stdafx.h"
 #include "CTitleEvaluator.h"
 #include "..\DLLs\StringFunctions_DLL\string_functions.h"
 

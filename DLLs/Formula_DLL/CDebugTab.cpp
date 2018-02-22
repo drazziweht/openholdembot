@@ -18,6 +18,7 @@
 #include "..\Globals_DLL\globals.h"
 #include "..\MemoryManagement_DLL\CMemoryPool.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // These arrays are global, 
