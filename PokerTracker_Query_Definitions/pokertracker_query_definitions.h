@@ -18,7 +18,8 @@
 #define POKERTRACKER_DLL_API extern "C" __declspec(dllimport)
 #endif
 
-#include "atlstr.h"
+///#include "atlstr.h"
+#include <afxwin.h>
 
 POKERTRACKER_DLL_API	int		  PT_DLL_GetNumberOfStats();
 POKERTRACKER_DLL_API	CString PT_DLL_GetDescription(int stats_index);

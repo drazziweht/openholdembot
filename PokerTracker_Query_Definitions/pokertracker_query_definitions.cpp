@@ -39,10 +39,10 @@
 // for the users of this DLL.
 #define POKERTRACKER_DLL_EXPORTS
 
-#include <windows.h>
+///#include <windows.h>
 #include "pokertracker_query_definitions.h"
 
-#include <atlstr.h>
+///#include <atlstr.h>
 #include "..\Shared\MagicNumbers\MagicNumbers.h"
 #include "..\DLLs\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "PokerTracker_Queries_Version_4.h"

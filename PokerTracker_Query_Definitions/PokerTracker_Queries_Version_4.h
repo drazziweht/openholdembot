@@ -11,6 +11,8 @@
 //
 ///*****************************************************************************
 
+#include <afxwin.h>
+
 #ifndef INC_POKERTRACKER_QUERIES_VERSION_4_H
 #define INC_POKERTRACKER_QUERIES_VERSION_4_H
 // GENERAL STATS
