@@ -55,12 +55,12 @@ void CHandHistoryDealPhase::UpdateOnMyTurn() {
 
 void CHandHistoryDealPhase::UpdateOnHeartbeat() {
   if (_job_done) return;
-  if (BETROUND > kBetroundPreflop) {
+///  if (BETROUND > kBetroundPreflop) {
     // Can only happen when we join a table
     // in the middle of a hand
     _job_done = true;
     return;
-  }
+  ///}
   if (EngineContainer()->symbol_engine_active_dealt_playing()->nopponentsdealt() < 1 ) {
     // Blind-Posting not yet finished
     return;

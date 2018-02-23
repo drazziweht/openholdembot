@@ -67,9 +67,9 @@ bool AllPlayersActed() {
 }
 
 void CHandHistoryShowdown::UpdateOnHeartbeat() {
-  if (p_betround_calculator->betround() == kBetroundRiver) {
+///  if (p_betround_calculator->betround() == kBetroundRiver) {
     _river_seen = true;
-  }
+  ///}
   if (!_river_seen) return;
   // For sure showdown if
   // * somebody else shows his cards
