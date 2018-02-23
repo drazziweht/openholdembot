@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -11,12 +12,6 @@
 //
 //******************************************************************************
 
-#ifndef INC_MEMORYLOGGING_H
-#define INC_MEMORYLOGGING_H
-
-
-
-
 // Logs memory-usage if enabled at debugging-preferences
 // Message should not contain a new-line (otherwise log-file messed up)
 void LogMemoryUsage(char *message);
@@ -26,5 +21,3 @@ void LogMemoryUsage(char *message);
 #define LOG_SIZE_OF_OBJECT(object, message) \
   write_log(Preferences()->debug_memory_usage(), "[MemoryLogging] %s: %i\n", \
     message, sizeof(object));
-
-#endif INC_MEMORYLOGGING_H
