@@ -35,10 +35,7 @@
 #include "..\..\OpenHoldem\OpenHoldem.h"
 #include "..\..\PokerTracker_Query_Definitions\pokertracker_query_definitions.h"
 
-CPokerTrackerThread	*p_pokertracker_thread = NULL;
-
 SPlayerData _player_data[kMaxNumberOfPlayers];
-
 
 CString CPokerTrackerThread::CreateConnectionString(
 	const CString ip_address, const CString port, const CString username,

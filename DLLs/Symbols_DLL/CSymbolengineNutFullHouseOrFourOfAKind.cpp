@@ -113,7 +113,7 @@ void CSymbolEngineNutFullhouseOrFourOfAKind::CalculateNutFullhouseOrFourOfAKind(
   _nutfullhouseorfourofakind_total_count = 0;
   _list_all_fullhouses.clear();
   _list_better_fullhouses.clear();
-  if (true/*#p_betround_calculator->betround() < kBetroundFlop*/) {
+  if (true/*#BetroundCalculator()->betround() < kBetroundFlop*/) {
     // Preflop or something else
     // No fullhouse possible
     write_log(Preferences()->debug_nutfullhouse(),

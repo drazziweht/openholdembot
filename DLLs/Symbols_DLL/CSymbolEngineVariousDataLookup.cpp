@@ -50,7 +50,7 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   // Other objects that we depend on
   assert(OpenHoldem()->AutoConnector() != NULL);
   assert(p_betround_calculator != NULL);
-  assert(p_handreset_detector != NULL);
+  assert(OpenHoldem()->HandresetDetector() != NULL);
   assert(OpenHoldem()->FormulaParser() != NULL);
   assert(OpenHoldem()->SessionCounter() != NULL);
   assert(p_tablemap != NULL);
@@ -92,15 +92,15 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
   // Various symbols below
   // without any optimized lookup.
   // Betting rounds
-  if (memcmp(name, "betround", 8)==0 && strlen(name)==8)	*result = p_betround_calculator->betround();
-  else if (name == "currentround") *result = p_betround_calculator->betround();
-  else if (name == "previousround") *result = p_betround_calculator->PreviousRound();
+  if (memcmp(name, "betround", 8)==0 && strlen(name)==8)	*result = BetroundCalculator()->betround();
+  else if (name == "currentround") *result = BetroundCalculator()->betround();
+  else if (name == "previousround") *result = BetroundCalculator()->PreviousRound();
   // GENERAL
   else if (memcmp(name, "session", 7)==0 && strlen(name)==7)	*result = OpenHoldem()->SessionCounter()->session_id();
   else if (memcmp(name, "version", 7)==0 && strlen(name)==7)	*result = VERSION_NUMBER;
   // Handreset
-  else if (memcmp(name, "handsplayed", 11)==0 && strlen(name)==11) *result = p_handreset_detector->hands_played();
-  else if (memcmp(name, "handsplayed_headsup", 19)==0 && strlen(name)==19)  *result = p_handreset_detector->hands_played_headsup();
+  else if (memcmp(name, "handsplayed", 11)==0 && strlen(name)==11) *result = OpenHoldem()->HandresetDetector()->hands_played();
+  else if (memcmp(name, "handsplayed_headsup", 19)==0 && strlen(name)==19)  *result = OpenHoldem()->HandresetDetector()->hands_played_headsup();
   else if (name == kEmptyExpression_False_Zero_WhenOthersFoldForce) { *result = kUndefinedZero; }
   // OH-script-messagebox
   else if (memcmp(name, "msgbox$", 7)==0 && strlen(name)>7) {

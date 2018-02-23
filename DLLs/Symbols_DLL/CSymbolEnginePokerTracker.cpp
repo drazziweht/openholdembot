@@ -54,7 +54,7 @@ void CSymbolEnginePokerTracker::InitOnStartup() {
 
 void CSymbolEnginePokerTracker::UpdateOnConnection() {
 	ClearAllStats();
-	p_pokertracker_thread->StartThread();
+	EngineContainer()->PokerTrackerThread()->StartThread();
 }
 
 void CSymbolEnginePokerTracker::UpdateOnHandreset() {
@@ -118,7 +118,7 @@ void CSymbolEnginePokerTracker::ClearAllStatsOfChangedPlayers() {
 	write_log(Preferences()->debug_pokertracker(), "[CSymbolEnginePokerTracker] Executing ClearAllStatsOfChangedPlayers()\n");
 	for (int i=0; i<kMaxNumberOfPlayers; i++)
 	{
-		if (p_pokertracker_thread->CheckIfNameHasChanged(i))
+		if (EngineContainer()->PokerTrackerThread()->CheckIfNameHasChanged(i))
 		{
 			ClearSeatStats(i, true);
 		}
@@ -171,7 +171,7 @@ bool CSymbolEnginePokerTracker::EvaluateSymbol(const CString name, double *resul
 		return true;
 	}
 	int chair = 0;
-	if (!p_pokertracker_thread->IsConnected()) 	{
+	if (!EngineContainer()->PokerTrackerThread()->IsConnected()) 	{
 		if (!EngineContainer()->symbol_engine_userchair()->userchair_confirmed() || OpenHoldem()->FormulaParser()->IsParsing()) {
 			// We are not yet seated or formula is getting parsed.
 			// Symbol-lookup happens, because of Formula-validation.

@@ -91,7 +91,7 @@ CString CWhiteInfoBox::InfoText() {
 	double sym_sblind		= EngineContainer()->symbol_engine_tablelimits()->sblind();
 	double sym_ante			= EngineContainer()->symbol_engine_tablelimits()->ante();
 	int sym_lim				  = EngineContainer()->symbol_engine_gametype()->gametype();
-	CString sym_handnumber = p_handreset_detector->GetHandNumber();
+	CString sym_handnumber = OpenHoldem()->HandresetDetector()->GetHandNumber();
 	double sym_pot			= EngineContainer()->symbol_engine_chip_amounts()->pot();
   CString result, s;
 	// handnumber

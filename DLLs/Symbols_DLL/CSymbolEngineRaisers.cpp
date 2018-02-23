@@ -177,7 +177,7 @@ double CSymbolEngineRaisers::MinimumStartingBetCurrentOrbit(bool searching_for_r
     return TableState()->Player(last_known_actor)->_bet.GetValue();
   }
   // Not yet acted: 0 bb (postflop) or 1 bb (preflop) for the first orbit
-  if (p_betround_calculator->betround() > kBetroundPreflop) {
+  if (BetroundCalculator()->betround() > kBetroundPreflop) {
     // Postflop
     return 0.0;
   }
@@ -238,12 +238,12 @@ void CSymbolEngineRaisers::CalculateRaisers() {
       write_log(Preferences()->debug_symbolengine(), 
         "[CSymbolEngineRaisers] chair %d is not raising\n", chair);
       continue;
-    } else if ((p_betround_calculator->betround() == kBetroundPreflop)
+    } else if ((BetroundCalculator()->betround() == kBetroundPreflop)
 				&& (current_players_bet <= EngineContainer()->symbol_engine_tablelimits()->bblind())) {
       write_log(Preferences()->debug_symbolengine(), 
         "[CSymbolEngineRaisers] chair %d so-called \"blind raiser\". To be ignored.\n", chair);
       continue;
-    } else if ((p_betround_calculator->betround() == kBetroundPreflop)
+    } else if ((BetroundCalculator()->betround() == kBetroundPreflop)
       && TableState()->Player(chair)->PostingBothBlinds()) {
       write_log(Preferences()->debug_symbolengine(), 
         "[CSymbolEngineRaisers] chair %d is posting both blinds at once. To be ignored.\n", chair);

@@ -351,4 +351,4 @@ private:
 
 
 //!!!!!!!
-CPreferences* Preferences();
+/*PREFERENCES_DLL_API*/ CPreferences* Preferences() { return NULL; }

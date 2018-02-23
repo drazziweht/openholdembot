@@ -87,7 +87,7 @@ double CHeartbeatDelay::SleepingFactor() {
 double CHeartbeatDelay::SleepingFactorNotSeated() {
   // Not (yet) seated
   // Probably not much critical work to be done.
-  if (p_handreset_detector->hands_played() > 1) { 
+  if (OpenHoldem()->HandresetDetector()->hands_played() > 1) { 
     if (EngineContainer()->symbol_engine_time()->elapsedauto() > 90) {
       // Tournament finished or cash-game stood-up, extremely non-critical
       // We continue with very low priority just to handle f$close, etc.
@@ -99,7 +99,7 @@ double CHeartbeatDelay::SleepingFactorNotSeated() {
       return 2.0;
     }
   } else { 
-    // if (p_handreset_detector->hands_played() <= 1) {
+    // if (OpenHoldem()->HandresetDetector()->hands_played() <= 1) {
     // Game not yet started
     if (EngineContainer()->symbol_engine_istournament()->istournament()) {
       // Tournament

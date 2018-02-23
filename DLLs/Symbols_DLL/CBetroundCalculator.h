@@ -17,7 +17,7 @@
 // by the symbol-engine-container / all other symbol-engines
 // in advance (just like hand-resets).
 
-#define BETROUND p_betround_calculator->betround()
+#define BETROUND BetroundCalculator()->betround()
 
 class CBetroundCalculator
 {
@@ -35,3 +35,5 @@ private:
 	int _betround;
 	int _betround_previous_heartbeat;
 };
+
+CBetroundCalculator* BetroundCalculator(); /// Not here, missing init!!!

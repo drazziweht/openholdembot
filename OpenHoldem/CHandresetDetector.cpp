@@ -32,8 +32,6 @@
 #include "..\DLLs\Tablestate_DLL\CTableTitle.h"
 #include "..\CTablemap\CTablemap.h"
 
-CHandresetDetector *p_handreset_detector = NULL;
-
 const int kNumberOfHandresetMethods = 9;
 const double kMinimumtimeBetweenTwoHeartbeats = 4.0;
 

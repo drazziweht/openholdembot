@@ -73,6 +73,8 @@
 #include "..\..\OpenHoldem\CSessionCounter.h"
 #include "..\..\OpenHoldem\OpenHoldem.h"
 
+#include "..\Symbols_DLL\CBetroundCalculator.h" //!!!
+
 /*##include "CAutoplayerTrace.h"
 
 #include "CFormulaParser.h"
@@ -94,7 +96,7 @@ void CEngineContainer::CreateSpecialSymbolEngines() {
   // Some engines are "special", because we need to call them up-front,
   // e.g. to detect a hand-reset.
   // So they work slightly different and also get their own initialization.
-  p_betround_calculator = new CBetroundCalculator();	
+  ///p_betround_calculator = new CBetroundCalculator();	
 }
 
 void CEngineContainer::AddSymbolEngine(CVirtualSymbolEngine *new_symbol_engine) {
@@ -292,7 +294,7 @@ void CEngineContainer::DestroyAllSymbolEngines() {
 }
 
 void CEngineContainer::DestroyAllSpecialSymbolEngines() {
-	delete p_betround_calculator;
+	///delete p_betround_calculator;
 }
 
 void CEngineContainer::EvaluateAll() {
@@ -315,8 +317,8 @@ void CEngineContainer::EvaluateAll() {
 		// Not safe to evaluate anything
 		return;
 	}
-	p_betround_calculator->OnNewHeartbeat();
-	p_handreset_detector->OnNewHeartbeat();
+	BetroundCalculator()->OnNewHeartbeat();
+	OpenHoldem()->HandresetDetector()->OnNewHeartbeat();
 	// table-limits depend on betround
 	p_symbol_engine_tablelimits->CalcTableLimits();
 	// UpdateOnConnection() gets directly called by the auto-connector,
@@ -325,10 +327,10 @@ void CEngineContainer::EvaluateAll() {
 	// * UpdateOnHandreset()
 	// * UpdateOnNewRound()
 	// * UpdateOnMyTurn()
-	if (p_handreset_detector->IsHandreset()) 	{
+	if (OpenHoldem()->HandresetDetector()->IsHandreset()) 	{
 		UpdateOnHandreset();
 	}
-	if (p_betround_calculator->IsNewBetround())	{
+	if (BetroundCalculator()->IsNewBetround())	{
 		UpdateOnNewRound();
 	}
 	if (CasinoInterface()->IsMyTurn())	{

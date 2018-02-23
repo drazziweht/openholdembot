@@ -103,7 +103,7 @@ void CDlgSAPrefs6::OnBnClickedPtTest() {
 					   "Warning", MB_OK);
 	}
 
-	///conn_str = p_pokertracker_thread->CreateConnectionString(ip_addr, 
+	///conn_str = EngineContainer()->PokerTrackerThread()->CreateConnectionString(ip_addr, 
 		///port, user, pass, dbname);
 
 	// Set busy cursor

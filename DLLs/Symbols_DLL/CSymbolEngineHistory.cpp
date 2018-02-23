@@ -208,7 +208,7 @@ void CSymbolEngineHistory::CalculateHistory() {
   // Per definition we need to get the value at last myturn in betround N.
   write_log(Preferences()->debug_symbolengine(),
     "[SymbolEngineHistory] Update on my turn\n");
-  int	betround = p_betround_calculator->betround();
+  int	betround = BetroundCalculator()->betround();
   for (int i = 0; i<k_hist_sym_count; ++i) {
     double result;
     EngineContainer()->EvaluateSymbol(k_hist_sym_strings[i], &result);
@@ -255,17 +255,17 @@ bool CSymbolEngineHistory::EvaluateSymbol(const CString name, double *result, bo
   FAST_EXIT_ON_OPENPPL_SYMBOLS(name);
 	if (memcmp(name, "did", 3) == 0)	{
 		if (memcmp(name, "didchec", 7)==0 && strlen(name)==7)	{
-			*result = didchec(p_betround_calculator->betround());
+			*result = didchec(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didcall", 7)==0 && strlen(name)==7) {
-			*result = didcall(p_betround_calculator->betround());
+			*result = didcall(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didrais", 7)==0 && strlen(name)==7) {
-			*result = didrais(p_betround_calculator->betround());
+			*result = didrais(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didbetsize", 10)==0 && strlen(name)==10) {
-			*result = didswag(p_betround_calculator->betround());
+			*result = didswag(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didfold", 7)==0 && strlen(name)==7) {
-			*result = didfold(p_betround_calculator->betround());
+			*result = didfold(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didalli", 7)==0 && strlen(name)==7) {
-			*result = didalli(p_betround_calculator->betround());
+			*result = didalli(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "didchecround", 12)==0 && strlen(name)==13)	{
 			*result = didchec(RightDigitCharacterToNumber(name));
 		}	else if (memcmp(name, "didcallround", 12)==0 && strlen(name)==13)	{
@@ -287,7 +287,7 @@ bool CSymbolEngineHistory::EvaluateSymbol(const CString name, double *result, bo
 	}	else if (memcmp(name, "nplayersround", 13)==0) {
 		if (memcmp(name, "nplayersround", 13)==0 && strlen(name)==13) {
       // For current betting round
-			*result = nplayersround(p_betround_calculator->betround());
+			*result = nplayersround(BetroundCalculator()->betround());
 		}	else if (memcmp(name, "nplayersround", 13)==0 && strlen(name)==14) {
 			*result = nplayersround(RightDigitCharacterToNumber(name));
 		}	else {
@@ -299,7 +299,7 @@ bool CSymbolEngineHistory::EvaluateSymbol(const CString name, double *result, bo
 	}	else if (memcmp(name, "prevaction", 10)==0 && strlen(name)==10)	{
 		*result = prevaction();
 	}	else if (memcmp(name, "nbetsround", 10)==0 && strlen(name)==10)	{
-		*result = nbetsround(p_betround_calculator->betround());
+		*result = nbetsround(BetroundCalculator()->betround());
 	}	else if (memcmp(name, "nbetsround", 10)==0 && strlen(name)==11)	{
 		*result = nbetsround(RightDigitCharacterToNumber(name));
 	} else if (memcmp(name, "hi_", 3)==0) {
@@ -348,7 +348,7 @@ bool CSymbolEngineHistory::DidAct(int betround) {
   if (currentbet > EngineContainer()->symbol_engine_tablelimits()->bblind()) {
     return true;
   }
-  if ((p_betround_calculator->betround() > kBetroundPreflop)
+  if ((BetroundCalculator()->betround() > kBetroundPreflop)
     && (currentbet > 0)) {
     return true;
   }

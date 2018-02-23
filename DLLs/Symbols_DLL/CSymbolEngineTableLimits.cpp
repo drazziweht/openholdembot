@@ -293,7 +293,7 @@ double CSymbolEngineTableLimits::bet(int betround) {
 }
 
 double CSymbolEngineTableLimits::bet() {
-	return (bet(p_betround_calculator->betround()));
+	return (bet(BetroundCalculator()->betround()));
 }
 
 bool CSymbolEngineTableLimits::EvaluateSymbol(const CString name, double *result, bool log /* = false */) {

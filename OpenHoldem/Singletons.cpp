@@ -59,9 +59,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerTrace\n");
   assert(!p_autoplayer_trace);
   p_autoplayer_trace = new CAutoplayerTrace;
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CHandresetDetector\n");
-  assert(!p_handreset_detector);
-  p_handreset_detector = new CHandresetDetector;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayerFunctions\n");
   assert(!p_autoplayer_functions);
   p_autoplayer_functions = new CAutoplayerFunctions;
@@ -95,9 +92,6 @@ void InstantiateAllSingletons() {
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoplayer\n");
   assert(!p_autoplayer);
   p_autoplayer = new CAutoplayer();
-  write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CPokerTrackerThread\n");
-  assert(!p_pokertracker_thread);
-  p_pokertracker_thread = new CPokerTrackerThread;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CTablePositioner\n");
   assert(!OpenHoldem()->TablePositioner());
   OpenHoldem()->TablePositioner() = new CTablePositioner;
@@ -130,10 +124,10 @@ void StopThreads() {
 		delete p_iterator_thread;
 		p_iterator_thread = NULL;
 	}
-	if (p_pokertracker_thread) { 
+	if (EngineContainer()->PokerTrackerThread() - ) {
 		write_log(Preferences()->debug_singletons(), "[Singletons] Deleting PokerTracker-thread\n");
-		p_pokertracker_thread->~CPokerTrackerThread(); 
-		p_pokertracker_thread = NULL; 
+		EngineContainer()->PokerTrackerThread()->~CPokerTrackerThread(); 
+		///p_pokertracker_thread = NULL; 
 	}
 	all_threads_stopped = true;
 }

@@ -116,7 +116,7 @@ EXE_IMPLEMENTS void* GetPrw1326() {
 }
 
 EXE_IMPLEMENTS char* GetHandnumber() {
-  return "42";/// p_handreset_detector->GetHandNumber().GetBuffer();
+  return "42";/// OpenHoldem()->HandresetDetector()->GetHandNumber().GetBuffer();
 }
 
 EXE_IMPLEMENTS char* GetPlayerName(int chair) {

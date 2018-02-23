@@ -62,7 +62,7 @@ void CAutoplayerFunctions::CalcPrimaryFormulasOHScript() {
 void CAutoplayerFunctions::CalcPrimaryFormulasOpenPPL() {
  write_log(Preferences()->debug_formula(), "[CAutoplayerFunctions] CalcPrimaryFormulasOpenPPL()\n");
   // Now do the main evaluation
-  int betround = p_betround_calculator->betround();
+  int betround = BetroundCalculator()->betround();
 	if (betround < kBetroundPreflop || betround > kBetroundRiver) {
     write_log(Preferences()->debug_formula(), 
       "[CAutoplayerFunctions] Betround out of range. Can't calculate OpenPPL-decision\n");

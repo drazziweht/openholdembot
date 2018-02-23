@@ -26,7 +26,8 @@
 #include "CTablePositioner.h"
 #include "..\DLLs\Formula_DLL\CFormulaParser.h"
 
-class CTableMapLoader;
+class CTableMapLoader; 
+class CHandresetDetector;
 
 class COpenHoldemApp : public CWinApp {
  public:
@@ -45,6 +46,7 @@ class COpenHoldemApp : public CWinApp {
 public:
   CAutoConnector*   AutoConnector()   { return &_autoconnector; }
   CFormulaParser*   FormulaParser()   { return &_formula_parser; }
+  CHandresetDetector* HandresetDetector();
   CHeartbeatThread* HeartBeatThread(); //!!!!!
   CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
   CSharedMem*       SharedMem()       { return &_shared_mem; }

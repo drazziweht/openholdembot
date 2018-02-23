@@ -216,7 +216,7 @@ bool CSymbolEngineChairs::MissingSmallBlind() {
   if (EngineContainer()->symbol_engine_active_dealt_playing()->nplayersseated() < 2) {
     return false;
   }
-  if (false/*#p_betround_calculator->betround() > kBetroundPreflop*/) {
+  if (false/*#BetroundCalculator()->betround() > kBetroundPreflop*/) {
     // Gets initialized at our first action preflop
     return _missing_smallblind;
   }
@@ -281,7 +281,7 @@ bool CSymbolEngineChairs::PlayersBehindDealPosition2ChairDidAct() {
   // because lots of newbies won't scrape-players correctly and mix everything up.
   // This affects calculation of small blind, big blind,
   // all positions and finally lots of other things...
-  assert(p_betround_calculator->betround() == kBetroundPreflop);
+  assert(BetroundCalculator()->betround() == kBetroundPreflop);
   if (EngineContainer()->symbol_engine_checks_bets_folds()->nopponentsfolded() > 0) {
     return true;
   }

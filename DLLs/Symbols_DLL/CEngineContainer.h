@@ -17,6 +17,7 @@
 ///#include "CSpaceOptimizedGlobalObject.h"
 #include "CVirtualSymbolEngine.h"
 
+class CPokerTrackerThread;
 class CHandHistoryDealPhase;
 class CHandHistoryAction;
 class CHandHistoryUncontested;
@@ -102,6 +103,7 @@ class CEngineContainer/* !!!!!!!: public CSpaceOptimizedGlobalObject*/ {
   bool _reset_on_connection_executed;
   CString _list_of_symbols;
 public:
+  CPokerTrackerThread *PokerTrackerThread(); ///!!!
   CFunctionCollection *function_collection()
     { return p_function_collection; }
   CSymbolEngineActiveDealtPlaying *symbol_engine_active_dealt_playing()
