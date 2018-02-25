@@ -7,18 +7,25 @@
 //
 //******************************************************************************
 //
-// Purpose: Managing access to global data,
-//   avoiding circular dependency of DLLs to OpenHoldem.
-//   Temp solution until we get rid of all global data,
-//   once mpdulatization has been improved
+// Purpose:
 //
 //******************************************************************************
 
-#define GLOBALS_DLL_EXPORTS
+#include "MyCToolBar.h"
 
-#include "globals.h"
-#include "..\GUI_DLL\CGUI.h"
-#include "..\Preferences_DLL\Preferences.h"
-#include "..\Symbols_DLL\CEngineContainer.h"
-#include "..\TableState_DLL\TableState.h"
+IMPLEMENT_DYNAMIC(CMyToolBar, CToolBar)
 
+CMyToolBar::CMyToolBar() 
+{
+}
+
+CMyToolBar::~CMyToolBar() 
+{
+}
+
+BEGIN_MESSAGE_MAP(CMyToolBar, CToolBar)
+END_MESSAGE_MAP()
+
+void CMyToolBar::OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHandler) 
+{
+}

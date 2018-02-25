@@ -13,13 +13,10 @@
 
 #include "DialogScraperOutput.h"
 #include "..\CGUI.h"
-///#include "GUI()->FlagsToolbar().h"
-///#include "CHeartbeatThread.h"
-
+#include "..\Toolbar\CFlagsToolbar.h"
+#include "..\..\Preferences_DLL\Preferences.h"
 #include "..\..\Scraper_DLL\CBasicScraper.h"
 #include "..\..\Scraper_DLL\CTransform\CTransform.h"
-///#include "MainFrm.h"
-///#include "OpenHoldem.h"
 
 #define ID_SCRAPEROUTPUT_SIZERBAR 5555
 
@@ -99,7 +96,7 @@ BOOL CDlgScraperOutput::OnInitDialog() {
 	// Set dialog icon
 	HICON hIcon = LoadIcon(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDI_ICON1));
 	this->SetIcon(hIcon, FALSE);
-	///m_Zoom.SetCurSel(Preferences()->scraper_zoom()); default!?
+	m_Zoom.SetCurSel(Preferences()->scraper_zoom()); //???default!?
 	m_Zoom.GetWindowRect(&rect);
 	m_Zoom.SetWindowPos(NULL, 0, 0, rect.right-rect.left, 9999, SWP_NOMOVE);
 
@@ -121,9 +118,9 @@ BOOL CDlgScraperOutput::DestroyWindow() {
 
 	// Save settings to registry
 	GetWindowPlacement(&wp);
-  ///Preferences()->SetValue(k_prefs_scraper_zoom, m_Zoom.GetCurSel());
+  Preferences()->SetValue(k_prefs_scraper_zoom, m_Zoom.GetCurSel());
 	// Uncheck scraper output button on main toolbar
-	///GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
+	GUI()->FlagsToolbar()->CheckButton(ID_MAIN_TOOLBAR_SCRAPER_OUTPUT, false);
 	return CDialog::DestroyWindow();
 }
 

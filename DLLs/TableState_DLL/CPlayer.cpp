@@ -18,7 +18,7 @@
 #include "CEngineContainer.h"
 #include "CSymbolEngineIsOmaha.h"
 #include "CSymbolEngineTableLimits.h"*/
-#include "..\..\OpenHoldem\FloatingPoint_Comparisions.h" //!!!!! Move to numerical DLL
+#include "..\Numerical_Functions_DLL\FloatingPoint_Comparisions.h"
 
 // Blobal dummy to handle access to non-existing cards easily
 Card dummy_card_nocard;

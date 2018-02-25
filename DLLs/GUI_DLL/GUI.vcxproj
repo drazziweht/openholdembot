@@ -44,6 +44,8 @@
     <ClCompile Include="preferences_dialog\SAPrefsSubDlg.cpp" />
     <ClCompile Include="Shared\VerifyFunctionAndListNames.cpp" />
     <ClCompile Include="statusbar\COpenHoldemStatusbar.cpp" />
+    <ClCompile Include="Toolbar\CFlagsToolbar.cpp" />
+    <ClCompile Include="Toolbar\MyCToolBar.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dialog_handlist\DialogHandList.h" />
@@ -79,6 +81,8 @@
     <ClInclude Include="preferences_dialog\SAPrefsSubDlg.h" />
     <ClInclude Include="Shared\VerifyFunctionAndListNames.h" />
     <ClInclude Include="statusbar\COpenHoldemStatusbar.h" />
+    <ClInclude Include="Toolbar\CFlagsToolbar.h" />
+    <ClInclude Include="Toolbar\MyCToolBar.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EEC00D63-1F26-41F2-9191-5AC8096FB595}</ProjectGuid>

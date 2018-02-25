@@ -14,7 +14,10 @@
 //
 //******************************************************************************
 
-#include "MyCtoolbar.h"
+#include <afxext.h>
+#include "MyCToolBar.h"
+#include "..\..\..\Shared\CCritSec\CCritSec.h"
+#include "..\..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 class CFlagsToolbar: public CWnd {
  public:
@@ -37,16 +40,15 @@ class CFlagsToolbar: public CWnd {
 	bool IsButtonChecked(int button_ID);
 	bool IsButtonEnabled(int button_ID);
  public:
-	CMyToolBar _tool_bar;
  public:
 	afx_msg void OnClickedFlags();
 	DECLARE_MESSAGE_MAP()
- private:
+ public:  CMyToolBar _tool_bar; private:
 	void CreateMainToolbar();
 	void CreateFlagsToolbar();
 	void AlignToolbars();
  private:
-	CMyToolBar m_MainToolBar;
+  CMyToolBar  m_MainToolBar;
 	bool       _flags[kNumberOfFlags];
 	CFrameWnd  *_parent_window;
 	CCritSec   m_critsec;

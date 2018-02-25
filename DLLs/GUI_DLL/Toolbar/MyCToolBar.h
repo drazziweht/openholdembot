@@ -1,3 +1,4 @@
+#pragma once
 //******************************************************************************
 //
 // This file is part of the OpenHoldem project
@@ -7,18 +8,20 @@
 //
 //******************************************************************************
 //
-// Purpose: Managing access to global data,
-//   avoiding circular dependency of DLLs to OpenHoldem.
-//   Temp solution until we get rid of all global data,
-//   once mpdulatization has been improved
+// Purpose:
 //
 //******************************************************************************
 
-#define GLOBALS_DLL_EXPORTS
+#include <afxext.h>
 
-#include "globals.h"
-#include "..\GUI_DLL\CGUI.h"
-#include "..\Preferences_DLL\Preferences.h"
-#include "..\Symbols_DLL\CEngineContainer.h"
-#include "..\TableState_DLL\TableState.h"
-
+class CMyToolBar : public CToolBar
+{
+	DECLARE_DYNAMIC(CMyToolBar)
+public:
+	CMyToolBar();
+	virtual ~CMyToolBar();
+protected:
+	DECLARE_MESSAGE_MAP()
+public:
+	virtual void OnUpdateCmdUI(CFrameWnd* pTarget, BOOL bDisableIfNoHandler);
+};

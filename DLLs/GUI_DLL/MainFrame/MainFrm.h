@@ -12,7 +12,6 @@
 //
 //******************************************************************************
 
-///#include "..\..\Scraper_DLL\CTablemap\CTablemap.h"
 #include <afxwin.h>
 #include "..\..\..\Shared\CCritSec\CCritSec.h"
 
@@ -25,7 +24,6 @@ class CMainFrame : public CFrameWnd
 protected: // create from serialization only
 	DECLARE_DYNCREATE(CMainFrame)
 	DECLARE_MESSAGE_MAP()
-
 	CMainFrame();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnFileOpen();
@@ -44,7 +42,6 @@ protected: // create from serialization only
 	afx_msg void OnAutoplayer();
 	afx_msg void OnValidator();
 	afx_msg void OnClickedFlags();
-
 	afx_msg void OnUpdateMenuFileNew(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateMenuFileOpen(CCmdUI* pCmdUI);
   afx_msg void OnUpdateMenuFileEdit(CCmdUI* pCmdUI);
@@ -55,7 +52,6 @@ protected: // create from serialization only
 	afx_msg void OnUpdateViewShootreplayframe(CCmdUI *pCmdUI);
   afx_msg void OnUpdateViewScraperOutput(CCmdUI *pCmdUI);
 	afx_msg void OnUpdateEditForceuserchair(CCmdUI *pCmdUI);
-
 	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg void OnHelpProblemSolver();
 public:
@@ -83,17 +79,13 @@ public:
 	// public mutators
 	void set_wait_cursor(const bool b) { ENT _wait_cursor = b; }
 #undef ENT
-
 private:
 	// private variables - use public accessors and public mutators to address these
 	bool			_wait_cursor;	 // Used if we need to display a wait cursor anywhere
-
 private:
 	// private functions and variables - not available via accessors or mutators
 	int CreateStatusBar(void);
-
 	RECT			_prev_att_rect, _prev_wrect;
-
 	CCritSec		m_critsec;
 };
 

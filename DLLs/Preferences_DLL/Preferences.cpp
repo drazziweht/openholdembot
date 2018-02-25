@@ -352,6 +352,9 @@ void CPreferences::WriteReg(const LPCTSTR registry_key, const double registry_va
   WriteReg(registry_key, str);
 }
 
+///!!!!!
+PREFERENCES_DLL_API CPreferences* Preferences() { return NULL; }
+
 #define ENT CSLock lock(m_critsec);
 
 void CPreferences::SetValue(int index_of_variable, LPCSTR value) {

@@ -32,7 +32,7 @@
 
 #define ENT CSLock lock(m_critsec);
 
-CAutoplayerTrace *p_autoplayer_trace = NULL;
+CAutoplayerTrace *p_autoplayer_trace = NULL; //!!!
 
 CAutoplayerTrace::CAutoplayerTrace() {
   Clear();

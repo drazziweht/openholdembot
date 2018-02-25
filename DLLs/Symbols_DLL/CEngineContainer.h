@@ -256,4 +256,4 @@ int nchairs() { return 10; }
 
 CEngineContainer* EngineContainer();
 
-CFunctionCollection* FunctionCollection() { return EngineContainer()->function_collection(); }
+CFunctionCollection* FunctionCollection();
