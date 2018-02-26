@@ -13,11 +13,10 @@
 //
 //******************************************************************************
 
-#include "stdafx.h"
 #include "CWatchdog.h"
-#include "CSessionCounter.h"
+///#include "CSessionCounter.h"
 #include "CSharedMem.h"
-#include "OpenHoldem.h"
+///#include "OpenHoldem.h"
 
 // CWatchdog uses the same shared memory segment like CSharedMem
 #pragma data_seg(kOpenHoldemSharedmemorySegment) // names are limited to 8 chars, including the dot.

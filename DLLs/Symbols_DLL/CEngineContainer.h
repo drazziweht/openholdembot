@@ -252,7 +252,7 @@ private:
 };
 
 //!!!!!!! TEMP
-int nchairs() { return 10; }
+int nchairs();
 
 CEngineContainer* EngineContainer();
 
