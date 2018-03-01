@@ -14,6 +14,7 @@
     <ClInclude Include="CAutoConnector.h" />
     <ClInclude Include="CPopupHandler.h" />
     <ClInclude Include="CSharedMem.h" />
+    <ClInclude Include="CTableManagement.h" />
     <ClInclude Include="CTablePositioner.h" />
     <ClInclude Include="CWatchdog.h" />
     <ClInclude Include="LibDef.h" />

@@ -171,7 +171,7 @@ void CTableMapLoader::ReloadAllTablemapsIfChanged() {
     // but that is perfectly acceptable for development
     // and hot-plugging of TMs won't happen in production.
     write_log(Preferences()->debug_tablemap_loader(), "[CTablemapLoader] Tablemaps changed; going to reload.\n");
-    OpenHoldem()->AutoConnector()->Disconnect("tablemaps changed and need to be reloaded");
+    TableManagement()->AutoConnector()->Disconnect("tablemaps changed and need to be reloaded");
     ParseAllTableMapsToLoadConnectionData();
   }
   else {

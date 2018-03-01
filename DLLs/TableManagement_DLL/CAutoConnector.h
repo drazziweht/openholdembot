@@ -16,7 +16,7 @@
 #include <afxmt.h>
 #include <afxwin.h>
 #include "CPopupHandler.h"
-#include "..\DLLs\Scraper_DLL\CTablemap\CTablemap.h"
+#include "..\Scraper_DLL\CTablemap\CTablemap.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
 
 class CAutoConnector /*#: public CSpaceOptimizedGlobalObject */{

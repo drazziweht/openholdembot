@@ -124,9 +124,9 @@ bool CTablepointChecker::CheckTablepointsOfCurrentTablemap() {
   // for each heartbeat and instance.
   // We use p_scraper->EvaluateRegion() to re-use
   // the already existing screenshot of the scraper.
-  assert(OpenHoldem()->AutoConnector() != NULL);
+  assert(TableManagement()->AutoConnector() != NULL);
   write_log(Preferences()->debug_alltherest(), "[CTablePointChecker] location Johnny_4\n");
-  assert(OpenHoldem()->AutoConnector()->IsConnectedToAnything());
+  assert(TableManagement()->AutoConnector()->IsConnectedToAnything());
   for (int i = 0; i < k_max_number_of_tablepoints; ++i) {
     assert(p_tablemap != NULL);
     CString tablepointX;

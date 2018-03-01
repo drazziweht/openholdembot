@@ -182,7 +182,7 @@ void CTablemapCompletenessChecker::VerifyC0limits() {
 void CTablemapCompletenessChecker::VerifyMap() {
   // Only session 0 verifies the tablemaps
   // for better performance amd to avoid driving users crazy.
-  ///if (OpenHoldem()->SessionCounter()->session_id() > 0) return;
+  ///if (SessionCounter()->session_id() > 0) return;
   // First check for deprecated (and renamed( items.
   // This avoids confusion if we cmplain about missing renamed symbols later
   CheckForDeprecatedItems();

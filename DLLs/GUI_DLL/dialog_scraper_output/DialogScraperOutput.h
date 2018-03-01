@@ -12,9 +12,9 @@
 //
 //******************************************************************************
 
+#include "..\resource.h"
 #include "..\Shared\WinMgr\SizerBar.h"
 #include "..\..\Scraper_DLL\CTablemap\CTablemap.h"
-#include "..\..\..\OpenHoldem\resource.h"
 
 // CDlgScraperOutput dialog
 class CDlgScraperOutput : public CDialog {

@@ -13,12 +13,11 @@
 //******************************************************************************
 
 #include "CSharedMem.h"
-///#include "CSessionCounter.h"
-///#include "OpenHoldem.h"
 #include "..\Checksums_DLL\crc32hash.h"
 #include "..\Debug_DLL\debug.h"
 #include "..\Numerical_Functions_DLL\Numerical_Functions.h"
 #include "..\Preferences_DLL\Preferences.h"
+#include "..\SessionCounter_DLL\CSessionCounter.h"
 #include "..\Symbols_DLL\CSymbolEngineRandom.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
 #include "..\..\Shared\MagicNumbers\MagicNumbers.h"
@@ -66,16 +65,16 @@ CSharedMem::CSharedMem() {
 }
 
 CSharedMem::~CSharedMem() {
-  write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Terminating %d\n", OpenHoldem()->SessionCounter()->session_id());
+  write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Terminating %d\n", SessionCounter()->session_id());
 }
 
 void CSharedMem::AquireOwnProcessID() {
   write_log(Preferences()->debug_sharedmem(), "[CSharedMem] Aquiring own process IG\n");
-  assert(OpenHoldem()->SessionCounter() != NULL);
-  AssertRange(OpenHoldem()->SessionCounter()->session_id(), 0, MAX_SESSION_IDS - 1);
+  assert(SessionCounter() != NULL);
+  AssertRange(SessionCounter()->session_id(), 0, MAX_SESSION_IDS - 1);
   int my_PID = GetCurrentProcessId();
   // Share our process ID for autostarter, watchdog and popup-blocker
-  openholdem_PIDs[OpenHoldem()->SessionCounter()->session_id()] = my_PID;
+  openholdem_PIDs[SessionCounter()->session_id()] = my_PID;
   if (my_PID == 0) {
     // GetCurrentProcessId() can fail on some systems,
     // on startup or in general.
@@ -109,14 +108,14 @@ bool CSharedMem::AnyWindowAttached() {
 
 void CSharedMem::MarkPokerWindowAsAttached(HWND Window) {
   ENT;
-	attached_poker_windows[OpenHoldem()->SessionCounter()->session_id()] = Window;	
+	attached_poker_windows[SessionCounter()->session_id()] = Window;	
 }
 
 void CSharedMem::RememberTimeOfLastFailedAttemptToConnect() {
 	ENT;
 	time(&last_failed_attempt_to_connect);
 	write_log(Preferences()->debug_autoconnector(), "[CSharedMem] Set last_failed_attempt_to_connect %d\n", last_failed_attempt_to_connect);
-	session_ID_of_last_instance_that_failed_to_connect = OpenHoldem()->SessionCounter()->session_id();
+	session_ID_of_last_instance_that_failed_to_connect = SessionCounter()->session_id();
 	write_log(Preferences()->debug_autoconnector(), "[CSharedMem] Instance %d failed to connect\n", session_ID_of_last_instance_that_failed_to_connect);
 }
 
@@ -330,8 +329,8 @@ int CSharedMem::OpenHoldemProcessID(int session_ID) {
   assert(session_ID >= 0);
   assert(session_ID < MAX_SESSION_IDS);
   int process_ID = openholdem_PIDs[session_ID];
-  assert(OpenHoldem()->SessionCounter() != NULL);
-  if ((session_ID == OpenHoldem()->SessionCounter()->session_id())
+  assert(SessionCounter() != NULL);
+  if ((session_ID == SessionCounter()->session_id())
     && (process_ID == 0)) {
     // Own process ID not available
     // Try to aquire new one
@@ -345,7 +344,7 @@ int CSharedMem::OpenHoldemProcessID(int session_ID) {
 }
 
 int CSharedMem::OpenHoldemProcessID() {
-  assert(OpenHoldem()->SessionCounter() != NULL);
-  int my_session_ID = OpenHoldem()->SessionCounter()->session_id();
+  assert(SessionCounter() != NULL);
+  int my_session_ID = SessionCounter()->session_id();
   return openholdem_PIDs[my_session_ID];
 }

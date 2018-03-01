@@ -26,6 +26,9 @@
 //
 // We chose the first solution for its simplicity
 
+#include <time.h>
+#include "..\..\Shared\CCritSec\CCritSec.h"
+
 // names are limited to 8 chars, including the dot.
 // If you changes this name you also have to change the linker pragmas
 #define kOpenHoldemSharedmemorySegment ".ohshmem"

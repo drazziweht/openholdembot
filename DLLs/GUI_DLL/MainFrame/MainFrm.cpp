@@ -25,7 +25,6 @@
 ///#include "COpenHoldemTitle.h"
 
 ///#include "CProblemSolver.h"
-///#include "CSessionCounter.h"
 #include "..\CGUI.h"
 #include "..\dialog_scraper_output\DialogScraperOutput.h"
 #include "..\OpenHoldem_title\COpenHoldemTitle.h"
@@ -34,6 +33,7 @@
 #include "..\..\Files_DLL\Files.h"
 #include "..\..\Preferences_DLL\Preferences.h"
 #include "..\..\Scraper_DLL\CBasicScraper.h"
+#include "..\..\SessionCounter_DLL\CSessionCounter.h"
 #include "..\..\StringFunctions_DLL\string_functions.h"
 #include "..\..\Symbols_DLL\CEngineContainer.h"
 #include "..\..\Symbols_DLL\CSymbolEngineReplayFrameController.h"
@@ -146,6 +146,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	
 	ON_WM_SETCURSOR()
 	ON_WM_SYSCOMMAND()
+
+  // OpenHoldem!!!!!
+  ON_COMMAND(ID_APP_ABOUT, &COpenHoldemApp::OnAppAbout)
+  // Standard file based document commands
+  ON_COMMAND(ID_FILE_NEW, &CWinApp::OnFileNew)
+  ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
 END_MESSAGE_MAP()
 
 // CMainFrame construction/destruction
@@ -273,8 +279,8 @@ void CMainFrame::OnEditFormula() {
 }
 
 void CMainFrame::OnEditViewLog() {
-  assert(OpenHoldem()->SessionCounter() != nullptr);
-  OpenFileInExternalSoftware(LogFilePath(OpenHoldem()->SessionCounter()->session_id()));
+  assert(SessionCounter() != nullptr);
+  OpenFileInExternalSoftware(LogFilePath(SessionCounter()->session_id()));
 }
 
 void CMainFrame::OnEditTagLog() {
@@ -447,7 +453,7 @@ void CMainFrame::OnFileOpen() {
 void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
   write_log(Preferences()->debug_timers(), "[GUI] CMainFrame::OnTimer()\n");
   // There was a race-condition in this function during termination 
-  // if OnTimer was in progress and OpenHoldem()->AutoConnector() became dangling.
+  // if OnTimer was in progress and TableManagement()->AutoConnector() became dangling.
   // This is probably fixed, as we now kill the timers
   // before we delete singleton, but we keep these safety-meassures.
   // It is OK to skip CWnd::OnTimer(nIDEvent); if we terminate.
@@ -457,7 +463,7 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
   /*#if (p_openholdem_statusbar == NULL) {
     return;
   }*/
-  if (OpenHoldem()->AutoConnector() == NULL) {
+  if (TableManagement()->AutoConnector() == NULL) {
     return;
   }
   if (nIDEvent == HWND_CHECK_TIMER) {
@@ -465,17 +471,17 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent) {
     // Important: check is_conected first.
     // Checking only garbage HWND, then disconnecting
     // can lead to freezing if it colludes with Connect()
- 	  if (OpenHoldem()->AutoConnector()->IsConnectedToGoneWindow()) {
+ 	  if (TableManagement()->AutoConnector()->IsConnectedToGoneWindow()) {
  	    // Table disappeared 		
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer found disappeared window()\n");
- 	    OpenHoldem()->AutoConnector()->Disconnect("table disappeared"); 		 		
+ 	    TableManagement()->AutoConnector()->Disconnect("table disappeared"); 		 		
     }
  	} else if (nIDEvent == ENABLE_BUTTONS_TIMER) {
 		// Autoplayer
 		// Since OH 4.0.5 we support autoplaying immediatelly after connection
 		// without the need to know the userchair to act on secondary formulas.
     write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_E\n");
-		if (OpenHoldem()->AutoConnector()->IsConnectedToAnything()) 	{
+		if (TableManagement()->AutoConnector()->IsConnectedToAnything()) 	{
       write_log(Preferences()->debug_timers(), "[GUI] OnTimer enabling buttons\n");
       write_log(Preferences()->debug_alltherest(), "[GUI] location Johnny_F\n");
 			///GUI()->FlagsToolbar()->EnableButton(ID_MAIN_TOOLBAR_AUTOPLAYER, true);
@@ -553,11 +559,11 @@ void CMainFrame::OnUpdateDllLoadspecificfile(CCmdUI *pCmdUI) {
 }
 
 void CMainFrame::OnUpdateViewShootreplayframe(CCmdUI *pCmdUI) {
-	pCmdUI->Enable(OpenHoldem()->AutoConnector()->IsConnectedToAnything());
+	pCmdUI->Enable(TableManagement()->AutoConnector()->IsConnectedToAnything());
 }
 
 void CMainFrame::OnUpdateViewScraperOutput(CCmdUI *pCmdUI) {
-	pCmdUI->Enable(OpenHoldem()->AutoConnector()->IsConnectedToAnything());
+	pCmdUI->Enable(TableManagement()->AutoConnector()->IsConnectedToAnything());
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////

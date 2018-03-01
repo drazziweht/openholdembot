@@ -43,7 +43,7 @@ bool CProblemSolver::NoTableMapsInScraperFolder()
 bool CProblemSolver::NotConnected()
 {
   write_log(Preferences()->debug_alltherest(), "[CProblemSolver] location Johnny_9\n");
-	return (OpenHoldem()->AutoConnector()->IsConnectedToAnything() == false);
+	return (TableManagement()->AutoConnector()->IsConnectedToAnything() == false);
 }
 
 bool CProblemSolver::UserChairUnknown()

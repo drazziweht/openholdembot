@@ -289,6 +289,3 @@ void CAutoplayerFunctions::CalcSecondaryFormulas(void) {
 			  k_standard_function_names[i], result);
 	}
 }
-
-
-

@@ -661,7 +661,7 @@ void CPokerTrackerThread::GetStatsForChair(LPVOID pParam, int chair, int sleepTi
 	if (pParent->_connected && PQstatus(pParent->_pgconn) == CONNECTION_OK)
 	{
     write_log(Preferences()->debug_alltherest(), "[CPokerTrackerThread] location Johnny_7\n");
-		if (OpenHoldem()->AutoConnector()->IsConnectedToAnything())
+		if (TableManagement()->AutoConnector()->IsConnectedToAnything())
 		{
 			for (int i=0; i<PT_DLL_GetNumberOfStats(); i++)
 			{

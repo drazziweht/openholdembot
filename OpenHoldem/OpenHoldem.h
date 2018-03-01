@@ -16,15 +16,9 @@
 	#error "include 'stdafx.h' before including this file for PCH"
 #endif
 
-#include "resource.h"	  
-
-#include "CAutoConnector.h"
 #include "CHeartBeatThread.h"
-#include "CSessionCounter.h"
-#include "CSharedMem.h"
-#include "CWatchdog.h"
-#include "CTablePositioner.h"
-#include "..\DLLs\Formula_DLL\CFormulaParser.h"
+///#include "..\DLLs\Formula_DLL\CFormulaParser.h"
+///#include "..\DLLs\SessionCounter_DLL\CSessionCounter.h"
 
 class CTableMapLoader; 
 class CHandresetDetector;
@@ -44,26 +38,13 @@ class COpenHoldemApp : public CWinApp {
 	void LoadLastRecentlyUsedFileList();
 	void OpenLastRecentlyUsedFile();
 public:
-  CAutoConnector*   AutoConnector()   { return &_autoconnector; }
-  CFormulaParser*   FormulaParser()   { return &_formula_parser; }
-  CHandresetDetector* HandresetDetector();
+//  CHandresetDetector* HandresetDetector();
   CHeartbeatThread* HeartBeatThread(); //!!!!!
-  CSessionCounter*  SessionCounter()  { return &_sessioncounter; }
-  CSharedMem*       SharedMem()       { return &_shared_mem; }
-  CTableMapLoader*  TableMapLoader();
-  CTablePositioner* TablePositioner() { return &_table_positioner; }
-  CWatchdog*        WatchDog()        { return &_watchdog; }
+//  CTableMapLoader*  TableMapLoader();
  private:
-	void FinishInitialization();
   void InitializeThreads();
 private:
-  CSessionCounter _sessioncounter;
-  CSharedMem _shared_mem;
-  CWatchdog _watchdog; //!!!!! -> hearbeat?
-  CFormulaParser _formula_parser;
-  CAutoConnector _autoconnector;
-  CTablePositioner _table_positioner;//!!!!! -> hearbeat?
-  //!!!!!CHeartBeatThread
+  CHeartbeatThread *_p_heartbeat_thread;
 };
 
 COpenHoldemApp* OpenHoldem(); //!!!!!

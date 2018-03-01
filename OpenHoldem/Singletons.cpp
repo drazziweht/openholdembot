@@ -36,7 +36,6 @@
 
 #include "CRebuyManagement.h"
 #include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "CSessionCounter.h"
 #include "CSharedMem.h"
 #include "CStableFramesCounter.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTableLimits.h"
@@ -99,8 +98,8 @@ void InstantiateAllSingletons() {
   assert(!p_version_info);
   p_version_info = new CVersionInfo;
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CAutoConnector\n");
-  assert(!OpenHoldem()->AutoConnector());
-  OpenHoldem()->AutoConnector() = new CAutoConnector;
+  assert(!TableManagement()->AutoConnector());
+  TableManagement()->AutoConnector() = new CAutoConnector;
   EngineContainer()->CreateSymbolEngines();
   write_log(Preferences()->debug_singletons(), "[Singletons] Going to create CCasinoInterface\n");
   assert(!p_casino_interface);

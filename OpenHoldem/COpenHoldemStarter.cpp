@@ -15,8 +15,8 @@
 #include "COpenHoldemStarter.h"
 #include "CAutoConnector.h"
 #include "CSharedMem.h"
-#include "CSessionCounter.h"
 #include "OpenHoldem.h"
+#include "..\DLLs\SessionCounter_DLL\CSessionCounter.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineTime.h"
 
@@ -33,12 +33,12 @@ COpenHoldemStarter::~COpenHoldemStarter() {
 }
 
 void COpenHoldemStarter::StartNewInstanceIfNeeded() {
-  assert(OpenHoldem()->SharedMem() != NULL);
-  if (OpenHoldem()->SharedMem()->OpenHoldemProcessID() == 0) {
+  assert(TableManagement()->SharedMem() != NULL);
+  if (TableManagement()->SharedMem()->OpenHoldemProcessID() == 0) {
     write_log(k_always_log_errors, "WARNING! Auto-starter turned off, unavailable process ID\n");
     return;
   }
-  if (OpenHoldem()->SharedMem()->NUnoccupiedBots() >= kMinNumberOfUnoccupiedBotsNeeded) {
+  if (TableManagement()->SharedMem()->NUnoccupiedBots() >= kMinNumberOfUnoccupiedBotsNeeded) {
     // Enough instance available for new connections / popup handling
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] No bots needed, enough free instances.\n");
     return;
@@ -51,7 +51,7 @@ void COpenHoldemStarter::StartNewInstanceIfNeeded() {
     // and don't flood the screen with new bots.
     return;
   }
-  if (OpenHoldem()->SharedMem()->LowestConnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
+  if (TableManagement()->SharedMem()->LowestConnectedSessionID() != SessionCounter()->session_id()) {
     // Only one instance should handle auto-starting.
     // This might delay auto-starting until the first connection, which is OK.
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my business to start new instances.\n");
@@ -73,17 +73,17 @@ void COpenHoldemStarter::StartNewInstanceIfNeeded() {
 }
 
 void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
-  assert(OpenHoldem()->SharedMem() != NULL);
-  if (OpenHoldem()->SharedMem()->OpenHoldemProcessID() == 0) {
+  assert(TableManagement()->SharedMem() != NULL);
+  if (TableManagement()->SharedMem()->OpenHoldemProcessID() == 0) {
     write_log(k_always_log_errors, "WARNING! Auto-shutdown turned off, unavailable process ID\n");
     return;
   }
-  if (OpenHoldem()->AutoConnector()->IsConnectedToAnything()) {
+  if (TableManagement()->AutoConnector()->IsConnectedToAnything()) {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Playing, therefore still needed.\n");
     // Instance needed for playing
     return;
   }
-  if (OpenHoldem()->SharedMem()->NUnoccupiedBots() <= kMinNumberOfUnoccupiedBotsNeeded) {
+  if (TableManagement()->SharedMem()->NUnoccupiedBots() <= kMinNumberOfUnoccupiedBotsNeeded) {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Needed for new connections.\n");
     // Instance needed for new connections / popup handling
     return;
@@ -94,12 +94,12 @@ void COpenHoldemStarter::CloseThisInstanceIfNoLongerNeeded() {
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not waited long enough for shutdown.\n");
     return;
   }
-  if (OpenHoldem()->SharedMem()->LowestUnconnectedSessionID() != OpenHoldem()->SessionCounter()->session_id()) {
+  if (TableManagement()->SharedMem()->LowestUnconnectedSessionID() != SessionCounter()->session_id()) {
     // Only one instance should tzerminate at a time
     // to keep one instance available
     write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Not my turn to shutdown.\n");
-    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Lowest free ID: %d\n", OpenHoldem()->SharedMem()->LowestUnconnectedSessionID());
-    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] My ID: %d\n", OpenHoldem()->SessionCounter()->session_id());
+    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Lowest free ID: %d\n", TableManagement()->SharedMem()->LowestUnconnectedSessionID());
+    write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] My ID: %d\n", SessionCounter()->session_id());
     return;
   }
   write_log(Preferences()->debug_autostarter(), "[COpenHoldemStarter] Shutting down this instance.\n");

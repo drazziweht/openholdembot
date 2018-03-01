@@ -22,7 +22,7 @@
 
 typedef void *HANDLE;
 
-SESSIONCOUNTER_DLL_API class CSessionCounter {
+/*#SESSIONCOUNTER_DLL_API*/ class CSessionCounter {
  public:
 	// public functions
 	CSessionCounter();

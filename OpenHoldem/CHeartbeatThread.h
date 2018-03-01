@@ -15,7 +15,6 @@
 #include "CHeartbeatDelay.h"
 #include "COpenHoldemStarter.h"
 ///#include "CSpaceOptimizedGlobalObject.h"
-#include "CWatchdog.h"
 
 class CHeartbeatThread /*: public CSpaceOptimizedGlobalObject */{
  public:

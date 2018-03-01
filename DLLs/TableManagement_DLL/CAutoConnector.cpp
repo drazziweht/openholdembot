@@ -14,28 +14,36 @@
 
 #include "CAutoConnector.h"
 #include <afxwin.h>
-#include "CAutoplayer.h"
-#include "CCasinoInterface.h"
-#include "CFlagsToolbar.h"
-#include "CHeartbeatThread.h"
-#include "CIteratorThread.h"
-#include "COpenHoldemTitle.h"
+///#include "CAutoplayer.h"
+///#include "CCasinoInterface.h"
+///#include "CFlagsToolbar.h"
+///#include "CHeartbeatThread.h"
+///#include "CIteratorThread.h"
+///#include "COpenHoldemTitle.h"
 #include "CPopupHandler.h"
 #include "CSharedMem.h"
-#include "CTableMapLoader.h"
+///#include "CTableMapLoader.h"
+#include "CTableManagement.h"
 #include "CTablePositioner.h"
-#include "CVersionInfo.h"
-#include "DialogScraperOutput.h"
-#include "MainFrm.h"
-#include "OpenHoldem.h"
-#include "..\CTablemap\CTablemap.h"
-#include "..\CTablemap\CTablemapAccess.h"
-#include "..\DLLs\Scraper_DLL\CScraper.h"
-#include "..\DLLs\Scraper_DLL\CTransform\CTransform.h"
-#include "..\DLLs\Symbols_DLL\CEngineContainer.h"
-#include "..\DLLs\Symbols_DLL\CPokerTrackerThread.h"
-#include "..\DLLs\Tablestate_DLL\TableState.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+///#include "CVersionInfo.h"
+///#include "DialogScraperOutput.h"
+///#include "MainFrm.h"
+///#include "OpenHoldem.h"
+///#include "..\CTablemap\CTablemap.h"
+///#include "..\CTablemap\CTablemapAccess.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\GUI_DLL\CGUI.h"
+#include "..\GUI_DLL\dialog_scraper_output\DialogScraperOutput.h"
+#include "..\GUI_DLL\Toolbar\CFlagsToolbar.h"
+#include "..\Numerical_Functions_DLL\Numerical_Functions.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\Scraper_DLL\CBasicScraper.h"
+#include "..\Scraper_DLL\CTransform\CTransform.h"
+#include "..\StringFunctions_DLL\string_functions.h"
+#include "..\Symbols_DLL\CEngineContainer.h"
+#include "..\Symbols_DLL\CPokerTrackerThread.h"
+#include "..\Tablestate_DLL\TableState.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 struct STableList {
   HWND		hwnd;
@@ -121,7 +129,7 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
   // by more than one tablemap. For performance reasons we do this exactly once
   // per table at connection.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19407&start=90#p138038
-  int num_loaded_tablemaps = OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded();
+  int num_loaded_tablemaps = 3;/// OpenHoldem()->TablemapLoader()->NumberOfTableMapsLoaded();
   int num_matching_tablemaps = 0;
   CString matching_tablemaps = "";
   for (int i=0; i<num_loaded_tablemaps; ++i) {
@@ -129,7 +137,7 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
     if (Check_TM_Against_Single_Window(i, hwnd)) {
       ++num_matching_tablemaps;
       // Build "list" of matching tablemaps
-      matching_tablemaps += OpenHoldem()->TablemapLoader()->GetTablemapPathToLoad(i);
+      matching_tablemaps += "42";/// OpenHoldem()->TablemapLoader()->GetTablemapPathToLoad(i);
       matching_tablemaps += "\n";
     }
   }
@@ -155,8 +163,8 @@ void CAutoConnector::CheckIfWindowMatchesMoreThanOneTablemap(HWND hwnd) {
 void CAutoConnector::set_attached_hwnd(const HWND table) {
   CSLock lock(m_critsec);
   _attached_hwnd = table;
-  assert(OpenHoldem()->SharedMem() != NULL);
-  OpenHoldem()->SharedMem()->MarkPokerWindowAsAttached(table);
+  assert(TableManagement()->SharedMem() != NULL);
+  TableManagement()->SharedMem()->MarkPokerWindowAsAttached(table);
 }
 
 BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
@@ -183,7 +191,7 @@ BOOL CALLBACK EnumProcTopLevelWindowList(HWND hwnd, LPARAM lparam) {
 		// to select windows manually will cause us lots of headaches,
 		// as the lists will be of different size 
 		// and the indexes will not match.
-    if (OpenHoldem()->SharedMem()->PokerWindowAttached(hwnd)) {
+    if (TableManagement()->SharedMem()->PokerWindowAttached(hwnd)) {
       write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Window candidate already served: [%d]\n", hwnd);
     } else if (popup_handler->WinIsOpenHoldem(hwnd)) { // !!! refactore, does not belong to popup-handler
       write_log(Preferences()->debug_popup_blocker(), "[CAutoConnector] Window belongs to OpenHoldem\n");
@@ -212,13 +220,13 @@ void CAutoConnector::WriteLogTableReset(CString event_and_reason) {
 }
 
 void CAutoConnector::FailedToConnectBecauseNoWindowInList() {
-	OpenHoldem()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
+	TableManagement()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
 	GoIntoPopupBlockingMode();
 }
 
 void CAutoConnector::FailedToConnectProbablyBecauseAllTablesAlreadyServed() {
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Attempt to connect did fail\n");
-	OpenHoldem()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
+	TableManagement()->SharedMem()->RememberTimeOfLastFailedAttemptToConnect();
 	GoIntoPopupBlockingMode();
 }
 
@@ -226,7 +234,7 @@ void CAutoConnector::GoIntoPopupBlockingMode() {
 	// We have a free instance that has nothing to do.
 	// Care about potential popups here, once per auto-connector-heartbeat.
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Not connected. Going into popup-blocking mode.\n");
-	if (OpenHoldem()->SharedMem()->AnyWindowAttached())	{
+	if (TableManagement()->SharedMem()->AnyWindowAttached())	{
 		// Only handle popups if at least one bot is connected to a table.
 		// Especially stop popup-handling if the last table got closed
 		// to allow "normal" human work again.
@@ -251,17 +259,17 @@ bool CAutoConnector::Connect(HWND targetHWnd) {
   // after locking the mutex, otherwiese we block other instances forever.
   // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19407&p=140417#p140417
   //!!!!! DONOWORKS if noi GUI
-  if (OpenHoldem()->TablePositioner() == NULL) return false;
+  /*#if (OpenHoldem()->TablePositioner() == NULL) return false;
   if (p_autoplayer == NULL) return false;
   if (p_casino_interface == NULL) return false;
   if (EngineContainer() == NULL) return false;
   if (p_flags_toolbar == NULL) return false;
   if (p_scraper == NULL) return false;
-  if (OpenHoldem()->SharedMem() == NULL) return false;
+  if (TableManagement()->SharedMem() == NULL) return false;
   if (p_tablemap == NULL) return false;
-  if (OpenHoldem()->TablemapLoader() == NULL) return false;
-  if (OpenHoldem()->TablePositioner() == NULL) return false;
-  if (TableState() == NULL) return false;
+  ///if (OpenHoldem()->TablemapLoader() == NULL) return false;
+  if (TableManagement()->TablePositioner() == NULL) return false;
+  if (TableState() == NULL) return false;*/
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Connect(..)\n");
   ASSERT(_autoconnector_mutex->m_hObject != NULL); 
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Locking autoconnector-mutex\n");
@@ -389,7 +397,7 @@ int CAutoConnector::SelectTableMapAndWindowAutomatically() {
 	write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] SelectTableMapAndWindowAutomatically(..)\n");
   int n_window_candidates = (int)g_tlist.GetSize();
 	for (int i=0; i<n_window_candidates; ++i) {
-		if (!OpenHoldem()->SharedMem()->PokerWindowAttached(g_tlist[i].hwnd))	{
+		if (!TableManagement()->SharedMem()->PokerWindowAttached(g_tlist[i].hwnd))	{
 			write_log(Preferences()->debug_autoconnector(), "[CAutoConnector] Chosen (table, TM)-pair in list: %d\n", i);
 			return i;
 		}
@@ -400,7 +408,7 @@ int CAutoConnector::SelectTableMapAndWindowAutomatically() {
 }
 
 double CAutoConnector::SecondsSinceLastFailedAttemptToConnect() {
-	time_t last_failed_attempt_to_connect = OpenHoldem()->SharedMem()->GetTimeOfLastFailedAttemptToConnect(); 
+	time_t last_failed_attempt_to_connect = TableManagement()->SharedMem()->GetTimeOfLastFailedAttemptToConnect(); 
 	time_t CurrentTime;
 	time(&CurrentTime);
 	double _TimeSincelast_failed_attempt_to_connect = difftime(CurrentTime, last_failed_attempt_to_connect);

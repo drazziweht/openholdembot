@@ -13,6 +13,7 @@
 //******************************************************************************
 
 ///#include "CSpaceOptimizedGlobalObject.h"
+#include <afxwin.h>
 
 class CPopupHandler /*#: public CSpaceOptimizedGlobalObject */
 {

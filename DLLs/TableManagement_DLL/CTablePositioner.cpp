@@ -11,15 +11,17 @@
 //
 //******************************************************************************
 
-
 #include "CTablePositioner.h"
+#include <WinDef.h>
+#include <Winuser.h>
 #include "CAutoConnector.h"
-#include "CSessionCounter.h"
 #include "CSharedMem.h"
-#include "WinDef.h"
-#include "Winuser.h"
-#include "../CTablemap/CTableMapAccess.h"
-#include "..\DLLs\WindowFunctions_DLL\window_functions.h"
+#include "CTableManagement.h"
+///#include "../CTablemap/CTableMapAccess.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\SessionCounter_DLL\CSessionCounter.h"
+#include "..\WindowFunctions_DLL\window_functions.h"
 
 CTablePositioner::CTablePositioner() {
   SystemParametersInfo(SPI_GETWORKAREA, NULL, &_desktop_rectangle, NULL);
@@ -32,9 +34,9 @@ CTablePositioner::~CTablePositioner() {
 void CTablePositioner::PositionMyWindow() {		
 	// Build list of poker tables (child windows)
 	// Use the shared memory (auto-connector) for that. 
-	HWNDs_of_child_windows = OpenHoldem()->SharedMem()->GetDenseListOfConnectedPokerWindows();
-	_number_of_tables = OpenHoldem()->SharedMem()->SizeOfDenseListOfAttachedPokerWindows();
-  GetWindowSize(OpenHoldem()->AutoConnector()->attached_hwnd(),
+	HWNDs_of_child_windows = TableManagement()->SharedMem()->GetDenseListOfConnectedPokerWindows();
+	_number_of_tables = TableManagement()->SharedMem()->SizeOfDenseListOfAttachedPokerWindows();
+  GetWindowSize(TableManagement()->AutoConnector()->attached_hwnd(),
     &_table_size_x, &_table_size_y);
   if (_number_of_tables <= 0)	{
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() No connected tables. going to return.\n");
@@ -47,15 +49,15 @@ void CTablePositioner::PositionMyWindow() {
 	}
   if (BasicScraper()->Tablemap()->islobby()) { 
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to handle the lobby...\n");
-    MoveWindowToTopLeft(OpenHoldem()->AutoConnector()->attached_hwnd());
+    MoveWindowToTopLeft(TableManagement()->AutoConnector()->attached_hwnd());
   } else if (BasicScraper()->Tablemap()->ispopup()) { 
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Ignoring connected popup...\n");
   } else if (Preferences()->table_positioner_options() == k_position_tables_tiled) {
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to tile %d windows...\n", _number_of_tables);	
-    TileSingleWindow(OpenHoldem()->AutoConnector()->attached_hwnd(), HWNDs_of_child_windows);
+    TileSingleWindow(TableManagement()->AutoConnector()->attached_hwnd(), HWNDs_of_child_windows);
 	}	else if (Preferences()->table_positioner_options() == k_position_tables_cascaded) {
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Going to cascade %d windows...\n", _number_of_tables);
-    CascadeSingleWindow(OpenHoldem()->AutoConnector()->attached_hwnd(), OpenHoldem()->SessionCounter()->session_id());
+    CascadeSingleWindow(TableManagement()->AutoConnector()->attached_hwnd(), SessionCounter()->session_id());
 	}	else {
 		// Preferences()->table_positioner_options() == k_position_tables_never
 		write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] PositionMyWindow() Not doing anything because of Preferences()->\n");
@@ -65,19 +67,19 @@ void CTablePositioner::PositionMyWindow() {
 // To be called once per heartbeat
 void CTablePositioner::AlwaysKeepPositionIfEnabled() {
   if (!Preferences()->table_positioner_always_keep_position()
-    || (OpenHoldem()->AutoConnector()->attached_hwnd() == NULL)) {
+    || (TableManagement()->AutoConnector()->attached_hwnd() == NULL)) {
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] AlwaysKeepPositionIfEnabled() disabled or not connected\n");
     return;
   }
   RECT current_position;
-  GetWindowRect(OpenHoldem()->AutoConnector()->attached_hwnd(), &current_position);
+  GetWindowRect(TableManagement()->AutoConnector()->attached_hwnd(), &current_position);
   if ((current_position.left == _table_position.left)
     && (current_position.top == _table_position.top)) {
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] AlwaysKeepPositionIfEnabled() position is good\n");
   }
   else {
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] AlwaysKeepPositionIfEnabled() restoring old position\n");
-    MoveWindow(OpenHoldem()->AutoConnector()->attached_hwnd(),
+    MoveWindow(TableManagement()->AutoConnector()->attached_hwnd(),
       _table_position.left, _table_position.top);
   }
 }
@@ -90,5 +92,5 @@ void CTablePositioner::ResizeToTargetSize() {
     write_log(Preferences()->debug_table_positioner(), "[CTablePositioner] target size <= 0\n");
     return;
   }
-  ResizeToClientSize(OpenHoldem()->AutoConnector()->attached_hwnd(), width, height);
+  ResizeToClientSize(TableManagement()->AutoConnector()->attached_hwnd(), width, height);
 }

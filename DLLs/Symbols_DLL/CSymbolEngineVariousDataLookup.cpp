@@ -27,7 +27,6 @@
 ///#include "CHandresetDetector.h"
 #include "CIteratorThread.h"
 #include "CPokerTrackerThread.h"
-///#include "CSessionCounter.h"
 #include "CSymbolEngineUserchair.h"
 ///#include "CWhiteInfoBox.h"
 ///#include "OpenHoldem.h"
@@ -36,6 +35,7 @@
 #include "..\Preferences_DLL\Preferences.h"
 #include "..\Scraper_DLL\CTablemap\CTablemap.h"
 #include "..\Scraper_DLL\CTransform\CTransform.h"
+#include "..\SessionCounter_DLL\CSessionCounter.h"
 #include "..\Tablestate_DLL\TableState.h"
 #include "..\Tablestate_DLL\CTableTitle.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
@@ -48,11 +48,11 @@ CSymbolEngineVariousDataLookup::CSymbolEngineVariousDataLookup() {
   // we assure correct ordering by checking if they are initialized.
   assert(EngineContainer()->symbol_engine_userchair() != NULL);
   // Other objects that we depend on
-  assert(OpenHoldem()->AutoConnector() != NULL);
+  assert(TableManagement()->AutoConnector() != NULL);
   assert(p_betround_calculator != NULL);
   assert(OpenHoldem()->HandresetDetector() != NULL);
   assert(OpenHoldem()->FormulaParser() != NULL);
-  assert(OpenHoldem()->SessionCounter() != NULL);
+  assert(SessionCounter() != NULL);
   assert(p_tablemap != NULL);
   assert(TableState()->TableTitle() != NULL);
   assert(GUI()->WhiteInfoBox() != NULL);
@@ -96,7 +96,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
   else if (name == "currentround") *result = BetroundCalculator()->betround();
   else if (name == "previousround") *result = BetroundCalculator()->PreviousRound();
   // GENERAL
-  else if (memcmp(name, "session", 7)==0 && strlen(name)==7)	*result = OpenHoldem()->SessionCounter()->session_id();
+  else if (memcmp(name, "session", 7)==0 && strlen(name)==7)	*result = SessionCounter()->session_id();
   else if (memcmp(name, "version", 7)==0 && strlen(name)==7)	*result = VERSION_NUMBER;
   // Handreset
   else if (memcmp(name, "handsplayed", 11)==0 && strlen(name)==11) *result = OpenHoldem()->HandresetDetector()->hands_played();
@@ -124,7 +124,7 @@ bool CSymbolEngineVariousDataLookup::EvaluateSymbol(const CString name, double *
     // http://www.maxinmontreal.com/forums/viewtopic.php?f=110&t=19421
     *result = true;
   } else if ((memcmp(name, "attached_hwnd", 13)==0) && (strlen(name)==13)) {
-    *result = int(OpenHoldem()->AutoConnector()->attached_hwnd());
+    *result = int(TableManagement()->AutoConnector()->attached_hwnd());
   } else if ((memcmp(name, "islobby", 7)==0) && (strlen(name)==7)) {
     *result = BasicScraper()->Tablemap()->islobby();
   }  else if ((memcmp(name, "ispopup", 7) == 0) && (strlen(name) == 7)) {

@@ -12,9 +12,13 @@
 //******************************************************************************
 
 #include "CPopupHandler.h"
-///#include "CSessionCounter.h"
 #include "CSharedMem.h"
+#include "CTableManagement.h"
+#include "..\Debug_DLL\debug.h"
+#include "..\Preferences_DLL\Preferences.h"
+#include "..\SessionCounter_DLL\CSessionCounter.h"
 #include "..\WindowFunctions_DLL\window_functions.h"
+#include "..\..\Shared\MagicNumbers\MagicNumbers.h"
 
 // Only for testing
 #undef MESSAGEBOX_BEFORE_MINIMIZING
@@ -23,7 +27,7 @@ CPopupHandler::CPopupHandler() {
 	if (Preferences()->popup_blocker() != k_popup_disabled) {
 		// Initial minimization of all windows
 		// This should be done exactly once, by instance 0
-		if (OpenHoldem()->SessionCounter()->session_id() == 0) {
+		if (SessionCounter()->session_id() == 0) {
 			write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Minimizing all windows on startup (session ID 0).\n");
 			MinimizeAllOnstartup();
 		}
@@ -52,7 +56,7 @@ void CPopupHandler::HandleAllWindows() {
 
 BOOL CALLBACK EnumProcPotentialPopups(HWND hwnd, LPARAM lparam)  {
 	bool hard_kill = bool(lparam);
-	p_popup_handler->HandlePotentialPopup(hwnd, hard_kill);
+	TableManagement()->PopupHandler()->HandlePotentialPopup(hwnd, hard_kill);
 	return true;  // keep processing through entire list of windows
 }
 
@@ -67,7 +71,7 @@ bool CPopupHandler::WinIsOpenHoldem(HWND window) {
   if (!GetWindowThreadProcessId(window, &PID)) {
     return false;
   }
-  return (OpenHoldem()->SharedMem()->IsAnyOpenHoldemProcess(PID));
+  return (TableManagement()->SharedMem()->IsAnyOpenHoldemProcess(PID));
 }
 
 void CPopupHandler::HandlePotentialPopup(HWND potential_popup, bool hard_kill) {
@@ -119,7 +123,7 @@ void CPopupHandler::HandlePotentialPopup(HWND potential_popup, bool hard_kill) {
 		write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Window is program manager\n");
 		return;
 	}
-	if (OpenHoldem()->SharedMem()->PokerWindowAttached(potential_popup)) {
+	if (TableManagement()->SharedMem()->PokerWindowAttached(potential_popup)) {
 		write_log(Preferences()->debug_popup_blocker(), "[CPopupHandler] Window is a served poker table\n");
 		return;
 	}

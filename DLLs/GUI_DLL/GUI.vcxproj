@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dialog_about\DialogAbout.cpp" />
     <ClCompile Include="dialog_handlist\DialogHandList.cpp" />
     <ClCompile Include="dialog_new\DialogNew.cpp" />
     <ClCompile Include="dialog_rename\DialogRename.cpp" />
@@ -48,6 +49,7 @@
     <ClCompile Include="Toolbar\MyCToolBar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dialog_about\DialogAbout.h" />
     <ClInclude Include="dialog_handlist\DialogHandList.h" />
     <ClInclude Include="dialog_new\DialogNew.h" />
     <ClInclude Include="dialog_rename\DialogRename.h" />

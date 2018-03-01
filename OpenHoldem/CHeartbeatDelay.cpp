@@ -16,7 +16,7 @@
 #include "CAutoconnector.h"
 #include "CCasinoInterface.h"
 #include "CHandresetDetector.h"
-#include "CSessionCounter.h"
+#include "..\DLLs\SessionCounter_DLL\CSessionCounter.h"
 #include "..\DLLs\Symbols_DLL\CEngineContainer.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineActiveDealtPlaying.h"
 #include "..\DLLs\Symbols_DLL\CSymbolEngineCasino.h"
@@ -50,7 +50,7 @@ void CHeartbeatDelay::FlexibleSleep() {
 
 double CHeartbeatDelay::SleepingFactor() {
   write_log(Preferences()->debug_alltherest(), "[CHeartbeatDelay] location Johnny_A\n");
-  if (!OpenHoldem()->AutoConnector()->IsConnectedToAnything()) {
+  if (!TableManagement()->AutoConnector()->IsConnectedToAnything()) {
     // Keep heartbeat_delay as is
     // We want fast auto-connects 
     // and the auto-connector is extremely optimized.
