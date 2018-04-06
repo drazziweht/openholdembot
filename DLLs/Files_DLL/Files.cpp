@@ -40,6 +40,23 @@ CString OpenHoldemDirectory() {
   return result;
 }
 
+
+CString HandHistoryDirectory() {
+	assert(OpenHoldemDirectory() != "");
+	CString hh_dir = CString(OpenHoldemDirectory()) + "Hand_Histories\\";
+	// Create History if needed
+	CreateDirectory(hh_dir, NULL);
+	return hh_dir;
+}
+
+CString HandHistoryPath(int session_ID) {
+	assert(session_ID >= 0);
+	CString path;
+	path.Format("%sHands_%lu.log", HandHistoryDirectory(), session_ID);
+	return path;
+}
+
+
 CString BotlogicDirectory() {
   assert(OpenHoldemDirectory() != "");
   CString bot_logic_dir = CString(OpenHoldemDirectory()) + "bot_logic\\";

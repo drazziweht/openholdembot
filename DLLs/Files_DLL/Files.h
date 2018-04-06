@@ -78,4 +78,5 @@ FILES_DLL_API CString TableMapWildcard();
 FILES_DLL_API void SwitchToOpenHoldemDirectory();
 //!!bool FileExists(CString filename_or_pattern);
 FILES_DLL_API CString FilenameWithoutPath(CString path);
-FILES_DLL_API CString FilenameWithoutPathAndExtension(CString path);
+FILES_DLL_API CString FilenameWithoutPathAndExtension(CString path); 
+FILES_DLL_API CString HandHistoryPath(int session);

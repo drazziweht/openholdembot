@@ -26,9 +26,36 @@
 
 #include "CScraper.h"
 #include "CTableState.h"
+#include "CSessionCounter.h"
+#include "..\DLLs\Preferences_DLL\Preferences.h"
+#include "..\DLLs\Files_DLL\files.h"
+#include "..\DLLs\Debug_DLL\debug.h"
 
 
 CHandHistoryWriter *p_handhistory_writer = NULL;
+
+FILE *hh_log_fp = NULL;
+CCritSec hh_log_critsec;  // Used to ensure only one thread at a time writes to hh log file
+
+
+void write_hh_log(bool debug_settings_for_this_message, const char* fmt, ...) {
+	char		buff[10000];
+	va_list		ap;
+	if (debug_settings_for_this_message == false) {
+		return;
+	}
+	if (hh_log_fp == NULL) {
+		return;
+	}
+	CSLock lock(hh_log_critsec);
+	va_start(ap, fmt);
+	vsprintf_s(buff, 10000, fmt, ap);
+	fprintf(hh_log_fp, "%s", buff);
+	va_end(ap);
+	fflush(hh_log_fp);
+}
+
+
 
 CHandHistoryWriter::CHandHistoryWriter() {
 	// The values of some symbol-engines depend on other engines.
@@ -46,13 +73,29 @@ CHandHistoryWriter::~CHandHistoryWriter() {
 }
 
 void CHandHistoryWriter::InitOnStartup() {
+	
+	if (!Preferences()->handhistory_generator_enable() ) {
+		return;
+		}
+	if (hh_log_fp != NULL) {
+			return;
+		}
+		assert(current_session_iD >= 0);
+		int session_ID = p_sessioncounter->session_id();
+		CSLock hh_lock(hh_log_critsec);
+
+		// Append (or create) log
+		if ((hh_log_fp = _fsopen(HandHistoryPath(session_ID).GetString(), "a", _SH_DENYWR)) != 0) {
+			write_hh_log(true, "HH_InitOnStartup\n");
+			fflush(hh_log_fp);
+		}
 }
 
 void CHandHistoryWriter::UpdateOnConnection() {
 }
 
 void CHandHistoryWriter::UpdateOnHandreset() {
-  //write_log(true, "######## Test ################\n");
+  write_hh_log(true, "######## Test UpdateOnHandreset ################\n");
   WriteHistory();
 }
 
@@ -108,11 +151,11 @@ CString CHandHistoryWriter::PlayerName(int chair) {
 // * when it is my turn (summary in the log)
 void CHandHistoryWriter::WriteHistory() {
   return; //!!
-  write_log_separator(true, "Summary (might be not accurate)");
+  write_hh_log(true, "Summary (might be not accurate)");
   for (int i=0; i<_lines_collected; ++i) {
-    write_log(true, (char*)(LPCTSTR)_handhistory_data[i]); 
+    write_hh_log(true, (char*)(LPCTSTR)_handhistory_data[i]); 
   }
-  write_log_separator(true, "");
+  write_hh_log(true, "============================================================");
   _lines_collected = 0;
 }
 
